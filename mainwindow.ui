@@ -203,8 +203,8 @@ width: 0px;
     </property>
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>100</y>
+      <x>-10</x>
+      <y>90</y>
       <width>1911</width>
       <height>841</height>
      </rect>
@@ -240,7 +240,7 @@ width: 0px;
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>22</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -298,48 +298,6 @@ font-weight: bold;
            <width>250</width>
            <height>250</height>
           </size>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QPushButton" name="Btn_Impresora">
-         <property name="maximumSize">
-          <size>
-           <width>280</width>
-           <height>250</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>consolas</family>
-           <pointsize>-1</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">
-QPushButton{
-  color: white;
-background-color: rgba(60,50,70,100);
-font-weight: bold;
-	border-width: 3px;
-	border-radius: 10px;
-	padding: 2px;
-   font-size:46px;     
-  display: inline-block;
-  background-image: url(:/Impresora.png);
-  background-repeat: no-repeat;
-  background-size: 45px;
-  text-align : bottom ;         
-  line-height: 200px;
-  font-family: consolas;
-  background-position: center ;
-}
-</string>
-         </property>
-         <property name="text">
-          <string>Impresora</string>
          </property>
         </widget>
        </item>
@@ -431,54 +389,6 @@ background-color: rgba(110,145,141,100);
          </property>
          <property name="text">
           <string>Inventario</string>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>250</width>
-           <height>250</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QPushButton" name="Btn_Entregas">
-         <property name="maximumSize">
-          <size>
-           <width>280</width>
-           <height>250</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>consolas</family>
-           <pointsize>-1</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">
-QPushButton{
-  color: white;
-background-color: rgba(230,145,50,100);
-font-weight: bold;
-	border-width: 3px;
-	border-radius: 10px;
-	padding: 2px;
-   font-size:46px;     
-  display: inline-block;
-  background-image: url(:/Entregas.png);
-  background-repeat: no-repeat;
-  background-size: 45px;
-  text-align : bottom ;         
-  line-height: 200px;
-  font-family: consolas;
-  background-position: center ;
-}
-</string>
-         </property>
-         <property name="text">
-          <string>Entregas</string>
          </property>
          <property name="iconSize">
           <size>
@@ -679,7 +589,7 @@ font-weight: bold;
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
+       <item row="3" column="0">
         <widget class="QPushButton" name="Btn_sensor_conf">
          <property name="maximumSize">
           <size>
@@ -721,7 +631,7 @@ font-weight: bold;
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
+       <item row="3" column="1">
         <widget class="QPushButton" name="Btn_Fechayhora">
          <property name="maximumSize">
           <size>
@@ -764,7 +674,7 @@ font-weight: bold;
          </property>
         </widget>
        </item>
-       <item row="2" column="2">
+       <item row="3" column="2">
         <widget class="QPushButton" name="Btn_Display">
          <property name="maximumSize">
           <size>
@@ -862,20 +772,91 @@ font-weight: bold;
          </property>
         </widget>
        </item>
+       <item row="0" column="3">
+        <widget class="QPushButton" name="Btn_Productos">
+         <property name="maximumSize">
+          <size>
+           <width>280</width>
+           <height>250</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>consolas</family>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+QPushButton{
+  color: white;
+background-color: rgba(80,50,10,100);
+font-weight: bold;
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+   font-size:46px;     
+  display: inline-block;
+  background-image: url(:/Productos.png);
+  background-repeat: no-repeat;
+  background-size: 45px;
+  text-align : bottom ;         
+  line-height: 200px;
+  font-family: consolas;
+  background-position: center ;
+}
+</string>
+         </property>
+         <property name="text">
+          <string>Productos</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="Btn_Impresora">
+         <property name="maximumSize">
+          <size>
+           <width>280</width>
+           <height>250</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>consolas</family>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+QPushButton{
+  color: white;
+background-color: rgba(60,50,70,100);
+font-weight: bold;
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+   font-size:46px;     
+  display: inline-block;
+  background-image: url(:/Impresora.png);
+  background-repeat: no-repeat;
+  background-size: 45px;
+  text-align : bottom ;         
+  line-height: 200px;
+  font-family: consolas;
+  background-position: center ;
+}
+</string>
+         </property>
+         <property name="text">
+          <string>Impresora</string>
+         </property>
+        </widget>
+       </item>
       </layout>
-      <zorder>Btn_Comunicacion</zorder>
-      <zorder>Btn_Tanque</zorder>
-      <zorder>Btn_Impresora</zorder>
-      <zorder>Btn_Alarmas</zorder>
-      <zorder>Btn_inventarioConfig</zorder>
-      <zorder>Btn_Entregas</zorder>
-      <zorder>Btn_tabla_cubicacion</zorder>
-      <zorder>Btb_Sonda</zorder>
-      <zorder>Btn_Station</zorder>
-      <zorder>Btn_Turnos</zorder>
-      <zorder>Btn_sensor_conf</zorder>
-      <zorder>Btn_Fechayhora</zorder>
-      <zorder>Btn_Display</zorder>
      </widget>
     </widget>
     <widget class="QWidget" name="Home">
@@ -1200,7 +1181,7 @@ padding: 2px;</string>
          <x>0</x>
          <y>0</y>
          <width>1107</width>
-         <height>1478</height>
+         <height>1674</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -1215,6 +1196,26 @@ padding: 2px;</string>
           <property name="verticalSpacing">
            <number>12</number>
           </property>
+          <item row="30" column="0">
+           <widget class="QLabel" name="Lab_TiepoEntrega">
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>Tiempo de Entrega</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
           <item row="12" column="1">
            <widget class="QComboBox" name="Combo_Sonda">
             <property name="maximumSize">
@@ -1410,7 +1411,7 @@ padding: 2px;</string>
             </property>
             <item>
              <property name="text">
-              <string/>
+              <string>Tabla Cubicacion</string>
              </property>
             </item>
             <item>
@@ -1686,7 +1687,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }
             </property>
            </widget>
           </item>
-          <item row="29" column="0" colspan="2">
+          <item row="34" column="0" colspan="2">
            <widget class="Line" name="line_22">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -2013,6 +2014,79 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }
             </property>
            </widget>
           </item>
+          <item row="29" column="0" colspan="2">
+           <widget class="Line" name="line_52">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="31" column="0" colspan="2">
+           <widget class="Line" name="line_53">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="32" column="0">
+           <widget class="QLabel" name="Lab_MinimoEntrega">
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Minimo de Entrega</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="32" column="1">
+           <widget class="QLineEdit" name="Line_MinimoEntrega_2">
+            <property name="minimumSize">
+             <size>
+              <width>600</width>
+              <height>71</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>600</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="30" column="1">
+           <widget class="QLineEdit" name="Line_TiempoEntrega_2">
+            <property name="minimumSize">
+             <size>
+              <width>600</width>
+              <height>71</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>600</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+             </font>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
        </layout>
@@ -2242,8 +2316,23 @@ QScrollBar::add-line:vertical {
       <property name="focusPolicy">
        <enum>Qt::NoFocus</enum>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QTabBar::tab {
+  background: gray;
+  color: white;
+  padding: 10px;
+ }
+
+ QTabBar::tab:selected {
+  background: lightgray;
+ }
+
+QTabWidget::pane { 
+   border: none;
+}</string>
+      </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="Tab_editar">
        <property name="font">
@@ -2900,7 +2989,7 @@ QTabWidget::pane {
 }</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -2915,7 +3004,7 @@ QTabWidget::pane {
           <height>635</height>
          </rect>
         </property>
-        <layout class="QGridLayout" name="gridLayout_17">
+        <layout class="QGridLayout" name="Layout_Limites">
          <item row="0" column="1">
           <widget class="QLabel" name="Lab_VolMaxi">
            <property name="font">
@@ -3005,12 +3094,12 @@ QTabWidget::pane {
             <string notr="true">QLabel{ background-color: rgb(210, 210, 210); }</string>
            </property>
            <property name="text">
-            <string>100% </string>
+            <string>Vacio</string>
            </property>
           </widget>
          </item>
          <item row="7" column="1">
-          <widget class="QLabel" name="label_33">
+          <widget class="QLabel" name="Lab_Capacidad">
            <property name="font">
             <font>
              <pointsize>36</pointsize>
@@ -3034,7 +3123,7 @@ QTabWidget::pane {
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLabel" name="Lab_100">
+          <widget class="QLabel" name="Lab_Vacio">
            <property name="font">
             <font>
              <pointsize>36</pointsize>
@@ -6452,10 +6541,17 @@ font-weight: bold;
         <x>420</x>
         <y>120</y>
         <width>1001</width>
-        <height>464</height>
+        <height>509</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_17">
+       <item row="3" column="0" colspan="2">
+        <widget class="Line" name="line_54">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="0" colspan="3">
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
@@ -6541,7 +6637,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </item>
         </layout>
        </item>
-       <item row="3" column="0">
+       <item row="6" column="0">
         <widget class="QLabel" name="label_72">
          <property name="font">
           <font>
@@ -6561,7 +6657,27 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="2">
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_70">
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>Controlador</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="2">
         <widget class="QLineEdit" name="Line_ubicacion">
          <property name="enabled">
           <bool>true</bool>
@@ -6584,27 +6700,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_70">
-         <property name="font">
-          <font>
-           <pointsize>36</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="layoutDirection">
-          <enum>Qt::LeftToRight</enum>
-         </property>
-         <property name="text">
-          <string>Controlador</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
+       <item row="4" column="2">
         <widget class="QLineEdit" name="Line_controlador">
          <property name="enabled">
           <bool>true</bool>
@@ -6633,7 +6729,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
+       <item row="8" column="0">
         <widget class="QLabel" name="label_71">
          <property name="font">
           <font>
@@ -6653,7 +6749,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="2">
+       <item row="8" column="2">
         <widget class="QLineEdit" name="Line_Etiqueta">
          <property name="minimumSize">
           <size>
@@ -6670,7 +6766,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
+       <item row="2" column="0">
         <widget class="QLabel" name="label_37">
          <property name="font">
           <font>
@@ -6690,7 +6786,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="2">
+       <item row="10" column="2">
         <widget class="QPushButton" name="Btn_impresion_prueba">
          <property name="minimumSize">
           <size>
@@ -6716,7 +6812,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="2">
+       <item row="2" column="2">
         <widget class="QComboBox" name="Combo_impresora">
          <property name="minimumSize">
           <size>
@@ -6733,7 +6829,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
+       <item row="2" column="1">
         <spacer name="horizontalSpacer_10">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -6746,7 +6842,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </property>
         </spacer>
        </item>
-       <item row="1" column="3">
+       <item row="2" column="3">
         <spacer name="horizontalSpacer_12">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -6758,6 +6854,34 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
           </size>
          </property>
         </spacer>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="Line" name="line_55">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0" colspan="3">
+        <widget class="Line" name="line_57">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="3">
+        <widget class="Line" name="line_56">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0" colspan="3">
+        <widget class="Line" name="line_58">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -6792,7 +6916,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </property>
         </spacer>
        </item>
-       <item row="2" column="2">
+       <item row="3" column="2">
         <widget class="QLineEdit" name="Line_User">
          <property name="minimumSize">
           <size>
@@ -6839,7 +6963,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </item>
         </widget>
        </item>
-       <item row="2" column="0">
+       <item row="3" column="0">
         <widget class="QLabel" name="label_56">
          <property name="minimumSize">
           <size>
@@ -6862,7 +6986,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="4">
+       <item row="2" column="4">
         <widget class="QComboBox" name="Combo_StationName">
          <property name="minimumSize">
           <size>
@@ -6889,7 +7013,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </item>
         </widget>
        </item>
-       <item row="1" column="0">
+       <item row="2" column="0">
         <widget class="QLabel" name="label_54">
          <property name="minimumSize">
           <size>
@@ -6912,7 +7036,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="2">
+       <item row="4" column="2">
         <widget class="QLineEdit" name="Line_Memo">
          <property name="minimumSize">
           <size>
@@ -6932,7 +7056,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="4">
+       <item row="4" column="4">
         <widget class="QComboBox" name="Combo_Memo">
          <property name="minimumSize">
           <size>
@@ -6979,7 +7103,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="2">
+       <item row="2" column="2">
         <widget class="QLineEdit" name="Line_StationName">
          <property name="minimumSize">
           <size>
@@ -6999,7 +7123,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
+       <item row="4" column="0">
         <widget class="QLabel" name="label_57">
          <property name="minimumSize">
           <size>
@@ -7022,7 +7146,30 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="4">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_52">
+         <property name="minimumSize">
+          <size>
+           <width>250</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Station Code</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="4">
         <widget class="QComboBox" name="Combo_User">
          <property name="minimumSize">
           <size>
@@ -7049,29 +7196,6 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </item>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_52">
-         <property name="minimumSize">
-          <size>
-           <width>250</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>36</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Station Code</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="1">
         <spacer name="horizontalSpacer_9">
          <property name="orientation">
@@ -7084,6 +7208,13 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
           </size>
          </property>
         </spacer>
+       </item>
+       <item row="1" column="1" colspan="4">
+        <widget class="Line" name="line_59">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -8046,7 +8177,7 @@ QScrollBar::add-line:vertical {
         </widget>
        </item>
        <item row="6" column="0">
-        <widget class="QLabel" name="label_43">
+        <widget class="QLabel" name="Lab_ZonaTemporalCal">
          <property name="font">
           <font>
            <pointsize>36</pointsize>
@@ -8073,7 +8204,7 @@ QScrollBar::add-line:vertical {
         </spacer>
        </item>
        <item row="2" column="5" colspan="2">
-        <widget class="QLabel" name="label_47">
+        <widget class="QLabel" name="Lab_HorasCal">
          <property name="font">
           <font>
            <pointsize>36</pointsize>
@@ -8203,7 +8334,7 @@ margin: 30px 20px 20px -15x;
         </widget>
        </item>
        <item row="0" column="0">
-        <widget class="QLabel" name="label_7">
+        <widget class="QLabel" name="Lab_FechaCal">
          <property name="font">
           <font>
            <pointsize>36</pointsize>
@@ -8220,7 +8351,7 @@ margin: 30px 20px 20px -15x;
         </widget>
        </item>
        <item row="4" column="0">
-        <widget class="QLabel" name="label_40">
+        <widget class="QLabel" name="Lab_HoraCorrienteCal">
          <property name="font">
           <font>
            <pointsize>36</pointsize>
@@ -8387,8 +8518,8 @@ margin: 30px 20px 20px -15x;
      <widget class="QWidget" name="gridLayoutWidget_11">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>50</y>
+        <x>210</x>
+        <y>110</y>
         <width>1291</width>
         <height>361</height>
        </rect>
@@ -8535,6 +8666,23 @@ margin: 30px 20px 20px -15x;
          </property>
         </widget>
        </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_33">
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Sistema de Unidades </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
        <item row="2" column="0">
         <widget class="QLabel" name="Lab_SeparadorFecha">
          <property name="font">
@@ -8566,120 +8714,42 @@ margin: 30px 20px 20px -15x;
          </property>
         </widget>
        </item>
-      </layout>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="Config_Entregas">
-     <widget class="QWidget" name="gridLayoutWidget_12">
-      <property name="geometry">
-       <rect>
-        <x>440</x>
-        <y>120</y>
-        <width>1271</width>
-        <height>381</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_21">
-       <item row="2" column="0">
-        <widget class="QLabel" name="LabelTimeEntrega">
+       <item row="6" column="1">
+        <widget class="QComboBox" name="comboBox_4">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>71</height>
+          </size>
+         </property>
          <property name="font">
           <font>
            <pointsize>36</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
           </font>
          </property>
-         <property name="text">
-          <string>Tiempo de Entrega</string>
-         </property>
+         <item>
+          <property name="text">
+           <string>Metrico </string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>EE.UU</string>
+          </property>
+         </item>
         </widget>
        </item>
-       <item row="1" column="0" colspan="2">
+       <item row="5" column="0" colspan="2">
         <widget class="Line" name="line_47">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
-        <widget class="QLineEdit" name="Line_TiempoEntrega">
-         <property name="minimumSize">
-          <size>
-           <width>641</width>
-           <height>71</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>36</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="Label_MinEntrega">
-         <property name="font">
-          <font>
-           <pointsize>36</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Minimo de Entrega</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="Line_MinimoEntrega">
-         <property name="minimumSize">
-          <size>
-           <width>641</width>
-           <height>71</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>36</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="LabelUMEntrega">
-         <property name="font">
-          <font>
-           <pointsize>36</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Litros</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QLabel" name="LabelMinutosEntrega">
-         <property name="font">
-          <font>
-           <pointsize>36</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Minutos</string>
-         </property>
-        </widget>
-       </item>
       </layout>
      </widget>
     </widget>
+    <widget class="QWidget" name="Config_Entregas"/>
     <widget class="QWidget" name="Alarmas">
      <widget class="QLabel" name="label_75">
       <property name="geometry">
@@ -8820,6 +8890,138 @@ margin: 30px 20px 20px -15x;
         <string>20 minutos</string>
        </property>
       </item>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page">
+     <widget class="QWidget" name="gridLayoutWidget_13">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>170</y>
+        <width>671</width>
+        <height>431</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_22">
+       <item row="8" column="0">
+        <widget class="Line" name="line_50">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <widget class="QPushButton" name="Btn_ActualizarProducto">
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: royalblue;
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string>Actualizar</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QComboBox" name="Combo_selcProducto">
+         <property name="minimumSize">
+          <size>
+           <width>450</width>
+           <height>71</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="Lab_Producto">
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>PRODUCTO</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="Line" name="line_48">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLineEdit" name="Line_EditProducto">
+         <property name="minimumSize">
+          <size>
+           <width>450</width>
+           <height>71</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_78">
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>EDIT</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="Line" name="line_49">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="Line" name="line_51">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>

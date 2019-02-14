@@ -29,6 +29,9 @@ class Tanque :public QWidget
 
     int contador=0;
     int niv;
+    bool Metricas = false;
+
+    /**************Limites de Tanque****************/
     double VolMax;
     double ProductoAlto;
     double DesbordamientoP;
@@ -40,7 +43,11 @@ class Tanque :public QWidget
     double VolumenCon;
     double AlturaTank;
     double LimSup;
-    double Temperatura;
+
+    /*****************************************************/
+
+
+    /***************Configuracion de Tanque ******************/
     double TankDiametro = 200;
     double Tankaltura;
     double Tanklargo;
@@ -59,10 +66,22 @@ class Tanque :public QWidget
     double angle= 50;
     double frombase=500;
     double NivelAgua;
+    double VolumeTc;
+     double Temperatura;
     int puntosCubicacion;
+    /***************************************************************/
 
+
+    /*****Conversion EEUU ******/
+    double VolumenEEUU;
+    double CapacidadEEUU;
+    double AlturaEEUU;
+    double TemperaturaEEUU;
+    double VolumeAguaEEUU;
+    /**************************/
+
+/****** Configuracion Entregas ******/
     QString InicioEntrega;
-
     int    deliveryTimeOut = 0;
     double deliveryMinimunVolume = 0;
     double deliveryVolumeRead = 0;
@@ -83,6 +102,9 @@ class Tanque :public QWidget
     double Temperatura_Final;
     bool isConnected = true;
     bool Entregando = false ;
+  /************************************************/
+
+  /**********************Construccion de Tanque****************************/
     double  v;
     int nivA;
     int PosX;
@@ -111,20 +133,6 @@ class Tanque :public QWidget
     int Vacio100;
     int Vacio90;
 
-
-
-
-private slots:
-
-    void clickbuton();
-
-signals:
-
-    void Camino(int pos);
-    void Entrega(QString SeRealizoEntrega);
-
-
-public:
     QString Radio="90";
    QGroupBox *T1;
    QWidget *layoutWidget1;
@@ -231,18 +239,35 @@ public:
             "stop: "+F+" "+ Color3 + " ,"
             "stop:1 "+" "+ Color3 +" );";
 
-    double ProGaugeMeasureA = 3.2 * 100;        //  Valores en metros, se convierten en centimetros
-    double ProGaugeMeasureB = 9.94718 * 100;    //  Valores en metros, se convierten en centimetros
-    double ProGaugeMeasureC = 3.2 * 100;        //  Valores en metros, se convierten en centimetros
+/***********************************************************************/
 
-    double ProGaugeVolumen = 0;
-    double ProGaugeNivel = 0;
-    double ProGaugeTemperatura = 0;
-    double ProGaugeAgua = 0;
-    double ProGaugeCapacidad = 40001.0;
-    double ProGaugeLongitud = 0;
-    double ProGaugeDiametro = 3200;
-    int    ProGaugeTankPorcent = 0;
+
+private slots:
+
+    void clickbuton();
+
+signals:
+
+    void Camino(int pos); // Esta Señal se emite al presionar un tanque
+    void EntregaInicio(QString TankNom, int IDTank); // Esta Señal se emite al inicar un entrega
+    void Entrega(QString SeRealizoEntrega);// esta señal se emite al finalizar una entrega
+
+
+public:
+
+
+//    double ProGaugeMeasureA = 3.2 * 100;        //  Valores en metros, se convierten en centimetros
+//    double ProGaugeMeasureB = 9.94718 * 100;    //  Valores en metros, se convierten en centimetros
+//    double ProGaugeMeasureC = 3.2 * 100;        //  Valores en metros, se convierten en centimetros
+
+//    double ProGaugeVolumen = 0;
+//    double ProGaugeNivel = 0;
+//    double ProGaugeTemperatura = 0;
+//    double ProGaugeAgua = 0;
+//    double ProGaugeCapacidad = 40001.0;
+//    double ProGaugeLongitud = 0;
+//    double ProGaugeDiametro = 3200;
+//    int    ProGaugeTankPorcent = 0;
     int Protocolo;
     double pointLevel[100];
     double pointVolume[100];
@@ -253,6 +278,8 @@ public:
     double Xp= 1366;
     double yp= 768;
     double pi = 3.1416;
+
+
     explicit Tanque(QWidget *parent,bool config);
     void funcionActivacionTimer();
     QString Value(double c ,double a);
@@ -440,6 +467,11 @@ public:
    void readPuntosCubicacion();
 
    double CalcularCubicacion(double height);
+
+   int getPuntosCubicacion();
+
+   double getVolumeTc() const;
+   void setVolumeTc(double value);
 };
 
 #endif // TANQUE_H

@@ -23,5 +23,6 @@
         <file>sensor.png</file>
         <file>Fecha y hora.png</file>
         <file>Dispay.png</file>
+        <file>Productos.png</file>
     </qresource>
 </RCC>

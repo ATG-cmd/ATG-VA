@@ -206,6 +206,8 @@ public:
     void Descargar_Entregaenproceso();
     void guardar_alarmas_config();
     void configurar_tablas(QTableWidget *tabla,int n_colum,int n_tabla);
+    void Guardar_ConfigEntregas();
+    void Guardar_ConfigProducto();
 
 signals:
 
@@ -394,9 +396,11 @@ private slots:
 
    void CambioDeTurnoProgramado();
 
-   void Guardar_ConfigEntregas();
+   void on_Btn_Productos_clicked();
 
+   void on_Btn_ActualizarProducto_clicked();
 
+   void on_Combo_selcProducto_activated(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;
