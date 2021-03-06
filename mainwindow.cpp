@@ -154,6 +154,86 @@ void MainWindow::on_Btn_Tanque_clicked()
          } });
 
 }
+
+/*--------------------------------------------------------------------------------------------------------------
+ * Esta parte del codigo es para ocultar y mostrar los TextEdit del frame de configuracion de tanques estos metodos son
+ * llamados en un switch  que esta en la parte superior, tambien consta de un slot local que es activado
+ * cuando el combo es presionado.
+ * -------------------------------------------------------------------------------------------------------------*/
+
+// Inicio de ocultar y Mostrar
+
+void MainWindow::Horizontal()
+{
+    ocultar();
+    ui->Lab_Medida1->setText("Diametro");
+    ui->Lab_Medida1->setGeometry(0,300,175,52);
+    ui->Lab_Medida1->setVisible(true);
+    ui->Line_Medida1->setVisible(true);
+    ui->Lab_Medida2->setText("Largo");
+    ui->Lab_Medida2->setVisible(true);
+    ui->Line_Medida2->setVisible(true);
+    ui->lineEdit->setText("0");
+    G = 1;
+
+}
+
+void MainWindow::Vertical()
+{
+    ocultar();
+    ui->Lab_Medida1->setText("Diametro");
+    ui->Lab_Medida1->setGeometry(0,300,175,52);
+    ui->Lab_Medida1->setVisible(true);
+    ui->Line_Medida1->setVisible(true);
+    ui->Lab_Medida2->setText("Alto");
+    ui->Lab_Medida2->setVisible(true);
+    ui->Line_Medida2->setVisible(true);
+    ui->lineEdit->setText("0");
+    G=0;
+
+}
+
+void MainWindow::Rectangular()
+{
+    ocultar();
+    ui->Lab_Medida1->setText("Altura");
+    ui->Lab_Medida1->setGeometry(48,300,120,52);
+    ui->Lab_Medida1->setVisible(true);
+    ui->Line_Medida1->setVisible(true);
+    ui->Lab_Medida2->setText("Largo");
+    ui->Lab_Medida2->setVisible(true);
+    ui->Line_Medida2->setVisible(true);
+    ui->Lab_Medida3->setText("Ancho");
+    ui->Lab_Medida3->setVisible(true);
+    ui->lineEdit->setVisible(true);
+    G=2;
+
+}
+
+void MainWindow::ocultar()
+{
+
+    ui->Lab_Medida1->setVisible(false);
+    ui->Line_Medida1->setVisible(false);
+    ui->Lab_Medida2->setVisible(false);
+    ui->Line_Medida2->setVisible(false);
+    ui->Lab_Medida3->setVisible(false);
+    ui->lineEdit->setVisible(false);
+
+
+} //Fin de de ocultar y Mostrar
+
+
+/*------------------------------------------------------------------------------------------------------------
+ * Color Del ComboBox  en esta parte se selecciona el color utilizando ccs
+ * y algunas propiedades del combo, el slot local se activa cada vez que abres el combo y agarra el indice
+ * este indice es aprobechado y se introduce a un switch para saber que color fue presionado
+ * dentro de cada case se le pasa el color corespondiente al indice mediante el metodo color.
+ * tambien se cambia el color de la letra al combobox al color seleccionado (PD: Esto no se aprecia en la ras)
+ *  *  * --------------------------------------------------------------------------------------------------------*/
+
+// Inicio Del Combo Color
+
 void MainWindow::ConCombocol(QComboBox *combo)
 {
     QFont font3;
@@ -219,67 +299,9 @@ void MainWindow::ConCombocol(QComboBox *combo)
 
     });
 
-}
-
-void MainWindow::Horizontal()
-{
-    ocultar();
-    ui->Lab_Medida1->setText("Diametro");
-    ui->Lab_Medida1->setGeometry(0,300,175,52);
-    ui->Lab_Medida1->setVisible(true);
-    ui->Line_Medida1->setVisible(true);
-    ui->Lab_Medida2->setText("Largo");
-    ui->Lab_Medida2->setVisible(true);
-    ui->Line_Medida2->setVisible(true);
-    ui->lineEdit->setText("0");
-    G = 1;
-
-}
-
-void MainWindow::Vertical()
-{
-    ocultar();
-    ui->Lab_Medida1->setText("Diametro");
-    ui->Lab_Medida1->setGeometry(0,300,175,52);
-    ui->Lab_Medida1->setVisible(true);
-    ui->Line_Medida1->setVisible(true);
-    ui->Lab_Medida2->setText("Alto");
-    ui->Lab_Medida2->setVisible(true);
-    ui->Line_Medida2->setVisible(true);
-    ui->lineEdit->setText("0");
-    G=0;
-
-}
-
-void MainWindow::Rectangular()
-{
-    ocultar();
-    ui->Lab_Medida1->setText("Altura");
-    ui->Lab_Medida1->setGeometry(48,300,120,52);
-    ui->Lab_Medida1->setVisible(true);
-    ui->Line_Medida1->setVisible(true);
-    ui->Lab_Medida2->setText("Largo");
-    ui->Lab_Medida2->setVisible(true);
-    ui->Line_Medida2->setVisible(true);
-    ui->Lab_Medida3->setText("Ancho");
-    ui->Lab_Medida3->setVisible(true);
-    ui->lineEdit->setVisible(true);
-    G=2;
-
-}
-
-void MainWindow::ocultar()
-{
-
-    ui->Lab_Medida1->setVisible(false);
-    ui->Line_Medida1->setVisible(false);
-    ui->Lab_Medida2->setVisible(false);
-    ui->Line_Medida2->setVisible(false);
-    ui->Lab_Medida3->setVisible(false);
-    ui->lineEdit->setVisible(false);
+}// Final  Del Combo Color
 
 
-}
 
 void MainWindow::Modificar_TextoTank()
 {
