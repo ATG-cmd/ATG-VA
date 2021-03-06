@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     Tconf->Setgeometry(500,5,800,600);
     Tconf->SetnameTank("Sin Nombre");
     ConCombocol(ui->Combo_Color);
-
+     qDebug () <<" ;P";
     ui->lblDateTime->setText(QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss ap"));
     ui->lblDateTime->setAlignment(Qt::AlignCenter);
     connect(Time2,SIGNAL(timeout()),this,SLOT(Actualizar_Time()));
