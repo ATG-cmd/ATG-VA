@@ -18,9 +18,25 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     Time2 = new QTimer();
     Time3 = new QTimer();
+
+    QFont Fonttitle;
+    Fonttitle.setPointSize(30);
     Lab_Title = new QLabel(ui->Btn_Barra_Estados);
-    Lab_Title->setGeometry(QRect(200,2,50,300));
-    Lab_Title->setText("Estado Sistema");
+    Lab_Title->setGeometry(QRect(200,2,500,50));
+    Lab_Title->setText("Estado Sistema   (▀̿̿Ĺ̯̿▀̿ ̿) ");
+    Lab_Title->setFont(Fonttitle);
+
+    Avisos = new QLabel(ui->Btn_Barra_Estados);
+    Avisos->setGeometry(QRect(700,2,105,50));
+    Avisos->setText("Avisos 0 <br/> Advertencias 0");
+
+    QFont FontReloj;
+    FontReloj.setPointSize(20);
+    FontReloj.setBold(true);
+    Reloj= new QLabel(ui->Btn_Barra_Estados);
+    Reloj->setGeometry(QRect(860,2,400,50));
+    Reloj->setFont(FontReloj);
+    Reloj->setText(QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss ap"));
 
     Tconf = new Tanque(ui->Tanque,false);
     Maximizado = new Tanque(ui->Tanque_Maximizado,true);

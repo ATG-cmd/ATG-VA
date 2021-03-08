@@ -46,7 +46,7 @@ public:
     QLabel *Lab_Title;
     QLabel *Avisos;
     QLabel *Indicadores[3];
-    QLabel *Relog;
+    QLabel *Reloj;
     int N =-1;
     int S=0;
     QString Series[8];
