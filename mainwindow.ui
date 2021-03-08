@@ -2025,7 +2025,7 @@ padding: 100px;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="Btn_Barra_Estados">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -2049,42 +2049,10 @@ color:white;
 </string>
     </property>
     <property name="text">
-     <string>Estado Sitema</string>
+     <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="Lab_Titulo_2">
-    <property name="geometry">
-     <rect>
-      <x>130</x>
-      <y>0</y>
-      <width>500</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>20</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::RightToLeft</enum>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <property name="text">
-     <string>          ESTADO SISTEMA</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
-    </property>
-    <property name="margin">
-     <number>0</number>
-    </property>
-   </widget>
-   <zorder>pushButton_5</zorder>
+   <zorder>Btn_Barra_Estados</zorder>
    <zorder>stackedWidget</zorder>
    <zorder>Lab_Titulo</zorder>
    <zorder>Btn_Guardar</zorder>
@@ -2096,7 +2064,6 @@ color:white;
    <zorder>label_4</zorder>
    <zorder>label_5</zorder>
    <zorder>Btn_Home</zorder>
-   <zorder>Lab_Titulo_2</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

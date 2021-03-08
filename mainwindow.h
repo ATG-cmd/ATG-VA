@@ -43,6 +43,10 @@ public:
     QTimer *Time1;
     QTimer *Time2;
     QTimer *Time3;
+    QLabel *Lab_Title;
+    QLabel *Avisos;
+    QLabel *Indicadores[3];
+    QLabel *Relog;
     int N =-1;
     int S=0;
     QString Series[8];
@@ -126,6 +130,8 @@ private slots:
    void SendCMD();
 
    void on_Btn_Comunicacion_clicked();
+
+   void on_pushButton_5_clicked();
 
 private:
     Ui::MainWindow *ui;

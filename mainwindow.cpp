@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     Time2 = new QTimer();
     Time3 = new QTimer();
+
     Tconf = new Tanque(ui->Tanque,false);
     Maximizado = new Tanque(ui->Tanque_Maximizado,true);
     Tconf->Setgeometry(500,5,800,600);
@@ -962,4 +963,9 @@ void MainWindow::SendCMD()
 void MainWindow::on_Btn_Comunicacion_clicked()
 {
     ui->stackedWidget->setCurrentIndex(8);
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+ ui->stackedWidget->setCurrentIndex(8);
 }
