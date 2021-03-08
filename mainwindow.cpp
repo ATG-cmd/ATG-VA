@@ -120,6 +120,23 @@ void MainWindow::on_Btb_Sonda_clicked()
     frame = 1;
 }
 
+/*--------------------------------------------------------------------------------------------------------
+ * En esta parte del codigo se maneja el stalked del tanque, primeramente se le da el valor 2 a frame para
+ * saber que estamos en el stalked 2 a la hora de guardar, se le da un focus al mainwindos para que el teclado
+ * no salte al entrar al stalk luego se limpia el combo para que no se vallan acumulando, se muestran los botones
+ * que estaran disponibles en este stalk el guardar y regresar poniendo en true el setvisible, posteriomente
+ * entramos al stalcked con un setCurrentIndex(3), se coloca el titulo tanque para saber en que stalck estamos
+ * se agrega un item al combo vacio( por estetica a la hora de pulsa), luego se consulta la base de datos la tabla
+ * sonda y con un while y el qry next nos traemos todas las sondas que an sido agregadas en el stalck sonda, en
+ * en la parte inferior de esta funcion tenemos 2 slots el primero es para modificar el texto del tanque cuando
+ * cuando modificamos el textedit, este aprobecha la señal generada por el tex edit llamada textChanged, dirigiendonos
+ * a un slot en el cual se introduce el texto del textedit a nuestra clase tanque, en el segundo slot genera una
+ * señal emitida por el combobox la cual nos dice que indice fue presionado, esta señal arroja un entero el cual
+ * es aprobechado para introducir en un  switch  y mostrar lo indicado en cada uno de los casos.
+ * -------------------------------------------------------------------------------------------------------*/
+
+//Inicio del StackedTanque
+
 void MainWindow::on_Btn_Tanque_clicked()
 {
     frame = 2;
@@ -153,7 +170,7 @@ void MainWindow::on_Btn_Tanque_clicked()
              ui->Lab_Titulo->setText("Tabla De Cubicacion");
          } });
 
-}
+}//Fin del StackedTanque
 
 /*--------------------------------------------------------------------------------------------------------------
  * Esta parte del codigo es para ocultar y mostrar los TextEdit del frame de configuracion de tanques estos metodos son
