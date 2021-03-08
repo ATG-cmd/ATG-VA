@@ -18,6 +18,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     Time2 = new QTimer();
     Time3 = new QTimer();
+    Lab_Title = new QLabel(ui->Btn_Barra_Estados);
+    Lab_Title->setGeometry(QRect(200,2,50,300));
+    Lab_Title->setText("Estado Sistema");
 
     Tconf = new Tanque(ui->Tanque,false);
     Maximizado = new Tanque(ui->Tanque_Maximizado,true);
