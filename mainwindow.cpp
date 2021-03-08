@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QFont Fonttitle;
     Fonttitle.setPointSize(30);
+    Fonttitle.setBold(true);
     Lab_Title = new QLabel(ui->Btn_Barra_Estados);
     Lab_Title->setGeometry(QRect(200,2,500,50));
     Lab_Title->setText("Estado Sistema   (▀̿̿Ĺ̯̿▀̿ ̿) ");
@@ -38,14 +39,23 @@ MainWindow::MainWindow(QWidget *parent)
     Reloj->setFont(FontReloj);
     Reloj->setText(QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss ap"));
 
+     int x=10;
+
+    for (int i=0; i < 3; i++)
+    {
+    Indicadores[i] = new QLabel(ui->Btn_Barra_Estados);
+    Indicadores[i]->setGeometry(QRect(x,10,40,29));
+    Indicadores[i]->setStyleSheet("color: white; background-color:cyan ; border: 3px solid gray; border-radius: 35px; padding: 2px;");
+     x+=45;
+    }
+
+
     Tconf = new Tanque(ui->Tanque,false);
     Maximizado = new Tanque(ui->Tanque_Maximizado,true);
     Tconf->Setgeometry(500,5,800,600);
     Tconf->SetnameTank("Sin Nombre");
     ConCombocol(ui->Combo_Color);
 
-    ui->lblDateTime->setText(QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss ap"));
-    ui->lblDateTime->setAlignment(Qt::AlignCenter);
     connect(Time2,SIGNAL(timeout()),this,SLOT(Actualizar_Time()));
     Time2->start(1000);
 
@@ -351,8 +361,7 @@ void MainWindow::on_Btn_Guardar_clicked()
 
 void MainWindow::Actualizar_Time()
 {
-     ui->lblDateTime->setText(QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss ap"));
-     ui->lblDateTime->setAlignment(Qt::AlignVCenter);
+     Reloj->setText(QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss ap"));
 }
 
 void MainWindow::on_Btn_Config_clicked()

@@ -1925,66 +1925,6 @@ padding: 100px;</string>
      </size>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>41</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">	color: white;
-	background-color:cyan ;
-	border: 3px solid gray;
-	border-radius: 35px;
-	padding: 2px;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>10</y>
-      <width>41</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">	color: white;
-	background-color:cyan ;
-	border: 3px solid gray;
-	border-radius: 35px;
-	padding: 2px;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>10</y>
-      <width>41</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">	color: white;
-	background-color:cyan ;
-	border: 3px solid gray;
-	border-radius: 35px;
-	padding: 2px;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QPushButton" name="Btn_Barra_Estados">
     <property name="geometry">
      <rect>
@@ -2047,9 +1987,6 @@ color: white;
    <zorder>Btn_Guardar</zorder>
    <zorder>Btn_user</zorder>
    <zorder>Regresar</zorder>
-   <zorder>label_3</zorder>
-   <zorder>label_4</zorder>
-   <zorder>label_5</zorder>
    <zorder>Btn_Home</zorder>
    <zorder>lblDateTime</zorder>
   </widget>

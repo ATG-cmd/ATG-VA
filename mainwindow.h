@@ -45,7 +45,7 @@ public:
     QTimer *Time3;
     QLabel *Lab_Title;
     QLabel *Avisos;
-    QLabel *Indicadores[3];
+    QLabel *Indicadores[2];
     QLabel *Reloj;
     int N =-1;
     int S=0;
