@@ -1965,41 +1965,6 @@ padding: 100px;</string>
      <string>0 Alarmas &lt;br/&gt;  0 Advertencias</string>
     </property>
    </widget>
-   <widget class="QLabel" name="Lab_Titulo_2">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>1301</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>20</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::RightToLeft</enum>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: green;
-background-color: qconicalgradient(cx:0.661, cy:0, angle:19.3, stop:0 rgba(255, 147, 30, 150), stop:0.691897 rgba(255, 88, 30, 150), stop:0.691964 rgba(255, 0, 0, 150), stop:1 rgba(255, 0, 0, 150));
-color:white;
-padding: 100px;</string>
-    </property>
-    <property name="text">
-     <string>          ESTADO SISTEMA</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
-    </property>
-    <property name="margin">
-     <number>0</number>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
@@ -2060,10 +2025,68 @@ padding: 100px;</string>
      <string/>
     </property>
    </widget>
-   <zorder>Lab_Titulo_2</zorder>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1301</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <stylestrategy>PreferDefault</stylestrategy>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: green;
+background-color: qconicalgradient(cx:0.661, cy:0, angle:19.3, stop:0 rgba(255, 147, 30, 150), stop:0.691897 rgba(255, 88, 30, 150), stop:0.691964 rgba(255, 0, 0, 150), stop:1 rgba(255, 0, 0, 150));
+color:white;
+</string>
+    </property>
+    <property name="text">
+     <string>Estado Sitema</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Lab_Titulo_2">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>0</y>
+      <width>500</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>          ESTADO SISTEMA</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+    <property name="margin">
+     <number>0</number>
+    </property>
+   </widget>
+   <zorder>pushButton_5</zorder>
    <zorder>stackedWidget</zorder>
    <zorder>Lab_Titulo</zorder>
-   <zorder>Btn_Home</zorder>
    <zorder>Btn_Guardar</zorder>
    <zorder>lblDateTime</zorder>
    <zorder>Btn_user</zorder>
@@ -2072,6 +2095,8 @@ padding: 100px;</string>
    <zorder>label_3</zorder>
    <zorder>label_4</zorder>
    <zorder>label_5</zorder>
+   <zorder>Btn_Home</zorder>
+   <zorder>Lab_Titulo_2</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
