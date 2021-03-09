@@ -44,7 +44,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>8</number>
+     <number>9</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -1777,6 +1777,18 @@
       </item>
      </widget>
     </widget>
+    <widget class="QWidget" name="Visualizacion_Alarmas">
+     <widget class="QTableWidget" name="tableWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>1181</width>
+        <height>421</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
    </widget>
    <widget class="QLabel" name="Lab_Titulo">
     <property name="geometry">
@@ -1957,30 +1969,6 @@ color: white;
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="lblDateTime">
-    <property name="geometry">
-     <rect>
-      <x>660</x>
-      <y>50</y>
-      <width>341</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>20</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color:white;
-</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <zorder>Btn_Barra_Estados</zorder>
    <zorder>stackedWidget</zorder>
    <zorder>Lab_Titulo</zorder>
@@ -1988,7 +1976,6 @@ color: white;
    <zorder>Btn_user</zorder>
    <zorder>Regresar</zorder>
    <zorder>Btn_Home</zorder>
-   <zorder>lblDateTime</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

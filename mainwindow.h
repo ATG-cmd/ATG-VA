@@ -131,7 +131,7 @@ private slots:
 
    void on_Btn_Comunicacion_clicked();
 
-   void on_pushButton_5_clicked();
+   void on_Btn_Barra_Estados_clicked();
 
 private:
     Ui::MainWindow *ui;

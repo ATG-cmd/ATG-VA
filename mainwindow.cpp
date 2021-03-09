@@ -349,12 +349,19 @@ void MainWindow::ConCombocol(QComboBox *combo)
 }// Final  Del Combo Color
 
 
+/*----------------------------------------------------------------------------------------------------------
+ * En esta parte se modifica el tecto del tanque que aparece en el stalck de configuracion del tanque,
+ * este slot es activado con la señal texchanged, que se activa al modificar el texedit de nombre, en este slot
+ * se toma el texto del textedit Nombre para asignalo al tanque mediante el metodo setnameTank
+ * -------------------------------------------------------------------------------------------------------*/
+
+// Inicio de Modificacion de texto de Tanque Configuracion
 
 void MainWindow::Modificar_TextoTank()
 {
     Tconf->SetnameTank(ui->Line_Nombre->text());
 
-}
+}// FIN de Modificacion de texto de Tanque Configuraci
 
 void MainWindow::on_Btn_Guardar_clicked()
 { switch(frame){ case 1 : Guardar_Sonda(); break; case 2 : Guardar_Tanque(); break;} }
@@ -993,7 +1000,8 @@ void MainWindow::on_Btn_Comunicacion_clicked()
     ui->stackedWidget->setCurrentIndex(8);
 }
 
-void MainWindow::on_pushButton_5_clicked()
+
+void MainWindow::on_Btn_Barra_Estados_clicked()
 {
- ui->stackedWidget->setCurrentIndex(8);
+    ui->stackedWidget->setCurrentIndex(9);
 }
