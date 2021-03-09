@@ -44,7 +44,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>9</number>
+     <number>10</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -725,6 +725,55 @@
       </property>
       <property name="text">
        <string>Tipo</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Lab_Sonda_3">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>90</y>
+        <width>121</width>
+        <height>52</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Sonda</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="Combo_Sonda_3">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>90</y>
+        <width>271</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="Line_Nombre_3">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>20</y>
+        <width>271</width>
+        <height>58</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Lab_Nombre_3">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>20</y>
+        <width>171</width>
+        <height>52</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Etiqueta</string>
       </property>
      </widget>
     </widget>
@@ -1788,7 +1837,49 @@
        </rect>
       </property>
      </widget>
+     <widget class="QComboBox" name="comboBox_3">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>10</y>
+        <width>131</width>
+        <height>32</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>10</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Tanque</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>10</y>
+        <width>161</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
+    <widget class="QWidget" name="LimitesTank"/>
    </widget>
    <widget class="QLabel" name="Lab_Titulo">
     <property name="geometry">
@@ -1969,6 +2060,16 @@ color: white;
      <string/>
     </property>
    </widget>
+   <widget class="QComboBox" name="comboBox_7">
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>50</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+   </widget>
    <zorder>Btn_Barra_Estados</zorder>
    <zorder>stackedWidget</zorder>
    <zorder>Lab_Titulo</zorder>
@@ -1976,6 +2077,7 @@ color: white;
    <zorder>Btn_user</zorder>
    <zorder>Regresar</zorder>
    <zorder>Btn_Home</zorder>
+   <zorder>comboBox_7</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

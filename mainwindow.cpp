@@ -52,7 +52,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     Tconf = new Tanque(ui->Tanque,false);
     Maximizado = new Tanque(ui->Tanque_Maximizado,true);
-    Tconf->Setgeometry(500,5,800,600);
+    Tconf->Setgeometry(500,200,400,300);
     Tconf->SetnameTank("Sin Nombre");
     ConCombocol(ui->Combo_Color);
 
