@@ -135,6 +135,8 @@ private slots:
 
    void on_Btn_Barra_Estados_clicked();
 
+   void on_Btn_tabla_cubicacion_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

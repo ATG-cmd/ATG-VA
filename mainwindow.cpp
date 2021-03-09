@@ -1034,3 +1034,8 @@ void MainWindow::on_Btn_Barra_Estados_clicked()
 {
     ui->stackedWidget->setCurrentIndex(9);
 }
+
+void MainWindow::on_Btn_tabla_cubicacion_clicked()
+{
+
+}
