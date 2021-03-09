@@ -344,162 +344,6 @@
        <string>Flotadores</string>
       </property>
      </widget>
-     <widget class="QLabel" name="Lab_UDistancia">
-      <property name="geometry">
-       <rect>
-        <x>560</x>
-        <y>70</y>
-        <width>321</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Unidad Distancia</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="ComboUDistancia">
-      <property name="geometry">
-       <rect>
-        <x>890</x>
-        <y>80</y>
-        <width>251</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <item>
-       <property name="text">
-        <string/>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Milimetros</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Centimetros</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Metros</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="Lab_UTemperatura">
-      <property name="geometry">
-       <rect>
-        <x>490</x>
-        <y>130</y>
-        <width>391</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Unidad Temperatura</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="Combo_UTemperatura">
-      <property name="geometry">
-       <rect>
-        <x>890</x>
-        <y>140</y>
-        <width>251</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <item>
-       <property name="text">
-        <string/>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Kelvin</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Farenheit</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Celcious</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QComboBox" name="Combo_UVolumen">
-      <property name="geometry">
-       <rect>
-        <x>890</x>
-        <y>200</y>
-        <width>251</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <item>
-       <property name="text">
-        <string/>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Litros</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Galones</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="Lab_UVolumen">
-      <property name="geometry">
-       <rect>
-        <x>570</x>
-        <y>190</y>
-        <width>321</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Unidad Volumen </string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="Line_AjusteAltura">
-      <property name="geometry">
-       <rect>
-        <x>890</x>
-        <y>260</y>
-        <width>251</width>
-        <height>58</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="Lab_Licencia_3">
-      <property name="geometry">
-       <rect>
-        <x>640</x>
-        <y>260</y>
-        <width>251</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Ajuste Altura</string>
-      </property>
-     </widget>
     </widget>
     <widget class="QWidget" name="Tanque">
      <property name="font">
@@ -690,20 +534,20 @@
      <widget class="QLabel" name="Lab_Sonda_3">
       <property name="geometry">
        <rect>
-        <x>490</x>
+        <x>690</x>
         <y>90</y>
-        <width>121</width>
+        <width>171</width>
         <height>52</height>
        </rect>
       </property>
       <property name="text">
-       <string>Sonda</string>
+       <string>Producto</string>
       </property>
      </widget>
      <widget class="QComboBox" name="Combo_Sonda_3">
       <property name="geometry">
        <rect>
-        <x>620</x>
+        <x>880</x>
         <y>90</y>
         <width>271</width>
         <height>61</height>
@@ -716,7 +560,7 @@
      <widget class="QLineEdit" name="Line_Nombre_3">
       <property name="geometry">
        <rect>
-        <x>620</x>
+        <x>880</x>
         <y>20</y>
         <width>271</width>
         <height>58</height>
@@ -726,14 +570,170 @@
      <widget class="QLabel" name="Lab_Nombre_3">
       <property name="geometry">
        <rect>
-        <x>460</x>
+        <x>650</x>
         <y>20</y>
-        <width>171</width>
+        <width>221</width>
         <height>52</height>
        </rect>
       </property>
       <property name="text">
-       <string>Etiqueta</string>
+       <string>Coeficiente</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Lab_Licencia_3">
+      <property name="geometry">
+       <rect>
+        <x>630</x>
+        <y>370</y>
+        <width>251</width>
+        <height>52</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Ajuste Altura</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Lab_UTemperatura">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>220</y>
+        <width>391</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Unidad Temperatura</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="ComboUDistancia">
+      <property name="geometry">
+       <rect>
+        <x>880</x>
+        <y>160</y>
+        <width>271</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <item>
+       <property name="text">
+        <string/>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Milimetros</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Centimetros</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Metros</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLineEdit" name="Line_AjusteAltura">
+      <property name="geometry">
+       <rect>
+        <x>880</x>
+        <y>370</y>
+        <width>271</width>
+        <height>61</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="Combo_UTemperatura">
+      <property name="geometry">
+       <rect>
+        <x>880</x>
+        <y>230</y>
+        <width>271</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <item>
+       <property name="text">
+        <string/>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Kelvin</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Farenheit</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Celcious</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="Lab_UVolumen">
+      <property name="geometry">
+       <rect>
+        <x>560</x>
+        <y>290</y>
+        <width>321</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Unidad Volumen </string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="Combo_UVolumen">
+      <property name="geometry">
+       <rect>
+        <x>880</x>
+        <y>300</y>
+        <width>271</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <item>
+       <property name="text">
+        <string/>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Litros</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Galones</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="Lab_UDistancia">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>150</y>
+        <width>321</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Unidad Distancia</string>
       </property>
      </widget>
     </widget>
