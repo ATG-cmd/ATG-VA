@@ -517,6 +517,11 @@
         <string>Vertical</string>
        </property>
       </item>
+      <item>
+       <property name="text">
+        <string>Tabla Cubicacion</string>
+       </property>
+      </item>
      </widget>
      <widget class="QLabel" name="Lab_Tipo">
       <property name="geometry">
