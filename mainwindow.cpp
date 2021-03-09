@@ -10,7 +10,7 @@ const int lenbuff1 = 1024;              // Longitud de buffer, Ajustar
 int xbuff1 = 0x00;                      // Índice: siguiente CHAR en cbuff
 char cbuff1[lenbuff1];                  // Buffer
 char rcvchar1 = 0x00;                   // último carácter recibido
-
+//
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
