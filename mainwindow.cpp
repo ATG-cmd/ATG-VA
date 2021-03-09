@@ -29,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     Avisos = new QLabel(ui->Btn_Barra_Estados);
     Avisos->setGeometry(QRect(700,2,105,50));
-    Avisos->setText("Avisos 0 <br/> Advertencias 0");
+    Avisos->setText("Alarmas 0 <br/> Advertencias 0");
 
     QFont FontReloj;
     FontReloj.setPointSize(20);
@@ -68,7 +68,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Line_Medida1->installEventFilter(this);
     ui->Line_Medida2->installEventFilter(this);
     ui->Line_Nombre->installEventFilter(this);
-    ui->lineEdit->installEventFilter(this);
+    //ui->lineEdit->installEventFilter(this);
 
    // ui->stackedWidget->setCurrentIndex(1);
     ui->Lab_Titulo->setText("Inicio");
@@ -118,6 +118,7 @@ void MainWindow::on_Btn_Home_clicked()
     //ui->Btn_Config->setVisible(false);
     ui->Btn_user->setVisible(true);
     ui->Regresar->setVisible(false);
+    ui->ComboSeleccion->setVisible(false);
 
     if (Maxi == true)
       { Maxi = false;
@@ -138,15 +139,18 @@ void MainWindow::on_pushButton_clicked()
     ui->Lab_Titulo->setText("Menu Principal");
 }
 
-void MainWindow::on_Btb_Sonda_clicked()
-{
-    MainWindow::setFocus();
-    ui->stackedWidget->setCurrentIndex(2);
-    ui->Lab_Titulo->setText("Sonda");
+void MainWindow::Botones_Barra()
+{   MainWindow::setFocus();
     ui->Btn_Guardar->setVisible(true);
     ui->Regresar->setVisible(true);
     ui->Btn_user->setVisible(false);
-    //ui->Btn_Config->setVisible(false);
+}
+
+void MainWindow::on_Btb_Sonda_clicked()
+{
+    Botones_Barra();
+    ui->stackedWidget->setCurrentIndex(2);
+    ui->Lab_Titulo->setText("Sonda");
     frame = 1;
 }
 
@@ -169,13 +173,30 @@ void MainWindow::on_Btb_Sonda_clicked()
 
 void MainWindow::on_Btn_Tanque_clicked()
 {
-    frame = 2;
-     MainWindow::setFocus();
+     frame = 2;
+     Botones_Barra();
      ui->Combo_Sonda->clear();
-     ui->Btn_Guardar->setVisible(true);
-     ui->Regresar->setVisible(true);
-
+     ui->ComboSeleccion->clear();
+     ui->ComboSeleccion->setVisible(true);
      ui->stackedWidget->setCurrentIndex(3);
+     ui->ComboSeleccion->addItem("General");
+     ui->ComboSeleccion->addItem("Limites");
+
+     connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
+             [=](int index){
+
+         switch (index)
+          {
+          case 0:ui->stackedWidget->setCurrentIndex(3); break;
+          case 1: ui->stackedWidget->setCurrentIndex(10);break;
+          case 2: Vertical();break;
+          case 3:
+             ui->stackedWidget->setCurrentIndex(4);
+             ui->Lab_Titulo->setText("Tabla De Cubicacion");
+         } });
+
+
+
      ui->Lab_Titulo->setText("Tanque");
      ui->Combo_Sonda->addItem(" ");
 
@@ -192,15 +213,17 @@ void MainWindow::on_Btn_Tanque_clicked()
 
          switch (index)
           {
-          case 1: Rectangular();break;
-          case 2: Horizontal();break;
-          case 3: Vertical();break;
-          case 4:
+         // case 0: Rectangular();break;
+          case 1: Horizontal();break;
+          case 2: Vertical();break;
+          case 3:
              ui->stackedWidget->setCurrentIndex(4);
              ui->Lab_Titulo->setText("Tabla De Cubicacion");
          } });
 
 }//Fin del StackedTanque
+
+
 
 /*--------------------------------------------------------------------------------------------------------------
  * Esta parte del codigo es para ocultar y mostrar los TextEdit del frame de configuracion de tanques estos metodos son
@@ -220,7 +243,7 @@ void MainWindow::Horizontal()
     ui->Lab_Medida2->setText("Largo");
     ui->Lab_Medida2->setVisible(true);
     ui->Line_Medida2->setVisible(true);
-    ui->lineEdit->setText("0");
+  //  ui->lineEdit->setText("0");
     G = 1;
 
 }
@@ -235,27 +258,27 @@ void MainWindow::Vertical()
     ui->Lab_Medida2->setText("Alto");
     ui->Lab_Medida2->setVisible(true);
     ui->Line_Medida2->setVisible(true);
-    ui->lineEdit->setText("0");
+  //  ui->lineEdit->setText("0");
     G=0;
 
 }
 
-void MainWindow::Rectangular()
-{
-    ocultar();
-    ui->Lab_Medida1->setText("Altura");
-    ui->Lab_Medida1->setGeometry(48,300,120,52);
-    ui->Lab_Medida1->setVisible(true);
-    ui->Line_Medida1->setVisible(true);
-    ui->Lab_Medida2->setText("Largo");
-    ui->Lab_Medida2->setVisible(true);
-    ui->Line_Medida2->setVisible(true);
-    ui->Lab_Medida3->setText("Ancho");
-    ui->Lab_Medida3->setVisible(true);
-    ui->lineEdit->setVisible(true);
-    G=2;
+//void MainWindow::Rectangular()
+//{
+//    ocultar();
+//    ui->Lab_Medida1->setText("Altura");
+//    ui->Lab_Medida1->setGeometry(48,300,120,52);
+//    ui->Lab_Medida1->setVisible(true);
+//    ui->Line_Medida1->setVisible(true);
+//    ui->Lab_Medida2->setText("Largo");
+//    ui->Lab_Medida2->setVisible(true);
+//    ui->Line_Medida2->setVisible(true);
+//    ui->Lab_Medida3->setText("Ancho");
+//    ui->Lab_Medida3->setVisible(true);
+//    ui->lineEdit->setVisible(true);
+//    G=2;
 
-}
+//}
 
 void MainWindow::ocultar()
 {
@@ -264,8 +287,10 @@ void MainWindow::ocultar()
     ui->Line_Medida1->setVisible(false);
     ui->Lab_Medida2->setVisible(false);
     ui->Line_Medida2->setVisible(false);
-    ui->Lab_Medida3->setVisible(false);
-    ui->lineEdit->setVisible(false);
+   // ui->Lab_Medida3->setVisible(false);
+    //ui->lineEdit->setVisible(false);
+    ui->ComboSeleccion->setVisible(false);
+
 
 
 } //Fin de de ocultar y Mostrar
@@ -548,26 +573,26 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         delete dlg;
         return true;
     }
-    if(obj == ui->lineEdit && event->type() == QEvent::FocusIn)
-    {
-        MainWindow::setFocus();
-        qDebug() << "Hola desde medida 3";
-        Dialog *dlg = new Dialog(this);
-        dlg->set_etiqueta("Ingrese " + ui->Lab_Medida3->text());
-        //dlg->use_validator(val_1);
-        //QValidator *val_1 = new QIntValidator(100,2000,this);
-        dlg->validador(2,0,2500,2);
-        int res;
-        res = dlg->exec();
-        if(res == QDialog::Accepted)
-        {
-            ui->lineEdit->clear();
-            ui->lineEdit->setText(dlg->getDatos());
-        }
+//    if(obj == ui->lineEdit && event->type() == QEvent::FocusIn)
+//    {
+//        MainWindow::setFocus();
+//        qDebug() << "Hola desde medida 3";
+//        Dialog *dlg = new Dialog(this);
+//        dlg->set_etiqueta("Ingrese " + ui->Lab_Medida3->text());
+//        //dlg->use_validator(val_1);
+//        //QValidator *val_1 = new QIntValidator(100,2000,this);
+//        dlg->validador(2,0,2500,2);
+//        int res;
+//        res = dlg->exec();
+//        if(res == QDialog::Accepted)
+//        {
+//            ui->lineEdit->clear();
+//            ui->lineEdit->setText(dlg->getDatos());
+//        }
 
-        delete dlg;
-        return true;
-    }
+//        delete dlg;
+//        return true;
+//    }
     return false;
 }
 
@@ -660,7 +685,7 @@ void MainWindow::Guardar_Tanque()
         case 1:
         tanques[S]->SetTankAltura(ui->Line_Medida1->text().toDouble());
         tanques[S]->SetTankLargo(ui->Line_Medida2->text().toDouble());
-        tanques[S]->SetTankAncho(ui->lineEdit->text().toDouble());
+   //     tanques[S]->SetTankAncho(ui->lineEdit->text().toDouble());
         tanques[S]->setTipo(2);
             break;
         case 2:
@@ -681,7 +706,7 @@ void MainWindow::Guardar_Tanque()
                  ", '"+QString::number(ui->Combo_Tipo->currentIndex())+"'"
                  ", '"+ui->Line_Medida1->text()+"'"
                  ", '"+ui->Line_Medida2->text()+"'"
-                 ", '"+ui->lineEdit->text()+"');");
+                 ", '"/*ui->lineEdit->text()*/"');");
 
        Descargar();
       // S++;
@@ -931,7 +956,11 @@ void MainWindow::Tanque_Maximisado()
 void MainWindow::on_Regresar_clicked()
 {
     frame = 0;
+    ui->Btn_Guardar->setVisible(false);
+    ui->Regresar->setVisible(false);
+    ui->ComboSeleccion->setVisible(false);
     ui->stackedWidget->setCurrentIndex(frame);
+
 }
 
 void MainWindow::consultaBD()

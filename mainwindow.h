@@ -71,6 +71,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void Botones_Barra();
+
     void on_Btb_Sonda_clicked();
 
     void on_Btn_Tanque_clicked();
@@ -81,7 +83,7 @@ private slots:
 
    void Vertical();
 
-   void Rectangular();
+  // void Rectangular();
 
    void ocultar();
 

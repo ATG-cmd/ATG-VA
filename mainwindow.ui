@@ -44,7 +44,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>10</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -649,41 +649,6 @@
        <string/>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>440</y>
-        <width>271</width>
-        <height>58</height>
-       </rect>
-      </property>
-      <property name="statusTip">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="Lab_Medida3">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>440</y>
-        <width>121</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="statusTip">
-       <string/>
-      </property>
-      <property name="text">
-       <string>Ancho</string>
-      </property>
-     </widget>
      <widget class="QComboBox" name="Combo_Tipo">
       <property name="geometry">
        <rect>
@@ -696,11 +661,6 @@
       <item>
        <property name="text">
         <string/>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Rectangular</string>
        </property>
       </item>
       <item>
@@ -1953,7 +1913,7 @@ padding: 100px;</string>
    <widget class="QPushButton" name="Btn_Guardar">
     <property name="geometry">
      <rect>
-      <x>1030</x>
+      <x>1080</x>
       <y>50</y>
       <width>61</width>
       <height>51</height>
@@ -2005,7 +1965,7 @@ padding: 100px;</string>
    <widget class="QPushButton" name="Regresar">
     <property name="geometry">
      <rect>
-      <x>1090</x>
+      <x>1140</x>
       <y>50</y>
       <width>61</width>
       <height>51</height>
@@ -2060,14 +2020,22 @@ color: white;
      <string/>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox_7">
+   <widget class="QComboBox" name="ComboSeleccion">
     <property name="geometry">
      <rect>
-      <x>850</x>
+      <x>900</x>
       <y>50</y>
       <width>181</width>
       <height>51</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>22</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
     </property>
    </widget>
    <zorder>Btn_Barra_Estados</zorder>
@@ -2077,7 +2045,7 @@ color: white;
    <zorder>Btn_user</zorder>
    <zorder>Regresar</zorder>
    <zorder>Btn_Home</zorder>
-   <zorder>comboBox_7</zorder>
+   <zorder>ComboSeleccion</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
