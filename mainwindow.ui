@@ -62,6 +62,9 @@
          <property name="font">
           <font>
            <pointsize>8</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
           </font>
          </property>
          <property name="focusPolicy">
@@ -217,6 +220,9 @@
      <property name="font">
       <font>
        <pointsize>32</pointsize>
+       <weight>75</weight>
+       <italic>true</italic>
+       <bold>true</bold>
       </font>
      </property>
      <widget class="QLabel" name="Lab_Serie">
@@ -349,6 +355,9 @@
      <property name="font">
       <font>
        <pointsize>32</pointsize>
+       <weight>75</weight>
+       <italic>true</italic>
+       <bold>true</bold>
       </font>
      </property>
      <widget class="QLabel" name="Lab_Nombre">
@@ -755,6 +764,9 @@
       <property name="font">
        <font>
         <pointsize>20</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
        </font>
       </property>
       <property name="styleSheet">
@@ -805,11 +817,11 @@
       <attribute name="horizontalHeaderCascadingSectionResizes">
        <bool>false</bool>
       </attribute>
-      <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>155</number>
-      </attribute>
       <attribute name="horizontalHeaderMinimumSectionSize">
        <number>38</number>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>155</number>
       </attribute>
       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -823,11 +835,11 @@
       <attribute name="verticalHeaderCascadingSectionResizes">
        <bool>false</bool>
       </attribute>
-      <attribute name="verticalHeaderDefaultSectionSize">
-       <number>54</number>
-      </attribute>
       <attribute name="verticalHeaderMinimumSectionSize">
        <number>30</number>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>54</number>
       </attribute>
       <attribute name="verticalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -1148,6 +1160,9 @@
       <property name="font">
        <font>
         <pointsize>21</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
        </font>
       </property>
       <property name="placeholderText">
@@ -1166,6 +1181,9 @@
       <property name="font">
        <font>
         <pointsize>18</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
        </font>
       </property>
       <property name="placeholderText">
@@ -1188,6 +1206,7 @@
        <font>
         <pointsize>30</pointsize>
         <weight>75</weight>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -1824,6 +1843,9 @@
       <property name="font">
        <font>
         <pointsize>18</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -2025,24 +2047,6 @@ color: white;
      <string/>
     </property>
    </widget>
-   <widget class="QComboBox" name="ComboSeleccion">
-    <property name="geometry">
-     <rect>
-      <x>900</x>
-      <y>50</y>
-      <width>181</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>22</pointsize>
-      <weight>75</weight>
-      <italic>true</italic>
-      <bold>true</bold>
-     </font>
-    </property>
-   </widget>
    <zorder>Btn_Barra_Estados</zorder>
    <zorder>stackedWidget</zorder>
    <zorder>Lab_Titulo</zorder>
@@ -2050,7 +2054,6 @@ color: white;
    <zorder>Btn_user</zorder>
    <zorder>Regresar</zorder>
    <zorder>Btn_Home</zorder>
-   <zorder>ComboSeleccion</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
