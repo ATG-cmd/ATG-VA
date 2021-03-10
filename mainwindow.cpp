@@ -118,7 +118,7 @@ void MainWindow::on_Btn_Home_clicked()
     //ui->Btn_Config->setVisible(false);
     ui->Btn_user->setVisible(true);
     ui->Regresar->setVisible(false);
-    ui->ComboSeleccion->setVisible(false);
+    //ui->ComboSeleccion->setVisible(false);
 
     if (Maxi == true)
       { Maxi = false;
@@ -176,24 +176,24 @@ void MainWindow::on_Btn_Tanque_clicked()
      frame = 2;
      Botones_Barra();
      ui->Combo_Sonda->clear();
-     ui->ComboSeleccion->clear();
-     ui->ComboSeleccion->setVisible(true);
+     //ui->ComboSeleccion->clear();
+   //  ui->ComboSeleccion->setVisible(true);
      ui->stackedWidget->setCurrentIndex(3);
-     ui->ComboSeleccion->addItem("General");
-     ui->ComboSeleccion->addItem("Limites");
+   //  ui->ComboSeleccion->addItem("General");
+ //    ui->ComboSeleccion->addItem("Limites");
 
-     connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
-             [=](int index){
+//     connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
+//             [=](int index){
 
-         switch (index)
-          {
-          case 0:ui->stackedWidget->setCurrentIndex(3); break;
-          case 1: ui->stackedWidget->setCurrentIndex(10);break;
-          case 2: Vertical();break;
-          case 3:
-             ui->stackedWidget->setCurrentIndex(4);
-             ui->Lab_Titulo->setText("Tabla De Cubicacion");
-         } });
+//         switch (index)
+//          {
+//          case 0:ui->stackedWidget->setCurrentIndex(3); break;
+//          case 1: ui->stackedWidget->setCurrentIndex(10);break;
+//          case 2: Vertical();break;
+//          case 3:
+//             ui->stackedWidget->setCurrentIndex(4);
+//             ui->Lab_Titulo->setText("Tabla De Cubicacion");
+//         } });
 
 
 
@@ -289,7 +289,7 @@ void MainWindow::ocultar()
     ui->Line_Medida2->setVisible(false);
    // ui->Lab_Medida3->setVisible(false);
     //ui->lineEdit->setVisible(false);
-    ui->ComboSeleccion->setVisible(false);
+    //ui->ComboSeleccion->setVisible(false);
 
 
 
@@ -958,7 +958,7 @@ void MainWindow::on_Regresar_clicked()
     frame = 0;
     ui->Btn_Guardar->setVisible(false);
     ui->Regresar->setVisible(false);
-    ui->ComboSeleccion->setVisible(false);
+    //ui->ComboSeleccion->setVisible(false);
     ui->stackedWidget->setCurrentIndex(frame);
 
 }
