@@ -401,13 +401,55 @@ void MainWindow::on_Btn_Config_clicked()
 
 }
 
-void MainWindow::on_pushButton_3_clicked()
+void MainWindow::on_pushButton_3_clicked()  // boton log in
 {
-    ui->stackedWidget->setCurrentIndex(0);
-    ui->Btn_Guardar->setVisible(false);
-    //ui->Btn_Config->setVisible(false);
-    ui->Btn_user->setVisible(false);
-    ui->Lab_Titulo->setText("Configuracion");
+    QMessageBox msg;
+    bool user = false, pas = false;
+    QSqlQuery qry;
+    QString consulta, usuario, pass;
+    consulta = "SELECT * FROM cistem.usuarios";
+    qry.exec(consulta);
+
+    while (qry.next())
+    {
+
+        qDebug() << qry.value(0).toInt() << qry.value(1).toString() << qry.value(2).toString();
+        usuario = qry.value(1).toString();
+        pass = qry.value(2).toString();
+        if(ui->Line_Usuario->text() == usuario)
+        {
+          user = true;
+          qDebug() << "Usuario encontrado";
+          if(ui->Line_Contra->text() == pass)
+          {
+              qDebug() << "Pasword encontrado";
+              pas = true;
+          }
+          break;
+        }
+    }
+    user = true; pas = true;
+    if(user == true)
+    {
+        if(pas == true)
+        {
+            ui->stackedWidget->setCurrentIndex(0);
+            ui->Btn_Guardar->setVisible(false);
+            //ui->Btn_Config->setVisible(false);
+            ui->Btn_user->setVisible(false);
+            ui->Lab_Titulo->setText("Configuracion");
+            ui->Line_Usuario->clear();
+            ui->Line_Contra->clear();
+
+        }else{
+         msg.setText("Contraña invalida");
+         msg.exec();
+        }
+
+    }else {
+        msg.setText(" Usuario y contraseña invalidos");
+        msg.exec();
+    }
 
 }
 
