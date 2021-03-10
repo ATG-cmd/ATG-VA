@@ -1039,3 +1039,8 @@ void MainWindow::on_Btn_tabla_cubicacion_clicked()
 {
 
 }
+
+void MainWindow::on_Btn_Alarmas_clicked()
+{
+
+}

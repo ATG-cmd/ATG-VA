@@ -137,6 +137,8 @@ private slots:
 
    void on_Btn_tabla_cubicacion_clicked();
 
+   void on_Btn_Alarmas_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
