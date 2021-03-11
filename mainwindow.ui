@@ -552,11 +552,6 @@
         <string>Vertical</string>
        </property>
       </item>
-      <item>
-       <property name="text">
-        <string>Tabla Cubicacion</string>
-       </property>
-      </item>
      </widget>
      <widget class="QLabel" name="Lab_Tipo">
       <property name="geometry">
@@ -910,7 +905,7 @@ QScrollBar::add-line:vertical {
        <bool>true</bool>
       </attribute>
       <attribute name="verticalHeaderVisible">
-       <bool>true</bool>
+       <bool>false</bool>
       </attribute>
       <attribute name="verticalHeaderCascadingSectionResizes">
        <bool>false</bool>
@@ -1172,7 +1167,7 @@ QScrollBar::add-line:vertical {
          <string>Tanque</string>
         </property>
        </widget>
-       <widget class="QComboBox" name="comboBox">
+       <widget class="QComboBox" name="Combo_CubTanque">
         <property name="geometry">
          <rect>
           <x>270</x>
@@ -1181,6 +1176,26 @@ QScrollBar::add-line:vertical {
           <height>51</height>
          </rect>
         </property>
+        <item>
+         <property name="text">
+          <string>1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>3</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>4</string>
+         </property>
+        </item>
        </widget>
        <widget class="QLabel" name="label_10">
         <property name="geometry">
@@ -1245,7 +1260,7 @@ QScrollBar::add-line:vertical {
          <string>Volumen</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="btnCub_Guardar">
+       <widget class="QPushButton" name="Btn_Cub_Guardar">
         <property name="geometry">
          <rect>
           <x>30</x>
@@ -1278,7 +1293,7 @@ QScrollBar::add-line:vertical {
          <string>Guardar</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="btnCub_Guardar_2">
+       <widget class="QPushButton" name="Btn_Cub_Editar">
         <property name="geometry">
          <rect>
           <x>200</x>
@@ -1311,7 +1326,7 @@ QScrollBar::add-line:vertical {
          <string>Editar</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="btnCub_Guardar_3">
+       <widget class="QPushButton" name="Btn_Cub_Cancelar">
         <property name="geometry">
          <rect>
           <x>370</x>
@@ -1344,7 +1359,7 @@ QScrollBar::add-line:vertical {
          <string>Cancelar</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="Line_Usuario_2">
+       <widget class="QLineEdit" name="Line_Punto">
         <property name="geometry">
          <rect>
           <x>270</x>
@@ -1365,7 +1380,7 @@ QScrollBar::add-line:vertical {
          <string/>
         </property>
        </widget>
-       <widget class="QLineEdit" name="Line_Usuario_3">
+       <widget class="QLineEdit" name="Line_Altura">
         <property name="geometry">
          <rect>
           <x>270</x>
@@ -1386,7 +1401,7 @@ QScrollBar::add-line:vertical {
          <string/>
         </property>
        </widget>
-       <widget class="QLineEdit" name="Line_Usuario_4">
+       <widget class="QLineEdit" name="Line_Volumen">
         <property name="geometry">
          <rect>
           <x>270</x>
@@ -1412,7 +1427,7 @@ QScrollBar::add-line:vertical {
        <attribute name="title">
         <string>Generar  </string>
        </attribute>
-       <widget class="QPushButton" name="btnCub_Guardar_4">
+       <widget class="QPushButton" name="Btn_CubGenerar">
         <property name="geometry">
          <rect>
           <x>30</x>
@@ -1471,7 +1486,7 @@ QScrollBar::add-line:vertical {
          <string>Altura max</string>
         </property>
        </widget>
-       <widget class="QComboBox" name="comboBox_2">
+       <widget class="QComboBox" name="Combo_cub_generar">
         <property name="geometry">
          <rect>
           <x>270</x>
@@ -1480,8 +1495,28 @@ QScrollBar::add-line:vertical {
           <height>51</height>
          </rect>
         </property>
+        <item>
+         <property name="text">
+          <string>1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>3</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>4</string>
+         </property>
+        </item>
        </widget>
-       <widget class="QLineEdit" name="Line_Usuario_5">
+       <widget class="QLineEdit" name="Line_Puntos">
         <property name="geometry">
          <rect>
           <x>270</x>
@@ -1502,7 +1537,7 @@ QScrollBar::add-line:vertical {
          <string/>
         </property>
        </widget>
-       <widget class="QLineEdit" name="Line_Usuario_6">
+       <widget class="QLineEdit" name="Line_Altura_max">
         <property name="geometry">
          <rect>
           <x>270</x>
@@ -1549,7 +1584,7 @@ QScrollBar::add-line:vertical {
          <string>Capacidad</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="Line_Usuario_7">
+       <widget class="QLineEdit" name="Capacidad">
         <property name="geometry">
          <rect>
           <x>270</x>
@@ -1575,7 +1610,7 @@ QScrollBar::add-line:vertical {
        <attribute name="title">
         <string>Puntos  </string>
        </attribute>
-       <widget class="QLineEdit" name="Line_Usuario_9">
+       <widget class="QLineEdit" name="Line_Puntos_cub">
         <property name="geometry">
          <rect>
           <x>80</x>

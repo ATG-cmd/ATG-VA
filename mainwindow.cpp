@@ -216,9 +216,6 @@ void MainWindow::on_Btn_Tanque_clicked()
          // case 0: Rectangular();break;
           case 1: Horizontal();break;
           case 2: Vertical();break;
-          case 3:
-             ui->stackedWidget->setCurrentIndex(4);
-             ui->Lab_Titulo->setText("Tabla De Cubicacion");
          } });
 
 }//Fin del StackedTanque
@@ -1079,10 +1076,59 @@ void MainWindow::on_Btn_Barra_Estados_clicked()
 
 void MainWindow::on_Btn_tabla_cubicacion_clicked()
 {
-
+    ui->stackedWidget->setCurrentIndex(4);
+    ui->Lab_Titulo->setText("Tabla De Cubicacion");
 }
 
 void MainWindow::on_Btn_Alarmas_clicked()
 {
 
 }
+/* A partir de esta seccion se configura el funcionamiento de la tabla de cubicacion
+*/
+void Buscar_Tanques()
+{}
+void Rellenar_combo_taques()
+{}
+void Rellenar_tabla_cubicacion(int Id_tanque)
+{}
+void Rellenar_campos_cubicacion(QString p, QString a, QString v)
+{}
+bool Validar_update_cubicacion(int punto, int tanque, double altura, double volumen)
+{}
+void MainWindow::on_Combo_CubTanque_currentIndexChanged(int index)
+{
+
+}
+void MainWindow::on_tableWidget_cellClicked(int row, int column)
+{
+  Q_UNUSED(column);
+
+}
+
+void MainWindow::on_Btn_Cub_Guardar_clicked()
+{
+
+}
+
+void MainWindow::on_Btn_Cub_Editar_clicked()
+{
+
+}
+
+void MainWindow::on_Btn_Cub_Cancelar_clicked()
+{
+
+}
+
+void MainWindow::on_Combo_cub_generar_currentIndexChanged(int index)
+{
+
+}
+void MainWindow::on_Btn_CubGenerar_clicked()
+{
+
+}
+
+
+/* Termina la configuracion de la tabla de cubicacion*/

@@ -64,6 +64,14 @@ public:
      bool RX= false;
      int intento = 0;
 
+    void Buscar_Tanques();  // Es funcion busca los tanques dados de alta en BD
+    void Rellenar_combo_taques(); // Rellenaremos los combobox con los tanque escontrados
+    void Rellenar_tabla_cubicacion(int Id_tanque); // Rellenaremos la tabla de cubicacion con datos de BD
+    void Rellenar_campos_cubicacion(QString p, QString a, QString v);
+    bool Validar_update_cubicacion(int punto, int tanque, double altura, double volumen);
+
+
+
 
 private slots:
 
@@ -138,6 +146,20 @@ private slots:
    void on_Btn_tabla_cubicacion_clicked();
 
    void on_Btn_Alarmas_clicked();
+
+   void on_tableWidget_cellClicked(int row, int column);
+
+   void on_Combo_CubTanque_currentIndexChanged(int index);
+
+   void on_Btn_Cub_Guardar_clicked();
+
+   void on_Btn_Cub_Editar_clicked();
+
+   void on_Btn_Cub_Cancelar_clicked();
+
+   void on_Btn_CubGenerar_clicked();
+
+   void on_Combo_cub_generar_currentIndexChanged(int index);
 
 private:
     Ui::MainWindow *ui;
