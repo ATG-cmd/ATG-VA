@@ -155,8 +155,8 @@ void MainWindow::on_Btb_Sonda_clicked()
 }
 
 /*--------------------------------------------------------------------------------------------------------
- * En esta parte del codigo se maneja el stalked del tanque, primeramente se le da el valor 2 a frame para
- * saber que estamos en el stalked 2 a la hora de guardar, se le da un focus al mainwindos para que el teclado
+ * En esta parte del codigo se maneja el stalcked del tanque, primeramente se le da el valor 2 a frame para
+ * saber que estamos en el stalcked 2 a la hora de guardar, se le da un focus al mainwindos para que el teclado
  * no salte al entrar al stalk luego se limpia el combo para que no se vallan acumulando, se muestran los botones
  * que estaran disponibles en este stalk el guardar y regresar poniendo en true el setvisible, posteriomente
  * entramos al stalcked con un setCurrentIndex(3), se coloca el titulo tanque para saber en que stalck estamos
@@ -179,23 +179,6 @@ void MainWindow::on_Btn_Tanque_clicked()
      //ui->ComboSeleccion->clear();
    //  ui->ComboSeleccion->setVisible(true);
      ui->stackedWidget->setCurrentIndex(3);
-   //  ui->ComboSeleccion->addItem("General");
- //    ui->ComboSeleccion->addItem("Limites");
-
-//     connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
-//             [=](int index){
-
-//         switch (index)
-//          {
-//          case 0:ui->stackedWidget->setCurrentIndex(3); break;
-//          case 1: ui->stackedWidget->setCurrentIndex(10);break;
-//          case 2: Vertical();break;
-//          case 3:
-//             ui->stackedWidget->setCurrentIndex(4);
-//             ui->Lab_Titulo->setText("Tabla De Cubicacion");
-//         } });
-
-
 
      ui->Lab_Titulo->setText("Tanque");
      ui->Combo_Sonda->addItem(" ");
@@ -222,8 +205,6 @@ void MainWindow::on_Btn_Tanque_clicked()
          } });
 
 }//Fin del StackedTanque
-
-
 
 /*--------------------------------------------------------------------------------------------------------------
  * Esta parte del codigo es para ocultar y mostrar los TextEdit del frame de configuracion de tanques estos metodos son
@@ -262,23 +243,6 @@ void MainWindow::Vertical()
     G=0;
 
 }
-
-//void MainWindow::Rectangular()
-//{
-//    ocultar();
-//    ui->Lab_Medida1->setText("Altura");
-//    ui->Lab_Medida1->setGeometry(48,300,120,52);
-//    ui->Lab_Medida1->setVisible(true);
-//    ui->Line_Medida1->setVisible(true);
-//    ui->Lab_Medida2->setText("Largo");
-//    ui->Lab_Medida2->setVisible(true);
-//    ui->Line_Medida2->setVisible(true);
-//    ui->Lab_Medida3->setText("Ancho");
-//    ui->Lab_Medida3->setVisible(true);
-//    ui->lineEdit->setVisible(true);
-//    G=2;
-
-//}
 
 void MainWindow::ocultar()
 {
@@ -388,14 +352,29 @@ void MainWindow::Modificar_TextoTank()
 
 }// FIN de Modificacion de texto de Tanque Configuraci
 
+/*-------------------------------------------------------------------------------------------------------------
+ * Cada stalcked tiene su bonton de guardar y volver al momento de de entrar a un stalcked mediante el munu dentro del
+ * slot del boton se asigna un  numero de frame para a la hora de guardar o regresar este entre al casecon el numero de frame
+ * y gurade correctamente los datos del stalcked seleccionado
+ * ------------------------------------------------------------------------------------------------------------------*/
+//Inicio de boton de Guardar
 void MainWindow::on_Btn_Guardar_clicked()
 { switch(frame){ case 1 : Guardar_Sonda(); break; case 2 : Guardar_Tanque(); break;} }
+//Fin de boton de Guardar
 
+/*--------------------------------------------------------------------------------------------------------------------
+ * Este Timer es activado Cada Segundo para actualizar el reloj de la parte superior derecha de la pantalla
+ * -----------------------------------------------------------------------------------------------------------------*/
+//Inicio de timer que actualiza reloj
 void MainWindow::Actualizar_Time()
 {
      Reloj->setText(QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss ap"));
-}
+}//Fin del Timer que actualiza el reloj
 
+/*--------------------------------------------------------------------------------------------------------------------
+ * En este slot ira el login
+ * -------------------------------------------------------------------------------------------------------------------*/
+//Inicio del slot configuracion
 void MainWindow::on_Btn_Config_clicked()
 {
 

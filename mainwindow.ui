@@ -44,7 +44,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>8</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -1276,7 +1276,7 @@
     </widget>
     <widget class="QWidget" name="Tanque_Maximizado"/>
     <widget class="QWidget" name="Comunicacion">
-     <widget class="QLabel" name="Lab_UDistancia_3">
+     <widget class="QLabel" name="SLab_Baudios">
       <property name="geometry">
        <rect>
         <x>-120</x>
@@ -1292,7 +1292,7 @@
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="ComboUDistancia_3">
+     <widget class="QComboBox" name="SCombo_Baudios">
       <property name="geometry">
        <rect>
         <x>210</x>
@@ -1355,7 +1355,7 @@
        </property>
       </item>
      </widget>
-     <widget class="QComboBox" name="ComboUDistancia_4">
+     <widget class="QComboBox" name="SCombo_Datos">
       <property name="geometry">
        <rect>
         <x>210</x>
@@ -1383,7 +1383,7 @@
        </property>
       </item>
      </widget>
-     <widget class="QLabel" name="Lab_UDistancia_4">
+     <widget class="QLabel" name="SLab_Baudios_2">
       <property name="geometry">
        <rect>
         <x>-120</x>
@@ -1399,7 +1399,7 @@
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="ComboUDistancia_5">
+     <widget class="QComboBox" name="SCombo_Stop">
       <property name="geometry">
        <rect>
         <x>210</x>
@@ -1427,7 +1427,7 @@
        </property>
       </item>
      </widget>
-     <widget class="QLabel" name="Lab_UDistancia_5">
+     <widget class="QLabel" name="SLab_Stop">
       <property name="geometry">
        <rect>
         <x>-120</x>
@@ -1443,7 +1443,7 @@
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="ComboUDistancia_17">
+     <widget class="QComboBox" name="SCombo_Paridad">
       <property name="geometry">
        <rect>
         <x>210</x>
@@ -1476,7 +1476,7 @@
        </property>
       </item>
      </widget>
-     <widget class="QLabel" name="Lab_UDistancia_17">
+     <widget class="QLabel" name="SLab_Paridad">
       <property name="geometry">
        <rect>
         <x>-120</x>
@@ -1492,7 +1492,7 @@
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_7">
+     <widget class="QLabel" name="LabTitle_Sonda">
       <property name="geometry">
        <rect>
         <x>170</x>
@@ -1514,7 +1514,7 @@
        <string>Sonda</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_8">
+     <widget class="QLabel" name="LabTitle_Comunicador">
       <property name="geometry">
        <rect>
         <x>670</x>
@@ -1536,7 +1536,7 @@
        <string>Comunicador</string>
       </property>
      </widget>
-     <widget class="QLabel" name="Lab_UDistancia_7">
+     <widget class="QLabel" name="CLab_Datos">
       <property name="geometry">
        <rect>
         <x>730</x>
@@ -1552,7 +1552,7 @@
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="Lab_UDistancia_6">
+     <widget class="QLabel" name="CLab_Stop">
       <property name="geometry">
        <rect>
         <x>750</x>
@@ -1568,7 +1568,7 @@
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="Lab_UDistancia_18">
+     <widget class="QLabel" name="CLab_paridad">
       <property name="geometry">
        <rect>
         <x>700</x>
@@ -1584,7 +1584,7 @@
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="ComboUDistancia_7">
+     <widget class="QComboBox" name="CCombo_Datos">
       <property name="geometry">
        <rect>
         <x>840</x>
@@ -1612,7 +1612,7 @@
        </property>
       </item>
      </widget>
-     <widget class="QLabel" name="Lab_UDistancia_8">
+     <widget class="QLabel" name="CLab_Baudios">
       <property name="geometry">
        <rect>
         <x>690</x>
@@ -1631,7 +1631,7 @@
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="ComboUDistancia_8">
+     <widget class="QComboBox" name="CCombo_Baudios">
       <property name="geometry">
        <rect>
         <x>840</x>
@@ -1694,7 +1694,7 @@
        </property>
       </item>
      </widget>
-     <widget class="QComboBox" name="ComboUDistancia_6">
+     <widget class="QComboBox" name="CCombo_Stop">
       <property name="geometry">
        <rect>
         <x>840</x>
@@ -1722,7 +1722,7 @@
        </property>
       </item>
      </widget>
-     <widget class="QComboBox" name="ComboUDistancia_18">
+     <widget class="QComboBox" name="CCombo_paridad">
       <property name="geometry">
        <rect>
         <x>840</x>
@@ -1755,7 +1755,7 @@
        </property>
       </item>
      </widget>
-     <widget class="QLabel" name="Lab_UDistancia_19">
+     <widget class="QLabel" name="CLab_protocolo">
       <property name="geometry">
        <rect>
         <x>670</x>
@@ -1771,7 +1771,7 @@
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="ComboUDistancia_19">
+     <widget class="QComboBox" name="CCombo_protocolo">
       <property name="geometry">
        <rect>
         <x>840</x>
