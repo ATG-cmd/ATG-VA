@@ -359,7 +359,7 @@ void MainWindow::Modificar_TextoTank()
  * ------------------------------------------------------------------------------------------------------------------*/
 //Inicio de boton de Guardar
 void MainWindow::on_Btn_Guardar_clicked()
-{ switch(frame){ case 1 : Guardar_Sonda(); break; case 2 : Guardar_Tanque(); break;} }
+{ switch(frame){ case 1 : Guardar_Sonda(); break; case 2 : Guardar_Tanque(); break; case 4: Guardar_Comunicacion(); break;} }
 //Fin de boton de Guardar
 
 /*--------------------------------------------------------------------------------------------------------------------
@@ -1005,6 +1005,7 @@ void MainWindow::SendCMD()
 
 void MainWindow::on_Btn_Comunicacion_clicked()
 {
+    frame = 4; ui->Btn_Guardar->setVisible(true); ui->Regresar->setVisible(true);
     ui->stackedWidget->setCurrentIndex(8);
 }
 
@@ -1012,4 +1013,9 @@ void MainWindow::on_Btn_Comunicacion_clicked()
 void MainWindow::on_Btn_Barra_Estados_clicked()
 {
     ui->stackedWidget->setCurrentIndex(9);
+}
+
+void MainWindow::Guardar_Comunicacion()
+{
+
 }

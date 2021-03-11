@@ -135,6 +135,8 @@ private slots:
 
    void on_Btn_Barra_Estados_clicked();
 
+   void Guardar_Comunicacion();
+
 private:
     Ui::MainWindow *ui;
 };
