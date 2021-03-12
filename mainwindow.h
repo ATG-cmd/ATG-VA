@@ -65,7 +65,7 @@ public:
      int intento = 0;
 
     void Buscar_Tanques();  // Es funcion busca los tanques dados de alta en BD
-    void Rellenar_combo_taques(); // Rellenaremos los combobox con los tanque escontrados
+    void Rellenar_combo_taques(QString tanque_index); // Rellenaremos los combobox con los tanque escontrados
     void Rellenar_tabla_cubicacion(int Id_tanque); // Rellenaremos la tabla de cubicacion con datos de BD
     void Rellenar_campos_cubicacion(QString p, QString a, QString v);
     bool Validar_update_cubicacion(int punto, int tanque, double altura, double volumen);

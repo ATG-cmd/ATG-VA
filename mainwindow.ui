@@ -1176,26 +1176,6 @@ QScrollBar::add-line:vertical {
           <height>51</height>
          </rect>
         </property>
-        <item>
-         <property name="text">
-          <string>1</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>2</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>3</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>4</string>
-         </property>
-        </item>
        </widget>
        <widget class="QLabel" name="label_10">
         <property name="geometry">
@@ -1495,26 +1475,6 @@ QScrollBar::add-line:vertical {
           <height>51</height>
          </rect>
         </property>
-        <item>
-         <property name="text">
-          <string>1</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>2</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>3</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>4</string>
-         </property>
-        </item>
        </widget>
        <widget class="QLineEdit" name="Line_Puntos">
         <property name="geometry">

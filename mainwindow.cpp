@@ -101,6 +101,7 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
       consultaBD();
+      Buscar_Tanques();
       Descargar();
 }
 
@@ -1078,6 +1079,7 @@ void MainWindow::on_Btn_tabla_cubicacion_clicked()
 {
     ui->stackedWidget->setCurrentIndex(4);
     ui->Lab_Titulo->setText("Tabla De Cubicacion");
+
 }
 
 void MainWindow::on_Btn_Alarmas_clicked()
@@ -1086,24 +1088,75 @@ void MainWindow::on_Btn_Alarmas_clicked()
 }
 /* A partir de esta seccion se configura el funcionamiento de la tabla de cubicacion
 */
-void Buscar_Tanques()
-{}
-void Rellenar_combo_taques()
-{}
-void Rellenar_tabla_cubicacion(int Id_tanque)
-{}
-void Rellenar_campos_cubicacion(QString p, QString a, QString v)
-{}
-bool Validar_update_cubicacion(int punto, int tanque, double altura, double volumen)
-{}
-void MainWindow::on_Combo_CubTanque_currentIndexChanged(int index)
+void MainWindow::Buscar_Tanques()
 {
+    QString cadena;
+    cadena = "SELECT Id_Taque FROM cistem.tanques;";
+    QSqlQuery qry;
+    qDebug() << qry.exec(cadena);
+    while (qry.next())
+    {
+     Rellenar_combo_taques(qry.value(0).toString());
+    }
 
 }
+
+void MainWindow::Rellenar_combo_taques(QString tanque_index)
+{
+    ui->Combo_CubTanque->addItem(tanque_index);
+    ui->Combo_cub_generar->addItem(tanque_index);
+}
+
+void MainWindow::Rellenar_tabla_cubicacion(int Id_tanque)
+{
+    QString cadena;
+    cadena.append("SELECT Punto, Altura, Volumen FROM cistem.tablacubicacion WHERE "
+                  "TanqueId = '" + QString::number(Id_tanque) +"';");
+    QSqlQuery qry;
+    qDebug() << qry.exec(cadena);
+    while (qry.next())
+    {
+        ui->tableWidget->removeRow(0);
+        ui->tableWidget->insertRow(ui->tableWidget->rowCount());
+        ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 0, new QTableWidgetItem(QString::number(qry.value(0).toInt())));
+        ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 1, new QTableWidgetItem(QString::number(qry.value(1).toDouble(), 'f', 3)));
+        ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 2, new QTableWidgetItem(QString::number(qry.value(2).toDouble(), 'f', 3)));
+        qDebug() << qry.value(0).toInt() << qry.value(1).toInt() << qry.value(2).toInt();
+    }
+
+}
+
+void MainWindow::Rellenar_campos_cubicacion(QString p, QString a, QString v)
+{
+    ui->Line_Punto->setText(p);
+    ui->Line_Altura->setText(a);
+    ui->Line_Volumen->setText(v);
+}
+
+bool MainWindow::Validar_update_cubicacion(int punto, int tanque, double altura, double volumen)
+{
+  QMessageBox msj;
+  bool alt = false, vol = false;
+  int p = 0;
+  double altura_ant = 0, altura_pos = 0, volumen_ant = 0, volumen_pos = 0;
+  if(punto == 1) p = 0;
+  else p = punto - 2;
+}
+
+void MainWindow::on_Combo_CubTanque_currentIndexChanged(int index)
+{
+Rellenar_tabla_cubicacion(index + 1);
+}
+
 void MainWindow::on_tableWidget_cellClicked(int row, int column)
 {
   Q_UNUSED(column);
-
+    ui->tableWidget->selectRow(row);
+    Rellenar_campos_cubicacion(
+                               ui->tableWidget->item(row,0)->text(),
+                               ui->tableWidget->item(row,1)->text(),
+                               ui->tableWidget->item(row,2)->text()
+                               );
 }
 
 void MainWindow::on_Btn_Cub_Guardar_clicked()
