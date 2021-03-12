@@ -44,7 +44,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -2524,6 +2524,11 @@ color: white;
       <bold>true</bold>
      </font>
     </property>
+    <item>
+     <property name="text">
+      <string>New Item</string>
+     </property>
+    </item>
    </widget>
    <zorder>Btn_Barra_Estados</zorder>
    <zorder>stackedWidget</zorder>
