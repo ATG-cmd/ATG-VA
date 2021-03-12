@@ -1135,12 +1135,59 @@ void MainWindow::Rellenar_campos_cubicacion(QString p, QString a, QString v)
 
 bool MainWindow::Validar_update_cubicacion(int punto, int tanque, double altura, double volumen)
 {
-  QMessageBox msj;
   bool alt = false, vol = false;
   int p = 0;
+  int i = 0;
   double altura_ant = 0, altura_pos = 0, volumen_ant = 0, volumen_pos = 0;
   if(punto == 1) p = 0;
   else p = punto - 2;
+  QMessageBox msj;
+  QSqlQuery qry;
+  QString cadena;
+  cadena.append("SELECT Altura, Volumen FROM cistem.tablacubicacion WHERE TanqueId "
+                "= '" + QString::number(tanque) + "' LIMIT " + QString::number(p) + " , 3;");
+  qDebug() << qry.exec(cadena);
+  while (qry.next())
+  {
+      switch (i)
+      {
+      case 0:
+          if(punto == 1)
+          {
+              altura_ant = 0;
+              volumen_ant = 0;
+              qDebug() << altura_ant << volumen_ant << "ant";
+          }else{
+              altura_ant = qry.value(0).toDouble();
+              volumen_ant = qry.value(1).toDouble();
+              qDebug() << altura_ant << volumen_ant << "ant";
+          }
+          break;
+      case 1: // presente
+          break;
+      case 2:
+            altura_pos = qry.value(0).toDouble();
+            volumen_pos = qry.value(1).toDouble();
+            qDebug() << altura_pos << volumen_pos << "pos";
+          break;
+      default: return false;
+      } qDebug() << qry.value(0).toDouble() << qry.value(1).toDouble() << "current cycle";
+      i++;
+  }
+  if(altura > altura_ant && altura < altura_pos) alt = true;
+  else{
+     alt = false;
+     msj.setText("altura fuera de rango");
+     msj.exec();
+  }
+  if(volumen >volumen_ant && volumen < volumen_pos) vol = true;
+  else{
+      vol = false;
+      msj.setText("volumen fuera de rango");
+      msj.exec();
+  }
+  if(alt == true && vol == true) return true;
+  else return false;
 }
 
 void MainWindow::on_Combo_CubTanque_currentIndexChanged(int index)
