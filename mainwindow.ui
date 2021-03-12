@@ -1243,7 +1243,7 @@ QScrollBar::add-line:vertical {
        <widget class="QPushButton" name="Btn_Cub_Guardar">
         <property name="geometry">
          <rect>
-          <x>30</x>
+          <x>200</x>
           <y>310</y>
           <width>150</width>
           <height>61</height>
@@ -1276,7 +1276,7 @@ QScrollBar::add-line:vertical {
        <widget class="QPushButton" name="Btn_Cub_Editar">
         <property name="geometry">
          <rect>
-          <x>200</x>
+          <x>30</x>
           <y>310</y>
           <width>150</width>
           <height>61</height>

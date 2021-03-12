@@ -1079,6 +1079,9 @@ void MainWindow::on_Btn_tabla_cubicacion_clicked()
 {
     ui->stackedWidget->setCurrentIndex(4);
     ui->Lab_Titulo->setText("Tabla De Cubicacion");
+    enableCubicTableFields(false);
+    enableCubicTableBtn(true,false,false);
+    clearCubicTableFields();
 
 }
 
@@ -1190,6 +1193,7 @@ bool MainWindow::Validar_update_cubicacion(int punto, int tanque, double altura,
   else return false;
 }
 
+
 void MainWindow::on_Combo_CubTanque_currentIndexChanged(int index)
 {
 Rellenar_tabla_cubicacion(index + 1);
@@ -1206,19 +1210,69 @@ void MainWindow::on_tableWidget_cellClicked(int row, int column)
                                );
 }
 
-void MainWindow::on_Btn_Cub_Guardar_clicked()
+void MainWindow::setEnabledBoton(QPushButton *btn, bool b)
 {
+    if(b){
+        btn->setStyleSheet("QPushButton { color: white;	background-color: royalblue; border-width: 3px; border-radius: 10px; padding: 2px; }");
+    } else{
+        btn->setStyleSheet("QPushButton { color: white;	background-color: gray; border-width: 3px; border-radius: 10px; padding: 2px; }");
+    }
+    btn->setEnabled(b);
+}
 
+void MainWindow::enableCubicTableFields(bool v)
+{
+    ui->Line_Punto->setEnabled(false);
+    ui->Line_Altura->setEnabled(v);
+    ui->Line_Volumen->setEnabled(v);
+}
+
+void MainWindow::enableCubicTableBtn(bool a, bool b, bool c)
+{
+    setEnabledBoton(ui->Btn_Cub_Editar,a);
+    setEnabledBoton(ui->Btn_Cub_Guardar,b);
+    setEnabledBoton(ui->Btn_Cub_Cancelar,c);
+}
+
+void MainWindow::clearCubicTableFields()
+{
+    ui->Line_Punto->setText("");
+    ui->Line_Altura->setText("");
+    ui->Line_Volumen->setText("");
 }
 
 void MainWindow::on_Btn_Cub_Editar_clicked()
 {
+    enableCubicTableFields(true);
+    enableCubicTableBtn(false,true,true);
+}
 
+void MainWindow::on_Btn_Cub_Guardar_clicked()
+{
+   bool res = false;
+   QSqlQuery qry;
+   QString consulta;
+   consulta.append("UPDATE cistem.tablacubicacion SET Altura = '" + ui->Line_Altura->text()+ "',"
+                   " Volumen = '" + ui->Line_Volumen->text() + "' "
+                   "WHERE Punto = '" + ui->Line_Punto->text() + "' "
+                   "AND TanqueId = '" + QString::number(ui->Combo_CubTanque->currentIndex() + 1) + "';");
+    res = Validar_update_cubicacion(ui->Line_Punto->text().toInt(),ui->Combo_CubTanque->currentIndex() + 1,ui->Line_Altura->text().toDouble(),ui->Line_Volumen->text().toDouble());
+    if(res == true)
+    {
+        qDebug() << consulta;
+        qDebug() << qry.exec(consulta);
+        Rellenar_tabla_cubicacion(ui->Combo_CubTanque->currentIndex() + 1);
+    }
+    enableCubicTableFields(false);
+    enableCubicTableBtn(true,false,false);
+    clearCubicTableFields();
 }
 
 void MainWindow::on_Btn_Cub_Cancelar_clicked()
 {
-
+    enableCubicTableFields(false);
+    enableCubicTableBtn(true,false,false);
+    clearCubicTableFields();
 }
 
 void MainWindow::on_Combo_cub_generar_currentIndexChanged(int index)

@@ -69,8 +69,10 @@ public:
     void Rellenar_tabla_cubicacion(int Id_tanque); // Rellenaremos la tabla de cubicacion con datos de BD
     void Rellenar_campos_cubicacion(QString p, QString a, QString v);
     bool Validar_update_cubicacion(int punto, int tanque, double altura, double volumen);
-
-
+    void setEnabledBoton(QPushButton *btn, bool b);
+    void enableCubicTableFields(bool v);
+    void enableCubicTableBtn(bool a, bool b, bool c);
+    void clearCubicTableFields();
 
 
 private slots:
