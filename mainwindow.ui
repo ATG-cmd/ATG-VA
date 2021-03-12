@@ -44,7 +44,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -214,7 +214,7 @@
          </property>
          <property name="icon">
           <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Comunicacion.png</normaloff>:/Comunicacion.png</iconset>
+           <normaloff>:/Tabla C.png</normaloff>:/Tabla C.png</iconset>
          </property>
          <property name="iconSize">
           <size>
