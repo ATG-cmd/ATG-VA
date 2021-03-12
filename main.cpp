@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
-    QSplashScreen *splash = new QSplashScreen;
+  /*  QSplashScreen *splash = new QSplashScreen;
     splash->setPixmap(QPixmap("C:/Users/dark_/Desktop/CistemVR abdiel/logo 800x400.png"));
     QProgressBar *pb = new QProgressBar(splash);
     pb->setGeometry(320,300,200,25);
@@ -21,8 +21,8 @@ int main(int argc, char *argv[])
      pb->setValue(i);
      QThread::msleep(50);
     }
-     w.show();
-     splash->close();
-
+    w.show();
+     splash->close()*/;
+    w.show();
     return a.exec();
 }
