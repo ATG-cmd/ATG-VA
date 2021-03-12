@@ -808,14 +808,15 @@ void MainWindow::Geometrytank()
     else
    tanques[S] = new Tanque(ui->Home2,true);
     switch(S){
-    case 0: tanques[S]->Setgeometry(80,3,500,280);   break;
-    case 1: tanques[S]->Setgeometry(600,3,500,280);  break;
-    case 2: tanques[S]->Setgeometry(80,250,500,280); break;
-    case 3: tanques[S]->Setgeometry(600,250,500,280);break;
-    case 4: tanques[S]->Setgeometry(80,3,500,280);   break;
-    case 5: tanques[S]->Setgeometry(600,3,500,280);  break;
-    case 6: tanques[S]->Setgeometry(80,250,500,280); break;
-    case 7: tanques[S]->Setgeometry(600,250,500,280);break;}
+    case 0:case 4: tanques[S]->Setgeometry(80,3,500,280);   break;
+    case 1:case 5: tanques[S]->Setgeometry(600,3,500,280);  break;
+    case 2:case 6: tanques[S]->Setgeometry(80,250,500,280); break;
+    case 3:case 7: tanques[S]->Setgeometry(600,250,500,280);break;
+    //case 4: tanques[S]->Setgeometry(80,3,500,280);   break;
+    //case 5: tanques[S]->Setgeometry(600,3,500,280);  break;
+    //case 6: tanques[S]->Setgeometry(80,250,500,280); break;
+    //case 7: tanques[S]->Setgeometry(600,250,500,280);break;
+             }
       }
 
 void MainWindow::Estados()
@@ -1017,5 +1018,6 @@ void MainWindow::on_Btn_Barra_Estados_clicked()
 
 void MainWindow::Guardar_Comunicacion()
 {
-
+    QSqlQuery qry;
+       qry.exec("INSERT INTO `cistem`.`config_sonda` (`Baudios`, `Datos`, `Stop`, `Paridad`) VALUES ('300', '2', '7', 'Igualdad');");
 }
