@@ -2530,9 +2530,10 @@ color: white;
      </property>
     </item>
    </widget>
+   <zorder>Lab_Titulo</zorder>
+   <zorder>ComboSeleccion</zorder>
    <zorder>Btn_Barra_Estados</zorder>
    <zorder>stackedWidget</zorder>
-   <zorder>Lab_Titulo</zorder>
    <zorder>Btn_Guardar</zorder>
    <zorder>Btn_user</zorder>
    <zorder>Regresar</zorder>
