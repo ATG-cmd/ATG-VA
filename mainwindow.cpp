@@ -387,7 +387,11 @@ void MainWindow::Modificar_TextoTank()
 }// FIN de Modificacion de texto de Tanque Configuraci
 
 void MainWindow::on_Btn_Guardar_clicked()
-{ switch(frame){ case 1 : Guardar_Sonda(); break; case 2 : Guardar_Tanque(); break;} }
+{ switch(frame){
+    case 1 : Guardar_Sonda(); break;
+    case 2 : Guardar_Tanque(); break;
+    case 10: guardar_limites(); break;
+    } }
 
 void MainWindow::Actualizar_Time()
 {
@@ -1108,6 +1112,7 @@ void MainWindow::Rellenar_combo_taques(QString tanque_index)
 {
     ui->Combo_CubTanque->addItem(tanque_index);
     ui->Combo_cub_generar->addItem(tanque_index);
+    ui->Combo_taque_limites->addItem(tanque_index);
 }
 
 void MainWindow::Rellenar_tabla_cubicacion(int Id_tanque)
@@ -1241,6 +1246,7 @@ void MainWindow::clearCubicTableFields()
     ui->Line_Volumen->setText("");
 }
 
+
 void MainWindow::on_Btn_Cub_Editar_clicked()
 {
     enableCubicTableFields(true);
@@ -1286,3 +1292,29 @@ void MainWindow::on_Btn_CubGenerar_clicked()
 
 
 /* Termina la configuracion de la tabla de cubicacion*/
+
+void MainWindow::guardar_limites()
+{
+    QSqlQuery qry;
+    QString cadena;
+    cadena.append("INSERT INTO cistem.limites (Volumen_total, "
+                  "Volumen_maximo, "
+                  "Producto_alto, "
+                  "Desbordamiento, "
+                  "Entrega_necesaria, "
+                  "Producto_bajo, "
+                  "Alarma_agua_alta, "
+                  "Advertencia_agua_alta, "
+                  "Id_Taque) "
+                  "VALUES('" + ui->Line_volumen_total->text() + "', "
+                  "'" + ui->Line_volumen_maximo->text() + "', "
+                  "'" + ui->Line_producto_alto->text() + "', "
+                  "'" + ui->Line_desbordamiento->text() + "', "
+                  "'" + ui->Line_limite_entrega->text() + "', "
+                  "'" + ui->Line_producto_alto->text() + "', "
+                  "'" + ui->Line_alarma_agua->text() + "', "
+                  "'" + ui->Line_advertencia_agua->text() + "', "
+                  "'" + ui->Combo_taque_limites->currentText() + "');");
+    qDebug() << cadena;
+    qDebug() << qry.exec(cadena);
+}

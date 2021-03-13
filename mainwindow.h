@@ -73,6 +73,7 @@ public:
     void enableCubicTableFields(bool v);
     void enableCubicTableBtn(bool a, bool b, bool c);
     void clearCubicTableFields();
+    void guardar_limites();
 
 
 private slots:
