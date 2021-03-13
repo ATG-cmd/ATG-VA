@@ -453,6 +453,7 @@ void Tanque::SetVolumen(double c ,double a)
 
     latanq->setText(QString::number(niv)+ "%");
 
+
 }
 
 int Tanque::Niv() { return niv; }

@@ -43,12 +43,14 @@ public:
     QTimer *Time1;
     QTimer *Time2;
     QTimer *Time3;
+    QTimer *deliveryProGaugeTimer;
     QLabel *Lab_Title;
     QLabel *Avisos;
     QLabel *Indicadores[2];
     QLabel *Reloj;
     int N =-1;
     int S=0;
+    int indice =0;
     QString Series[8];
     int frame = 0;
      QSqlDatabase DB;
@@ -164,6 +166,10 @@ private slots:
    void on_Btn_CubGenerar_clicked();
 
    void on_Combo_cub_generar_currentIndexChanged(int index);
+
+   void on_Btn_Entregas_clicked();
+
+   void deliveryProGaugeCountIncrement();
 
 private:
     Ui::MainWindow *ui;

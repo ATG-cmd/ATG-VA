@@ -10,6 +10,17 @@ const int lenbuff1 = 1024;              // Longitud de buffer, Ajustar
 int xbuff1 = 0x00;                      // Índice: siguiente CHAR en cbuff
 char cbuff1[lenbuff1];                  // Buffer
 char rcvchar1 = 0x00;                   // último carácter recibido
+double ProGaugeCapacidad = 40001.0;
+int    deliveryTimeOut = 0;
+double deliveryMinimunVolume = 0;
+//double deliveryVolumeRead = 0;
+double deliveryMaxVolumeRead = 0;
+int    deliveryInProcess = 0;
+double deliveryLastInventoryRead = 0;
+double deliveryCountIncrement = 0;
+double deliveryCountDecrement = 0;
+double deliveryInventoryStart = 0;
+double deliverySensivilityVolume = ProGaugeCapacidad * 0.0001;
 //
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -58,6 +69,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(Time2,SIGNAL(timeout()),this,SLOT(Actualizar_Time()));
     Time2->start(1000);
+
+    deliveryProGaugeTimer = new QTimer(this);
 
      MainWindow::setFocus();
     ui->Line_AjusteAltura->installEventFilter(this);
@@ -736,7 +749,7 @@ void MainWindow::Protocolo(QString cad)
 {
     QSqlQuery qry;
 
-    int indice =0;
+     indice =0;
 
     qDebug() << "Cadena: " << cad;
 
@@ -775,6 +788,17 @@ void MainWindow::Protocolo(QString cad)
          {
         tanques[indice]->SetAltura(cad.mid(13,8).toDouble(),cad.mid(22,8).toDouble());
         tanques[indice]->SetTemperatura(cad.mid(9,3).toDouble()/10);
+
+        connect(deliveryProGaugeTimer, SIGNAL(timeout()), this, SLOT(deliveryProGaugeCountIncrement()));
+        deliveryProGaugeTimer->start(1000);
+
+        if(tanques[indice]->GetVolumen() > deliveryMaxVolumeRead || deliveryCountIncrement == 0){
+            qDebug() << "ProGaugeVolumen:" << tanques[indice]->GetVolumen() << "deliveryMaxVolumeRead:" << deliveryMaxVolumeRead;
+
+            deliveryMaxVolumeRead = tanques[indice]->GetVolumen();
+           // ui->lbl_deliveryMaxVolumeRead->setText(QString::number(deliveryMaxVolumeRead));
+        }
+
 
         qDebug() << "Tamano de cadena:"<< cad.length();
          }
@@ -1272,3 +1296,57 @@ void MainWindow::on_Btn_CubGenerar_clicked()
 
 
 /* Termina la configuracion de la tabla de cubicacion*/
+
+
+void MainWindow::on_Btn_Entregas_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(11);
+}
+
+void MainWindow::deliveryProGaugeCountIncrement(){
+    if(deliveryInProcess == 0){
+        if(tanques[indice]->GetVolumen() <= deliveryLastInventoryRead){
+            deliveryCountDecrement++;
+            if(deliveryCountDecrement >= 10){
+                deliveryCountDecrement = 0;
+                deliveryCountIncrement = 0;
+                deliveryInventoryStart = 0;
+             //   ui->lbl_deliveryInventoryStart->setText(QString::number(deliveryInventoryStart));
+                deliveryMaxVolumeRead = deliveryLastInventoryRead;
+             //   ui->lbl_deliveryMaxVolumeRead->setText(QString::number(deliveryMaxVolumeRead));
+            }
+            if(deliveryCountIncrement >= 30){
+                deliveryCountDecrement = 0;
+                deliveryCountIncrement = 0;
+                deliveryInProcess = 1;
+             //   ui->lbl_ProGaugeDeliveryInProccess->show();
+            }
+        } else{
+            deliveryCountIncrement++;
+            if(deliveryCountIncrement == 1){
+                deliveryInventoryStart = tanques[indice]->GetVolumen();
+              //  ui->lbl_deliveryInventoryStart->setText(QString::number(deliveryInventoryStart));
+            }
+            deliveryCountDecrement = 0;
+        }
+    } else{
+        deliveryCountIncrement++;
+        if(tanques[indice]->GetVolumen() > (deliveryLastInventoryRead + deliverySensivilityVolume)){
+            deliveryCountIncrement = 0;
+        }
+        if(deliveryCountIncrement >= (1 * 60)){
+            deliveryCountIncrement = 0;
+            deliveryInProcess = 0;
+           // ui->lbl_ProGaugeDeliveryInProccess->hide();
+            deliveryInventoryStart = 0;
+           // ui->lbl_deliveryInventoryStart->setText(QString::number(deliveryInventoryStart));
+        }
+    }
+
+    qDebug() <<tanques[indice]->GetVolumen() << deliveryLastInventoryRead << deliveryCountDecrement << deliveryCountIncrement;
+    deliveryLastInventoryRead = tanques[indice]->GetVolumen();
+    //ui->lbl_deliveryCountIncrement->setText(QString::number(deliveryCountIncrement));
+    //ui->lbl_deliveryCountDecrement->setText(QString::number(deliveryCountDecrement));
+    //ui->lbl_deliveryLastInventoryRead->setText(QString::number(deliveryLastInventoryRead));
+}
+

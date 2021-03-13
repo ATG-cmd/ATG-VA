@@ -44,10 +44,10 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>11</number>
     </property>
     <widget class="QWidget" name="Menu">
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>61</x>
@@ -121,11 +121,11 @@
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QPushButton" name="Entregas">
+        <widget class="QPushButton" name="Btn_Entregas">
          <property name="styleSheet">
           <string notr="true">QPushButton {
 	color: white;
-	background-color: rgba(250,45,14,100);
+	background-color: rgba(230,145,50,100);
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
@@ -136,7 +136,7 @@
          </property>
          <property name="icon">
           <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Alarmas.png</normaloff>:/Alarmas.png</iconset>
+           <normaloff>:/Entregas.png</normaloff>:/Entregas.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -918,11 +918,11 @@ QScrollBar::add-line:vertical {
       <attribute name="horizontalHeaderCascadingSectionResizes">
        <bool>false</bool>
       </attribute>
-      <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>155</number>
-      </attribute>
       <attribute name="horizontalHeaderMinimumSectionSize">
        <number>38</number>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>155</number>
       </attribute>
       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -936,11 +936,11 @@ QScrollBar::add-line:vertical {
       <attribute name="verticalHeaderCascadingSectionResizes">
        <bool>false</bool>
       </attribute>
-      <attribute name="verticalHeaderDefaultSectionSize">
-       <number>40</number>
-      </attribute>
       <attribute name="verticalHeaderMinimumSectionSize">
        <number>30</number>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>40</number>
       </attribute>
       <attribute name="verticalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -2353,6 +2353,41 @@ QScrollBar::add-line:vertical {
      </widget>
     </widget>
     <widget class="QWidget" name="LimitesTank"/>
+    <widget class="QWidget" name="Entregas">
+     <widget class="QTableView" name="tableView">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>1161</width>
+        <height>391</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>10</y>
+        <width>121</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>0</y>
+        <width>151</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Tanque</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
    <widget class="QLabel" name="Lab_Titulo">
     <property name="geometry">
