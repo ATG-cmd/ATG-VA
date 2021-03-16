@@ -44,7 +44,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>10</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -83,7 +83,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Probeta.png</normaloff>:/Probeta.png</iconset>
          </property>
          <property name="iconSize">
@@ -109,7 +109,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Tanque.png</normaloff>:/Tanque.png</iconset>
          </property>
          <property name="iconSize">
@@ -135,7 +135,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Alarmas.png</normaloff>:/Alarmas.png</iconset>
          </property>
          <property name="iconSize">
@@ -161,7 +161,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Impresora.png</normaloff>:/Impresora.png</iconset>
          </property>
          <property name="iconSize">
@@ -187,7 +187,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Comunicacion.png</normaloff>:/Comunicacion.png</iconset>
          </property>
          <property name="iconSize">
@@ -213,7 +213,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Tabla C.png</normaloff>:/Tabla C.png</iconset>
          </property>
          <property name="iconSize">
@@ -1680,7 +1680,7 @@ QScrollBar::add-line:vertical {
        <string>Login</string>
       </property>
       <property name="icon">
-       <iconset>
+       <iconset resource="Imagenes/Resourse.qrc">
         <normaloff>:/Login.png</normaloff>:/Login.png</iconset>
       </property>
       <property name="iconSize">
@@ -1708,7 +1708,7 @@ QScrollBar::add-line:vertical {
        <string/>
       </property>
       <property name="icon">
-       <iconset>
+       <iconset resource="Imagenes/Resourse.qrc">
         <normaloff>:/Usuario.png</normaloff>:/Usuario.png</iconset>
       </property>
       <property name="iconSize">
@@ -2726,7 +2726,7 @@ padding: 100px;</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="Imagenes/Resourse.qrc">
       <normaloff>:/GC.png</normaloff>:/GC.png</iconset>
     </property>
     <property name="iconSize">
@@ -2752,7 +2752,7 @@ padding: 100px;</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="Imagenes/Resourse.qrc">
       <normaloff>:/Guardar.png</normaloff>:/Guardar.png</iconset>
     </property>
     <property name="iconSize">
@@ -2778,7 +2778,7 @@ padding: 100px;</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="Imagenes/Resourse.qrc">
       <normaloff>:/Config.png</normaloff>:/Config.png</iconset>
     </property>
     <property name="iconSize">
@@ -2804,7 +2804,7 @@ padding: 100px;</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="Imagenes/Resourse.qrc">
       <normaloff>:/Regresar.png</normaloff>:/Regresar.png</iconset>
     </property>
     <property name="iconSize">
@@ -2880,6 +2880,8 @@ color: white;
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="Imagenes/Resourse.qrc"/>
+ </resources>
  <connections/>
 </ui>

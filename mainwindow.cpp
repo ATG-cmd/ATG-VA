@@ -189,7 +189,7 @@ void MainWindow::on_Btn_Tanque_clicked()
          switch (index)
           {
           case 0:ui->stackedWidget->setCurrentIndex(3); break;
-          case 1: ui->stackedWidget->setCurrentIndex(10);break;
+          case 1: ui->stackedWidget->setCurrentIndex(10); frame = 10;break;
           case 2: Vertical();break;
           case 3:
              ui->stackedWidget->setCurrentIndex(4);
@@ -387,7 +387,10 @@ void MainWindow::Modificar_TextoTank()
 }// FIN de Modificacion de texto de Tanque Configuraci
 
 void MainWindow::on_Btn_Guardar_clicked()
-{ switch(frame){
+{
+
+    qDebug() << frame;
+    switch(frame){
     case 1 : Guardar_Sonda(); break;
     case 2 : Guardar_Tanque(); break;
     case 10: guardar_limites(); break;
@@ -1297,24 +1300,16 @@ void MainWindow::guardar_limites()
 {
     QSqlQuery qry;
     QString cadena;
-    cadena.append("INSERT INTO cistem.limites (Volumen_total, "
-                  "Volumen_maximo, "
-                  "Producto_alto, "
-                  "Desbordamiento, "
-                  "Entrega_necesaria, "
-                  "Producto_bajo, "
-                  "Alarma_agua_alta, "
-                  "Advertencia_agua_alta, "
-                  "Id_Taque) "
-                  "VALUES('" + ui->Line_volumen_total->text() + "', "
-                  "'" + ui->Line_volumen_maximo->text() + "', "
-                  "'" + ui->Line_producto_alto->text() + "', "
-                  "'" + ui->Line_desbordamiento->text() + "', "
-                  "'" + ui->Line_limite_entrega->text() + "', "
-                  "'" + ui->Line_producto_alto->text() + "', "
-                  "'" + ui->Line_alarma_agua->text() + "', "
-                  "'" + ui->Line_advertencia_agua->text() + "', "
-                  "'" + ui->Combo_taque_limites->currentText() + "');");
+    cadena.append("UPDATE cistem.limites SET Volumen_total = '" + ui->Line_volumen_total->text() + "',"
+                  " Volumen_maximo = '" + ui->Line_volumen_maximo->text() + "',"
+                  " Producto_alto = '" + ui->Line_producto_alto->text() + "',"
+                  " Desbordamiento = '" + ui->Line_desbordamiento->text() + "',"
+                  " Entrega_necesaria = '" + ui->Line_limite_entrega->text() + "',"
+                  " Producto_bajo = '" + ui->Line_producto_bajo->text() + "',"
+                  " Alarma_agua_alta = '" + ui->Line_alarma_agua->text() + "',"
+                  " Advertencia_agua_alta = '" + ui->Line_advertencia_agua->text() + "'"
+                  " WHERE Id_Taque = '" + ui->Combo_taque_limites->currentText() + "';");
+
     qDebug() << cadena;
     qDebug() << qry.exec(cadena);
 }
