@@ -65,6 +65,8 @@ public:
      int indiceM = 0;
      bool RX= false;
      int intento = 0;
+     double Volumen_inicial;
+     double Volumen_Final;
 
     void Buscar_Tanques();  // Es funcion busca los tanques dados de alta en BD
     void Rellenar_combo_taques(QString tanque_index); // Rellenaremos los combobox con los tanque escontrados

@@ -11,6 +11,7 @@ int xbuff1 = 0x00;                      // Índice: siguiente CHAR en cbuff
 char cbuff1[lenbuff1];                  // Buffer
 char rcvchar1 = 0x00;                   // último carácter recibido
 double ProGaugeCapacidad = 40001.0;
+
 int    deliveryTimeOut = 0;
 double deliveryMinimunVolume = 0;
 //double deliveryVolumeRead = 0;
@@ -37,6 +38,7 @@ MainWindow::MainWindow(QWidget *parent)
     Lab_Title->setGeometry(QRect(200,2,500,50));
     Lab_Title->setText("Estado Sistema   (▀̿̿Ĺ̯̿▀̿ ̿) ");
     Lab_Title->setFont(Fonttitle);
+     ui->lbl_ProGaugeDeliveryInProccess->hide();
 
     Avisos = new QLabel(ui->Btn_Barra_Estados);
     Avisos->setGeometry(QRect(700,2,105,50));
@@ -67,10 +69,13 @@ MainWindow::MainWindow(QWidget *parent)
     Tconf->SetnameTank("Sin Nombre");
     ConCombocol(ui->Combo_Color);
 
-    connect(Time2,SIGNAL(timeout()),this,SLOT(Actualizar_Time()));
-    Time2->start(1000);
+    //connect(Time2,SIGNAL(timeout()),this,SLOT(Actualizar_Time()));
+    //Time2->start(1000);
 
     deliveryProGaugeTimer = new QTimer(this);
+    connect(deliveryProGaugeTimer, SIGNAL(timeout()), this, SLOT(deliveryProGaugeCountIncrement()));
+    deliveryProGaugeTimer->start(1000);
+
 
      MainWindow::setFocus();
     ui->Line_AjusteAltura->installEventFilter(this);
@@ -103,6 +108,7 @@ MainWindow::MainWindow(QWidget *parent)
         connect(puertoserie, &QSerialPort::readyRead, this, &MainWindow::Leer_datos);
 
         DB = QSqlDatabase::addDatabase("QMYSQL");
+       // DB.setHostName("192.168.10.104");
         DB.setHostName("192.168.100.216");
         DB.setDatabaseName("mysql");
         DB.setPort(3306);
@@ -141,7 +147,7 @@ void MainWindow::on_Btn_Home_clicked()
         for (int i=0;i <= IDSerie-1; i++ )
         { tanques[i]->setTMaximizado(false);
                qDebug() << "entre al for";
-               qDebug() << "Tanque" +QString::number(i)+ ":false";
+               qDebug() << "Tanque" + QString::number(i)+ ":false";
         }
 
     }
@@ -789,8 +795,6 @@ void MainWindow::Protocolo(QString cad)
         tanques[indice]->SetAltura(cad.mid(13,8).toDouble(),cad.mid(22,8).toDouble());
         tanques[indice]->SetTemperatura(cad.mid(9,3).toDouble()/10);
 
-        connect(deliveryProGaugeTimer, SIGNAL(timeout()), this, SLOT(deliveryProGaugeCountIncrement()));
-        deliveryProGaugeTimer->start(1000);
 
         if(tanques[indice]->GetVolumen() > deliveryMaxVolumeRead || deliveryCountIncrement == 0){
             qDebug() << "ProGaugeVolumen:" << tanques[indice]->GetVolumen() << "deliveryMaxVolumeRead:" << deliveryMaxVolumeRead;
@@ -1023,7 +1027,7 @@ void MainWindow::consultaBD()
            {
                qDebug()<<"entre No se por que  pero id serie vale" << IDSerie;
               connect(Time1,SIGNAL(timeout()),this,SLOT(Estados()));
-              Time1->start(1000);
+              Time1->start(1500);
            }
            qDebug()<< IDSerie;
        }
@@ -1062,7 +1066,7 @@ void MainWindow::SendCMD()
            Time3->stop();
            disconnect(Time3,SIGNAL(timeout()),this,SLOT(SendCMD()));
            connect(Time1,SIGNAL(timeout()),this,SLOT(Estados()));
-           Time1->start(1000);
+           Time1->start(1500);
                                                                            break;
     }
 
@@ -1319,17 +1323,19 @@ void MainWindow::deliveryProGaugeCountIncrement(){
                 deliveryCountDecrement = 0;
                 deliveryCountIncrement = 0;
                 deliveryInProcess = 1;
-             //   ui->lbl_ProGaugeDeliveryInProccess->show();
+                Volumen_inicial =  tanques[indice]->GetVolumen();
+                ui->lbl_ProGaugeDeliveryInProccess->show();
             }
         } else{
             deliveryCountIncrement++;
-            if(deliveryCountIncrement == 1){
+            if(deliveryCountIncrement == 1.00){
                 deliveryInventoryStart = tanques[indice]->GetVolumen();
               //  ui->lbl_deliveryInventoryStart->setText(QString::number(deliveryInventoryStart));
             }
             deliveryCountDecrement = 0;
         }
-    } else{
+    }
+    else{
         deliveryCountIncrement++;
         if(tanques[indice]->GetVolumen() > (deliveryLastInventoryRead + deliverySensivilityVolume)){
             deliveryCountIncrement = 0;
@@ -1337,7 +1343,11 @@ void MainWindow::deliveryProGaugeCountIncrement(){
         if(deliveryCountIncrement >= (1 * 60)){
             deliveryCountIncrement = 0;
             deliveryInProcess = 0;
-           // ui->lbl_ProGaugeDeliveryInProccess->hide();
+            QSqlQuery qry;
+            qry.exec("INSERT INTO `cistem`.`entregas` (`Tanque_Nombre`, `Volumen Inicial`, `Volumen Final`, `Temperatura`, `Fecha`) VALUES ('"+tanques[indice]->GetNameTank()+"', '"+QString::number(Volumen_inicial)+"', '"+QString::number(tanques[indice]->GetVolumen())+"', '"+QString::number(tanques[indice]->GetTemperatura())+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');");
+           qDebug() << QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
+            Volumen_inicial =0;
+            ui->lbl_ProGaugeDeliveryInProccess->hide();
             deliveryInventoryStart = 0;
            // ui->lbl_deliveryInventoryStart->setText(QString::number(deliveryInventoryStart));
         }
