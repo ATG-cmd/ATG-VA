@@ -44,7 +44,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>11</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -1191,7 +1191,7 @@ QScrollBar::add-line:vertical {
        <enum>Qt::NoFocus</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="Tab_editar">
        <property name="font">
@@ -2387,16 +2387,6 @@ QScrollBar::add-line:vertical {
     </widget>
     <widget class="QWidget" name="LimitesTank"/>
     <widget class="QWidget" name="Entregas">
-     <widget class="QTableView" name="tableView">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>60</y>
-        <width>1161</width>
-        <height>391</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QComboBox" name="comboBox">
       <property name="geometry">
        <rect>
@@ -2419,6 +2409,50 @@ QScrollBar::add-line:vertical {
       <property name="text">
        <string>Tanque</string>
       </property>
+     </widget>
+     <widget class="QTableWidget" name="Tab_entregas">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>90</y>
+        <width>1161</width>
+        <height>391</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="showGrid">
+       <bool>true</bool>
+      </property>
+      <property name="gridStyle">
+       <enum>Qt::NoPen</enum>
+      </property>
+      <column>
+       <property name="text">
+        <string>Nombre</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Volumen Inicial</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Volumen Final</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Temperatura</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Fecha</string>
+       </property>
+      </column>
      </widget>
     </widget>
    </widget>
