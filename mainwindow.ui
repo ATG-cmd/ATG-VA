@@ -44,7 +44,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -83,7 +83,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
+          <iconset>
            <normaloff>:/Probeta.png</normaloff>:/Probeta.png</iconset>
          </property>
          <property name="iconSize">
@@ -109,7 +109,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
+          <iconset>
            <normaloff>:/Tanque.png</normaloff>:/Tanque.png</iconset>
          </property>
          <property name="iconSize">
@@ -135,7 +135,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
+          <iconset>
            <normaloff>:/Alarmas.png</normaloff>:/Alarmas.png</iconset>
          </property>
          <property name="iconSize">
@@ -161,7 +161,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
+          <iconset>
            <normaloff>:/Impresora.png</normaloff>:/Impresora.png</iconset>
          </property>
          <property name="iconSize">
@@ -187,7 +187,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
+          <iconset>
            <normaloff>:/Comunicacion.png</normaloff>:/Comunicacion.png</iconset>
          </property>
          <property name="iconSize">
@@ -213,7 +213,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
+          <iconset>
            <normaloff>:/Tabla C.png</normaloff>:/Tabla C.png</iconset>
          </property>
          <property name="iconSize">
@@ -819,11 +819,27 @@ QScrollBar::add-line:vertical {
      subcontrol-position: top;
      subcontrol-origin: margin;
  }
- QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
-     border: 2px solid grey;
-     width: 10px;
-     height: 10px;
-     background: white;
+ QScrollBar::up-arrow:vertical{
+  margin: 0px 0px 5px 0px;  
+  width: 0;
+  height: 0;
+  /*border: 2px solid #000;*/
+  border-top: 5px  solid royalblue;
+  border-right: 10px solid royalblue;
+  border-bottom: 20px  solid white;
+  border-left: 10px  solid royalblue ;
+}
+ QScrollBar::down-arrow:vertical {
+   
+  margin: 5px 0px 0px 0px;  
+  width: 0;
+  height: 0;
+  /*border: 2px solid #000;*/
+  border-top: 20px solid white;
+  border-right: 10px solid royalblue;
+  border-bottom: 5px solid royalblue ;
+  border-left: 10px  solid royalblue ;
+  
  }
 
  QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
@@ -1132,7 +1148,7 @@ QScrollBar::add-line:vertical {
        <enum>Qt::NoFocus</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="Tab_editar">
        <property name="font">
@@ -1680,7 +1696,7 @@ QScrollBar::add-line:vertical {
        <string>Login</string>
       </property>
       <property name="icon">
-       <iconset resource="Imagenes/Resourse.qrc">
+       <iconset>
         <normaloff>:/Login.png</normaloff>:/Login.png</iconset>
       </property>
       <property name="iconSize">
@@ -1708,7 +1724,7 @@ QScrollBar::add-line:vertical {
        <string/>
       </property>
       <property name="icon">
-       <iconset resource="Imagenes/Resourse.qrc">
+       <iconset>
         <normaloff>:/Usuario.png</normaloff>:/Usuario.png</iconset>
       </property>
       <property name="iconSize">
@@ -2366,13 +2382,29 @@ QScrollBar::add-line:vertical {
      subcontrol-position: top;
      subcontrol-origin: margin;
  }
- QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
-     border: 2px solid grey;
-     width: 15px;
-     height: 15px;
-     background: white;
+ QScrollBar::up-arrow:vertical{
+  margin: 0px 0px 5px 0px;  
+  width: 0;
+  height: 0;
+  /*border: 2px solid #000;*/
+  border-top: 5px  solid royalblue;
+  border-right: 10px solid royalblue;
+  border-bottom: 20px  solid white;
+  border-left: 10px  solid royalblue ;
+  background: white;
+}
+ QScrollBar::down-arrow:vertical {
+   
+  margin: 5px 0px 0px 0px;  
+  width: 0;
+  height: 0;
+  /*border: 2px solid #000;*/
+  border-top: 20px solid white;
+  border-right: 10px solid royalblue;
+  border-bottom: 5px solid royalblue ;
+  border-left: 10px  solid royalblue ;
+  background: white;
   
-    
  }
 
  QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
@@ -2726,7 +2758,7 @@ padding: 100px;</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="Imagenes/Resourse.qrc">
+     <iconset>
       <normaloff>:/GC.png</normaloff>:/GC.png</iconset>
     </property>
     <property name="iconSize">
@@ -2752,7 +2784,7 @@ padding: 100px;</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="Imagenes/Resourse.qrc">
+     <iconset>
       <normaloff>:/Guardar.png</normaloff>:/Guardar.png</iconset>
     </property>
     <property name="iconSize">
@@ -2778,7 +2810,7 @@ padding: 100px;</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="Imagenes/Resourse.qrc">
+     <iconset>
       <normaloff>:/Config.png</normaloff>:/Config.png</iconset>
     </property>
     <property name="iconSize">
@@ -2804,7 +2836,7 @@ padding: 100px;</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="Imagenes/Resourse.qrc">
+     <iconset>
       <normaloff>:/Regresar.png</normaloff>:/Regresar.png</iconset>
     </property>
     <property name="iconSize">
@@ -2880,8 +2912,6 @@ color: white;
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources>
-  <include location="Imagenes/Resourse.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
