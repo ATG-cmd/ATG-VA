@@ -29,7 +29,7 @@ class Tanque :public QWidget
     double ProductoBajo;
     double Alarma_de_Agua;
     double Advertencia_de_Agua;
-    double VolumenA;
+    double VolumenA = 0 ;
     double VolumenCon = 0;
     double AlturaTank;
     double LimSup;
