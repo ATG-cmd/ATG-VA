@@ -283,6 +283,7 @@
        <font>
         <pointsize>20</pointsize>
         <weight>75</weight>
+        <italic>false</italic>
         <bold>true</bold>
        </font>
       </property>
@@ -951,11 +952,27 @@ QScrollBar::add-line:vertical {
      subcontrol-position: top;
      subcontrol-origin: margin;
  }
- QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
-     border: 2px solid grey;
-     width: 10px;
-     height: 10px;
-     background: white;
+ QScrollBar::up-arrow:vertical{
+  margin: 0px 0px 5px 0px;  
+  width: 0;
+  height: 0;
+  /*border: 2px solid #000;*/
+  border-top: 5px  solid royalblue;
+  border-right: 10px solid royalblue;
+  border-bottom: 20px  solid white;
+  border-left: 10px  solid royalblue ;
+}
+ QScrollBar::down-arrow:vertical {
+   
+  margin: 5px 0px 0px 0px;  
+  width: 0;
+  height: 0;
+  /*border: 2px solid #000;*/
+  border-top: 20px solid white;
+  border-right: 10px solid royalblue;
+  border-bottom: 5px solid royalblue ;
+  border-left: 10px  solid royalblue ;
+  
  }
 
  QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
@@ -1024,11 +1041,11 @@ QScrollBar::add-line:vertical {
       <attribute name="horizontalHeaderCascadingSectionResizes">
        <bool>false</bool>
       </attribute>
-      <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>155</number>
-      </attribute>
       <attribute name="horizontalHeaderMinimumSectionSize">
        <number>38</number>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>155</number>
       </attribute>
       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -1042,11 +1059,11 @@ QScrollBar::add-line:vertical {
       <attribute name="verticalHeaderCascadingSectionResizes">
        <bool>false</bool>
       </attribute>
-      <attribute name="verticalHeaderDefaultSectionSize">
-       <number>40</number>
-      </attribute>
       <attribute name="verticalHeaderMinimumSectionSize">
        <number>30</number>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>40</number>
       </attribute>
       <attribute name="verticalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -2561,14 +2578,14 @@ QScrollBar::add-line:vertical {
       <attribute name="horizontalHeaderVisible">
        <bool>false</bool>
       </attribute>
+      <attribute name="horizontalHeaderMinimumSectionSize">
+       <number>50</number>
+      </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
        <number>150</number>
       </attribute>
       <attribute name="horizontalHeaderHighlightSections">
        <bool>false</bool>
-      </attribute>
-      <attribute name="horizontalHeaderMinimumSectionSize">
-       <number>50</number>
       </attribute>
       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -2576,11 +2593,11 @@ QScrollBar::add-line:vertical {
       <attribute name="horizontalHeaderStretchLastSection">
        <bool>true</bool>
       </attribute>
-      <attribute name="verticalHeaderDefaultSectionSize">
-       <number>40</number>
-      </attribute>
       <attribute name="verticalHeaderMinimumSectionSize">
        <number>30</number>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>40</number>
       </attribute>
       <column>
        <property name="text">
