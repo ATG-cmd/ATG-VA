@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     Fonttitle.setBold(true);
     Lab_Title = new QLabel(ui->Btn_Barra_Estados);
     Lab_Title->setGeometry(QRect(200,2,500,50));
-    Lab_Title->setText("Estado Sistema   (▀̿̿Ĺ̯̿▀̿ ̿) ");
+    Lab_Title->setText("Estado Sistema ");
     Lab_Title->setFont(Fonttitle);
 
     Avisos = new QLabel(ui->Btn_Barra_Estados);
@@ -530,7 +530,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     }
     if(obj ==ui->Line_Usuario && event->type() == QEvent::FocusIn)
     {
-        MainWindow::setFocus();
+//        MainWindow::setFocus();
         qDebug() << "Hola desde el filtro usuario";
         Dialog *dlg = new Dialog(this);
         dlg->set_etiqueta("Ingrese su nombre de usuario");
@@ -543,6 +543,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
             ui->Line_Usuario->setText(dlg->getDatos());
         }
         delete dlg;
+        MainWindow::setFocus();
         return true;
     }
     if(obj ==ui->Line_Contra && event->type() == QEvent::FocusIn)
