@@ -42,6 +42,10 @@ class Tanque :public QWidget
     double TankTiempoEntrega;
     double TankMinimoEntrega;
     bool Config;
+    double angulo = 0;
+    double distancia =500;
+    double angle= 50;
+    double frombase=500;
 
 
     int nivA;
@@ -239,17 +243,25 @@ public:
 
    int getTipo() const;
    void setTipo(int value);
+
    int getProtocolo() const;
    void setProtocolo(int value);
+
    QString getA() const;
    void setA(const QString &value);
+
    bool getTMaximizado() const;
    void setTMaximizado(bool value);
 
    double  Volume(double a, double x, double h0, double R);
 
-
    void offline();
+
+   double getAngle() const;
+   void setAngle(double value);
+
+   double getFrombase() const;
+   void setFrombase(double value);
 };
 
 #endif // TANQUE_H
