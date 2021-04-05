@@ -44,7 +44,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -52,28 +52,17 @@
        <rect>
         <x>61</x>
         <y>40</y>
-        <width>1066</width>
+        <width>1280</width>
         <height>416</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="0">
-        <widget class="QPushButton" name="Btb_Sonda">
-         <property name="font">
-          <font>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <italic>false</italic>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="focusPolicy">
-          <enum>Qt::StrongFocus</enum>
-         </property>
+       <item row="0" column="4">
+        <widget class="QPushButton" name="Btn_Comunicacion">
          <property name="styleSheet">
           <string notr="true">QPushButton {
 	color: white;
-	background-color: rgba(89,161,199,150);
+	background-color: rgba(150,80,120,100);
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
@@ -84,7 +73,59 @@
          </property>
          <property name="icon">
           <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Probeta.png</normaloff>:/Probeta.png</iconset>
+           <normaloff>:/Comunicacion.png</normaloff>:/Comunicacion.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>200</width>
+           <height>200</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="Btn_Station">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(250,45,114,150);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/station.png</normaloff>:/station.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>200</width>
+           <height>200</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="Btn_tabla_cubicacion">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(150,80,120,100);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/Tabla C.png</normaloff>:/Tabla C.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -172,12 +213,23 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="4">
-        <widget class="QPushButton" name="Btn_Comunicacion">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="Btb_Sonda">
+         <property name="font">
+          <font>
+           <pointsize>8</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::StrongFocus</enum>
+         </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
 	color: white;
-	background-color: rgba(150,80,120,100);
+	background-color: rgba(89,161,199,150);
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
@@ -188,33 +240,7 @@
          </property>
          <property name="icon">
           <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Comunicacion.png</normaloff>:/Comunicacion.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>200</width>
-           <height>200</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="Btn_tabla_cubicacion">
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(150,80,120,100);
-	border-width: 3px;
-	border-radius: 10px;
-	padding: 2px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Tabla C.png</normaloff>:/Tabla C.png</iconset>
+           <normaloff>:/Probeta.png</normaloff>:/Probeta.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -1281,7 +1307,7 @@ QScrollBar::add-line:vertical {
        <enum>Qt::NoFocus</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="Tab_editar">
        <property name="font">
@@ -2475,7 +2501,412 @@ QScrollBar::add-line:vertical {
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="LimitesTank"/>
+    <widget class="QWidget" name="LimitesTank">
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>100</y>
+        <width>711</width>
+        <height>351</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTableWidget{
+	background-color: #C0C0C0;
+}
+
+QScrollBar:vertical {      
+     border: 2px solid grey;   
+     background:#C0C0C0;
+     width: 50px;
+     margin: 39px 0 39px 0;               
+ }
+ QScrollBar::handle:vertical {
+     background:white;
+     min-height: 38px;
+ }
+QScrollBar::add-line:vertical {
+     border: 2px solid grey;
+     background: royalblue;
+     height: 35px;
+     subcontrol-position: bottom;
+     subcontrol-origin: margin;
+ }
+ QScrollBar::sub-line:vertical {
+     border: 2px solid grey;
+     height: 35px;
+	 background: royalblue;
+     subcontrol-position: top;
+     subcontrol-origin: margin;
+ }
+ QScrollBar::up-arrow:vertical{
+  margin: 0px 0px 5px 0px;  
+  width: 0;
+  height: 0;
+  /*border: 2px solid #000;*/
+  border-top: 5px  solid royalblue;
+  border-right: 10px solid royalblue;
+  border-bottom: 20px  solid white;
+  border-left: 10px  solid royalblue ;
+}
+ QScrollBar::down-arrow:vertical {
+   
+  margin: 5px 0px 0px 0px;  
+  width: 0;
+  height: 0;
+  /*border: 2px solid #000;*/
+  border-top: 20px solid white;
+  border-right: 10px solid royalblue;
+  border-bottom: 5px solid royalblue ;
+  border-left: 10px  solid royalblue ;
+  
+ }
+
+ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+     background: none;
+ }
+</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Sunken</enum>
+      </property>
+      <property name="lineWidth">
+       <number>1</number>
+      </property>
+      <property name="midLineWidth">
+       <number>2</number>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOn</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>659</width>
+         <height>534</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_16">
+          <property name="font">
+           <font>
+            <pointsize>32</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Tanque</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="Combo_taque_limites">
+          <property name="font">
+           <font>
+            <pointsize>26</pointsize>
+           </font>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::RightToLeft</enum>
+          </property>
+          <item>
+           <property name="text">
+            <string>1</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>2</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>3</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>4</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>5</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>6</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>7</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>8</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_8">
+          <property name="font">
+           <font>
+            <pointsize>32</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Volumen total</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="Line_volumen_total">
+          <property name="font">
+           <font>
+            <pointsize>28</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="placeholderText">
+           <string>00000.00</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_17">
+          <property name="font">
+           <font>
+            <pointsize>32</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Volumen maximo</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="Line_volumen_maximo">
+          <property name="font">
+           <font>
+            <pointsize>28</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="placeholderText">
+           <string>00000.00</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_18">
+          <property name="font">
+           <font>
+            <pointsize>32</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Producto alto</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLineEdit" name="Line_producto_alto">
+          <property name="font">
+           <font>
+            <pointsize>28</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="placeholderText">
+           <string>00</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_19">
+          <property name="font">
+           <font>
+            <pointsize>32</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Desbordamiento</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLineEdit" name="Line_desbordamiento">
+          <property name="font">
+           <font>
+            <pointsize>28</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="placeholderText">
+           <string>00</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_21">
+          <property name="font">
+           <font>
+            <pointsize>32</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Limite de entrega</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLineEdit" name="Line_limite_entrega">
+          <property name="font">
+           <font>
+            <pointsize>28</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="placeholderText">
+           <string>00</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_22">
+          <property name="font">
+           <font>
+            <pointsize>32</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Producto bajo</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="QLineEdit" name="Line_producto_bajo">
+          <property name="font">
+           <font>
+            <pointsize>28</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="placeholderText">
+           <string>00000.00</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="label_23">
+          <property name="font">
+           <font>
+            <pointsize>32</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Alarma agua alta</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1">
+         <widget class="QLineEdit" name="Line_alarma_agua">
+          <property name="font">
+           <font>
+            <pointsize>28</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="placeholderText">
+           <string>000.00</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0">
+         <widget class="QLabel" name="label_24">
+          <property name="font">
+           <font>
+            <pointsize>32</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Advertecia agua alta</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="1">
+         <widget class="QLineEdit" name="Line_advertencia_agua">
+          <property name="font">
+           <font>
+            <pointsize>28</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="placeholderText">
+           <string>000.00</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </widget>
     <widget class="QWidget" name="Entregas">
      <widget class="QComboBox" name="comboBox">
       <property name="geometry">
