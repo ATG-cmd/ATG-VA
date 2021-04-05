@@ -47,22 +47,33 @@
      <number>0</number>
     </property>
     <widget class="QWidget" name="Menu">
-     <widget class="QWidget" name="layoutWidget">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
-        <x>61</x>
+        <x>70</x>
         <y>40</y>
-        <width>1280</width>
+        <width>1066</width>
         <height>416</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="4">
-        <widget class="QPushButton" name="Btn_Comunicacion">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="Btb_Sonda">
+         <property name="font">
+          <font>
+           <pointsize>8</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::StrongFocus</enum>
+         </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
 	color: white;
-	background-color: rgba(150,80,120,100);
+	background-color: rgba(89,161,199,150);
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
@@ -73,59 +84,7 @@
          </property>
          <property name="icon">
           <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Comunicacion.png</normaloff>:/Comunicacion.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>200</width>
-           <height>200</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QPushButton" name="Btn_Station">
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(250,45,114,150);
-	border-width: 3px;
-	border-radius: 10px;
-	padding: 2px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/station.png</normaloff>:/station.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>200</width>
-           <height>200</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="Btn_tabla_cubicacion">
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(150,80,120,100);
-	border-width: 3px;
-	border-radius: 10px;
-	padding: 2px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Tabla C.png</normaloff>:/Tabla C.png</iconset>
+           <normaloff>:/Probeta.png</normaloff>:/Probeta.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -213,23 +172,12 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QPushButton" name="Btb_Sonda">
-         <property name="font">
-          <font>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <italic>false</italic>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="focusPolicy">
-          <enum>Qt::StrongFocus</enum>
-         </property>
+       <item row="0" column="4">
+        <widget class="QPushButton" name="Btn_Comunicacion">
          <property name="styleSheet">
           <string notr="true">QPushButton {
 	color: white;
-	background-color: rgba(89,161,199,150);
+	background-color: rgba(150,80,120,100);
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
@@ -240,7 +188,33 @@
          </property>
          <property name="icon">
           <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Probeta.png</normaloff>:/Probeta.png</iconset>
+           <normaloff>:/Comunicacion.png</normaloff>:/Comunicacion.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>200</width>
+           <height>200</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="Btn_tabla_cubicacion">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(150,80,120,100);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/Tabla C.png</normaloff>:/Tabla C.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -267,6 +241,32 @@
          <property name="icon">
           <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Alarmas.png</normaloff>:/Alarmas.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>200</width>
+           <height>200</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="Btn_Station">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(250,45,114,150);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/station.png</normaloff>:/station.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -3218,7 +3218,7 @@ padding: 100px;</string>
    <widget class="QPushButton" name="Btn_Barra_Estados">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>10</x>
       <y>0</y>
       <width>1301</width>
       <height>51</height>
