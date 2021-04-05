@@ -24,9 +24,9 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>99</y>
-      <width>1200</width>
-      <height>571</height>
+      <y>100</y>
+      <width>1191</width>
+      <height>491</height>
      </rect>
     </property>
     <property name="font">
@@ -446,463 +446,606 @@ padding: 2px;</string>
        <bold>true</bold>
       </font>
      </property>
-     <widget class="QLabel" name="Lab_Medida1">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
+     <widget class="QScrollArea" name="scrollArea">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>300</y>
-        <width>111</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="statusTip">
-       <string/>
-      </property>
-      <property name="text">
-       <string>Altura</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="Line_Medida1">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>300</y>
-        <width>271</width>
-        <height>58</height>
-       </rect>
-      </property>
-      <property name="statusTip">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="Lab_Medida2">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>60</x>
-        <y>370</y>
-        <width>111</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="statusTip">
-       <string/>
-      </property>
-      <property name="text">
-       <string>Largo</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="Line_Medida2">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>370</y>
-        <width>271</width>
-        <height>58</height>
-       </rect>
-      </property>
-      <property name="statusTip">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="Lab_Sonda_3">
-      <property name="geometry">
-       <rect>
-        <x>690</x>
-        <y>90</y>
-        <width>171</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Producto</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="Combo_Sonda_3">
-      <property name="geometry">
-       <rect>
-        <x>880</x>
-        <y>90</y>
-        <width>271</width>
-        <height>61</height>
+        <x>110</x>
+        <y>10</y>
+        <width>751</width>
+        <height>450</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">QScrollArea{
+border: 0px
+}
+
+QScrollBar:vertical {      
+     border: 2px solid grey;   
+     background:#C0C0C0;
+     width: 50px;
+     margin: 39px 0 39px 0;               
+ }
+ QScrollBar::handle:vertical {
+     background:white;
+     min-height: 38px;
+ }
+QScrollBar::add-line:vertical {
+     border: 2px solid grey;
+     background: royalblue;
+     height: 35px;
+     subcontrol-position: bottom;
+     subcontrol-origin: margin;
+ }
+ QScrollBar::sub-line:vertical {
+     border: 2px solid grey;
+     height: 35px;
+	 background: royalblue;
+     subcontrol-position: top;
+     subcontrol-origin: margin;
+ }
+ QScrollBar::up-arrow:vertical{
+  margin: 0px 0px 5px 0px;  
+  width: 0;
+  height: 0;
+  /*border: 2px solid #000;*/
+  border-top: 5px  solid royalblue;
+  border-right: 10px solid royalblue;
+  border-bottom: 20px  solid white;
+  border-left: 10px  solid royalblue ;
+}
+ QScrollBar::down-arrow:vertical {
+   
+  margin: 5px 0px 0px 0px;  
+  width: 0;
+  height: 0;
+  /*border: 2px solid #000;*/
+  border-top: 20px solid white;
+  border-right: 10px solid royalblue;
+  border-bottom: 5px solid royalblue ;
+  border-left: 10px  solid royalblue ;
+  
+ }
+
+ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+     background: none;
+ }
+
+</string>
       </property>
-     </widget>
-     <widget class="QLineEdit" name="Line_Nombre_3">
-      <property name="geometry">
-       <rect>
-        <x>880</x>
-        <y>20</y>
-        <width>271</width>
-        <height>58</height>
-       </rect>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
-     </widget>
-     <widget class="QLabel" name="Lab_Nombre_3">
-      <property name="geometry">
-       <rect>
-        <x>650</x>
-        <y>20</y>
-        <width>221</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Coeficiente</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="Lab_Licencia_3">
-      <property name="geometry">
-       <rect>
-        <x>630</x>
-        <y>370</y>
-        <width>251</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Ajuste Altura</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="Lab_UTemperatura">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>480</x>
-        <y>220</y>
-        <width>391</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Unidad Temperatura</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="ComboUDistancia">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>880</x>
-        <y>160</y>
-        <width>271</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="frame">
+      <property name="widgetResizable">
        <bool>true</bool>
       </property>
-      <item>
-       <property name="text">
-        <string/>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>701</width>
+         <height>826</height>
+        </rect>
        </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Milimetros</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Centimetros</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Metros</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLineEdit" name="Line_AjusteAltura">
-      <property name="geometry">
-       <rect>
-        <x>880</x>
-        <y>370</y>
-        <width>271</width>
-        <height>61</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="Combo_UTemperatura">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>880</x>
-        <y>230</y>
-        <width>271</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="frame">
-       <bool>true</bool>
-      </property>
-      <item>
-       <property name="text">
-        <string/>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Kelvin</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Farenheit</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Celcious</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="Lab_UVolumen">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>560</x>
-        <y>290</y>
-        <width>321</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Unidad Volumen </string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="Combo_UVolumen">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>880</x>
-        <y>300</y>
-        <width>271</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="frame">
-       <bool>true</bool>
-      </property>
-      <item>
-       <property name="text">
-        <string/>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Litros</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Galones</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="Lab_UDistancia">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>550</x>
-        <y>150</y>
-        <width>321</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Unidad Distancia</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="Combo_Tipo">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>230</y>
-        <width>271</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string/>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Horizontal</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Vertical</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QComboBox" name="Combo_Sonda">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>20</y>
-        <width>271</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="Lab_Tipo">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>230</y>
-        <width>101</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Tipo</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="Lab_Nombre">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>90</y>
-        <width>171</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Etiqueta</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="Line_Nombre">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>90</y>
-        <width>271</width>
-        <height>58</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="Lab_Sonda">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>20</y>
-        <width>121</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Sonda</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="Combo_Color">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>160</y>
-        <width>271</width>
-        <height>61</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="Lab_Color">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>160</y>
-        <width>101</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Color</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="Lab_Angulo">
-      <property name="geometry">
-       <rect>
-        <x>740</x>
-        <y>160</y>
-        <width>131</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Angulo</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="Line_Angulo">
-      <property name="geometry">
-       <rect>
-        <x>880</x>
-        <y>160</y>
-        <width>271</width>
-        <height>58</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="Lab_Nombre_5">
-      <property name="geometry">
-       <rect>
-        <x>700</x>
-        <y>230</y>
-        <width>171</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Distancia</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="Line_Distancia">
-      <property name="geometry">
-       <rect>
-        <x>880</x>
-        <y>230</y>
-        <width>271</width>
-        <height>58</height>
-       </rect>
-      </property>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <layout class="QFormLayout" name="formLayout">
+          <property name="labelAlignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="horizontalSpacing">
+           <number>9</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>9</number>
+          </property>
+          <property name="leftMargin">
+           <number>13</number>
+          </property>
+          <property name="topMargin">
+           <number>10</number>
+          </property>
+          <property name="rightMargin">
+           <number>37</number>
+          </property>
+          <property name="bottomMargin">
+           <number>27</number>
+          </property>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="Line_Nombre">
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>50</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QComboBox" name="Combo_Color">
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>50</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="Lab_Tipo">
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>Tipo</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QComboBox" name="Combo_Tipo">
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>50</height>
+             </size>
+            </property>
+            <item>
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Horizontal</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Vertical</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="Lab_Medida1">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="statusTip">
+             <string/>
+            </property>
+            <property name="text">
+             <string>Altura</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLineEdit" name="Line_Medida1">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="statusTip">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="Lab_Medida2">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="statusTip">
+             <string/>
+            </property>
+            <property name="text">
+             <string>Largo</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QLineEdit" name="Line_Medida2">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="statusTip">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="Lab_Nombre_3">
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Coeficiente</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QLineEdit" name="Line_Nombre_3">
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>500</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QLabel" name="Lab_Sonda_3">
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Producto</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1">
+           <widget class="QComboBox" name="Combo_Sonda_3">
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="0">
+           <widget class="QLabel" name="Lab_Angulo">
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Angulo</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="1">
+           <widget class="QLineEdit" name="Line_Angulo">
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>50</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="0">
+           <widget class="QLabel" name="Lab_Nombre_5">
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Distancia</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="1">
+           <widget class="QLineEdit" name="Line_Distancia">
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>50</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="0">
+           <widget class="QLabel" name="Lab_Licencia_3">
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Ajuste Altura</string>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="1">
+           <widget class="QLineEdit" name="Line_AjusteAltura">
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>50</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="Lab_Nombre">
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>Etiqueta Tanque</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="Lab_Color">
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>Color Producto</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="Combo_Sonda">
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QComboBox{
+radious: 2px
+}
+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_8">
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>Sonda</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="Line_Nombre_2">
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>50</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="Lab_Nombre_2">
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>Código Producto</string>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="0">
+           <widget class="QLabel" name="Lab_UDistancia">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Unidad Distancia</string>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="1">
+           <widget class="QComboBox" name="ComboUDistancia">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="frame">
+             <bool>true</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Milimetros</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Centimetros</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Metros</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="12" column="0">
+           <widget class="QLabel" name="Lab_UTemperatura">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Unidad Temperatura</string>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="1">
+           <widget class="QComboBox" name="Combo_UTemperatura">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="frame">
+             <bool>true</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Kelvin</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Farenheit</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Celcious</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="15" column="0">
+           <widget class="QLabel" name="Lab_UVolumen">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Unidad Volumen </string>
+            </property>
+           </widget>
+          </item>
+          <item row="15" column="1">
+           <widget class="QComboBox" name="Combo_UVolumen">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="frame">
+             <bool>true</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Litros</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Galones</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="Tabla_de_cubicacion">
@@ -1041,11 +1184,11 @@ QScrollBar::add-line:vertical {
       <attribute name="horizontalHeaderCascadingSectionResizes">
        <bool>false</bool>
       </attribute>
-      <attribute name="horizontalHeaderMinimumSectionSize">
-       <number>38</number>
-      </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
        <number>155</number>
+      </attribute>
+      <attribute name="horizontalHeaderMinimumSectionSize">
+       <number>38</number>
       </attribute>
       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -1059,11 +1202,11 @@ QScrollBar::add-line:vertical {
       <attribute name="verticalHeaderCascadingSectionResizes">
        <bool>false</bool>
       </attribute>
-      <attribute name="verticalHeaderMinimumSectionSize">
-       <number>30</number>
-      </attribute>
       <attribute name="verticalHeaderDefaultSectionSize">
        <number>40</number>
+      </attribute>
+      <attribute name="verticalHeaderMinimumSectionSize">
+       <number>30</number>
       </attribute>
       <attribute name="verticalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -1281,7 +1424,7 @@ QScrollBar::add-line:vertical {
        <enum>Qt::NoFocus</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="Tab_editar">
        <property name="font">
@@ -2477,15 +2620,20 @@ QScrollBar::add-line:vertical {
     </widget>
     <widget class="QWidget" name="LimitesTank"/>
     <widget class="QWidget" name="Entregas">
-     <widget class="QComboBox" name="comboBox">
+     <widget class="QComboBox" name="CSelecTank">
       <property name="geometry">
        <rect>
         <x>310</x>
         <y>10</y>
-        <width>121</width>
-        <height>41</height>
+        <width>181</width>
+        <height>51</height>
        </rect>
       </property>
+      <item>
+       <property name="text">
+        <string>All</string>
+       </property>
+      </item>
      </widget>
      <widget class="QLabel" name="label_7">
       <property name="geometry">
@@ -2578,14 +2726,14 @@ QScrollBar::add-line:vertical {
       <attribute name="horizontalHeaderVisible">
        <bool>false</bool>
       </attribute>
-      <attribute name="horizontalHeaderMinimumSectionSize">
-       <number>50</number>
-      </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
        <number>150</number>
       </attribute>
       <attribute name="horizontalHeaderHighlightSections">
        <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderMinimumSectionSize">
+       <number>50</number>
       </attribute>
       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -2593,11 +2741,11 @@ QScrollBar::add-line:vertical {
       <attribute name="horizontalHeaderStretchLastSection">
        <bool>true</bool>
       </attribute>
-      <attribute name="verticalHeaderMinimumSectionSize">
-       <number>30</number>
-      </attribute>
       <attribute name="verticalHeaderDefaultSectionSize">
        <number>40</number>
+      </attribute>
+      <attribute name="verticalHeaderMinimumSectionSize">
+       <number>30</number>
       </attribute>
       <column>
        <property name="text">
@@ -2839,10 +2987,10 @@ color: white;
      </property>
     </item>
    </widget>
+   <zorder>stackedWidget</zorder>
    <zorder>Lab_Titulo</zorder>
    <zorder>ComboSeleccion</zorder>
    <zorder>Btn_Barra_Estados</zorder>
-   <zorder>stackedWidget</zorder>
    <zorder>Btn_Guardar</zorder>
    <zorder>Btn_user</zorder>
    <zorder>Regresar</zorder>

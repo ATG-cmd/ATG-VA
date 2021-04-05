@@ -63,11 +63,11 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
 
-    Tconf = new Tanque(ui->Tanque,false);
-    Maximizado = new Tanque(ui->Tanque_Maximizado,true);
-    Tconf->Setgeometry(500,5,100,80);
-    Tconf->SetnameTank("Sin Nombre");
-    ConCombocol(ui->Combo_Color);
+//    Tconf = new Tanque(ui->Tanque,false);
+//    Maximizado = new Tanque(ui->Tanque_Maximizado,true);
+//    Tconf->Setgeometry(500,5,100,80);
+//    Tconf->SetnameTank("Sin Nombre");
+//    ConCombocol(ui->Combo_Color);
 
     //connect(Time2,SIGNAL(timeout()),this,SLOT(Actualizar_Time()));
     //Time2->start(1000);
@@ -1356,33 +1356,65 @@ void MainWindow::on_Btn_Entregas_clicked()
     ui->stackedWidget->setCurrentIndex(11);
 
     QString cadena;
-    cadena.append("SELECT * FROM `cistem`.`entregas` LIMIT 1000;");
+
+    cadena.append("SELECT DISTINCT Tanque_Nombre FROM `cistem`.`entregas`;");
     QSqlQuery qry;
     qDebug() << "QRY:" << qry.exec(cadena);
-    while (qry.next())
-    {
-        //ui->Tab_entregas->removeRow(0);
-        
-        
-        ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
-        //ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(QString::number(qry.value(0).toInt())));
-        ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(1).toString()));
-        ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 1, new QTableWidgetItem(QString::number(qry.value(2).toInt())));
-        ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 2, new QTableWidgetItem(QString::number(qry.value(3).toInt())));
-        ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 3, new QTableWidgetItem(QString::number(qry.value(4).toInt())));
-        ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1,4 , new QTableWidgetItem(QString::number(qry.value(5).toInt())));
-        ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 6, new QTableWidgetItem(qry.value(7).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
-        ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
-        ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
-        ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
-        ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
-        ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
-        //ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
+    while (qry.next()) {
+       ui->CSelecTank->addItem(qry.value(0).toString());
 
-        ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 6)->setTextAlignment(Qt::AlignCenter);
-        //  ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 6)->setFont(A);
-        qDebug() << qry.value(0).toInt() << qry.value(1).toString() << qry.value(2).toInt() << qry.value(4).toInt();
     }
+
+
+    connect(ui->CSelecTank, QOverload<int>::of(&QComboBox::activated),
+            [=](int index){
+        QString cadena;
+        ui->Tab_entregas->clearContents();
+        ui->Tab_entregas->setRowCount(0);
+
+        switch (index)
+         {
+         case 0: cadena.append("SELECT * FROM `cistem`.`entregas` LIMIT 1000;");break;
+         default: qDebug() << "Texto del index:" << ui->CSelecTank->itemText(index);
+cadena.append("SELECT * FROM `cistem`.`entregas` where Tanque_Nombre = '"+ui->CSelecTank->itemText(index)+"';"); break;
+
+        }
+
+        //
+         QSqlQuery qry;
+         qDebug() << "QRY:" << qry.exec(cadena);
+         while (qry.next())
+         {
+             //ui->Tab_entregas->removeRow(0);
+
+
+             ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
+             //ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(QString::number(qry.value(0).toInt())));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(1).toString()));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 1, new QTableWidgetItem(QString::number(qry.value(2).toInt())));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 2, new QTableWidgetItem(QString::number(qry.value(3).toInt())));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 3, new QTableWidgetItem(QString::number(qry.value(4).toInt())));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1,4 , new QTableWidgetItem(QString::number(qry.value(5).toInt())));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 6, new QTableWidgetItem(qry.value(7).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
+             //ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
+
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 6)->setTextAlignment(Qt::AlignCenter);
+             //  ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 6)->setFont(A);
+             qDebug() << qry.value(0).toInt() << qry.value(1).toString() << qry.value(2).toInt() << qry.value(4).toInt();
+         }
+
+
+
+    });
+
+
+
+
 
 
 }
