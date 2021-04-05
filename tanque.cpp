@@ -44,6 +44,28 @@ void Tanque::offline()
 
 }
 
+
+
+double Tanque::getAngle() const
+{
+    return angle;
+}
+
+void Tanque::setAngle(double value)
+{
+    angle = value;
+}
+
+double Tanque::getFrombase() const
+{
+    return frombase;
+}
+
+void Tanque::setFrombase(double value)
+{
+    frombase = value;
+}
+
 void Tanque::clickbuton(){ setTMaximizado(true); emit Camino(); }
 
 Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
@@ -258,9 +280,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
      //double K= 0;
      double ho= 0;
      double a = 0;
-     double angle = 0;
      double tana = 0;
-     double frombase = 500;
      double from= 0;
      double level = height;
      double x = 0;
@@ -452,6 +472,7 @@ void Tanque::SetVolumen(double c ,double a)
     niv = int((1.001-CD) *100);
 
     latanq->setText(QString::number(niv)+ "%");
+
 
 }
 

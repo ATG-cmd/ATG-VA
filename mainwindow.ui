@@ -44,15 +44,15 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>41</y>
-        <width>1100</width>
+        <x>61</x>
+        <y>40</y>
+        <width>1066</width>
         <height>416</height>
        </rect>
       </property>
@@ -83,7 +83,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Probeta.png</normaloff>:/Probeta.png</iconset>
          </property>
          <property name="iconSize">
@@ -109,7 +109,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Tanque.png</normaloff>:/Tanque.png</iconset>
          </property>
          <property name="iconSize">
@@ -121,11 +121,11 @@
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QPushButton" name="Btn_Alarmas">
+        <widget class="QPushButton" name="Btn_Entregas">
          <property name="styleSheet">
           <string notr="true">QPushButton {
 	color: white;
-	background-color: rgba(250,45,14,100);
+	background-color: rgba(230,145,50,100);
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
@@ -135,8 +135,8 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset>
-           <normaloff>:/Alarmas.png</normaloff>:/Alarmas.png</iconset>
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/Entregas.png</normaloff>:/Entregas.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -161,7 +161,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Impresora.png</normaloff>:/Impresora.png</iconset>
          </property>
          <property name="iconSize">
@@ -187,7 +187,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Comunicacion.png</normaloff>:/Comunicacion.png</iconset>
          </property>
          <property name="iconSize">
@@ -213,8 +213,34 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Tabla C.png</normaloff>:/Tabla C.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>200</width>
+           <height>200</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="Btn_Alarmas">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(250,45,14,100);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/Alarmas.png</normaloff>:/Alarmas.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -239,6 +265,40 @@
       </property>
       <property name="text">
        <string>&gt;&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_ProGaugeDeliveryInProccess">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>300</y>
+        <width>301</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+        <weight>75</weight>
+        <italic>false</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: white;
+background-color: red;
+border: 3px solid red;
+border-radius: 10px;
+padding: 2px;</string>
+      </property>
+      <property name="text">
+       <string>Delivery In Proccess</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </widget>
@@ -386,78 +446,6 @@
        <bold>true</bold>
       </font>
      </property>
-     <widget class="QLabel" name="Lab_Nombre">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>90</y>
-        <width>171</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Etiqueta</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="Line_Nombre">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>90</y>
-        <width>271</width>
-        <height>58</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="Combo_Sonda">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>20</y>
-        <width>271</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="Lab_Sonda">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>20</y>
-        <width>121</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Sonda</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="Combo_Color">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>160</y>
-        <width>271</width>
-        <height>61</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="Lab_Color">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>160</y>
-        <width>101</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Color</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="Lab_Medida1">
       <property name="enabled">
        <bool>true</bool>
@@ -528,44 +516,6 @@
        <string/>
       </property>
      </widget>
-     <widget class="QComboBox" name="Combo_Tipo">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>230</y>
-        <width>271</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string/>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Horizontal</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Vertical</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="Lab_Tipo">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>230</y>
-        <width>101</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Tipo</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="Lab_Sonda_3">
       <property name="geometry">
        <rect>
@@ -629,6 +579,9 @@
       </property>
      </widget>
      <widget class="QLabel" name="Lab_UTemperatura">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>480</x>
@@ -642,6 +595,9 @@
       </property>
      </widget>
      <widget class="QComboBox" name="ComboUDistancia">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>880</x>
@@ -652,6 +608,9 @@
       </property>
       <property name="styleSheet">
        <string notr="true"/>
+      </property>
+      <property name="frame">
+       <bool>true</bool>
       </property>
       <item>
        <property name="text">
@@ -685,6 +644,9 @@
       </property>
      </widget>
      <widget class="QComboBox" name="Combo_UTemperatura">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>880</x>
@@ -695,6 +657,9 @@
       </property>
       <property name="styleSheet">
        <string notr="true"/>
+      </property>
+      <property name="frame">
+       <bool>true</bool>
       </property>
       <item>
        <property name="text">
@@ -718,6 +683,9 @@
       </item>
      </widget>
      <widget class="QLabel" name="Lab_UVolumen">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>560</x>
@@ -731,6 +699,9 @@
       </property>
      </widget>
      <widget class="QComboBox" name="Combo_UVolumen">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>880</x>
@@ -741,6 +712,9 @@
       </property>
       <property name="styleSheet">
        <string notr="true"/>
+      </property>
+      <property name="frame">
+       <bool>true</bool>
       </property>
       <item>
        <property name="text">
@@ -759,6 +733,9 @@
       </item>
      </widget>
      <widget class="QLabel" name="Lab_UDistancia">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>550</x>
@@ -769,6 +746,162 @@
       </property>
       <property name="text">
        <string>Unidad Distancia</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="Combo_Tipo">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>230</y>
+        <width>271</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string/>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Horizontal</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Vertical</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="Combo_Sonda">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>20</y>
+        <width>271</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Lab_Tipo">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>230</y>
+        <width>101</width>
+        <height>52</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Tipo</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Lab_Nombre">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>90</y>
+        <width>171</width>
+        <height>52</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Etiqueta</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="Line_Nombre">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>90</y>
+        <width>271</width>
+        <height>58</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Lab_Sonda">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>20</y>
+        <width>121</width>
+        <height>52</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Sonda</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="Combo_Color">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>160</y>
+        <width>271</width>
+        <height>61</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Lab_Color">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>160</y>
+        <width>101</width>
+        <height>52</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Color</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Lab_Angulo">
+      <property name="geometry">
+       <rect>
+        <x>740</x>
+        <y>160</y>
+        <width>131</width>
+        <height>52</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Angulo</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="Line_Angulo">
+      <property name="geometry">
+       <rect>
+        <x>880</x>
+        <y>160</y>
+        <width>271</width>
+        <height>58</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Lab_Nombre_5">
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>230</y>
+        <width>171</width>
+        <height>52</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Distancia</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="Line_Distancia">
+      <property name="geometry">
+       <rect>
+        <x>880</x>
+        <y>230</y>
+        <width>271</width>
+        <height>58</height>
+       </rect>
       </property>
      </widget>
     </widget>
@@ -785,9 +918,9 @@
       <property name="font">
        <font>
         <pointsize>20</pointsize>
-        <weight>50</weight>
-        <italic>false</italic>
-        <bold>false</bold>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
        </font>
       </property>
       <property name="styleSheet">
@@ -1100,7 +1233,7 @@ QScrollBar::add-line:vertical {
         <x>20</x>
         <y>10</y>
         <width>531</width>
-        <height>47</height>
+        <height>52</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
@@ -1696,7 +1829,7 @@ QScrollBar::add-line:vertical {
        <string>Login</string>
       </property>
       <property name="icon">
-       <iconset>
+       <iconset resource="Imagenes/Resourse.qrc">
         <normaloff>:/Login.png</normaloff>:/Login.png</iconset>
       </property>
       <property name="iconSize">
@@ -1724,7 +1857,7 @@ QScrollBar::add-line:vertical {
        <string/>
       </property>
       <property name="icon">
-       <iconset>
+       <iconset resource="Imagenes/Resourse.qrc">
         <normaloff>:/Usuario.png</normaloff>:/Usuario.png</iconset>
       </property>
       <property name="iconSize">
@@ -1752,7 +1885,7 @@ QScrollBar::add-line:vertical {
     </widget>
     <widget class="QWidget" name="Tanque_Maximizado"/>
     <widget class="QWidget" name="Comunicacion">
-     <widget class="QLabel" name="Lab_UDistancia_3">
+     <widget class="QLabel" name="SLab_Baudios">
       <property name="geometry">
        <rect>
         <x>-120</x>
@@ -1768,7 +1901,7 @@ QScrollBar::add-line:vertical {
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="ComboUDistancia_3">
+     <widget class="QComboBox" name="SCombo_Baudios">
       <property name="geometry">
        <rect>
         <x>210</x>
@@ -1831,7 +1964,7 @@ QScrollBar::add-line:vertical {
        </property>
       </item>
      </widget>
-     <widget class="QComboBox" name="ComboUDistancia_4">
+     <widget class="QComboBox" name="SCombo_Datos">
       <property name="geometry">
        <rect>
         <x>210</x>
@@ -1859,7 +1992,7 @@ QScrollBar::add-line:vertical {
        </property>
       </item>
      </widget>
-     <widget class="QLabel" name="Lab_UDistancia_4">
+     <widget class="QLabel" name="SLab_Baudios_2">
       <property name="geometry">
        <rect>
         <x>-120</x>
@@ -1875,7 +2008,7 @@ QScrollBar::add-line:vertical {
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="ComboUDistancia_5">
+     <widget class="QComboBox" name="SCombo_Stop">
       <property name="geometry">
        <rect>
         <x>210</x>
@@ -1903,7 +2036,7 @@ QScrollBar::add-line:vertical {
        </property>
       </item>
      </widget>
-     <widget class="QLabel" name="Lab_UDistancia_5">
+     <widget class="QLabel" name="SLab_Stop">
       <property name="geometry">
        <rect>
         <x>-120</x>
@@ -1919,7 +2052,7 @@ QScrollBar::add-line:vertical {
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="ComboUDistancia_17">
+     <widget class="QComboBox" name="SCombo_Paridad">
       <property name="geometry">
        <rect>
         <x>210</x>
@@ -1952,7 +2085,7 @@ QScrollBar::add-line:vertical {
        </property>
       </item>
      </widget>
-     <widget class="QLabel" name="Lab_UDistancia_17">
+     <widget class="QLabel" name="SLab_Paridad">
       <property name="geometry">
        <rect>
         <x>-120</x>
@@ -1968,7 +2101,7 @@ QScrollBar::add-line:vertical {
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_7">
+     <widget class="QLabel" name="LabTitle_Sonda">
       <property name="geometry">
        <rect>
         <x>170</x>
@@ -1990,7 +2123,7 @@ QScrollBar::add-line:vertical {
        <string>Sonda</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_8">
+     <widget class="QLabel" name="LabTitle_Comunicador">
       <property name="geometry">
        <rect>
         <x>670</x>
@@ -2012,7 +2145,7 @@ QScrollBar::add-line:vertical {
        <string>Comunicador</string>
       </property>
      </widget>
-     <widget class="QLabel" name="Lab_UDistancia_7">
+     <widget class="QLabel" name="CLab_Datos">
       <property name="geometry">
        <rect>
         <x>730</x>
@@ -2028,7 +2161,7 @@ QScrollBar::add-line:vertical {
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="Lab_UDistancia_6">
+     <widget class="QLabel" name="CLab_Stop">
       <property name="geometry">
        <rect>
         <x>750</x>
@@ -2044,7 +2177,7 @@ QScrollBar::add-line:vertical {
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="Lab_UDistancia_18">
+     <widget class="QLabel" name="CLab_paridad">
       <property name="geometry">
        <rect>
         <x>700</x>
@@ -2060,7 +2193,7 @@ QScrollBar::add-line:vertical {
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="ComboUDistancia_7">
+     <widget class="QComboBox" name="CCombo_Datos">
       <property name="geometry">
        <rect>
         <x>840</x>
@@ -2088,7 +2221,7 @@ QScrollBar::add-line:vertical {
        </property>
       </item>
      </widget>
-     <widget class="QLabel" name="Lab_UDistancia_8">
+     <widget class="QLabel" name="CLab_Baudios">
       <property name="geometry">
        <rect>
         <x>690</x>
@@ -2107,7 +2240,7 @@ QScrollBar::add-line:vertical {
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="ComboUDistancia_8">
+     <widget class="QComboBox" name="CCombo_Baudios">
       <property name="geometry">
        <rect>
         <x>840</x>
@@ -2170,7 +2303,7 @@ QScrollBar::add-line:vertical {
        </property>
       </item>
      </widget>
-     <widget class="QComboBox" name="ComboUDistancia_6">
+     <widget class="QComboBox" name="CCombo_Stop">
       <property name="geometry">
        <rect>
         <x>840</x>
@@ -2198,7 +2331,7 @@ QScrollBar::add-line:vertical {
        </property>
       </item>
      </widget>
-     <widget class="QComboBox" name="ComboUDistancia_18">
+     <widget class="QComboBox" name="CCombo_paridad">
       <property name="geometry">
        <rect>
         <x>840</x>
@@ -2231,7 +2364,7 @@ QScrollBar::add-line:vertical {
        </property>
       </item>
      </widget>
-     <widget class="QLabel" name="Lab_UDistancia_19">
+     <widget class="QLabel" name="CLab_protocolo">
       <property name="geometry">
        <rect>
         <x>670</x>
@@ -2247,7 +2380,7 @@ QScrollBar::add-line:vertical {
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="ComboUDistancia_19">
+     <widget class="QComboBox" name="CCombo_protocolo">
       <property name="geometry">
        <rect>
         <x>840</x>
@@ -2342,360 +2475,165 @@ QScrollBar::add-line:vertical {
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="LimitesTank">
-     <widget class="QScrollArea" name="scrollArea">
+    <widget class="QWidget" name="LimitesTank"/>
+    <widget class="QWidget" name="Entregas">
+     <widget class="QComboBox" name="comboBox">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>310</x>
+        <y>10</y>
+        <width>121</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>0</y>
+        <width>151</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Tanque</string>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="Tab_entregas">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
         <y>90</y>
-        <width>720</width>
-        <height>350</height>
+        <width>1151</width>
+        <height>331</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QScrollBar:vertical {      
+       <string notr="true">QTableWidget{
+	background-color: #C0C0C0;
+}
+
+QScrollBar:vertical {      
      border: 2px solid grey;   
-     background: #c0c0c0;
+     background:#C0C0C0;
      width: 50px;
-     margin: 39px 0 39px 0;  
-     
+     margin: 39px 0 39px 0;               
  }
  QScrollBar::handle:vertical {
-	 border: 2px solid grey;
-     background: white;
+     background:white;
      min-height: 38px;
  }
- QScrollBar::add-line:vertical {
+QScrollBar::add-line:vertical {
      border: 2px solid grey;
      background: royalblue;
      height: 35px;
      subcontrol-position: bottom;
      subcontrol-origin: margin;
-
-
  }
-
  QScrollBar::sub-line:vertical {
- border: 2px solid grey;
-     background: royalblue;
+     border: 2px solid grey;
      height: 35px;
+	 background: royalblue;
      subcontrol-position: top;
      subcontrol-origin: margin;
  }
- QScrollBar::up-arrow:vertical{
-  margin: 0px 0px 5px 0px;  
-  width: 0;
-  height: 0;
-  /*border: 2px solid #000;*/
-  border-top: 5px  solid royalblue;
-  border-right: 10px solid royalblue;
-  border-bottom: 20px  solid white;
-  border-left: 10px  solid royalblue ;
-  background: white;
-}
- QScrollBar::down-arrow:vertical {
-   
-  margin: 5px 0px 0px 0px;  
-  width: 0;
-  height: 0;
-  /*border: 2px solid #000;*/
-  border-top: 20px solid white;
-  border-right: 10px solid royalblue;
-  border-bottom: 5px solid royalblue ;
-  border-left: 10px  solid royalblue ;
-  background: white;
-  
+ QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
+     border: 2px solid grey;
+     width: 10px;
+     height: 10px;
+     background: white;
  }
 
  QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
      background: none;
- }</string>
+ }
+
+</string>
       </property>
-      <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOn</enum>
+      <property name="autoScroll">
+       <bool>false</bool>
       </property>
-      <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOff</enum>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
       </property>
-      <property name="widgetResizable">
+      <property name="alternatingRowColors">
        <bool>true</bool>
       </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>668</width>
-         <height>534</height>
-        </rect>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::SingleSelection</enum>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectRows</enum>
+      </property>
+      <property name="showGrid">
+       <bool>false</bool>
+      </property>
+      <property name="gridStyle">
+       <enum>Qt::SolidLine</enum>
+      </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
+      <attribute name="horizontalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderMinimumSectionSize">
+       <number>50</number>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>150</number>
+      </attribute>
+      <attribute name="horizontalHeaderHighlightSections">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="verticalHeaderMinimumSectionSize">
+       <number>30</number>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>40</number>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>Nombre</string>
        </property>
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_16">
-          <property name="font">
-           <font>
-            <pointsize>32</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Tanque</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="Combo_taque_limites">
-          <property name="font">
-           <font>
-            <pointsize>26</pointsize>
-           </font>
-          </property>
-          <property name="layoutDirection">
-           <enum>Qt::RightToLeft</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_19">
-          <property name="font">
-           <font>
-            <pointsize>32</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Volumen total</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="Line_volumen_total">
-          <property name="font">
-           <font>
-            <pointsize>28</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-          <property name="placeholderText">
-           <string>00000.00</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_21">
-          <property name="font">
-           <font>
-            <pointsize>32</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Volumen maximo</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="Line_volumen_maximo">
-          <property name="font">
-           <font>
-            <pointsize>28</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-          <property name="placeholderText">
-           <string>00000.00</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_17">
-          <property name="font">
-           <font>
-            <pointsize>32</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Producto alto</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QLineEdit" name="Line_producto_alto">
-          <property name="font">
-           <font>
-            <pointsize>28</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-          <property name="placeholderText">
-           <string>00</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_22">
-          <property name="font">
-           <font>
-            <pointsize>32</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Desbordamiento</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QLineEdit" name="Line_desbordamiento">
-          <property name="font">
-           <font>
-            <pointsize>28</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-          <property name="placeholderText">
-           <string>00</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="label_18">
-          <property name="font">
-           <font>
-            <pointsize>32</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Limite de entrega</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QLineEdit" name="Line_limite_entrega">
-          <property name="font">
-           <font>
-            <pointsize>28</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-          <property name="placeholderText">
-           <string>00</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="0">
-         <widget class="QLabel" name="label_24">
-          <property name="font">
-           <font>
-            <pointsize>32</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Producto bajo</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="1">
-         <widget class="QLineEdit" name="Line_producto_bajo">
-          <property name="font">
-           <font>
-            <pointsize>28</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-          <property name="placeholderText">
-           <string>00000.00</string>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="0">
-         <widget class="QLabel" name="label_23">
-          <property name="font">
-           <font>
-            <pointsize>32</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Alarma agua alta</string>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="1">
-         <widget class="QLineEdit" name="Line_alarma_agua">
-          <property name="font">
-           <font>
-            <pointsize>28</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-          <property name="placeholderText">
-           <string>000.00</string>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="0">
-         <widget class="QLabel" name="label_25">
-          <property name="font">
-           <font>
-            <pointsize>32</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Advertecia agua alta</string>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="1">
-         <widget class="QLineEdit" name="Line_advertencia_agua">
-          <property name="font">
-           <font>
-            <pointsize>28</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-          <property name="placeholderText">
-           <string>000.00</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
+      </column>
+      <column>
+       <property name="text">
+        <string>Volumen Inical</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Temperatura Inicial</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Volumen Final</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Temperatura Final</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Volumen Entregado</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Fecha</string>
+       </property>
+      </column>
      </widget>
     </widget>
    </widget>
@@ -2758,7 +2696,7 @@ padding: 100px;</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="Imagenes/Resourse.qrc">
       <normaloff>:/GC.png</normaloff>:/GC.png</iconset>
     </property>
     <property name="iconSize">
@@ -2784,7 +2722,7 @@ padding: 100px;</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="Imagenes/Resourse.qrc">
       <normaloff>:/Guardar.png</normaloff>:/Guardar.png</iconset>
     </property>
     <property name="iconSize">
@@ -2810,7 +2748,7 @@ padding: 100px;</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="Imagenes/Resourse.qrc">
       <normaloff>:/Config.png</normaloff>:/Config.png</iconset>
     </property>
     <property name="iconSize">
@@ -2836,7 +2774,7 @@ padding: 100px;</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="Imagenes/Resourse.qrc">
       <normaloff>:/Regresar.png</normaloff>:/Regresar.png</iconset>
     </property>
     <property name="iconSize">
@@ -2901,17 +2839,19 @@ color: white;
      </property>
     </item>
    </widget>
+   <zorder>Lab_Titulo</zorder>
+   <zorder>ComboSeleccion</zorder>
    <zorder>Btn_Barra_Estados</zorder>
    <zorder>stackedWidget</zorder>
-   <zorder>Lab_Titulo</zorder>
    <zorder>Btn_Guardar</zorder>
    <zorder>Btn_user</zorder>
    <zorder>Regresar</zorder>
    <zorder>Btn_Home</zorder>
-   <zorder>ComboSeleccion</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="Imagenes/Resourse.qrc"/>
+ </resources>
  <connections/>
 </ui>

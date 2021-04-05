@@ -43,12 +43,14 @@ public:
     QTimer *Time1;
     QTimer *Time2;
     QTimer *Time3;
+    QTimer *deliveryProGaugeTimer;
     QLabel *Lab_Title;
     QLabel *Avisos;
     QLabel *Indicadores[2];
     QLabel *Reloj;
     int N =-1;
     int S=0;
+    int indice =0;
     QString Series[8];
     int frame = 0;
      QSqlDatabase DB;
@@ -63,6 +65,10 @@ public:
      int indiceM = 0;
      bool RX= false;
      int intento = 0;
+     double Volumen_inicial;
+     double Temperatura_inicial;
+     double Volumen_Final;
+     double Temperatura_Final;
 
     void Buscar_Tanques();  // Es funcion busca los tanques dados de alta en BD
     void Rellenar_combo_taques(QString tanque_index); // Rellenaremos los combobox con los tanque escontrados
@@ -146,6 +152,8 @@ private slots:
 
    void on_Btn_Barra_Estados_clicked();
 
+   void Guardar_Comunicacion();
+   
    void on_Btn_tabla_cubicacion_clicked();
 
    void on_Btn_Alarmas_clicked();
@@ -163,6 +171,10 @@ private slots:
    void on_Btn_CubGenerar_clicked();
 
    void on_Combo_cub_generar_currentIndexChanged(int index);
+
+   void on_Btn_Entregas_clicked();
+
+   void deliveryProGaugeCountIncrement();
 
 private:
     Ui::MainWindow *ui;
