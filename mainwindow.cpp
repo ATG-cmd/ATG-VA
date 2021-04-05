@@ -1305,7 +1305,7 @@ void MainWindow::on_Btn_CubGenerar_clicked()
 void MainWindow::on_Btn_Entregas_clicked()
 {
     ui->stackedWidget->setCurrentIndex(11);
-
+     ui->Tab_entregas->clear();
     QString cadena;
     cadena.append("SELECT * FROM `cistem`.`entregas` LIMIT 1000;");
     QSqlQuery qry;
@@ -1315,11 +1315,15 @@ void MainWindow::on_Btn_Entregas_clicked()
         //ui->Tab_entregas->removeRow(0);
         ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
         //ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(QString::number(qry.value(0).toInt())));
-        ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(1).toString()));
-        ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 1, new QTableWidgetItem(QString::number(qry.value(2).toInt())));
+        ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(1).toDateTime().toString()));
+        ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 1, new QTableWidgetItem(qry.value(2).toString()));
         ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 2, new QTableWidgetItem(QString::number(qry.value(3).toInt())));
-       ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 3, new QTableWidgetItem(qry.value(4).toString()));
-       ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 4, new QTableWidgetItem(qry.value(5).toDateTime().toString()));
+        ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 3, new QTableWidgetItem(QString::number(qry.value(4).toDouble(),'f',2)));
+        ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 4, new QTableWidgetItem(QString::number(qry.value(5).toInt())));
+        ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 5, new QTableWidgetItem(QString::number(qry.value(6).toDouble(),'f',2)));
+        ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 6, new QTableWidgetItem(QString::number(qry.value(7).toInt())));
+       // ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 3, new QTableWidgetItem(qry.value(4).toString()));
+
        qDebug() << qry.value(0).toInt() << qry.value(1).toString() << qry.value(2).toInt();
     }
 
