@@ -80,6 +80,7 @@ public:
     void enableCubicTableBtn(bool a, bool b, bool c);
     void clearCubicTableFields();
     void guardar_limites();
+    void guardar_station();
 
 
 private slots:
@@ -175,6 +176,16 @@ private slots:
    void on_Btn_Entregas_clicked();
 
    void deliveryProGaugeCountIncrement();
+
+   void on_Btn_Station_clicked();
+
+   void on_Combo_StationCode_currentIndexChanged(int index);
+
+   void on_Combo_StationName_currentIndexChanged(int index);
+
+   void on_Combo_User_currentIndexChanged(int index);
+
+   void on_Combo_Memo_currentIndexChanged(int index);
 
 private:
     Ui::MainWindow *ui;

@@ -208,7 +208,7 @@ void MainWindow::on_Btn_Tanque_clicked()
          switch (index)
           {
           case 0:ui->stackedWidget->setCurrentIndex(3); break;
-          case 1: ui->stackedWidget->setCurrentIndex(10); frame = 10;break;
+          case 1: ui->stackedWidget->setCurrentIndex(10); frame = 10; ui->Btn_Guardar->setVisible(true); ui->Regresar->setVisible(true);;break;
           case 2: Vertical();break;
           case 3:
              ui->stackedWidget->setCurrentIndex(4);
@@ -415,8 +415,9 @@ void MainWindow::on_Btn_Guardar_clicked()
     switch(frame){
     case 1 : Guardar_Sonda(); break;
     case 2 : Guardar_Tanque(); break;
-//    case 10: guardar_limites(); break;
+    case 10: guardar_limites(); break;
     case 4: Guardar_Comunicacion(); break;
+    case 12: guardar_station(); break;
     } 
 }
 //Fin de boton de Guardar
@@ -1154,7 +1155,7 @@ void MainWindow::Rellenar_combo_taques(QString tanque_index)
 {
     ui->Combo_CubTanque->addItem(tanque_index);
     ui->Combo_cub_generar->addItem(tanque_index);
-//    ui->Combo_taque_limites->addItem(tanque_index);
+    ui->Combo_taque_limites->addItem(tanque_index);
 }
 
 void MainWindow::Rellenar_tabla_cubicacion(int Id_tanque)
@@ -1288,7 +1289,6 @@ void MainWindow::clearCubicTableFields()
     ui->Line_Volumen->setText("");
 }
 
-
 void MainWindow::on_Btn_Cub_Editar_clicked()
 {
     enableCubicTableFields(true);
@@ -1334,23 +1334,25 @@ void MainWindow::on_Btn_CubGenerar_clicked()
 
 /* Termina la configuracion de la tabla de cubicacion*/
 
-//void MainWindow::guardar_limites()
-//{
-//    QSqlQuery qry;
-//    QString cadena;
-//    cadena.append("UPDATE cistem.limites SET Volumen_total = '" + ui->Line_volumen_total->text() + "',"
-//                  " Volumen_maximo = '" + ui->Line_volumen_maximo->text() + "',"
-//                  " Producto_alto = '" + ui->Line_producto_alto->text() + "',"
-//                  " Desbordamiento = '" + ui->Line_desbordamiento->text() + "',"
-//                  " Entrega_necesaria = '" + ui->Line_limite_entrega->text() + "',"
-//                  " Producto_bajo = '" + ui->Line_producto_bajo->text() + "',"
-//                  " Alarma_agua_alta = '" + ui->Line_alarma_agua->text() + "',"
-//                  " Advertencia_agua_alta = '" + ui->Line_advertencia_agua->text() + "'"
-//                  " WHERE Id_Taque = '" + ui->Combo_taque_limites->currentText() + "';");
+void MainWindow::guardar_limites()
+{
+    QSqlQuery qry;
+    QString cadena;
+    cadena.append("UPDATE cistem.limites SET Volumen_total = '" + ui->Line_volumen_total->text() + "',"
+                  " Volumen_maximo = '" + ui->Line_volumen_maximo->text() + "',"
+                  " Producto_alto = '" + ui->Line_producto_alto->text() + "',"
+                  " Desbordamiento = '" + ui->Line_desbordamiento->text() + "',"
+                  " Entrega_necesaria = '" + ui->Line_limite_entrega->text() + "',"
+                  " Producto_bajo = '" + ui->Line_producto_bajo->text() + "',"
+                  " Alarma_agua_alta = '" + ui->Line_alarma_agua->text() + "',"
+                  " Advertencia_agua_alta = '" + ui->Line_advertencia_agua->text() + "'"
+                  " WHERE Id_Taque = '" + ui->Combo_taque_limites->currentText() + "';");
 
-//    qDebug() << cadena;
-//    qDebug() << qry.exec(cadena);
-//}
+    qDebug() << cadena;
+    qDebug() << qry.exec(cadena);
+    ui->stackedWidget->setCurrentIndex(0);
+    frame = 0;
+}
 void MainWindow::on_Btn_Entregas_clicked()
 {
     ui->stackedWidget->setCurrentIndex(11);
@@ -1442,3 +1444,77 @@ void MainWindow::deliveryProGaugeCountIncrement(){
 }
 
 
+
+void MainWindow::on_Btn_Station_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(12);
+    frame = 12; ui->Btn_Guardar->setVisible(true); ui->Regresar->setVisible(true);
+}
+
+void MainWindow::guardar_station()
+{
+    QSqlQuery qry;
+    QString cadena;
+
+    cadena.append("INSERT INTO cistem.printer("
+                  "station_code, "
+                  "station_name, "
+                  "usuario, "
+                  "memo, "
+                  "cb_station_code, "
+                  "cb_station_name, "
+                  "cb_usuario, "
+                  "cb_memo) "
+                  "VALUES('"+ui->Line_StationCode->text()+"', "
+                         "'"+ui->Line_StationName->text()+"', "
+                         "'"+ui->Line_User->text()+"', "
+                         "'"+ui->Line_Memo->text()+"', "
+                         "'"+QString::number(ui->Combo_StationCode->currentIndex())+"', "
+                         "'"+QString::number(ui->Combo_StationName->currentIndex())+"', "
+                         "'"+QString::number(ui->Combo_User->currentIndex())+"', "
+                         "'"+QString::number(ui->Combo_Memo->currentIndex())+"');");
+    qDebug() << cadena;
+    qDebug() << qry.exec(cadena);
+    ui->stackedWidget->setCurrentIndex(0);
+    frame = 0;
+}
+
+void MainWindow::on_Combo_StationCode_currentIndexChanged(int index)
+{
+    if(index == 0)
+    {
+        ui->Line_StationCode->setEnabled(true);
+    }else{
+        ui->Line_StationCode->setEnabled(false);
+    }
+}
+
+void MainWindow::on_Combo_StationName_currentIndexChanged(int index)
+{
+    if(index == 0)
+    {
+        ui->Line_StationName->setEnabled(true);
+    }else{
+        ui->Line_StationName->setEnabled(false);
+    }
+}
+
+void MainWindow::on_Combo_User_currentIndexChanged(int index)
+{
+    if(index == 0)
+    {
+        ui->Line_User->setEnabled(true);
+    }else{
+        ui->Line_User->setEnabled(false);
+    }
+}
+
+void MainWindow::on_Combo_Memo_currentIndexChanged(int index)
+{
+    if(index == 0)
+    {
+        ui->Line_Memo->setEnabled(true);
+    }else{
+        ui->Line_Memo->setEnabled(false);
+    }
+}
