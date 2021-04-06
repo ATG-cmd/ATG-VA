@@ -44,7 +44,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>11</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -2406,8 +2406,8 @@ QScrollBar::add-line:vertical {
      <widget class="QTableWidget" name="tableWidget_2">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>50</y>
+        <x>30</x>
+        <y>60</y>
         <width>1181</width>
         <height>421</height>
        </rect>
@@ -2460,21 +2460,26 @@ QScrollBar::add-line:vertical {
     </widget>
     <widget class="QWidget" name="LimitesTank"/>
     <widget class="QWidget" name="Entregas">
-     <widget class="QComboBox" name="comboBox">
+     <widget class="QComboBox" name="CSelecTank">
       <property name="geometry">
        <rect>
-        <x>310</x>
-        <y>10</y>
+        <x>290</x>
+        <y>20</y>
         <width>121</width>
         <height>41</height>
        </rect>
       </property>
+      <item>
+       <property name="text">
+        <string>Todos</string>
+       </property>
+      </item>
      </widget>
      <widget class="QLabel" name="label_7">
       <property name="geometry">
        <rect>
-        <x>180</x>
-        <y>0</y>
+        <x>160</x>
+        <y>10</y>
         <width>151</width>
         <height>61</height>
        </rect>
@@ -2489,7 +2494,7 @@ QScrollBar::add-line:vertical {
         <x>20</x>
         <y>90</y>
         <width>1151</width>
-        <height>331</height>
+        <height>301</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -2521,16 +2526,37 @@ QScrollBar::add-line:vertical {
      subcontrol-position: top;
      subcontrol-origin: margin;
  }
- QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
-     border: 2px solid grey;
-     width: 10px;
-     height: 10px;
-     background: white;
- }
 
  QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
      background: none;
  }
+QScrollBar::down-arrow:vertical {
+   
+  margin: 5px 0px 0px 0px;  
+  width: 0;
+  height: 0;
+  border: 2px solid #000;
+  border-top: 20px solid white;
+  border-right: 10px solid royalblue;
+  border-bottom: 5px solid royalblue ;
+  border-left: 10px  solid royalblue ;
+  background: white;
+  
+ }
+QScrollBar::up-arrow:vertical {
+
+ margin: 0px 0px 5px 0px;  
+  width: 0;
+  height: 0;
+  border: 2px solid #000;
+  border-top: 5px solid royalblue;
+  border-right: 10px solid royalblue;
+  border-bottom: 20px solid white;
+  border-left: 10px  solid royalblue ;
+  background: white;
+
+}
+
 
 </string>
       </property>

@@ -1292,10 +1292,34 @@ void MainWindow::on_Btn_CubGenerar_clicked()
 void MainWindow::on_Btn_Entregas_clicked()
 {
     ui->stackedWidget->setCurrentIndex(11);
-
     QString cadena;
-    cadena.append("SELECT * FROM `cistem`.`entregas` LIMIT 1000;");
+
+    cadena.append("SELECT DISTINCT Tanque_Nombre FROM `cistem`.`entregas`;");
     QSqlQuery qry;
+    qDebug() << "QRY:" << qry.exec(cadena);
+    while (qry.next()) {
+       ui->CSelecTank->addItem(qry.value(0).toString());
+
+    }
+
+
+    connect(ui->CSelecTank, QOverload<int>::of(&QComboBox::activated),
+            [=](int index){
+        QString cadena;
+        ui->Tab_entregas->clearContents();
+        ui->Tab_entregas->setRowCount(0);
+
+        switch (index)
+         {
+         case 0: cadena.append("SELECT * FROM `cistem`.`entregas` LIMIT 1000;");break;
+         default: qDebug() << "Texto del index:" << ui->CSelecTank->itemText(index);
+          cadena.append("SELECT * FROM `cistem`.`entregas` where Tanque_Nombre = '"+ui->CSelecTank->itemText(index)+"';"); break;
+
+        }
+
+
+        //
+            QSqlQuery qry;
     qDebug() << "QRY:" << qry.exec(cadena);
     while (qry.next())
     {
@@ -1322,8 +1346,9 @@ void MainWindow::on_Btn_Entregas_clicked()
         qDebug() << qry.value(0).toInt() << qry.value(1).toString() << qry.value(2).toInt() << qry.value(4).toInt();
     }
 
-
+});
 }
+
 
 void MainWindow::deliveryProGaugeCountIncrement(){
     if(deliveryInProcess == 0){
