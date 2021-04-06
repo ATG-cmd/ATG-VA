@@ -29,8 +29,8 @@ class Tanque :public QWidget
     double ProductoBajo;
     double Alarma_de_Agua;
     double Advertencia_de_Agua;
-    double VolumenA = 0 ;
-    double VolumenCon = 0;
+    double VolumenA;
+    double VolumenCon;
     double AlturaTank;
     double LimSup;
     double Temperatura;
