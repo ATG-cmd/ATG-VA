@@ -36,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
     Fonttitle.setBold(true);
     Lab_Title = new QLabel(ui->Btn_Barra_Estados);
     Lab_Title->setGeometry(QRect(200,2,500,50));
-    Lab_Title->setText("Estado Sistema   (▀̿̿Ĺ̯̿▀̿ ̿) ");
+    Lab_Title->setText("Estado Sistema ");
     Lab_Title->setFont(Fonttitle);
     ui->lbl_ProGaugeDeliveryInProccess->hide();
 
@@ -63,11 +63,11 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
 
-    Tconf = new Tanque(ui->Tanque,false);
-    Maximizado = new Tanque(ui->Tanque_Maximizado,true);
-    Tconf->Setgeometry(500,5,100,80);
-    Tconf->SetnameTank("Sin Nombre");
-    ConCombocol(ui->Combo_Color);
+//    Tconf = new Tanque(ui->Tanque,false);
+//    Maximizado = new Tanque(ui->Tanque_Maximizado,true);
+//    Tconf->Setgeometry(500,5,100,80);
+//    Tconf->SetnameTank("Sin Nombre");
+//    ConCombocol(ui->Combo_Color);
 
     //connect(Time2,SIGNAL(timeout()),this,SLOT(Actualizar_Time()));
     //Time2->start(1000);
@@ -193,12 +193,43 @@ void MainWindow::on_Btb_Sonda_clicked()
 
 void MainWindow::on_Btn_Tanque_clicked()
 {
-    frame = 2;
-    Botones_Barra();
-    ui->Combo_Sonda->clear();
-    //ui->ComboSeleccion->clear();
-    //  ui->ComboSeleccion->setVisible(true);
-    ui->stackedWidget->setCurrentIndex(3);
+     frame = 2;
+     Botones_Barra();
+     ui->Combo_Sonda->clear();
+     ui->ComboSeleccion->clear();
+     ui->ComboSeleccion->setVisible(true);
+     ui->stackedWidget->setCurrentIndex(3);
+     ui->ComboSeleccion->addItem("General");
+     ui->ComboSeleccion->addItem("Limites");
+
+     connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
+             [=](int index){
+
+         switch (index)
+          {
+          case 0:ui->stackedWidget->setCurrentIndex(3); break;
+          case 1: ui->stackedWidget->setCurrentIndex(10); frame = 10;break;
+          case 2: Vertical();break;
+          case 3:
+             ui->stackedWidget->setCurrentIndex(4);
+             ui->Lab_Titulo->setText("Tabla De Cubicacion");
+         } });
+
+
+
+     ui->Lab_Titulo->setText("Tanque");
+     ui->Combo_Sonda->addItem(" ");
+
+     QSqlQuery qry;
+        qry.exec("SELECT Serie FROM `cistem`.`sonda` LIMIT 100 ;");
+        while(qry.next())
+        {
+            ui->Combo_Sonda->addItem(qry.value(0).toString());
+            qDebug() << qry.value(0);
+        }
+     connect(ui->Line_Nombre,&QLineEdit::textChanged,this,&MainWindow::Modificar_TextoTank);
+     connect(ui->Combo_Tipo, QOverload<int>::of(&QComboBox::activated),
+             [=](int index){
 
     ui->Lab_Titulo->setText("Tanque");
     ui->Combo_Sonda->addItem(" ");
@@ -221,7 +252,9 @@ void MainWindow::on_Btn_Tanque_clicked()
         case 2: Vertical();break;
         } });
 
-}//Fin del StackedTanque
+});
+}
+//Fin del StackedTanque
 
 /*--------------------------------------------------------------------------------------------------------------
  * Esta parte del codigo es para ocultar y mostrar los TextEdit del frame de configuracion de tanques estos metodos son
@@ -376,7 +409,16 @@ void MainWindow::Modificar_TextoTank()
  * ------------------------------------------------------------------------------------------------------------------*/
 //Inicio de boton de Guardar
 void MainWindow::on_Btn_Guardar_clicked()
-{ switch(frame){ case 1 : Guardar_Sonda(); break; case 2 : Guardar_Tanque(); break; case 4: Guardar_Comunicacion(); break;} }
+{
+
+    qDebug() << frame;
+    switch(frame){
+    case 1 : Guardar_Sonda(); break;
+    case 2 : Guardar_Tanque(); break;
+//    case 10: guardar_limites(); break;
+    case 4: Guardar_Comunicacion(); break;
+    } 
+}
 //Fin de boton de Guardar
 
 /*--------------------------------------------------------------------------------------------------------------------
@@ -521,7 +563,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     }
     if(obj ==ui->Line_Usuario && event->type() == QEvent::FocusIn)
     {
-        MainWindow::setFocus();
+//        MainWindow::setFocus();
         qDebug() << "Hola desde el filtro usuario";
         Dialog *dlg = new Dialog(this);
         dlg->set_etiqueta("Ingrese su nombre de usuario");
@@ -534,6 +576,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
             ui->Line_Usuario->setText(dlg->getDatos());
         }
         delete dlg;
+        MainWindow::setFocus();
         return true;
     }
     if(obj ==ui->Line_Contra && event->type() == QEvent::FocusIn)
@@ -1111,6 +1154,7 @@ void MainWindow::Rellenar_combo_taques(QString tanque_index)
 {
     ui->Combo_CubTanque->addItem(tanque_index);
     ui->Combo_cub_generar->addItem(tanque_index);
+//    ui->Combo_taque_limites->addItem(tanque_index);
 }
 
 void MainWindow::Rellenar_tabla_cubicacion(int Id_tanque)
@@ -1244,6 +1288,7 @@ void MainWindow::clearCubicTableFields()
     ui->Line_Volumen->setText("");
 }
 
+
 void MainWindow::on_Btn_Cub_Editar_clicked()
 {
     enableCubicTableFields(true);
@@ -1289,6 +1334,23 @@ void MainWindow::on_Btn_CubGenerar_clicked()
 
 /* Termina la configuracion de la tabla de cubicacion*/
 
+//void MainWindow::guardar_limites()
+//{
+//    QSqlQuery qry;
+//    QString cadena;
+//    cadena.append("UPDATE cistem.limites SET Volumen_total = '" + ui->Line_volumen_total->text() + "',"
+//                  " Volumen_maximo = '" + ui->Line_volumen_maximo->text() + "',"
+//                  " Producto_alto = '" + ui->Line_producto_alto->text() + "',"
+//                  " Desbordamiento = '" + ui->Line_desbordamiento->text() + "',"
+//                  " Entrega_necesaria = '" + ui->Line_limite_entrega->text() + "',"
+//                  " Producto_bajo = '" + ui->Line_producto_bajo->text() + "',"
+//                  " Alarma_agua_alta = '" + ui->Line_alarma_agua->text() + "',"
+//                  " Advertencia_agua_alta = '" + ui->Line_advertencia_agua->text() + "'"
+//                  " WHERE Id_Taque = '" + ui->Combo_taque_limites->currentText() + "';");
+
+//    qDebug() << cadena;
+//    qDebug() << qry.exec(cadena);
+//}
 void MainWindow::on_Btn_Entregas_clicked()
 {
     ui->stackedWidget->setCurrentIndex(11);
@@ -1300,6 +1362,7 @@ void MainWindow::on_Btn_Entregas_clicked()
     while (qry.next()) {
        ui->CSelecTank->addItem(qry.value(0).toString());
 
+<<<<<<< HEAD
     }
 
 
@@ -1347,6 +1410,62 @@ void MainWindow::on_Btn_Entregas_clicked()
     }
 
 });
+=======
+    }
+
+
+    connect(ui->CSelecTank, QOverload<int>::of(&QComboBox::activated),
+            [=](int index){
+        QString cadena;
+        ui->Tab_entregas->clearContents();
+        ui->Tab_entregas->setRowCount(0);
+
+        switch (index)
+         {
+         case 0: cadena.append("SELECT * FROM `cistem`.`entregas` LIMIT 1000;");break;
+         default: qDebug() << "Texto del index:" << ui->CSelecTank->itemText(index);
+cadena.append("SELECT * FROM `cistem`.`entregas` where Tanque_Nombre = '"+ui->CSelecTank->itemText(index)+"';"); break;
+
+        }
+
+        //
+         QSqlQuery qry;
+         qDebug() << "QRY:" << qry.exec(cadena);
+         while (qry.next())
+         {
+             //ui->Tab_entregas->removeRow(0);
+
+
+             ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
+             //ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(QString::number(qry.value(0).toInt())));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(1).toString()));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 1, new QTableWidgetItem(QString::number(qry.value(2).toInt())));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 2, new QTableWidgetItem(QString::number(qry.value(3).toInt())));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 3, new QTableWidgetItem(QString::number(qry.value(4).toInt())));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1,4 , new QTableWidgetItem(QString::number(qry.value(5).toInt())));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 6, new QTableWidgetItem(qry.value(7).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
+             //ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
+
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 6)->setTextAlignment(Qt::AlignCenter);
+             //  ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 6)->setFont(A);
+             qDebug() << qry.value(0).toInt() << qry.value(1).toString() << qry.value(2).toInt() << qry.value(4).toInt();
+         }
+
+
+
+    });
+
+
+
+
+
+
+>>>>>>> cbd524e25a739450b818614a8038711dbe35b57f
 }
 
 
