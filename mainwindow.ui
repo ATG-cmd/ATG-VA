@@ -22,11 +22,14 @@
   <property name="styleSheet">
    <string notr="true">QComboBox{
 border-radius: 10px;
+border: 2px solid  gray ;
 }
 QComboBox::drop-down {
     width: 40px;
     
-	background-color:white;
+    
+    
+	background-color:transparent;
 
 }
 QComboBox::down-arrow {
@@ -36,11 +39,12 @@ margin: 5px 0px 0px 0px;
   /*border: 2px solid #000;*/
   border-top: 10px solid black;
   border-right: 10px solid white;
-  border-bottom: 5px solid white ;
-  border-left: 10px  solid white ;
+  border-bottom: 5px solid white;
+  border-left: 10px  solid white;
 }
 QLineEdit{
 border-radius: 10px;
+border: 2px solid  gray ;
 }
 QTableWidget{
 	background-color: #C0C0C0;
@@ -127,7 +131,7 @@ border: 0px solid #000;
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>12</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -534,7 +538,7 @@ padding: 2px;</string>
        <rect>
         <x>170</x>
         <y>10</y>
-        <width>631</width>
+        <width>771</width>
         <height>450</height>
        </rect>
       </property>
@@ -560,8 +564,8 @@ padding: 2px;</string>
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>579</width>
-         <height>796</height>
+         <width>722</width>
+         <height>1001</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -592,7 +596,7 @@ padding: 2px;</string>
            <number>27</number>
           </property>
           <item row="0" column="0">
-           <widget class="QLabel" name="label_8">
+           <widget class="QLabel" name="label_16">
             <property name="font">
              <font>
               <pointsize>22</pointsize>
@@ -601,37 +605,44 @@ padding: 2px;</string>
               <bold>true</bold>
              </font>
             </property>
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
-            </property>
             <property name="text">
-             <string>Sonda</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             <string>Configurado</string>
             </property>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QComboBox" name="Combo_Sonda">
-            <property name="maximumSize">
-             <size>
-              <width>300</width>
-              <height>50</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>22</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QRadioButton" name="radioButton_2">
+              <property name="font">
+               <font>
+                <pointsize>20</pointsize>
+                <weight>75</weight>
+                <italic>true</italic>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Habilitado</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton">
+              <property name="font">
+               <font>
+                <pointsize>22</pointsize>
+                <weight>75</weight>
+                <italic>true</italic>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Deshabilitado</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="Lab_Nombre">
@@ -753,6 +764,81 @@ border-radius: 10px;
            </widget>
           </item>
           <item row="4" column="0">
+           <widget class="QLabel" name="label_17">
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Código de combustible</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLineEdit" name="lineEdit">
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_8">
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>Sonda</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QComboBox" name="Combo_Sonda">
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="0">
            <widget class="QLabel" name="Lab_Tipo">
             <property name="font">
              <font>
@@ -770,7 +856,7 @@ border-radius: 10px;
             </property>
            </widget>
           </item>
-          <item row="4" column="1">
+          <item row="11" column="1">
            <widget class="QComboBox" name="Combo_Tipo">
             <property name="maximumSize">
              <size>
@@ -803,97 +889,7 @@ border-radius: 10px;
             </item>
            </widget>
           </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="Lab_Medida1">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>22</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="statusTip">
-             <string/>
-            </property>
-            <property name="text">
-             <string>Altura</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1">
-           <widget class="QLineEdit" name="Line_Medida1">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>300</width>
-              <height>50</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>22</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="statusTip">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="0">
-           <widget class="QLabel" name="Lab_Medida2">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>22</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="statusTip">
-             <string/>
-            </property>
-            <property name="text">
-             <string>Largo</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="1">
-           <widget class="QLineEdit" name="Line_Medida2">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>300</width>
-              <height>50</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>22</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="statusTip">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0">
+          <item row="14" column="0">
            <widget class="QLabel" name="Lab_Nombre_3">
             <property name="font">
              <font>
@@ -904,11 +900,11 @@ border-radius: 10px;
              </font>
             </property>
             <property name="text">
-             <string>Coeficiente</string>
+             <string>Coeficiente Térmico</string>
             </property>
            </widget>
           </item>
-          <item row="7" column="1">
+          <item row="14" column="1">
            <widget class="QLineEdit" name="Line_Nombre_3">
             <property name="maximumSize">
              <size>
@@ -926,7 +922,7 @@ border-radius: 10px;
             </property>
            </widget>
           </item>
-          <item row="8" column="0">
+          <item row="15" column="0">
            <widget class="QLabel" name="Lab_Sonda_3">
             <property name="font">
              <font>
@@ -941,7 +937,7 @@ border-radius: 10px;
             </property>
            </widget>
           </item>
-          <item row="8" column="1">
+          <item row="15" column="1">
            <widget class="QComboBox" name="Combo_Sonda_3">
             <property name="maximumSize">
              <size>
@@ -962,106 +958,7 @@ border-radius: 10px;
             </property>
            </widget>
           </item>
-          <item row="9" column="0">
-           <widget class="QLabel" name="Lab_Angulo">
-            <property name="font">
-             <font>
-              <pointsize>22</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Angulo</string>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="1">
-           <widget class="QLineEdit" name="Line_Angulo">
-            <property name="maximumSize">
-             <size>
-              <width>300</width>
-              <height>50</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>22</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-           </widget>
-          </item>
-          <item row="10" column="0">
-           <widget class="QLabel" name="Lab_Nombre_5">
-            <property name="font">
-             <font>
-              <pointsize>22</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Distancia</string>
-            </property>
-           </widget>
-          </item>
-          <item row="10" column="1">
-           <widget class="QLineEdit" name="Line_Distancia">
-            <property name="maximumSize">
-             <size>
-              <width>300</width>
-              <height>50</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>22</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-           </widget>
-          </item>
-          <item row="11" column="0">
-           <widget class="QLabel" name="Lab_Licencia_3">
-            <property name="font">
-             <font>
-              <pointsize>22</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Ajuste Altura</string>
-            </property>
-           </widget>
-          </item>
-          <item row="11" column="1">
-           <widget class="QLineEdit" name="Line_AjusteAltura">
-            <property name="maximumSize">
-             <size>
-              <width>300</width>
-              <height>50</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>22</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-           </widget>
-          </item>
-          <item row="12" column="0">
+          <item row="18" column="0">
            <widget class="QLabel" name="Lab_UTemperatura">
             <property name="enabled">
              <bool>false</bool>
@@ -1071,7 +968,7 @@ border-radius: 10px;
             </property>
            </widget>
           </item>
-          <item row="12" column="1">
+          <item row="18" column="1">
            <widget class="QComboBox" name="Combo_UTemperatura">
             <property name="enabled">
              <bool>false</bool>
@@ -1118,7 +1015,17 @@ border-radius: 10px;
             </item>
            </widget>
           </item>
-          <item row="13" column="1">
+          <item row="19" column="0">
+           <widget class="QLabel" name="Lab_UDistancia">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Unidad Distancia</string>
+            </property>
+           </widget>
+          </item>
+          <item row="19" column="1">
            <widget class="QComboBox" name="ComboUDistancia">
             <property name="enabled">
              <bool>false</bool>
@@ -1165,17 +1072,17 @@ border-radius: 10px;
             </item>
            </widget>
           </item>
-          <item row="13" column="0">
-           <widget class="QLabel" name="Lab_UDistancia">
+          <item row="20" column="0">
+           <widget class="QLabel" name="Lab_UVolumen">
             <property name="enabled">
              <bool>false</bool>
             </property>
             <property name="text">
-             <string>Unidad Distancia</string>
+             <string>Unidad Volumen </string>
             </property>
            </widget>
           </item>
-          <item row="14" column="1">
+          <item row="20" column="1">
            <widget class="QComboBox" name="Combo_UVolumen">
             <property name="enabled">
              <bool>false</bool>
@@ -1217,13 +1124,192 @@ border-radius: 10px;
             </item>
            </widget>
           </item>
-          <item row="14" column="0">
-           <widget class="QLabel" name="Lab_UVolumen">
-            <property name="enabled">
-             <bool>false</bool>
+          <item row="8" column="1">
+           <widget class="QLineEdit" name="Line_AjusteAltura">
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QLabel" name="Lab_Licencia_3">
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
             </property>
             <property name="text">
-             <string>Unidad Volumen </string>
+             <string>Ajuste Altura</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="0">
+           <widget class="QLabel" name="Lab_Medida1">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="statusTip">
+             <string/>
+            </property>
+            <property name="text">
+             <string>Altura</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="1">
+           <widget class="QLineEdit" name="Line_Medida1">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="statusTip">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="0">
+           <widget class="QLabel" name="Lab_Medida2">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="statusTip">
+             <string/>
+            </property>
+            <property name="text">
+             <string>Largo</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="1">
+           <widget class="QLineEdit" name="Line_Medida2">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="statusTip">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="1">
+           <widget class="QLineEdit" name="Line_Angulo">
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="0">
+           <widget class="QLabel" name="Lab_Angulo">
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Angulo</string>
+            </property>
+           </widget>
+          </item>
+          <item row="13" column="1">
+           <widget class="QLineEdit" name="Line_Distancia">
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="13" column="0">
+           <widget class="QLabel" name="Lab_Nombre_5">
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Distancia</string>
             </property>
            </widget>
           </item>
@@ -1231,6 +1317,69 @@ border-radius: 10px;
         </item>
        </layout>
       </widget>
+     </widget>
+     <widget class="QPushButton" name="pushButton_5">
+      <property name="geometry">
+       <rect>
+        <x>1030</x>
+        <y>160</y>
+        <width>99</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+
+	background-color: rgb(200,200,200) ;
+	border: 1px solid gray;
+	border-radius: 10px;
+	padding: 2px;
+}	</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="Imagenes/Resourse.qrc">
+        <normaloff>:/check.png</normaloff>:/check.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>100</width>
+        <height>100</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_11">
+      <property name="geometry">
+       <rect>
+        <x>1030</x>
+        <y>260</y>
+        <width>99</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	background-color: rgb(200,200,200) ;
+	border: 1px solid gray;
+	border-radius: 10px;
+	padding: 2px;
+}	</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="Imagenes/Resourse.qrc">
+        <normaloff>:/Cancel.png</normaloff>:/Cancel.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>100</width>
+        <height>100</height>
+       </size>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="Tabla_de_cubicacion">
@@ -2213,538 +2362,415 @@ QScrollBar::add-line:vertical {
     </widget>
     <widget class="QWidget" name="Tanque_Maximizado"/>
     <widget class="QWidget" name="Comunicacion">
-     <widget class="QLabel" name="SLab_Baudios">
+     <widget class="QWidget" name="gridLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>-120</x>
-        <y>110</y>
-        <width>321</width>
-        <height>71</height>
+        <x>320</x>
+        <y>70</y>
+        <width>521</width>
+        <height>371</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Baudios</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QLabel" name="SLab_Baudios">
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Baudios</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="SLab_Stop">
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Stop</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0" colspan="2">
+        <widget class="Line" name="line_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="SLab_Paridad">
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Paridad</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QComboBox" name="SCombo_Stop">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <item>
+          <property name="text">
+           <string/>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="Line" name="line_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="SCombo_Baudios">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <item>
+          <property name="text">
+           <string/>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>300</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>600</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1200</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2400</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4800</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9600</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>38400</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>57600</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>115200</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="SLab_Baudios_2">
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Datos</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="2">
+        <widget class="Line" name="line_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QComboBox" name="SCombo_Datos">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <item>
+          <property name="text">
+           <string/>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QComboBox" name="SCombo_Paridad">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <item>
+          <property name="text">
+           <string/>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Igual</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Desigual</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Ninguna</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="8" column="1">
+        <widget class="QComboBox" name="comboBox">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <item>
+          <property name="text">
+           <string/>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Metrico</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>EE. UU. </string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QLabel" name="label_18">
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Unidades Sistema</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
-     <widget class="QComboBox" name="SCombo_Baudios">
+     <widget class="QPushButton" name="pushButton_7">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>120</y>
-        <width>251</width>
-        <height>51</height>
+        <x>1040</x>
+        <y>160</y>
+        <width>99</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">QPushButton {
+
+	background-color: rgb(200,200,200) ;
+	border: 1px solid gray;
+	border-radius: 10px;
+	padding: 2px;
+}	</string>
       </property>
-      <item>
-       <property name="text">
-        <string/>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>300</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>600</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>1200</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>2400</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>4800</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>9600</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>38400</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>57600</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>115200</string>
-       </property>
-      </item>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="Imagenes/Resourse.qrc">
+        <normaloff>:/check.png</normaloff>:/check.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>100</width>
+        <height>100</height>
+       </size>
+      </property>
      </widget>
-     <widget class="QComboBox" name="SCombo_Datos">
+     <widget class="QPushButton" name="pushButton_13">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>180</y>
-        <width>251</width>
-        <height>51</height>
+        <x>1040</x>
+        <y>260</y>
+        <width>99</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <item>
-       <property name="text">
-        <string/>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>1</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>2</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="SLab_Baudios_2">
-      <property name="geometry">
-       <rect>
-        <x>-120</x>
-        <y>170</y>
-        <width>321</width>
-        <height>71</height>
-       </rect>
+       <string notr="true">QPushButton {
+	background-color: rgb(200,200,200) ;
+	border: 1px solid gray;
+	border-radius: 10px;
+	padding: 2px;
+}	</string>
       </property>
       <property name="text">
-       <string>Datos</string>
+       <string/>
       </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      <property name="icon">
+       <iconset resource="Imagenes/Resourse.qrc">
+        <normaloff>:/Cancel.png</normaloff>:/Cancel.png</iconset>
       </property>
-     </widget>
-     <widget class="QComboBox" name="SCombo_Stop">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>240</y>
-        <width>251</width>
-        <height>51</height>
-       </rect>
+      <property name="iconSize">
+       <size>
+        <width>100</width>
+        <height>100</height>
+       </size>
       </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <item>
-       <property name="text">
-        <string/>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>7</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>8</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="SLab_Stop">
-      <property name="geometry">
-       <rect>
-        <x>-120</x>
-        <y>230</y>
-        <width>321</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Stop</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="SCombo_Paridad">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>300</y>
-        <width>251</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <item>
-       <property name="text">
-        <string/>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Igual</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Desigual</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Ninguna</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="SLab_Paridad">
-      <property name="geometry">
-       <rect>
-        <x>-120</x>
-        <y>290</y>
-        <width>321</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Paridad</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="LabTitle_Sonda">
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>0</y>
-        <width>281</width>
-        <height>111</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Bitstream Vera Sans</family>
-        <pointsize>48</pointsize>
-        <weight>75</weight>
-        <italic>false</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Sonda</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="LabTitle_Comunicador">
-      <property name="geometry">
-       <rect>
-        <x>670</x>
-        <y>0</y>
-        <width>491</width>
-        <height>111</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Bitstream Vera Sans</family>
-        <pointsize>48</pointsize>
-        <weight>75</weight>
-        <italic>false</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Comunicador</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="CLab_Datos">
-      <property name="geometry">
-       <rect>
-        <x>730</x>
-        <y>170</y>
-        <width>101</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Datos</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="CLab_Stop">
-      <property name="geometry">
-       <rect>
-        <x>750</x>
-        <y>230</y>
-        <width>81</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Stop</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="CLab_paridad">
-      <property name="geometry">
-       <rect>
-        <x>700</x>
-        <y>290</y>
-        <width>131</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Paridad</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="CCombo_Datos">
-      <property name="geometry">
-       <rect>
-        <x>840</x>
-        <y>180</y>
-        <width>251</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <item>
-       <property name="text">
-        <string/>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>1</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>2</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="CLab_Baudios">
-      <property name="geometry">
-       <rect>
-        <x>690</x>
-        <y>110</y>
-        <width>141</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::RightToLeft</enum>
-      </property>
-      <property name="text">
-       <string>Baudios</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="CCombo_Baudios">
-      <property name="geometry">
-       <rect>
-        <x>840</x>
-        <y>120</y>
-        <width>251</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <item>
-       <property name="text">
-        <string/>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>300</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>600</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>1200</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>2400</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>4800</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>9600</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>38400</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>57600</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>115200</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QComboBox" name="CCombo_Stop">
-      <property name="geometry">
-       <rect>
-        <x>840</x>
-        <y>240</y>
-        <width>251</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <item>
-       <property name="text">
-        <string/>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>7</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>8</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QComboBox" name="CCombo_paridad">
-      <property name="geometry">
-       <rect>
-        <x>840</x>
-        <y>300</y>
-        <width>251</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <item>
-       <property name="text">
-        <string/>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Igual</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Desigual</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Ninguna</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="CLab_protocolo">
-      <property name="geometry">
-       <rect>
-        <x>670</x>
-        <y>350</y>
-        <width>161</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Protocolo</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="CCombo_protocolo">
-      <property name="geometry">
-       <rect>
-        <x>840</x>
-        <y>360</y>
-        <width>251</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <item>
-       <property name="text">
-        <string/>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string> GilbarcoEDIM</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>VRProtocolDIM</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string> Sinopec EDIM</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Cistem  EDIM</string>
-       </property>
-      </item>
      </widget>
     </widget>
     <widget class="QWidget" name="Visualizacion_Alarmas">
@@ -2814,6 +2840,14 @@ QScrollBar::add-line:vertical {
         <height>51</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>22</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
       <item>
        <property name="text">
         <string>All</string>
@@ -2823,11 +2857,19 @@ QScrollBar::add-line:vertical {
      <widget class="QLabel" name="label_7">
       <property name="geometry">
        <rect>
-        <x>180</x>
+        <x>210</x>
         <y>0</y>
-        <width>151</width>
+        <width>101</width>
         <height>61</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>22</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="text">
        <string>Tanque</string>
@@ -2967,6 +3009,440 @@ QScrollBar::add-line:vertical {
         <string>Fecha</string>
        </property>
       </column>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Comunicador">
+     <widget class="QWidget" name="gridLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>40</y>
+        <width>411</width>
+        <height>411</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="2" column="0">
+        <widget class="QLabel" name="CLab_Datos">
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Datos</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QComboBox" name="CCombo_paridad">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <item>
+          <property name="text">
+           <string/>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Igual</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Desigual</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Ninguna</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="7" column="0" colspan="2">
+        <widget class="Line" name="line_8">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="CLab_Baudios">
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <property name="text">
+          <string>Baudios</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="CCombo_Baudios">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <item>
+          <property name="text">
+           <string/>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>300</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>600</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1200</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2400</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>4800</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>9600</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>38400</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>57600</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>115200</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="CLab_paridad">
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Paridad</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QComboBox" name="CCombo_Datos">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="sizeIncrement">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <item>
+          <property name="text">
+           <string/>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="Line" name="line_6">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="CLab_Stop">
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Stop</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="2">
+        <widget class="Line" name="line_7">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="Line" name="line_5">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QComboBox" name="CCombo_Stop">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <item>
+          <property name="text">
+           <string/>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>8</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="8" column="1">
+        <widget class="QComboBox" name="CCombo_protocolo">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <item>
+          <property name="text">
+           <string/>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string> GilbarcoEDIM</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>VRProtocolDIM</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string> Sinopec EDIM</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Cistem  EDIM</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QLabel" name="CLab_protocolo">
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Protocolo</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QPushButton" name="pushButton_6">
+      <property name="geometry">
+       <rect>
+        <x>1020</x>
+        <y>140</y>
+        <width>99</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+
+	background-color: rgb(200,200,200) ;
+	border: 1px solid gray;
+	border-radius: 10px;
+	padding: 2px;
+}	</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="Imagenes/Resourse.qrc">
+        <normaloff>:/check.png</normaloff>:/check.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>100</width>
+        <height>100</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_12">
+      <property name="geometry">
+       <rect>
+        <x>1020</x>
+        <y>240</y>
+        <width>99</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	background-color: rgb(200,200,200) ;
+	border: 1px solid gray;
+	border-radius: 10px;
+	padding: 2px;
+}	</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="Imagenes/Resourse.qrc">
+        <normaloff>:/Cancel.png</normaloff>:/Cancel.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>100</width>
+        <height>100</height>
+       </size>
+      </property>
      </widget>
     </widget>
    </widget>

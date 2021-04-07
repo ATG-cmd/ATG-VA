@@ -1162,6 +1162,27 @@ void MainWindow::on_Btn_Comunicacion_clicked()
 {
     frame = 4; ui->Btn_Guardar->setVisible(true); ui->Regresar->setVisible(true);
     ui->stackedWidget->setCurrentIndex(8);
+
+    ui->Combo_Sonda->clear();
+    ui->ComboSeleccion->clear();
+    ui->ComboSeleccion->setVisible(true);
+    //ui->stackedWidget->setCurrentIndex(3);
+    ui->ComboSeleccion->addItem("Sonda");
+    ui->ComboSeleccion->addItem("Comunicador");
+
+    connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
+            [=](int index){
+
+        switch (index)
+         {
+         case 0:ui->stackedWidget->setCurrentIndex(8); break;
+         case 1: ui->stackedWidget->setCurrentIndex(12); frame = 10;break;
+         case 2: Vertical();break;
+         case 3:
+            ui->stackedWidget->setCurrentIndex(4);
+            ui->Lab_Titulo->setText("Tabla De Cubicacion");
+        } });
+
 }
 
 void MainWindow::on_Btn_Barra_Estados_clicked()
@@ -1173,6 +1194,10 @@ void MainWindow::Guardar_Comunicacion()
 {
     QSqlQuery qry;
     qry.exec("INSERT INTO `cistem`.`config_sonda` (`Baudios`, `Datos`, `Stop`, `Paridad`) VALUES ('300', '2', '7', 'Igualdad');");
+
+
+
+
 }
 void MainWindow::on_Btn_tabla_cubicacion_clicked()
 {
