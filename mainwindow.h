@@ -177,6 +177,10 @@ private slots:
 
    void deliveryProGaugeCountIncrement();
 
+   void on_Btn_SaveTank_clicked();
+
+   void on_Btn_SalveComunicacion_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

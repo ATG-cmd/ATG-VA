@@ -66,6 +66,16 @@ void Tanque::setFrombase(double value)
     frombase = value;
 }
 
+bool Tanque::getIshabilitado() const
+{
+    return ishabilitado;
+}
+
+void Tanque::setIshabilitado(bool value)
+{
+    ishabilitado = value;
+}
+
 void Tanque::clickbuton(){ setTMaximizado(true); emit Camino(); }
 
 Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)

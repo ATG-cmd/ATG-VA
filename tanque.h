@@ -67,6 +67,7 @@ class Tanque :public QWidget
     QString U ="0.254";
     QString R="100";
     QString RT="200";
+    bool ishabilitado;
 
 private slots:
 
@@ -262,6 +263,9 @@ public:
 
    double getFrombase() const;
    void setFrombase(double value);
+
+   bool getIshabilitado() const;
+   void setIshabilitado(bool value);
 };
 
 #endif // TANQUE_H

@@ -62,6 +62,7 @@ MainWindow::MainWindow(QWidget *parent)
         x+=45;
     }
 
+  //connect(ui->Btn_SaveTank,&QPushButton::clicked,this,&MainWindow::Guardar_Tanque);
 
 //    Tconf = new Tanque(ui->Tanque,false);
     Maximizado = new Tanque(ui->Tanque_Maximizado,true);
@@ -227,7 +228,7 @@ void MainWindow::on_Btn_Tanque_clicked()
             ui->Combo_Sonda->addItem(qry.value(0).toString());
             qDebug() << qry.value(0);
         }
-     connect(ui->Line_Nombre,&QLineEdit::textChanged,this,&MainWindow::Modificar_TextoTank);
+    //connect(ui->Line_Nombre,&QLineEdit::textChanged,this,&MainWindow::Modificar_TextoTank);
      connect(ui->Combo_Tipo, QOverload<int>::of(&QComboBox::activated),
              [=](int index){
 
@@ -241,7 +242,7 @@ void MainWindow::on_Btn_Tanque_clicked()
         ui->Combo_Sonda->addItem(qry.value(0).toString());
         qDebug() << qry.value(0);
     }
-    connect(ui->Line_Nombre,&QLineEdit::textChanged,this,&MainWindow::Modificar_TextoTank);
+   // connect(ui->Line_Nombre,&QLineEdit::textChanged,this,&MainWindow::Modificar_TextoTank);
     connect(ui->Combo_Tipo, QOverload<int>::of(&QComboBox::activated),
             [=](int index){
 
@@ -346,21 +347,21 @@ void MainWindow::ConCombocol(QComboBox *combo)
         switch(index){
         case 1 :
             combo->setStyleSheet(
-                                  "QComboBox{background-color: gray ;}"
-                                  "QComboBox::drop-down {"
-                                  "width: 40px;"
-                                 "background-color: gray;"
-                              "}"
-                              "QComboBox::down-arrow {"
-                              "margin: 5px 0px 0px 0px;"
-                                "width: 0;"
-                                "height: 0;"
-                                /*border: 2px solid #000;*/
-                                "border-top: 10px solid black;"
-                                "border-right: 10px solid gray;"
-                                "border-bottom: 5px solid gray; ;"
-                               " border-left: 10px  solid gray; ;"
-                              "}");
+                        "QComboBox{background-color: gray ;}"
+                        "QComboBox::drop-down {"
+                        "width: 40px;"
+                        "background-color: transparent;"
+                        "}"
+                        "QComboBox::down-arrow {"
+                        "margin: 5px 0px 0px 0px;"
+                        "width: 0;"
+                        "height: 0;"
+                        /*border: 2px solid #000;*/
+                        "border-top: 10px solid black;"
+                        "border-right: 10px solid gray;"
+                        "border-bottom: 5px solid gray; ;"
+                        " border-left: 10px  solid gray; ;"
+                        "}");
 
             break;
 
@@ -369,62 +370,62 @@ void MainWindow::ConCombocol(QComboBox *combo)
                         "QComboBox{background-color: green ;}"
                         "QComboBox::drop-down {"
                         "width: 40px;"
-                       "background-color: green;"
-                    "}"
-                    "QComboBox::down-arrow {"
-                    "margin: 5px 0px 0px 0px;"
-                      "width: 0;"
-                      "height: 0;"
-                      /*border: 2px solid #000;*/
-                      "border-top: 10px solid black;"
-                      "border-right: 10px solid green ;"
-                      "border-bottom: 5px solid green ; ;"
-                     " border-left: 10px  solid green ; ;"
-                    "}"
-                                 );
+                        "background-color: transparent;"
+                        "}"
+                        "QComboBox::down-arrow {"
+                        "margin: 5px 0px 0px 0px;"
+                        "width: 0;"
+                        "height: 0;"
+                        /*border: 2px solid #000;*/
+                        "border-top: 10px solid black;"
+                        "border-right: 10px solid green ;"
+                        "border-bottom: 5px solid green ; ;"
+                        " border-left: 10px  solid green ; ;"
+                        "}"
+                        );
 
             break;
         case 3:
             combo->setStyleSheet(
-                                 "QComboBox{background-color: yellow;}"
-                                 "QComboBox::drop-down {"
-                                 "width: 40px;"
-                                "background-color: yellow;"
-                             "}"
-                             "QComboBox::down-arrow {"
-                             "margin: 5px 0px 0px 0px;"
-                               "width: 0;"
-                               "height: 0;"
-                               /*border: 2px solid #000;*/
-                               "border-top: 10px solid black;"
-                               "border-right: 10px solid yellow;"
-                               "border-bottom: 5px solid yellow;"
-                              " border-left: 10px  solid yellow;"
-                             "}"
+                        "QComboBox{background-color: yellow;}"
+                        "QComboBox::drop-down {"
+                        "width: 40px;"
+                        "background-color: transparent;"
+                        "}"
+                        "QComboBox::down-arrow {"
+                        "margin: 5px 0px 0px 0px;"
+                        "width: 0;"
+                        "height: 0;"
+                        /*border: 2px solid #000;*/
+                        "border-top: 10px solid black;"
+                        "border-right: 10px solid yellow;"
+                        "border-bottom: 5px solid yellow;"
+                        " border-left: 10px  solid yellow;"
+                        "}"
 
 
-                                 );
+                        );
 
             break;
 
         case 4:
             combo->setStyleSheet(            "QComboBox{background-color: cyan;}"
-                                                                  "QComboBox::drop-down {"
-                                                                  "width: 40px;"
-                                                                 "background-color: cyan;"
-                                                              "}"
-                                                              "QComboBox::down-arrow {"
-                                                              "margin: 5px 0px 0px 0px;"
-                                                                "width: 0;"
-                                                                "height: 0;"
-                                                                /*border: 2px solid #000;*/
-                                                                "border-top: 10px solid black;"
-                                                                "border-right: 10px solid cyan;"
-                                                                "border-bottom: 5px solid cyan;"
-                                                               " border-left: 10px  solid cyan;"
-                                                              "}"
+                                             "QComboBox::drop-down {"
+                                             "width: 40px;"
+                                             "background-color: transparent;"
+                                             "}"
+                                             "QComboBox::down-arrow {"
+                                             "margin: 5px 0px 0px 0px;"
+                                             "width: 0;"
+                                             "height: 0;"
+                                             /*border: 2px solid #000;*/
+                                             "border-top: 10px solid black;"
+                                             "border-right: 10px solid cyan;"
+                                             "border-bottom: 5px solid cyan;"
+                                             " border-left: 10px  solid cyan;"
+                                             "}"
 
-                                 );
+                                             );
 
 
             break;
@@ -813,7 +814,7 @@ void MainWindow::Guardar_Tanque()
     //tanques[N]->setProtocolo(QcomboProtocolo->currentIndex());
     tanques[S]->setID(ui->Combo_Sonda->currentText());
     tanques[S]->SetnameTank(ui->Line_Nombre->text());
-    tanques[S]->color(Tconf->GetColor(),true);
+    //tanques[S]->color(Tconf->GetColor(),true);
 
     switch(G){
     case 1:
@@ -833,14 +834,14 @@ void MainWindow::Guardar_Tanque()
         break;
     }
     Enviar_qry("INSERT INTO `cistem`.`tanques` "
-               "(`Serie_Sonda`, `Nombre`, `Color`,`Tipo`,`Medida 1`,`Medida 2`,`Medida 3`) "
+               "(`Serie_Sonda`, `Nombre`, `Color`,`Tipo`,`Medida 1`,`Medida 2`) "
                "VALUES ('"+ui->Combo_Sonda->currentText()+"'"
-                                                          ", '"+ui->Line_Nombre->text()+"'"
-                                                                                        ", '"+QString::number(ui->Combo_Color->currentIndex())+"'"
-                                                                                                                                               ", '"+QString::number(ui->Combo_Tipo->currentIndex())+"'"
-                                                                                                                                                                                                     ", '"+ui->Line_Medida1->text()+"'"
-                                                                                                                                                                                                                                    ", '"+ui->Line_Medida2->text()+"'"
-                                                                                                                                                                                                                                                                   ", '"/*ui->lineEdit->text()*/"');");
+                      ", '"+ui->Line_Nombre->text()+"'"
+                      ", '"+QString::number(ui->Combo_Color->currentIndex())+"'"
+                      ", '"+QString::number(ui->Combo_Tipo->currentIndex())+"'"
+                      ", '"+ui->Line_Medida1->text()+"'"
+                      ", '"+ui->Line_Medida2->text()+"'"
+                      ";");
 
     Descargar();
     // S++;
@@ -1192,11 +1193,6 @@ void MainWindow::on_Btn_Barra_Estados_clicked()
 
 void MainWindow::Guardar_Comunicacion()
 {
-    QSqlQuery qry;
-    qry.exec("INSERT INTO `cistem`.`config_sonda` (`Baudios`, `Datos`, `Stop`, `Paridad`) VALUES ('300', '2', '7', 'Igualdad');");
-
-
-
 
 }
 void MainWindow::on_Btn_tabla_cubicacion_clicked()
@@ -1552,3 +1548,62 @@ void MainWindow::deliveryProGaugeCountIncrement(){
 }
 
 
+
+void MainWindow::on_Btn_SaveTank_clicked()
+{
+    Geometrytank();
+    connect(tanques[S],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
+
+    if(ui->RHabilitado->isChecked())
+    {
+        tanques[S]->setIshabilitado(true);
+    }
+    else {
+        tanques[S]->setIshabilitado(false);
+    }
+
+    ui->stackedWidget->setCurrentIndex(3);
+    //ProGaugeId[N]=ID->toPlainText();
+    //tanques[N]->setProtocolo(QcomboProtocolo->currentIndex());
+    tanques[S]->setID(ui->Combo_Sonda->currentText());
+    tanques[S]->SetnameTank(ui->Line_Nombre->text());
+   // tanques[S]->color(Tconf->GetColor(),true);
+
+    switch(G){
+    case 1:
+        tanques[S]->SetTankAltura(ui->Line_Medida1->text().toDouble());
+        tanques[S]->SetTankLargo(ui->Line_Medida2->text().toDouble());
+        //     tanques[S]->SetTankAncho(ui->lineEdit->text().toDouble());
+        tanques[S]->setTipo(2);
+        break;
+    case 2:
+        tanques[S]->SetTankDiametro(ui->Line_Medida1->text().toDouble());
+        tanques[S]->SetTankLargo(ui->Line_Medida2->text().toDouble());
+        tanques[S]->setTipo(1);                                                                           break;
+    case 3:
+        tanques[S]->SetTankDiametro(ui->Line_Medida1->text().toDouble());
+        tanques[S]->SetTankAltura(ui->Line_Medida2->text().toDouble());
+        tanques[S]->setTipo(0);
+        break;
+    }
+    Enviar_qry("INSERT INTO `cistem`.`tanques` "
+               "(`Serie_Sonda`, `Nombre`, `Color`,`Tipo`,`Medida 1`,`Medida 2`) "
+               "VALUES ('"+ui->Combo_Sonda->currentText()+"'"
+                        ", '"+ui->Line_Nombre->text()+"'"
+                        ", '"+QString::number(ui->Combo_Color->currentIndex())+"'"
+                        ", '"+QString::number(ui->Combo_Tipo->currentIndex())+"'"
+                        ", '"+ui->Line_Medida1->text()+"'"
+                        ", '"+ui->Line_Medida2->text()+"');");
+
+    Descargar();
+    // S++;
+    ui->stackedWidget->setCurrentIndex(0);
+
+}
+
+void MainWindow::on_Btn_SalveComunicacion_clicked()
+{
+    QSqlQuery qry;
+    qry.exec("INSERT INTO `cistem`.`config_sonda` (`Baudios`, `Datos`, `Stop`, `Paridad`) VALUES ('300', '2', '7', 'Igualdad');");
+
+}
