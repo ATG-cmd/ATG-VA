@@ -128,7 +128,7 @@ border: 0px solid #000;
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>10</number>
+     <number>12</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -2589,9 +2589,9 @@ QScrollBar::add-line:vertical {
      <widget class="QScrollArea" name="scrollArea">
       <property name="geometry">
        <rect>
-        <x>340</x>
-        <y>100</y>
-        <width>711</width>
+        <x>300</x>
+        <y>80</y>
+        <width>691</width>
         <height>351</height>
        </rect>
       </property>
@@ -2599,7 +2599,9 @@ QScrollBar::add-line:vertical {
        <string notr="true">QTableWidget{
 	background-color: #C0C0C0;
 }
-
+QScrollArea{
+	backgroun-color: blue;
+}
 QScrollBar:vertical {      
      border: 2px solid grey;   
      background:#C0C0C0;
@@ -2678,8 +2680,8 @@ QScrollBar::add-line:vertical {
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>661</width>
-         <height>534</height>
+         <width>641</width>
+         <height>623</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_2">
@@ -2693,6 +2695,9 @@ QScrollBar::add-line:vertical {
           <property name="text">
            <string>Tanque</string>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
          </widget>
         </item>
         <item row="0" column="1">
@@ -2703,11 +2708,18 @@ QScrollBar::add-line:vertical {
            </font>
           </property>
           <property name="layoutDirection">
-           <enum>Qt::RightToLeft</enum>
+           <enum>Qt::LeftToRight</enum>
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
+        <item row="1" column="0" colspan="2">
+         <widget class="Line" name="line">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" rowspan="2">
          <widget class="QLabel" name="label_8">
           <property name="font">
            <font>
@@ -2717,9 +2729,12 @@ QScrollBar::add-line:vertical {
           <property name="text">
            <string>Volumen total</string>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
          </widget>
         </item>
-        <item row="1" column="1">
+        <item row="3" column="1">
          <widget class="QLineEdit" name="Line_volumen_total">
           <property name="font">
            <font>
@@ -2737,7 +2752,14 @@ QScrollBar::add-line:vertical {
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
+        <item row="4" column="0" colspan="2">
+         <widget class="Line" name="line_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0" rowspan="2">
          <widget class="QLabel" name="label_17">
           <property name="font">
            <font>
@@ -2747,9 +2769,12 @@ QScrollBar::add-line:vertical {
           <property name="text">
            <string>Volumen maximo</string>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
          </widget>
         </item>
-        <item row="2" column="1">
+        <item row="6" column="1">
          <widget class="QLineEdit" name="Line_volumen_maximo">
           <property name="font">
            <font>
@@ -2767,7 +2792,14 @@ QScrollBar::add-line:vertical {
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
+        <item row="7" column="0" colspan="2">
+         <widget class="Line" name="line_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0" rowspan="2">
          <widget class="QLabel" name="label_18">
           <property name="font">
            <font>
@@ -2777,9 +2809,12 @@ QScrollBar::add-line:vertical {
           <property name="text">
            <string>Producto alto</string>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
          </widget>
         </item>
-        <item row="3" column="1">
+        <item row="9" column="1">
          <widget class="QLineEdit" name="Line_producto_alto">
           <property name="font">
            <font>
@@ -2797,7 +2832,14 @@ QScrollBar::add-line:vertical {
           </property>
          </widget>
         </item>
-        <item row="4" column="0">
+        <item row="10" column="0" colspan="2">
+         <widget class="Line" name="line_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="0" rowspan="2">
          <widget class="QLabel" name="label_19">
           <property name="font">
            <font>
@@ -2807,9 +2849,12 @@ QScrollBar::add-line:vertical {
           <property name="text">
            <string>Desbordamiento</string>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
          </widget>
         </item>
-        <item row="4" column="1">
+        <item row="12" column="1">
          <widget class="QLineEdit" name="Line_desbordamiento">
           <property name="font">
            <font>
@@ -2827,7 +2872,14 @@ QScrollBar::add-line:vertical {
           </property>
          </widget>
         </item>
-        <item row="5" column="0">
+        <item row="13" column="0" colspan="2">
+         <widget class="Line" name="line_5">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="14" column="0" rowspan="2">
          <widget class="QLabel" name="label_21">
           <property name="font">
            <font>
@@ -2837,9 +2889,12 @@ QScrollBar::add-line:vertical {
           <property name="text">
            <string>Limite de entrega</string>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
          </widget>
         </item>
-        <item row="5" column="1">
+        <item row="15" column="1">
          <widget class="QLineEdit" name="Line_limite_entrega">
           <property name="font">
            <font>
@@ -2857,7 +2912,14 @@ QScrollBar::add-line:vertical {
           </property>
          </widget>
         </item>
-        <item row="6" column="0">
+        <item row="16" column="0" colspan="2">
+         <widget class="Line" name="line_7">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="17" column="0" rowspan="2">
          <widget class="QLabel" name="label_22">
           <property name="font">
            <font>
@@ -2867,9 +2929,12 @@ QScrollBar::add-line:vertical {
           <property name="text">
            <string>Producto bajo</string>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
          </widget>
         </item>
-        <item row="6" column="1">
+        <item row="18" column="1">
          <widget class="QLineEdit" name="Line_producto_bajo">
           <property name="font">
            <font>
@@ -2887,7 +2952,14 @@ QScrollBar::add-line:vertical {
           </property>
          </widget>
         </item>
-        <item row="7" column="0">
+        <item row="19" column="0" colspan="2">
+         <widget class="Line" name="line_6">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="20" column="0" rowspan="2">
          <widget class="QLabel" name="label_23">
           <property name="font">
            <font>
@@ -2897,9 +2969,12 @@ QScrollBar::add-line:vertical {
           <property name="text">
            <string>Alarma agua alta</string>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
          </widget>
         </item>
-        <item row="7" column="1">
+        <item row="21" column="1">
          <widget class="QLineEdit" name="Line_alarma_agua">
           <property name="font">
            <font>
@@ -2917,7 +2992,14 @@ QScrollBar::add-line:vertical {
           </property>
          </widget>
         </item>
-        <item row="8" column="0">
+        <item row="22" column="0" colspan="2">
+         <widget class="Line" name="line_8">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="23" column="0" rowspan="2">
          <widget class="QLabel" name="label_24">
           <property name="font">
            <font>
@@ -2927,9 +3009,12 @@ QScrollBar::add-line:vertical {
           <property name="text">
            <string>Advertecia agua alta</string>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
          </widget>
         </item>
-        <item row="8" column="1">
+        <item row="24" column="1">
          <widget class="QLineEdit" name="Line_advertencia_agua">
           <property name="font">
            <font>
@@ -2944,6 +3029,13 @@ QScrollBar::add-line:vertical {
           </property>
           <property name="placeholderText">
            <string>000.00</string>
+          </property>
+         </widget>
+        </item>
+        <item row="25" column="0" colspan="2">
+         <widget class="Line" name="line_9">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
          </widget>
         </item>
@@ -3112,321 +3204,304 @@ QScrollBar::add-line:vertical {
      </widget>
     </widget>
     <widget class="QWidget" name="Station">
-     <widget class="QComboBox" name="Combo_User">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
-        <x>840</x>
-        <y>290</y>
-        <width>251</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>32</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <item>
-       <property name="text">
-        <string>YES</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>NO</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="Lab_Printer1">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
+        <x>90</x>
         <y>100</y>
-        <width>291</width>
-        <height>52</height>
+        <width>981</width>
+        <height>351</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>32</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Station Code</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="Line_User">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>370</x>
-        <y>290</y>
-        <width>421</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>32</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="statusTip">
-       <string/>
-      </property>
-      <property name="maxLength">
-       <number>40</number>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="Line_StationCode">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>370</x>
-        <y>100</y>
-        <width>421</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>32</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="statusTip">
-       <string/>
-      </property>
-      <property name="maxLength">
-       <number>40</number>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="Line_Memo">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>370</x>
-        <y>380</y>
-        <width>421</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>32</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="statusTip">
-       <string/>
-      </property>
-      <property name="maxLength">
-       <number>40</number>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="Combo_StationName">
-      <property name="geometry">
-       <rect>
-        <x>840</x>
-        <y>200</y>
-        <width>251</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>32</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <item>
-       <property name="text">
-        <string>YES</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>NO</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QComboBox" name="Combo_Memo">
-      <property name="geometry">
-       <rect>
-        <x>840</x>
-        <y>380</y>
-        <width>251</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>32</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <item>
-       <property name="text">
-        <string>YES</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>NO</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLineEdit" name="Line_StationName">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>370</x>
-        <y>200</y>
-        <width>421</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>32</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="statusTip">
-       <string/>
-      </property>
-      <property name="maxLength">
-       <number>40</number>
-      </property>
-     </widget>
-     <widget class="QLabel" name="Lab_Printer3">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>290</y>
-        <width>131</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>32</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>User</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="Lab_Printer4">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>380</y>
-        <width>161</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>32</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Memo</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="Combo_StationCode">
-      <property name="geometry">
-       <rect>
-        <x>840</x>
-        <y>100</y>
-        <width>251</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>32</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <item>
-       <property name="text">
-        <string>YES</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>NO</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="Lab_Printer2">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>200</y>
-        <width>271</width>
-        <height>52</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>32</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Statio name</string>
-      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QLabel" name="Lab_Printer1">
+         <property name="font">
+          <font>
+           <pointsize>32</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Station Code </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="Line_StationCode">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>32</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="statusTip">
+          <string/>
+         </property>
+         <property name="text">
+          <string>1234567890123456789012345678901234567890</string>
+         </property>
+         <property name="maxLength">
+          <number>40</number>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QComboBox" name="Combo_StationCode">
+         <property name="font">
+          <font>
+           <pointsize>32</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <item>
+          <property name="text">
+           <string>YES</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>NO</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
+        <widget class="Line" name="line_10">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="Lab_Printer2">
+         <property name="font">
+          <font>
+           <pointsize>32</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Statio name </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="Line_StationName">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>32</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="statusTip">
+          <string/>
+         </property>
+         <property name="maxLength">
+          <number>40</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QComboBox" name="Combo_StationName">
+         <property name="font">
+          <font>
+           <pointsize>32</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <item>
+          <property name="text">
+           <string>YES</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>NO</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="3">
+        <widget class="Line" name="line_11">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="Lab_Printer3">
+         <property name="font">
+          <font>
+           <pointsize>32</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>User </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="Line_User">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>32</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="statusTip">
+          <string/>
+         </property>
+         <property name="maxLength">
+          <number>40</number>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QComboBox" name="Combo_User">
+         <property name="font">
+          <font>
+           <pointsize>32</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <item>
+          <property name="text">
+           <string>YES</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>NO</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="3">
+        <widget class="Line" name="line_12">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="Lab_Printer4">
+         <property name="font">
+          <font>
+           <pointsize>32</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Memo </string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QLineEdit" name="Line_Memo">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>32</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="statusTip">
+          <string/>
+         </property>
+         <property name="maxLength">
+          <number>40</number>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="2">
+        <widget class="QComboBox" name="Combo_Memo">
+         <property name="font">
+          <font>
+           <pointsize>32</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <item>
+          <property name="text">
+           <string>YES</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>NO</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="7" column="0" colspan="3">
+        <widget class="Line" name="line_13">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>
