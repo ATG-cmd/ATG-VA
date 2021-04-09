@@ -41,6 +41,7 @@ margin: 5px 0px 0px 0px;
 }
 QLineEdit{
 border-radius: 10px;
+
 }
 QTableWidget{
 	background-color: #C0C0C0;
@@ -50,7 +51,7 @@ QScrollBar:vertical {
      border: 2px solid grey;   
      background:#C0C0C0;
      width: 50px;
-     margin: 39px 0 39px 0;               
+     margin: 39px 0 39px 0;              
  }
  QScrollBar::handle:vertical {
      background:white;
@@ -99,8 +100,6 @@ QScrollBar::add-line:vertical {
 QScrollArea{
 border: 0px solid #000;
 }
-
-
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -167,7 +166,7 @@ border: 0px solid #000;
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
+          <iconset>
            <normaloff>:/Probeta.png</normaloff>:/Probeta.png</iconset>
          </property>
          <property name="iconSize">
@@ -193,7 +192,7 @@ border: 0px solid #000;
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
+          <iconset>
            <normaloff>:/Tanque.png</normaloff>:/Tanque.png</iconset>
          </property>
          <property name="iconSize">
@@ -219,7 +218,7 @@ border: 0px solid #000;
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
+          <iconset>
            <normaloff>:/Entregas.png</normaloff>:/Entregas.png</iconset>
          </property>
          <property name="iconSize">
@@ -245,7 +244,7 @@ border: 0px solid #000;
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
+          <iconset>
            <normaloff>:/Impresora.png</normaloff>:/Impresora.png</iconset>
          </property>
          <property name="iconSize">
@@ -271,7 +270,7 @@ border: 0px solid #000;
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
+          <iconset>
            <normaloff>:/Comunicacion.png</normaloff>:/Comunicacion.png</iconset>
          </property>
          <property name="iconSize">
@@ -297,7 +296,7 @@ border: 0px solid #000;
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
+          <iconset>
            <normaloff>:/Tabla C.png</normaloff>:/Tabla C.png</iconset>
          </property>
          <property name="iconSize">
@@ -323,7 +322,7 @@ border: 0px solid #000;
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
+          <iconset>
            <normaloff>:/Alarmas.png</normaloff>:/Alarmas.png</iconset>
          </property>
          <property name="iconSize">
@@ -349,7 +348,7 @@ border: 0px solid #000;
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
+          <iconset>
            <normaloff>:/station.png</normaloff>:/station.png</iconset>
          </property>
          <property name="iconSize">
@@ -1390,6 +1389,9 @@ QScrollBar::add-line:vertical {
       <property name="focusPolicy">
        <enum>Qt::NoFocus</enum>
       </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <property name="currentIndex">
        <number>0</number>
       </property>
@@ -1939,7 +1941,7 @@ QScrollBar::add-line:vertical {
        <string>Login</string>
       </property>
       <property name="icon">
-       <iconset resource="Imagenes/Resourse.qrc">
+       <iconset>
         <normaloff>:/Login.png</normaloff>:/Login.png</iconset>
       </property>
       <property name="iconSize">
@@ -1967,7 +1969,7 @@ QScrollBar::add-line:vertical {
        <string/>
       </property>
       <property name="icon">
-       <iconset resource="Imagenes/Resourse.qrc">
+       <iconset>
         <normaloff>:/Usuario.png</normaloff>:/Usuario.png</iconset>
       </property>
       <property name="iconSize">
@@ -3564,7 +3566,7 @@ padding: 100px;</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="Imagenes/Resourse.qrc">
+     <iconset>
       <normaloff>:/GC.png</normaloff>:/GC.png</iconset>
     </property>
     <property name="iconSize">
@@ -3590,7 +3592,7 @@ padding: 100px;</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="Imagenes/Resourse.qrc">
+     <iconset>
       <normaloff>:/Guardar.png</normaloff>:/Guardar.png</iconset>
     </property>
     <property name="iconSize">
@@ -3616,7 +3618,7 @@ padding: 100px;</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="Imagenes/Resourse.qrc">
+     <iconset>
       <normaloff>:/Config.png</normaloff>:/Config.png</iconset>
     </property>
     <property name="iconSize">
@@ -3642,7 +3644,7 @@ padding: 100px;</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="Imagenes/Resourse.qrc">
+     <iconset>
       <normaloff>:/Regresar.png</normaloff>:/Regresar.png</iconset>
     </property>
     <property name="iconSize">
@@ -3718,8 +3720,6 @@ color: white;
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources>
-  <include location="Imagenes/Resourse.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
