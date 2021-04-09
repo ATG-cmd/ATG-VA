@@ -1486,6 +1486,7 @@ void MainWindow::on_Combo_StationCode_currentIndexChanged(int index)
         ui->Line_StationCode->setEnabled(true);
     }else{
         ui->Line_StationCode->setEnabled(false);
+        ui->Line_StationCode->clear();
     }
 }
 
@@ -1496,6 +1497,7 @@ void MainWindow::on_Combo_StationName_currentIndexChanged(int index)
         ui->Line_StationName->setEnabled(true);
     }else{
         ui->Line_StationName->setEnabled(false);
+        ui->Line_StationName->clear();
     }
 }
 
@@ -1506,6 +1508,7 @@ void MainWindow::on_Combo_User_currentIndexChanged(int index)
         ui->Line_User->setEnabled(true);
     }else{
         ui->Line_User->setEnabled(false);
+        ui->Line_User->clear();
     }
 }
 
@@ -1516,5 +1519,6 @@ void MainWindow::on_Combo_Memo_currentIndexChanged(int index)
         ui->Line_Memo->setEnabled(true);
     }else{
         ui->Line_Memo->setEnabled(false);
+        ui->Line_Memo->clear();
     }
 }
