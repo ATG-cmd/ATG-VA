@@ -10,6 +10,7 @@
 #include <QTabWidget>
 
 
+
 QString Tanque::getID() const { return ID; }
 
 void Tanque::setID(const QString &value) { ID = value; }
@@ -33,9 +34,6 @@ void Tanque::setProtocolo(int value) { Protocolo = value; }
 bool Tanque::getTMaximizado() const { return TMaximizado; }
 
 void Tanque::setTMaximizado(bool value) { TMaximizado = value; }
-
-
-
 
 void Tanque::offline()
 {
@@ -76,6 +74,37 @@ void Tanque::setIshabilitado(bool value)
     ishabilitado = value;
 }
 
+double Tanque::getVolumenCon() const
+{
+    return VolumenCon;
+}
+
+void Tanque::setVolumenCon(double value)
+{
+    VolumenCon = value;
+}
+
+double Tanque::getVolumenA() const
+{
+    return VolumenA;
+}
+
+void Tanque::setVolumenA(double value)
+{
+    VolumenA = value;
+}
+
+
+double Tanque::getNivelAgua() const
+{
+    return NivelAgua;
+}
+
+void Tanque::setNivelAgua(double value)
+{
+    NivelAgua = value;
+}
+
 void Tanque::clickbuton(){ setTMaximizado(true); emit Camino(); }
 
 Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
@@ -93,7 +122,6 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
      groupBox_4 = new QGroupBox(Boton);
      Ltemp = new QLabel(groupBox_4);
      latanq = new QLabel(groupBox_4);
-
 
       QFont font3;
       font3.setPointSize(18);
@@ -234,11 +262,6 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
       T1->setFlat(true);
       T1->setChecked(false);
 
-      layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
-      layoutWidget1->setGeometry(QRect(0, 5, 231, 253));
-      QFont font4;
-      font4.setPointSize(25);
-
  }
 
      groupBox_4->setObjectName(QString::fromUtf8("groupBox_4"));
@@ -277,12 +300,13 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 
      latanq->raise();
 
-
  }
 
 
  double Tanque::SetAltura(double height, double water)
  {
+
+
      double r=0;
      double h=0;
      double res=0;
@@ -300,7 +324,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
      double v = 0;
      bool Sup =true;
 
-
+    if (TMaximizado)
     AltVal->setText(QString::number(height,'f',2));
      AlturaTank = height;
 
@@ -370,7 +394,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
            qDebug () << "Volumen con Formula del jefe" << res;
            qDebug() << "Volumen del agua: " << reswater;
 
-
+             if (TMaximizado)
              VolVal->setText(QString::number(res,'f',2)+" Lts");
 
             // qDebug() << (ProGaugeCapacidad / (((r * r) * (qAcos((r - h) / r ))) - ((r - h) * (qSqrt((ProGaugeDiametro * h) - (h * h)))))) * 1000000;
@@ -402,9 +426,11 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 //             break;
 
                   }
+     if (TMaximizado){
               NivAVal->setText(QString::number(water, 'f', 2)+ " MM");
-              VolVal->setText(QString::number(res,'f',2)+" Lts");
+              VolVal->setText(QString::number(res,'f',2)+" Lts");}
               SetVolumen(res,reswater);
+               NivelAgua = water;
        return res;
 
  }
@@ -457,7 +483,6 @@ void Tanque::SetVolumen(double c ,double a)
      E = E.number(a);
      F= F.number(b);
 
-
     styleSheetTank =
             "font: 30pt \"Bold\";"
             "color: black;"
@@ -501,6 +526,7 @@ double Tanque::GetLimSup() { return LimSup; }
 void Tanque::SetTemperatura(double T)
 {
     Temperatura = T;
+    if(TMaximizado)
    TmpVal->setText(QString::number(T) + " ºC");
 
    double d=0;
@@ -549,7 +575,7 @@ void Tanque::SetProducto_Alto(double producto_alto) { ProductoAlto = producto_al
 
 double Tanque::GetProducto_Alto() { return ProductoAlto; }
 
-void Tanque::SetDesvordamiento(double desboramiento) { DesbordamientoP = desboramiento;}
+void Tanque::SetDesbordamiento(double desboramiento) { DesbordamientoP = desboramiento;}
 
 double Tanque::GetDesbordamiento() { return DesbordamientoP; }
 
@@ -559,7 +585,7 @@ double Tanque::GetNecesitaProducto() { return NecesitaProducto; }
 
 void Tanque::SetProductoBajo(double producto_bajo) { ProductoBajo = producto_bajo; }
 
-double Tanque::GetProducto() { return ProductoBajo; }
+double Tanque::GetProductoBajo() { return ProductoBajo; }
 
 void Tanque::SetAlarma_de_Agua(double alarma_agua) { Alarma_de_Agua = alarma_agua; }
 
@@ -587,9 +613,7 @@ double Tanque::GetTankAncho(){ return Tankancho; }
 
 double Tanque::GetTemperatura(){ return Temperatura;}
 
-void Tanque::SetNivAgua() { }
 
-void Tanque::GetNivAgua() { }
 
 void Tanque::Setgeometry(int x, int y,int XTG,int YTG)
 {
@@ -669,8 +693,8 @@ void Tanque::Setgeometry(int x, int y,int XTG,int YTG)
             "stop: "+F+" rgb(0, 0, 255),"
             "stop:1 rgb(0, 0, 255))");
    groupBox_4->setGeometry(QRect(10, 20, x2+x2,x2+x2));
-                          }
 
+    }
 }
 
 void Tanque::color(QString Ct1,bool A)
@@ -703,3 +727,4 @@ QString Tanque::GetColor() { return Color2; }
 void Tanque::SetnameTank(const QString &SNT) {T1->setTitle(SNT); NomTank = SNT; }
 
 QString Tanque::GetNameTank(){ return NomTank; }
+

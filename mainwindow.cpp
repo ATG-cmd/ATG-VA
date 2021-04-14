@@ -4,6 +4,8 @@
 #include <QLineEdit>
 #include <sonda.h>
 #include <dialog.h>
+#include <QFrame>
+#include <qmath.h>
 
 #define SOH 0x01
 const int lenbuff1 = 1024;              // Longitud de buffer, Ajustar
@@ -62,10 +64,10 @@ MainWindow::MainWindow(QWidget *parent)
         x+=45;
     }
 
-  //connect(ui->Btn_SaveTank,&QPushButton::clicked,this,&MainWindow::Guardar_Tanque);
+  connect(ui->Regresar_Home,&QPushButton::clicked,this,&MainWindow::on_Btn_Home_clicked);
 
 //    Tconf = new Tanque(ui->Tanque,false);
-    Maximizado = new Tanque(ui->Tanque_Maximizado,true);
+    Maximizado = new Tanque(ui->Tanque_Maximizado,false);
 //    Tconf->Setgeometry(500,5,100,80);
 //    Tconf->SetnameTank("Sin Nombre");
     ConCombocol(ui->Combo_Color);
@@ -123,6 +125,9 @@ MainWindow::MainWindow(QWidget *parent)
     consultaBD();
     Buscar_Tanques();
     Descargar();
+
+   ui->Tab_entregas->horizontalHeader()->setVisible(true);
+   ui->tableWidget->horizontalHeader()->setVisible(true);
 }
 
 MainWindow::~MainWindow()
@@ -215,8 +220,6 @@ void MainWindow::on_Btn_Tanque_clicked()
              ui->stackedWidget->setCurrentIndex(4);
              ui->Lab_Titulo->setText("Tabla De Cubicacion");
          } });
-
-
 
      ui->Lab_Titulo->setText("Tanque");
      ui->Combo_Sonda->addItem(" ");
@@ -779,12 +782,12 @@ void MainWindow::Guardar_Sonda()
               "`Unidad Volumen`, `Ajuste Altura`)"
               " VALUES ('"+ui->line_Serie->text()+"',"
                                                   " "+ui->Combo_protocolo->currentText()+","
-                                                                                         " "+ui->ComboFlotadores->currentText()+","
-                                                                                                                                " '"+ui->Line_Licencia->text()+"', "
-                                                                                                                                                               "'"+ui->ComboUDistancia->currentText()+"'"
-                                                                                                                                                                                                      ", '"+ui->Combo_UTemperatura->currentText()+"',"
-                                                                                                                                                                                                                                                  "'"+ui->Combo_UVolumen->currentText()+"',"
-                                                                                                                                                                                                                                                                                        " "+ui->Line_AjusteAltura->text()+");");
+                                                  " "+ui->ComboFlotadores->currentText()+","
+                                                  " '"+ui->Line_Licencia->text()+"', "
+                                                  "'"+ui->ComboUDistancia->currentText()+"'"
+                                                  ", '"+ui->Combo_UTemperatura->currentText()+"',"
+                                                  "'"+ui->Combo_UVolumen->currentText()+"',"
+                                                  " "+ui->Line_AjusteAltura->text()+");");
     qDebug() << A;
 
     qry.exec(A);
@@ -963,6 +966,33 @@ void MainWindow::Descargar()
     {
         QMessageBox::critical(this, "Error",tr(qry.lastError().text().toUtf8()));
     }
+    if(qry.exec("SElECT * FROM CISTEM.LIMITES WHERE Id_Taque = 2"))
+    {
+       while(qry.next())
+       {
+
+           tanques[0]->SetVolMax(qry.value(2).toDouble());
+           tanques[0]->SetProducto_Alto(qry.value(3).toDouble());
+           tanques[0]->SetDesbordamiento(qry.value(4).toDouble());
+           tanques[0]->SetNecesitaProducto(qry.value(5).toDouble());
+           tanques[0]->SetProductoBajo(qry.value(6).toDouble());
+           tanques[0]->SetAlarma_de_Agua(qry.value(7).toDouble());
+           tanques[0]->SetAdvertencua_de_Agua(qry.value(8).toDouble());
+
+
+           qDebug() <<"Hola Desde Limites ;p"
+                    <<qry.value(0).toString()
+                    <<qry.value(1).toString()
+                    <<qry.value(2).toString()
+                    <<qry.value(3).toString()
+                    <<qry.value(4).toString()
+                    <<qry.value(5).toString()
+                    <<qry.value(6).toString();
+       }
+    }
+    else {
+        qDebug() << "Valio Cabeza de Puerco";
+    }
 }
 
 void MainWindow::Geometrytank()
@@ -1043,16 +1073,16 @@ void MainWindow::Tanque_Maximisado()
 
         qDebug()<< "indiceM"<< indiceM;
 
-        Maximizado->Setgeometry(0,-30,1200,580);
+        Maximizado->Setgeometry(20,-10,500,580);
         Maximizado->setID(tanques[indiceM]->getID());
         ui->Lab_Titulo->setText(tanques[indiceM]->GetNameTank());
         Maximizado->SetnameTank("");
         Maximizado->color(tanques[indiceM]->GetColor(),false);
         Maximizado->SetVolMax(tanques[indiceM]->GetVolMax());
         Maximizado->SetProducto_Alto(tanques[indiceM]->GetProducto_Alto());
-        Maximizado->SetDesvordamiento(tanques[indiceM]->GetDesbordamiento());
+        Maximizado->SetDesbordamiento(tanques[indiceM]->GetDesbordamiento());
         Maximizado->SetNecesitaProducto(tanques[indiceM]->GetNecesitaProducto());
-        Maximizado->SetProductoBajo(tanques[indiceM]->GetProducto());
+        Maximizado->SetProductoBajo(tanques[indiceM]->GetProductoBajo());
         Maximizado->SetAlarma_de_Agua(tanques[indiceM]->GetAlarma_de_Agua());
         Maximizado->SetAdvertencua_de_Agua(tanques[indiceM]->GetAdvertencia_de_Agua());
         Maximizado->setTankTiempoEntrega(tanques[indiceM]->getTankTiempoEntrega());
@@ -1080,8 +1110,65 @@ void MainWindow::Tanque_Maximisado()
         }
 
     }
-    Maximizado->SetAltura(tanques[indiceM]->GetAltura(),100.00);
+       int por1 = (100 * tanques[indiceM]->GetVolMax())/38439.85;
+       int y = 430 * por1/38439.85;
+       int y1 = calcY(tanques[indiceM]->GetProducto_Alto());
+       int y2 = calcY(tanques[indiceM]->GetDesbordamiento());
+       int y3 = calcY(tanques[indiceM]->GetNecesitaProducto());
+       int por = (100 * tanques[indiceM]->GetProductoBajo()/38439.85);
+       int y4 = ((430 * por) /38439.85);
+
+    connect(ui->tabWidget_2, QOverload<int>::of(&QTabWidget::currentChanged),
+            [=](int index){
+        switch (index) {
+
+        case 0:
+            ui->PuntoVolMax->setGeometry(200,200,50,50);
+            ui->Bola_ProductoAlto->setGeometry(200,200,50,50);
+            ui->Bola_Desbordamiento->setGeometry(200,200,50,50);
+            ui->Bola_NecesitaEntrega->setGeometry(200,300,50,50);
+             ui->Bola_ProductoBajo->setGeometry(200,350,50,50);
+             ui->Bola_AlarmaAgua->setGeometry(200,380,50,50);
+            ui->Bola_Advertencia_Agua->setGeometry(200,400,50,50);
+
+
+            qDebug()<< "Index Cambio 0"; break;
+         case 1:
+
+            ui->PuntoVolMax->setGeometry(X(y),y,50,50);
+            ui->Bola_ProductoAlto->setGeometry(X(y1),y1,50,50);
+            ui->Bola_Desbordamiento->setGeometry(X(y2),y2,50,50);
+            ui->Bola_NecesitaEntrega->setGeometry(X(y3),y3,50,50);
+            ui->Bola_ProductoBajo->setGeometry(X(430-y4),430-y4,50,50);
+            ui->Bola_AlarmaAgua->setGeometry(X(380),380,50,50);
+            ui->Bola_Advertencia_Agua->setGeometry(X(400),400,50,50);
+
+            qDebug() << "Index Cambio 1"; break;
+        default:
+            qDebug() << "Entre en el default"; break;
+
+        }
+
+    });
+
+   Maximizado->setTMaximizado(false);
+    tanques[indiceM]->setTMaximizado(false);
+    Maximizado->SetAltura(tanques[indiceM]->GetAltura(),tanques[indiceM]->getNivelAgua());
     Maximizado->SetTemperatura(tanques[indiceM]->GetTemperatura());
+    ui->Lab_VolMaxi->setText(QString::number(tanques[indiceM]->getVolumenCon()));
+    ui->Lab_AlturaMaxi->setText(QString::number(tanques[indiceM]->GetAltura()));
+    ui->Lab_VolAgua->setText(QString::number(tanques[indiceM]->getVolumenA()));
+    ui->Lab_AlturaAgua->setText(QString::number(tanques[indiceM]->getNivelAgua()));
+    ui->Lab_Maxitemp->setText(QString::number(tanques[indiceM]->GetTemperatura()));
+    ui->Lab_Diametro->setText(QString::number(tanques[indiceM]->GetTankDiametro()));
+    ui->Lab_VolMaximo->setText(QString::number(tanques[indiceM]->GetVolMax()));
+    ui->Lab_DesbordamientomMaxi->setText(QString::number(tanques[indiceM]->GetDesbordamiento()));
+    ui->Lab_ProductoAlto->setText(QString::number(tanques[indiceM]->GetProducto_Alto()));
+    ui->Lab_NecesitaEntrega->setText(QString::number(tanques[indiceM]->GetNecesitaProducto()));
+    ui->Lab_ProductoBajo->setText(QString::number(tanques[indiceM]->GetProductoBajo()));
+    ui->Lab_AlarmaAguaAlta->setText(QString::number(tanques[indiceM]->GetAlarma_de_Agua()));
+    ui->Lab_AdvertenciaAlarmaAlta->setText(QString::number(tanques[indiceM]->GetAdvertencia_de_Agua()));
+
     inicbuff1();
 
     qDebug() << "Hola desde Tanque maximizado ;p";
@@ -1362,6 +1449,16 @@ void MainWindow::clearCubicTableFields()
     ui->Line_Volumen->setText("");
 }
 
+int MainWindow::X(int Y)
+{
+    return  qSqrt(50625 - qPow(Y-215,2))+270;
+}
+
+int MainWindow::calcY(int y)
+{
+    return  430-(430 * y )/100;
+}
+
 
 void MainWindow::on_Btn_Cub_Editar_clicked()
 {
@@ -1485,12 +1582,6 @@ cadena.append("SELECT * FROM `cistem`.`entregas` where Tanque_Nombre = '"+ui->CS
 
 
     });
-
-
-
-
-
-
 }
 
 void MainWindow::deliveryProGaugeCountIncrement(){
@@ -1606,4 +1697,17 @@ void MainWindow::on_Btn_SalveComunicacion_clicked()
     QSqlQuery qry;
     qry.exec("INSERT INTO `cistem`.`config_sonda` (`Baudios`, `Datos`, `Stop`, `Paridad`) VALUES ('300', '2', '7', 'Igualdad');");
 
+}
+
+//int x(int y){
+//    int h = 250;
+//    int k = 250;
+
+//    return
+//}
+
+
+void MainWindow::on_btn_menu_clicked()
+{
+      ui->stackedWidget->setCurrentIndex(13);
 }

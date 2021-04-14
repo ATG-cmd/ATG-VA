@@ -10,6 +10,10 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QPlainTextEdit>
+#include <QtWidgets/QFormLayout>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QTabWidget>
+#include <QtWidgets/QWidget>
 
 class Tanque :public QWidget
 {
@@ -18,7 +22,7 @@ class Tanque :public QWidget
     QString NomTank;
     QString Cad;
     QString ID;
-    bool TMaximizado;
+    bool TMaximizado = true;
 
     int contador=0;
     int niv;
@@ -46,6 +50,7 @@ class Tanque :public QWidget
     double distancia =500;
     double angle= 50;
     double frombase=500;
+    double NivelAgua;
 
 
     int nivA;
@@ -118,6 +123,52 @@ public:
    QTabWidget *Tab;
    QWidget * Tab1;
    QWidget * tab_2;
+   QWidget *centralwidget;
+       QTabWidget *tabWidget;
+       QWidget *tab;
+       QWidget *formLayoutWidget;
+       QFormLayout *formLayout;
+       QLabel *label;
+       QLabel *label_7;
+       QLabel *label_2;
+       QLabel *label_8;
+       QLabel *label_3;
+       QLabel *label_9;
+       QLabel *label_4;
+       QLabel *label_10;
+       QLabel *label_5;
+       QLabel *label_11;
+       QLabel *label_6;
+       QLabel *label_12;
+       QLabel *label_13;
+       QLabel *label_14;
+       QLabel *label_15;
+       QLabel *label_16;
+       QLabel *label_17;
+       QLabel *label_18;
+       QWidget *gridLayoutWidget;
+       QGridLayout *gridLayout;
+       QLabel *label_37;
+       QLabel *label_26;
+       QLabel *label_28;
+       QLabel *label_35;
+       QLabel *label_30;
+       QLabel *label_40;
+       QLabel *label_25;
+       QLabel *label_22;
+       QLabel *label_39;
+       QLabel *label_32;
+       QLabel *label_34;
+       QLabel *label_31;
+       QLabel *label_38;
+       QLabel *label_23;
+       QLabel *label_29;
+       QLabel *label_27;
+       QLabel *label_21;
+       QLabel *label_36;
+       QLabel *label_24;
+       QLabel *label_20;
+       QLabel *label_33;
 
    /*
        Max_volumen  Volumen Maximo
@@ -184,8 +235,6 @@ public:
     void SetTemperatura(double T);
     double GetTemperatura();
 
-    void SetNivAgua();
-    void GetNivAgua();
 
     void Setgeometry(int x, int y,int XTG,int YTG);
     void color(QString Ct1,bool A);
@@ -203,7 +252,7 @@ public:
     void SetProducto_Alto(double producto_alto);
     double GetProducto_Alto();
 
-    void SetDesvordamiento(double desboramiento);
+    void SetDesbordamiento(double desboramiento);
     double GetDesbordamiento();
 
 
@@ -211,7 +260,7 @@ public:
     double GetNecesitaProducto();
 
     void SetProductoBajo(double producto_bajo);
-    double GetProducto();
+    double GetProductoBajo();
 
 
     void SetAlarma_de_Agua(double alarma_agua);
@@ -266,6 +315,15 @@ public:
 
    bool getIshabilitado() const;
    void setIshabilitado(bool value);
+
+   double getVolumenCon() const;
+   void setVolumenCon(double value);
+
+   double getVolumenA() const;
+   void setVolumenA(double value);
+
+   double getNivelAgua() const;
+   void setNivelAgua(double value);
 };
 
 #endif // TANQUE_H

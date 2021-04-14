@@ -48,6 +48,7 @@ public:
     QLabel *Avisos;
     QLabel *Indicadores[2];
     QLabel *Reloj;
+    QFrame *line1;
     int N =-1;
     int S=0;
     int indice =0;
@@ -79,6 +80,8 @@ public:
     void enableCubicTableFields(bool v);
     void enableCubicTableBtn(bool a, bool b, bool c);
     void clearCubicTableFields();
+    int X(int Y);
+    int calcY(int y );
 
 
 private slots:
@@ -94,8 +97,6 @@ private slots:
     void on_Btn_Tanque_clicked();
 
    void ConCombocol(QComboBox *combo);
-
-
 
    void Horizontal();
 
@@ -180,6 +181,10 @@ private slots:
    void on_Btn_SaveTank_clicked();
 
    void on_Btn_SalveComunicacion_clicked();
+
+
+
+   void on_btn_menu_clicked();
 
 private:
     Ui::MainWindow *ui;
