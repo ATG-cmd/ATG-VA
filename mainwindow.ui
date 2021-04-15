@@ -127,7 +127,7 @@ border: 0px solid #000;
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>12</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -166,7 +166,7 @@ border: 0px solid #000;
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Probeta.png</normaloff>:/Probeta.png</iconset>
          </property>
          <property name="iconSize">
@@ -192,7 +192,7 @@ border: 0px solid #000;
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Tanque.png</normaloff>:/Tanque.png</iconset>
          </property>
          <property name="iconSize">
@@ -218,7 +218,7 @@ border: 0px solid #000;
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Entregas.png</normaloff>:/Entregas.png</iconset>
          </property>
          <property name="iconSize">
@@ -244,7 +244,7 @@ border: 0px solid #000;
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Impresora.png</normaloff>:/Impresora.png</iconset>
          </property>
          <property name="iconSize">
@@ -270,7 +270,7 @@ border: 0px solid #000;
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Comunicacion.png</normaloff>:/Comunicacion.png</iconset>
          </property>
          <property name="iconSize">
@@ -296,7 +296,7 @@ border: 0px solid #000;
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Tabla C.png</normaloff>:/Tabla C.png</iconset>
          </property>
          <property name="iconSize">
@@ -322,7 +322,7 @@ border: 0px solid #000;
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Alarmas.png</normaloff>:/Alarmas.png</iconset>
          </property>
          <property name="iconSize">
@@ -348,7 +348,7 @@ border: 0px solid #000;
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/station.png</normaloff>:/station.png</iconset>
          </property>
          <property name="iconSize">
@@ -1941,7 +1941,7 @@ QScrollBar::add-line:vertical {
        <string>Login</string>
       </property>
       <property name="icon">
-       <iconset>
+       <iconset resource="Imagenes/Resourse.qrc">
         <normaloff>:/Login.png</normaloff>:/Login.png</iconset>
       </property>
       <property name="iconSize">
@@ -1969,7 +1969,7 @@ QScrollBar::add-line:vertical {
        <string/>
       </property>
       <property name="icon">
-       <iconset>
+       <iconset resource="Imagenes/Resourse.qrc">
         <normaloff>:/Usuario.png</normaloff>:/Usuario.png</iconset>
       </property>
       <property name="iconSize">
@@ -3506,6 +3506,93 @@ QScrollBar::add-line:vertical {
       </layout>
      </widget>
     </widget>
+    <widget class="QWidget" name="PrintMenu">
+     <widget class="QScrollArea" name="scrollArea_2">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>80</y>
+        <width>921</width>
+        <height>331</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTableWidget{
+	background-color: #C0C0C0;
+}
+QScrollArea{
+	backgroun-color: blue;
+}
+QScrollBar:vertical {      
+     border: 2px solid grey;   
+     background:#C0C0C0;
+     width: 50px;
+     margin: 39px 0 39px 0;               
+ }
+ QScrollBar::handle:vertical {
+     background:white;
+     min-height: 38px;
+ }
+QScrollBar::add-line:vertical {
+     border: 2px solid grey;
+     background: royalblue;
+     height: 35px;
+     subcontrol-position: bottom;
+     subcontrol-origin: margin;
+ }
+ QScrollBar::sub-line:vertical {
+     border: 2px solid grey;
+     height: 35px;
+	 background: royalblue;
+     subcontrol-position: top;
+     subcontrol-origin: margin;
+ }
+ QScrollBar::up-arrow:vertical{
+  margin: 0px 0px 5px 0px;  
+  width: 0;
+  height: 0;
+  /*border: 2px solid #000;*/
+  border-top: 5px  solid royalblue;
+  border-right: 10px solid royalblue;
+  border-bottom: 20px  solid white;
+  border-left: 10px  solid royalblue ;
+}
+ QScrollBar::down-arrow:vertical {
+   
+  margin: 5px 0px 0px 0px;  
+  width: 0;
+  height: 0;
+  /*border: 2px solid #000;*/
+  border-top: 20px solid white;
+  border-right: 10px solid royalblue;
+  border-bottom: 5px solid royalblue ;
+  border-left: 10px  solid royalblue ;
+  
+ }
+
+ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+     background: none;
+ }
+</string>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOn</enum>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents_3">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>871</width>
+         <height>331</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+    </widget>
    </widget>
    <widget class="QLabel" name="Lab_Titulo">
     <property name="geometry">
@@ -3566,7 +3653,7 @@ padding: 100px;</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="Imagenes/Resourse.qrc">
       <normaloff>:/GC.png</normaloff>:/GC.png</iconset>
     </property>
     <property name="iconSize">
@@ -3592,7 +3679,7 @@ padding: 100px;</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="Imagenes/Resourse.qrc">
       <normaloff>:/Guardar.png</normaloff>:/Guardar.png</iconset>
     </property>
     <property name="iconSize">
@@ -3618,7 +3705,7 @@ padding: 100px;</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="Imagenes/Resourse.qrc">
       <normaloff>:/Config.png</normaloff>:/Config.png</iconset>
     </property>
     <property name="iconSize">
@@ -3644,7 +3731,7 @@ padding: 100px;</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="Imagenes/Resourse.qrc">
       <normaloff>:/Regresar.png</normaloff>:/Regresar.png</iconset>
     </property>
     <property name="iconSize">
@@ -3720,6 +3807,8 @@ color: white;
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="Imagenes/Resourse.qrc"/>
+ </resources>
  <connections/>
 </ui>

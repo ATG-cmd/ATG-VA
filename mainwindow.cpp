@@ -1126,6 +1126,7 @@ void MainWindow::on_Btn_tabla_cubicacion_clicked()
 {
     ui->stackedWidget->setCurrentIndex(4);
     ui->Lab_Titulo->setText("Tabla De Cubicacion");
+    ui->Regresar->setVisible(true);
     enableCubicTableFields(false);
     enableCubicTableBtn(true,false,false);
     clearCubicTableFields();
@@ -1356,7 +1357,7 @@ void MainWindow::guardar_limites()
 void MainWindow::on_Btn_Entregas_clicked()
 {
     ui->stackedWidget->setCurrentIndex(11);
-
+    ui->Regresar->setVisible(true);
     QString cadena;
     cadena.append("SELECT * FROM `cistem`.`entregas` LIMIT 1000;");
     QSqlQuery qry;
@@ -1521,4 +1522,16 @@ void MainWindow::on_Combo_Memo_currentIndexChanged(int index)
         ui->Line_Memo->setEnabled(false);
         ui->Line_Memo->clear();
     }
+}
+
+void MainWindow::on_Btn_Impresora_clicked()
+{
+    MainWindow::setFocus();
+    ui->stackedWidget->setCurrentIndex(13);
+    frame = 13;
+    ui->Btn_Guardar->setVisible(false);
+    //ui->Btn_Config->setVisible(false);
+    ui->Btn_user->setVisible(false);
+    ui->Regresar->setVisible(true);
+    ui->Lab_Titulo->setText("Printer");
 }

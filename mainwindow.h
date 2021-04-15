@@ -187,6 +187,8 @@ private slots:
 
    void on_Combo_Memo_currentIndexChanged(int index);
 
+   void on_Btn_Impresora_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
