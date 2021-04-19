@@ -107,7 +107,7 @@ border: 0px solid #000;
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>99</y>
+      <y>100</y>
       <width>1200</width>
       <height>571</height>
      </rect>
@@ -127,7 +127,7 @@ border: 0px solid #000;
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>12</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -3507,13 +3507,13 @@ QScrollBar::add-line:vertical {
      </widget>
     </widget>
     <widget class="QWidget" name="PrintMenu">
-     <widget class="QScrollArea" name="scrollArea_2">
+     <widget class="QTableWidget" name="tableWidget_3">
       <property name="geometry">
        <rect>
-        <x>220</x>
-        <y>80</y>
-        <width>921</width>
-        <height>331</height>
+        <x>160</x>
+        <y>100</y>
+        <width>321</width>
+        <height>192</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -3575,22 +3575,11 @@ QScrollBar::add-line:vertical {
  }
 </string>
       </property>
-      <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOn</enum>
-      </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
-      </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents_3">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>871</width>
-         <height>331</height>
-        </rect>
+      <column>
+       <property name="text">
+        <string>Reportes</string>
        </property>
-      </widget>
+      </column>
      </widget>
     </widget>
    </widget>
