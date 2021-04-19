@@ -157,7 +157,7 @@ QHeaderView::section:vertical
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>13</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -354,6 +354,32 @@ QHeaderView::section:vertical
          <property name="icon">
           <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Alarmas.png</normaloff>:/Alarmas.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>200</width>
+           <height>200</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QPushButton" name="Btn_inventarioConfig">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(110,145,141,100);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/Inventario.png</normaloff>:/Inventario.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -727,7 +753,7 @@ padding: 2px;</string>
          <x>0</x>
          <y>0</y>
          <width>721</width>
-         <height>1021</height>
+         <height>1075</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -736,7 +762,7 @@ padding: 2px;</string>
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="0" column="0">
          <layout class="QGridLayout" name="gridLayout_5">
-          <item row="10" column="1">
+          <item row="12" column="1">
            <widget class="QComboBox" name="Combo_Sonda">
             <property name="maximumSize">
              <size>
@@ -757,7 +783,7 @@ padding: 2px;</string>
             </property>
            </widget>
           </item>
-          <item row="14" column="0">
+          <item row="16" column="0">
            <widget class="QLabel" name="Lab_Medida1">
             <property name="enabled">
              <bool>true</bool>
@@ -774,14 +800,14 @@ padding: 2px;</string>
              <string/>
             </property>
             <property name="text">
-             <string>Altura</string>
+             <string>Diametro</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
            </widget>
           </item>
-          <item row="17" column="0" colspan="2">
+          <item row="19" column="0" colspan="2">
            <widget class="Line" name="line_17">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -809,7 +835,7 @@ padding: 2px;</string>
             </property>
            </widget>
           </item>
-          <item row="28" column="1">
+          <item row="30" column="1">
            <widget class="QComboBox" name="Combo_UTemperatura">
             <property name="enabled">
              <bool>false</bool>
@@ -863,7 +889,7 @@ padding: 2px;</string>
             </property>
            </widget>
           </item>
-          <item row="30" column="0">
+          <item row="32" column="0">
            <widget class="QLabel" name="Lab_UDistancia">
             <property name="enabled">
              <bool>false</bool>
@@ -876,21 +902,21 @@ padding: 2px;</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="0" colspan="2">
+          <item row="7" column="0" colspan="2">
            <widget class="Line" name="line_11">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="31" column="0" colspan="2">
+          <item row="33" column="0" colspan="2">
            <widget class="Line" name="line_23">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="26" column="0">
+          <item row="28" column="0">
            <widget class="QLabel" name="Lab_Sonda_3">
             <property name="font">
              <font>
@@ -908,25 +934,7 @@ padding: 2px;</string>
             </property>
            </widget>
           </item>
-          <item row="24" column="1">
-           <widget class="QLineEdit" name="Line_coeficiente">
-            <property name="maximumSize">
-             <size>
-              <width>300</width>
-              <height>500</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>22</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="1">
+          <item row="10" column="1">
            <widget class="QLineEdit" name="Line_CodigoCombustible">
             <property name="maximumSize">
              <size>
@@ -944,7 +952,25 @@ padding: 2px;</string>
             </property>
            </widget>
           </item>
-          <item row="12" column="1">
+          <item row="26" column="1">
+           <widget class="QLineEdit" name="Line_coeficiente">
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>500</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="1">
            <widget class="QLineEdit" name="Line_AjusteAltura">
             <property name="maximumSize">
              <size>
@@ -962,14 +988,14 @@ padding: 2px;</string>
             </property>
            </widget>
           </item>
-          <item row="27" column="0" colspan="2">
+          <item row="29" column="0" colspan="2">
            <widget class="Line" name="line_21">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="6" column="1">
+          <item row="8" column="1">
            <widget class="QComboBox" name="Combo_Color">
             <property name="maximumSize">
              <size>
@@ -987,7 +1013,7 @@ padding: 2px;</string>
             </property>
            </widget>
           </item>
-          <item row="18" column="1">
+          <item row="20" column="1">
            <widget class="QComboBox" name="Combo_Tipo">
             <property name="maximumSize">
              <size>
@@ -1020,14 +1046,14 @@ padding: 2px;</string>
             </item>
            </widget>
           </item>
-          <item row="15" column="0" colspan="2">
+          <item row="17" column="0" colspan="2">
            <widget class="Line" name="line_16">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="24" column="0">
+          <item row="26" column="0">
            <widget class="QLabel" name="Lab_Nombre_3">
             <property name="font">
              <font>
@@ -1045,8 +1071,8 @@ padding: 2px;</string>
             </property>
            </widget>
           </item>
-          <item row="14" column="1">
-           <widget class="QLineEdit" name="Line_Medida1">
+          <item row="16" column="1">
+           <widget class="QLineEdit" name="Line_Diametro">
             <property name="enabled">
              <bool>true</bool>
             </property>
@@ -1069,7 +1095,7 @@ padding: 2px;</string>
             </property>
            </widget>
           </item>
-          <item row="32" column="1">
+          <item row="34" column="1">
            <widget class="QComboBox" name="Combo_UVolumen">
             <property name="enabled">
              <bool>false</bool>
@@ -1111,8 +1137,8 @@ padding: 2px;</string>
             </item>
            </widget>
           </item>
-          <item row="4" column="1">
-           <widget class="QLineEdit" name="Line_Codigo_prodicto">
+          <item row="6" column="1">
+           <widget class="QLineEdit" name="Line_Codigo_producto">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -1135,7 +1161,7 @@ padding: 2px;</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
+          <item row="4" column="1">
            <widget class="QLineEdit" name="Line_Nombre">
             <property name="maximumSize">
              <size>
@@ -1158,7 +1184,7 @@ border-radius: 10px;
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
+          <item row="4" column="0">
            <widget class="QLabel" name="Lab_Nombre">
             <property name="font">
              <font>
@@ -1179,7 +1205,7 @@ border-radius: 10px;
             </property>
            </widget>
           </item>
-          <item row="22" column="1">
+          <item row="24" column="1">
            <widget class="QLineEdit" name="Line_Distancia">
             <property name="maximumSize">
              <size>
@@ -1241,7 +1267,7 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
             </item>
            </layout>
           </item>
-          <item row="30" column="1">
+          <item row="32" column="1">
            <widget class="QComboBox" name="ComboUDistancia">
             <property name="enabled">
              <bool>false</bool>
@@ -1288,14 +1314,14 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
             </item>
            </widget>
           </item>
-          <item row="3" column="0" colspan="2">
+          <item row="5" column="0" colspan="2">
            <widget class="Line" name="line_10">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="12" column="0">
+          <item row="14" column="0">
            <widget class="QLabel" name="Lab_Licencia_3">
             <property name="font">
              <font>
@@ -1313,7 +1339,7 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
             </property>
            </widget>
           </item>
-          <item row="20" column="0">
+          <item row="22" column="0">
            <widget class="QLabel" name="Lab_Angulo">
             <property name="font">
              <font>
@@ -1331,7 +1357,7 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
             </property>
            </widget>
           </item>
-          <item row="6" column="0">
+          <item row="8" column="0">
            <widget class="QLabel" name="Lab_Color">
             <property name="font">
              <font>
@@ -1352,7 +1378,7 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
             </property>
            </widget>
           </item>
-          <item row="8" column="0">
+          <item row="10" column="0">
            <widget class="QLabel" name="Lab_Codcom">
             <property name="font">
              <font>
@@ -1370,14 +1396,14 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
             </property>
            </widget>
           </item>
-          <item row="29" column="0" colspan="2">
+          <item row="31" column="0" colspan="2">
            <widget class="Line" name="line_22">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="16" column="0">
+          <item row="18" column="0">
            <widget class="QLabel" name="Lab_Medida2">
             <property name="enabled">
              <bool>true</bool>
@@ -1394,14 +1420,14 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
              <string/>
             </property>
             <property name="text">
-             <string>Largo</string>
+             <string>Capacidad</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
            </widget>
           </item>
-          <item row="22" column="0">
+          <item row="24" column="0">
            <widget class="QLabel" name="Lab_Nombre_5">
             <property name="font">
              <font>
@@ -1419,8 +1445,8 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
             </property>
            </widget>
           </item>
-          <item row="16" column="1">
-           <widget class="QLineEdit" name="Line_Medida2">
+          <item row="18" column="1">
+           <widget class="QLineEdit" name="Line_Capacidad">
             <property name="enabled">
              <bool>true</bool>
             </property>
@@ -1443,7 +1469,7 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
             </property>
            </widget>
           </item>
-          <item row="26" column="1">
+          <item row="28" column="1">
            <widget class="QComboBox" name="Combo_Producto">
             <property name="maximumSize">
              <size>
@@ -1464,14 +1490,14 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
             </property>
            </widget>
           </item>
-          <item row="25" column="0" colspan="2">
+          <item row="27" column="0" colspan="2">
            <widget class="Line" name="line_20">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
+          <item row="6" column="0">
            <widget class="QLabel" name="Lab_Nombre_2">
             <property name="font">
              <font>
@@ -1492,7 +1518,7 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
             </property>
            </widget>
           </item>
-          <item row="32" column="0">
+          <item row="34" column="0">
            <widget class="QLabel" name="Lab_UVolumen">
             <property name="enabled">
              <bool>false</bool>
@@ -1505,7 +1531,7 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
             </property>
            </widget>
           </item>
-          <item row="18" column="0">
+          <item row="20" column="0">
            <widget class="QLabel" name="Lab_Tipo">
             <property name="font">
              <font>
@@ -1526,21 +1552,21 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
             </property>
            </widget>
           </item>
-          <item row="7" column="0" colspan="2">
+          <item row="9" column="0" colspan="2">
            <widget class="Line" name="line_12">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="9" column="0" colspan="2">
+          <item row="11" column="0" colspan="2">
            <widget class="Line" name="line_13">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="20" column="1">
+          <item row="22" column="1">
            <widget class="QLineEdit" name="Line_Angulo">
             <property name="maximumSize">
              <size>
@@ -1558,7 +1584,7 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
             </property>
            </widget>
           </item>
-          <item row="10" column="0">
+          <item row="12" column="0">
            <widget class="QLabel" name="Lab_Sonda">
             <property name="font">
              <font>
@@ -1579,7 +1605,7 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
             </property>
            </widget>
           </item>
-          <item row="28" column="0">
+          <item row="30" column="0">
            <widget class="QLabel" name="Lab_UTemperatura">
             <property name="enabled">
              <bool>false</bool>
@@ -1592,36 +1618,119 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
             </property>
            </widget>
           </item>
-          <item row="21" column="0" colspan="2">
+          <item row="23" column="0" colspan="2">
            <widget class="Line" name="line_19">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="11" column="0" colspan="2">
+          <item row="13" column="0" colspan="2">
            <widget class="Line" name="line_14">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="13" column="0" colspan="2">
+          <item row="15" column="0" colspan="2">
            <widget class="Line" name="line_15">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="19" column="0" colspan="2">
+          <item row="21" column="0" colspan="2">
            <widget class="Line" name="line_18">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="23" column="0" colspan="2">
+          <item row="25" column="0" colspan="2">
            <widget class="Line" name="line_24">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QComboBox" name="Combo_IdTanque">
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>50</height>
+             </size>
+            </property>
+            <item>
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Tanque 1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Tanque 2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Tanque 3</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Tanque 4</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Tanque 5</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Tanque 6</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Tanque 7</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Tanque 8</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="font">
+             <font>
+              <pointsize>22</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>Tanque</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="Line" name="line_28">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -4715,6 +4824,31 @@ border-radius: 16;
       </layout>
      </widget>
     </widget>
+    <widget class="QWidget" name="Inventario">
+     <widget class="QTableWidget" name="tableWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>90</y>
+        <width>1141</width>
+        <height>371</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Reportes">
+     <widget class="QTableWidget" name="tableWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>90</y>
+        <width>1141</width>
+        <height>381</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="InventarioConfig"/>
    </widget>
    <widget class="QLabel" name="Lab_Titulo">
     <property name="geometry">

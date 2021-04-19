@@ -34,3 +34,5 @@ RESOURCES += \
     Imagenes/Resourse.qrc \
 
 DISTFILES +=
+
+LIBS +=-L/usr/local/lib -lwiringPi

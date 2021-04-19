@@ -98,13 +98,13 @@ private slots:
 
    void ConCombocol(QComboBox *combo);
 
-   void Horizontal();
+//   void Horizontal();
 
-   void Vertical();
+//   void Vertical();
 
   // void Rectangular();
 
-   void ocultar();
+//   void ocultar();
 
    void Modificar_TextoTank();
 
@@ -185,6 +185,12 @@ private slots:
 
 
    void on_btn_menu_clicked();
+
+   void on_Btn_Inventario_clicked();
+
+   void on_Btn_Reports_clicked();
+
+   void on_Btn_Entregas_or_clicked();
 
 private:
     Ui::MainWindow *ui;

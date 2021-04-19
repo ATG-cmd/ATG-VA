@@ -6,6 +6,22 @@
 #include <dialog.h>
 #include <QFrame>
 #include <qmath.h>
+#include "wiringPi.h"
+
+#define SMenu 0
+#define SHome 1
+#define SSonda 2
+#define STanque 3
+#define STablaCub 4
+#define SLogin 5
+#define SHome2 6
+#define STMaxi 7
+#define SComunicacion 8
+#define SVialarmas 9
+#define Slimites 10
+#define SEntregas 11
+#define SComunicador 12
+
 
 #define SOH 0x01
 const int lenbuff1 = 1024;              // Longitud de buffer, Ajustar
@@ -32,6 +48,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     Time2 = new QTimer();
     Time3 = new QTimer();
+    wiringPiSetup();
+    pinMode(12,OUTPUT);
 
     QFont Fonttitle;
     Fonttitle.setPointSize(30);
@@ -86,14 +104,14 @@ MainWindow::MainWindow(QWidget *parent)
     ui->line_Serie->installEventFilter(this);
     ui->Line_Usuario->installEventFilter(this);
     ui->Line_Contra->installEventFilter(this);
-    ui->Line_Medida1->installEventFilter(this);
-    ui->Line_Medida2->installEventFilter(this);
+    ui->Line_Diametro->installEventFilter(this);
+    ui->Line_Capacidad->installEventFilter(this);
     ui->Line_Nombre->installEventFilter(this);
     //ui->lineEdit->installEventFilter(this);
 
     // ui->stackedWidget->setCurrentIndex(1);
     ui->Lab_Titulo->setText("Inicio");
-    ocultar();
+   // ocultar();
 
     puertoserie = new QSerialPort();
     Time1 = new QTimer();
@@ -101,7 +119,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->stackedWidget->setCurrentIndex(3);
 
     //puertoserie->setPortName("Com3");
-    puertoserie->setPortName("ttyUSB0");
+    puertoserie->setPortName("ttyAMA3");
     puertoserie->setBaudRate(QSerialPort::Baud9600);
     puertoserie->setDataBits(QSerialPort::Data8);
     puertoserie->setFlowControl(QSerialPort::NoFlowControl);
@@ -215,7 +233,7 @@ void MainWindow::on_Btn_Tanque_clicked()
           {
           case 0:ui->stackedWidget->setCurrentIndex(3); break;
           case 1: ui->stackedWidget->setCurrentIndex(10); frame = 10;break;
-          case 2: Vertical();break;
+          //case 2: Vertical();break;
           case 3:
              ui->stackedWidget->setCurrentIndex(4);
              ui->Lab_Titulo->setText("Tabla De Cubicacion");
@@ -246,15 +264,15 @@ void MainWindow::on_Btn_Tanque_clicked()
         qDebug() << qry.value(0);
     }
    // connect(ui->Line_Nombre,&QLineEdit::textChanged,this,&MainWindow::Modificar_TextoTank);
-    connect(ui->Combo_Tipo, QOverload<int>::of(&QComboBox::activated),
-            [=](int index){
+//    connect(ui->Combo_Tipo, QOverload<int>::of(&QComboBox::activated),
+//            [=](int index){
 
-        switch (index)
-        {
-        // case 0: Rectangular();break;
-        case 1: Horizontal();break;
-        case 2: Vertical();break;
-        } });
+//        switch (index)
+//        {
+//        // case 0: Rectangular();break;
+//        case 1: Horizontal();break;
+//        case 2: Vertical();break;
+//        } });
 
 });
 }
@@ -268,50 +286,50 @@ void MainWindow::on_Btn_Tanque_clicked()
 
 // Inicio de ocultar y Mostrar
 
-void MainWindow::Horizontal()
-{
-    ocultar();
-    ui->Lab_Medida1->setText("Diametro");
-    ui->Lab_Medida1->setGeometry(0,300,175,52);
-    ui->Lab_Medida1->setVisible(true);
-    ui->Line_Medida1->setVisible(true);
-    ui->Lab_Medida2->setText("Largo");
-    ui->Lab_Medida2->setVisible(true);
-    ui->Line_Medida2->setVisible(true);
-    //  ui->lineEdit->setText("0");
-    G = 1;
+//void MainWindow::Horizontal()
+//{
+//    ocultar();
+//    ui->Lab_Medida1->setText("Diametro");
+//    ui->Lab_Medida1->setGeometry(0,300,175,52);
+//    ui->Lab_Medida1->setVisible(true);
+//    ui->diametro->setVisible(true);
+//    ui->Lab_Medida2->setText("Largo");
+//    ui->Lab_Medida2->setVisible(true);
+//    ui->Line_Capacidad->setVisible(true);
+//    //  ui->lineEdit->setText("0");
+//    G = 1;
 
-}
+//}
 
-void MainWindow::Vertical()
-{
-    ocultar();
-    ui->Lab_Medida1->setText("Diametro");
-    ui->Lab_Medida1->setGeometry(0,300,175,52);
-    ui->Lab_Medida1->setVisible(true);
-    ui->Line_Medida1->setVisible(true);
-    ui->Lab_Medida2->setText("Alto");
-    ui->Lab_Medida2->setVisible(true);
-    ui->Line_Medida2->setVisible(true);
-    //  ui->lineEdit->setText("0");
-    G=0;
+//void MainWindow::Vertical()
+//{
+//    ocultar();
+//    ui->Lab_Medida1->setText("Diametro");
+//    ui->Lab_Medida1->setGeometry(0,300,175,52);
+//    ui->Lab_Medida1->setVisible(true);
+//    ui->Line_Diametro->setVisible(true);
+//    ui->Lab_Medida2->setText("Alto");
+//    ui->Lab_Medida2->setVisible(true);
+//    ui->Line_Capacidad->setVisible(true);
+//    //  ui->lineEdit->setText("0");
+//    G=0;
 
-}
+//}
 
-void MainWindow::ocultar()
-{
+//void MainWindow::ocultar()
+//{
 
-    ui->Lab_Medida1->setVisible(false);
-    ui->Line_Medida1->setVisible(false);
-    ui->Lab_Medida2->setVisible(false);
-    ui->Line_Medida2->setVisible(false);
-    // ui->Lab_Medida3->setVisible(false);
-    //ui->lineEdit->setVisible(false);
-    //ui->ComboSeleccion->setVisible(false);
+//    ui->Lab_Medida1->setVisible(false);
+//    ui->Line_Diametro->setVisible(false);
+//    ui->Lab_Medida2->setVisible(false);
+//    ui->Line_Capacidad->setVisible(false);
+//    // ui->Lab_Medida3->setVisible(false);
+//    //ui->lineEdit->setVisible(false);
+//    //ui->ComboSeleccion->setVisible(false);
 
 
 
-} //Fin de de ocultar y Mostrar
+//} //Fin de de ocultar y Mostrar
 
 
 /*------------------------------------------------------------------------------------------------------------
@@ -671,7 +689,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         delete dlg;
         return true;
     }
-    if(obj == ui->Line_Medida1 && event->type() == QEvent::FocusIn)
+    if(obj == ui->Line_Diametro && event->type() == QEvent::FocusIn)
     {
         MainWindow::setFocus();
         qDebug() << "Hola desde medida 1";
@@ -684,14 +702,14 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         res = dlg->exec();
         if(res == QDialog::Accepted)
         {
-            ui->Line_Medida1->clear();
-            ui->Line_Medida1->setText(dlg->getDatos());
+            ui->Line_Diametro->clear();
+            ui->Line_Diametro->setText(dlg->getDatos());
         }
 
         delete dlg;
         return true;
     }
-    if(obj == ui->Line_Medida2 && event->type() == QEvent::FocusIn)
+    if(obj == ui->Line_Capacidad && event->type() == QEvent::FocusIn)
     {
         MainWindow::setFocus();
         qDebug() << "Hola desde medida 2";
@@ -704,8 +722,8 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         res = dlg->exec();
         if(res == QDialog::Accepted)
         {
-            ui->Line_Medida2->clear();
-            ui->Line_Medida2->setText(dlg->getDatos());
+            ui->Line_Capacidad->clear();
+            ui->Line_Capacidad->setText(dlg->getDatos());
         }
 
         delete dlg;
@@ -743,7 +761,9 @@ void MainWindow::Leer_datos()
     while( puertoserie->bytesAvailable())
     {
         data =  puertoserie->read(1);
+        qDebug() << data;
         dato = data.at(0);
+        qDebug()<< dato;
         addcbuff1(dato);
     }
 
@@ -821,18 +841,18 @@ void MainWindow::Guardar_Tanque()
 
     switch(G){
     case 1:
-        tanques[S]->SetTankAltura(ui->Line_Medida1->text().toDouble());
-        tanques[S]->SetTankLargo(ui->Line_Medida2->text().toDouble());
+        tanques[S]->SetTankAltura(ui->Line_Diametro->text().toDouble());
+        tanques[S]->SetTankLargo(ui->Line_Capacidad->text().toDouble());
         //     tanques[S]->SetTankAncho(ui->lineEdit->text().toDouble());
         tanques[S]->setTipo(2);
         break;
     case 2:
-        tanques[S]->SetTankDiametro(ui->Line_Medida1->text().toDouble());
-        tanques[S]->SetTankLargo(ui->Line_Medida2->text().toDouble());
+        tanques[S]->SetTankDiametro(ui->Line_Diametro->text().toDouble());
+        tanques[S]->SetTankLargo(ui->Line_Capacidad->text().toDouble());
         tanques[S]->setTipo(1);                                                                           break;
     case 3:
-        tanques[S]->SetTankDiametro(ui->Line_Medida1->text().toDouble());
-        tanques[S]->SetTankAltura(ui->Line_Medida2->text().toDouble());
+        tanques[S]->SetTankDiametro(ui->Line_Diametro->text().toDouble());
+        tanques[S]->SetTankAltura(ui->Line_Capacidad->text().toDouble());
         tanques[S]->setTipo(0);
         break;
     }
@@ -842,8 +862,8 @@ void MainWindow::Guardar_Tanque()
                       ", '"+ui->Line_Nombre->text()+"'"
                       ", '"+QString::number(ui->Combo_Color->currentIndex())+"'"
                       ", '"+QString::number(ui->Combo_Tipo->currentIndex())+"'"
-                      ", '"+ui->Line_Medida1->text()+"'"
-                      ", '"+ui->Line_Medida2->text()+"'"
+                      ", '"+ui->Line_Diametro->text()+"'"
+                      ", '"+ui->Line_Capacidad->text()+"'"
                       ";");
 
     Descargar();
@@ -929,11 +949,13 @@ void MainWindow::Descargar()
             connect(tanques[S],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
 
             ui->stackedWidget->setCurrentIndex(3);
-            ProGaugeId[S]=qry.value(1).toString();
-            //tanques[N]->setProtocolo(QcomboProtocolo->currentIndex());
-            tanques[S]->setID(qry.value(1).toString());
-            tanques[S]->SetnameTank(qry.value(2).toString());
-            switch (qry.value(3).toInt())
+           // ProGaugeId[S]=qry.value(1).toString();
+            tanques[S]->setIdTanque(qry.value(1).toInt());
+            tanques[S]->setIshabilitado(qry.value(2).toBool());
+            tanques[S]->SetnameTank(qry.value(3).toString());
+            tanques[S]->setCodigoProducto(qry.value(4).toInt());
+
+            switch (qry.value(5).toInt())
             {
             case 1: tanques[S]->color("gray", true);  break;
             case 2: tanques[S]->color("green",true);  break;
@@ -941,23 +963,19 @@ void MainWindow::Descargar()
             case 4: tanques[S]->color("cyan",true);   break;
             }
 
-            switch(qry.value(4).toInt()){
-            case 1:
-                tanques[S]->SetTankAltura(qry.value(5).toDouble());
-                tanques[S]->SetTankLargo(qry.value(6).toDouble());
-                tanques[S]->SetTankAncho(qry.value(7).toDouble());
-                tanques[S]->setTipo(2);
-                break;
-            case 2:
-                tanques[S]->SetTankDiametro(qry.value(5).toDouble());
-                tanques[S]->SetTankLargo(qry.value(6).toDouble());
-                tanques[S]->setTipo(1);               break;
-            case 3:
-                tanques[S]->SetTankDiametro(qry.value(5).toDouble());
-                tanques[S]->SetTankAltura(qry.value(6).toDouble());
-                tanques[S]->setTipo(0);
-                break;
-            }
+            tanques[S]->setCodigoCombustible(qry.value(6).toInt());
+            tanques[S]->setID(qry.value(7).toString());
+            tanques[S]->setAjusteAltura(qry.value(8).toDouble());
+            tanques[S]->SetTankDiametro(qry.value(9).toDouble());
+            tanques[S]->setCapacidad(qry.value(10).toDouble());
+            tanques[S]->setTipo(qry.value(11).toInt());
+            tanques[S]->setAngle(qry.value(12).toInt());
+            tanques[S]->setFrombase(qry.value(13).toDouble());
+            tanques[S]->setCoeficienteTermico(qry.value(14).toDouble());
+            tanques[S]->setProducto(qry.value(15).toString());
+
+
+
             S++;
             ui->stackedWidget->setCurrentIndex(0);
         }
@@ -1014,7 +1032,7 @@ void MainWindow::Estados()
     switch(ProGaugeCount){
     case 0:
         connect(Time3,SIGNAL(timeout()),this,SLOT(SendCMD()));
-        Time3->start(22); Time1->stop();
+        Time3->start(50); Time1->stop();
         disconnect(Time1,SIGNAL(timeout()),this,SLOT(Estados()));
         break;
     case 1:  if (RX == true ) { ProGaugeCount ++ ; RX=false; }
@@ -1073,7 +1091,7 @@ void MainWindow::Tanque_Maximisado()
 
         qDebug()<< "indiceM"<< indiceM;
 
-        Maximizado->Setgeometry(20,-10,500,580);
+        Maximizado->Setgeometry(19,-11,500,580);
         Maximizado->setID(tanques[indiceM]->getID());
         ui->Lab_Titulo->setText(tanques[indiceM]->GetNameTank());
         Maximizado->SetnameTank("");
@@ -1090,24 +1108,10 @@ void MainWindow::Tanque_Maximisado()
 
         qDebug() << "ID" << Maximizado->getID();
 
-        switch(tanques[indiceM]->getTipo()){
-        case 2:
-            Maximizado->SetTankAltura(tanques[indiceM]->GetTanqueAltura());
-            Maximizado->SetTankLargo(tanques[indiceM]->GetTankLargo());
-            Maximizado->SetTankAncho(tanques[indiceM]->GetTankAncho());
-            Maximizado->setTipo(2);
-            break;
-        case 1:
-            Maximizado->SetTankDiametro(tanques[indiceM]->GetTankDiametro());
-            Maximizado->SetTankLargo(tanques[indiceM]->GetTankLargo());
-            Maximizado->setTipo(1);
-            break;
-        case 0:
-            Maximizado->SetTankDiametro(tanques[indiceM]->GetTankDiametro());
-            Maximizado->SetTankAltura(tanques[indiceM]->GetTanqueAltura());
-            Maximizado->setTipo(0);
-            break;
-        }
+        Maximizado->setCapacidad(tanques[indiceM]->getCapacidad());
+        Maximizado->SetTankDiametro(tanques[indiceM]->GetTankDiametro());
+        Maximizado->setTipo(tanques[indiceM]->getTipo());
+
 
     }
        int por1 = (100 * tanques[indiceM]->GetVolMax())/38439.85;
@@ -1151,7 +1155,7 @@ void MainWindow::Tanque_Maximisado()
 
     });
 
-   Maximizado->setTMaximizado(false);
+    Maximizado->setTMaximizado(false);
     tanques[indiceM]->setTMaximizado(false);
     Maximizado->SetAltura(tanques[indiceM]->GetAltura(),tanques[indiceM]->getNivelAgua());
     Maximizado->SetTemperatura(tanques[indiceM]->GetTemperatura());
@@ -1226,7 +1230,8 @@ void MainWindow::SendCMD()
 {
     switch(ProGaugeCountCMD){
     case 0:
-        puertoserie->setDataTerminalReady(false);
+       // puertoserie->setDataTerminalReady(false);
+        digitalWrite(12,HIGH);
         ProGaugeCountCMD++;
         break;
     case 1:
@@ -1234,8 +1239,10 @@ void MainWindow::SendCMD()
         qDebug() << ("M"+ProGaugeId[ProGaugeCount1]).toUtf8();
         ProGaugeCountCMD++;
         break;
+
     case 2:
-        puertoserie->setDataTerminalReady(true);
+      //  puertoserie->setDataTerminalReady(true);
+        digitalWrite(12,LOW);
         ProGaugeCountCMD = 0;
         ProGaugeCount++;
         Time3->stop();
@@ -1265,7 +1272,7 @@ void MainWindow::on_Btn_Comunicacion_clicked()
          {
          case 0:ui->stackedWidget->setCurrentIndex(8); break;
          case 1: ui->stackedWidget->setCurrentIndex(12); frame = 10;break;
-         case 2: Vertical();break;
+         //case 2: Vertical();break;
          case 3:
             ui->stackedWidget->setCurrentIndex(4);
             ui->Lab_Titulo->setText("Tabla De Cubicacion");
@@ -1449,6 +1456,11 @@ void MainWindow::clearCubicTableFields()
     ui->Line_Volumen->setText("");
 }
 
+/* Este Metodo es para colocar las bolitas de colores en su lugar
+  Respecto al limite que le corresponde, la siguiente formula es la
+  formula del semicirculo
+ Referencia : https://www.youtube.com/watch?v=uDS4Q-QCU8M */
+
 int MainWindow::X(int Y)
 {
     return  qSqrt(50625 - qPow(Y-215,2))+270;
@@ -1458,7 +1470,6 @@ int MainWindow::calcY(int y)
 {
     return  430-(430 * y )/100;
 }
-
 
 void MainWindow::on_Btn_Cub_Editar_clicked()
 {
@@ -1535,8 +1546,6 @@ void MainWindow::on_Btn_Entregas_clicked()
        ui->CSelecTank->addItem(qry.value(0).toString());
 
     }
-
-
     connect(ui->CSelecTank, QOverload<int>::of(&QComboBox::activated),
             [=](int index){
         QString cadena;
@@ -1645,6 +1654,8 @@ void MainWindow::on_Btn_SaveTank_clicked()
     Geometrytank();
     connect(tanques[S],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
 
+//*** Configurar --- 0 Habilitado o Deshabilitado --- ***//
+
     if(ui->RHabilitado->isChecked())
     {
         tanques[S]->setIshabilitado(true);
@@ -1652,39 +1663,50 @@ void MainWindow::on_Btn_SaveTank_clicked()
     else {
         tanques[S]->setIshabilitado(false);
     }
+     // *** --- Etiqueta Tanque --- ***//
+      tanques[S]->SetnameTank(ui->Line_Nombre->text());
+     // ***---Codigo del Producto ---***
+      tanques[S]->setCodigoProducto(ui->Line_Codigo_producto->text().toInt());
+     // ***---Color Del Producto ---***//
+      switch (ui->Combo_Color->currentIndex())
+      {
+      case 1: tanques[S]->color("gray", true);  break;
+      case 2: tanques[S]->color("green",true);  break;
+      case 3: tanques[S]->color("yellow",true); break;
+      case 4: tanques[S]->color("cyan",true);   break;
+      }
+      // --- *** Codigo Combustible ***---//
+      tanques[S]->setCodigoCombustible(ui->Line_CodigoCombustible->text().toInt());
+      // ---*** Sonda ***---//
+       tanques[S]->setID(ui->Combo_Sonda->currentText());
+       // --- *** Ajuste De Altura *** --- //
+       tanques[S]->setAjusteAltura(ui->Line_AjusteAltura->text().toDouble());
+       // --- *** Capacidad ***-- //
+       tanques[S]->setCapacidad(ui->Line_Capacidad->text().toDouble());
+       // --- *** Diametro *** --- ///
+       tanques[S]->SetTankDiametro(ui->Line_Diametro->text().toDouble());
+       // --- *** Tipo de Tanque ***--- ///
+       tanques[S]->setTipo(G);
+       // --- *** Angulo *** --- //
+       tanques[S]->setAngle(ui->Line_Angulo->text().toDouble());
+       // --- *** Distancia *** ---  //
+       tanques[S]->setFrombase(ui->Line_Distancia->text().toDouble());
+       // --- *** Coeficiente Termico *** ---
+       tanques[S]->setCoeficienteTermico(ui->Line_coeficiente->text().toDouble());
+       // --- *** Producto *** --- //
+       tanques[S]->setProducto(ui->Combo_Producto->currentText());
 
-    ui->stackedWidget->setCurrentIndex(3);
-    //ProGaugeId[N]=ID->toPlainText();
-    //tanques[N]->setProtocolo(QcomboProtocolo->currentIndex());
-    tanques[S]->setID(ui->Combo_Sonda->currentText());
-    tanques[S]->SetnameTank(ui->Line_Nombre->text());
-   // tanques[S]->color(Tconf->GetColor(),true);
+      Enviar_qry( "INSERT INTO `cistem`.`tanques` "
+                  "(`Id_Taque`, `Configurado`, `Nombre`, "
+                  "`CodigoProducto`, `Color`, `CodigoCombustible`, "
+                  "`Serie_Sonda`, `AjusteAltura`, `Diametro`, "
+                  "`Capacidad`, `Tipo`, `Angulo`, `Frombase`, "
+                  "`CoeficienteTermico`, `Producto`) "
+                  "VALUES ('"+QString::number(ui->Combo_IdTanque->currentIndex())+"',"
+                  ""+ui->RHabilitado->isChecked()+" , 'Tanque 2', '00125', "
+                  "'2', '25645', '00100', '0.002', '3500', "
+                  "'4000', '2', '12', '100', '10', 'Gasolina');");
 
-    switch(G){
-    case 1:
-        tanques[S]->SetTankAltura(ui->Line_Medida1->text().toDouble());
-        tanques[S]->SetTankLargo(ui->Line_Medida2->text().toDouble());
-        //     tanques[S]->SetTankAncho(ui->lineEdit->text().toDouble());
-        tanques[S]->setTipo(2);
-        break;
-    case 2:
-        tanques[S]->SetTankDiametro(ui->Line_Medida1->text().toDouble());
-        tanques[S]->SetTankLargo(ui->Line_Medida2->text().toDouble());
-        tanques[S]->setTipo(1);                                                                           break;
-    case 3:
-        tanques[S]->SetTankDiametro(ui->Line_Medida1->text().toDouble());
-        tanques[S]->SetTankAltura(ui->Line_Medida2->text().toDouble());
-        tanques[S]->setTipo(0);
-        break;
-    }
-    Enviar_qry("INSERT INTO `cistem`.`tanques` "
-               "(`Serie_Sonda`, `Nombre`, `Color`,`Tipo`,`Medida 1`,`Medida 2`) "
-               "VALUES ('"+ui->Combo_Sonda->currentText()+"'"
-                        ", '"+ui->Line_Nombre->text()+"'"
-                        ", '"+QString::number(ui->Combo_Color->currentIndex())+"'"
-                        ", '"+QString::number(ui->Combo_Tipo->currentIndex())+"'"
-                        ", '"+ui->Line_Medida1->text()+"'"
-                        ", '"+ui->Line_Medida2->text()+"');");
 
     Descargar();
     // S++;
@@ -1710,4 +1732,77 @@ void MainWindow::on_Btn_SalveComunicacion_clicked()
 void MainWindow::on_btn_menu_clicked()
 {
       ui->stackedWidget->setCurrentIndex(13);
+}
+
+void MainWindow::on_Btn_Inventario_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(14);
+}
+
+void MainWindow::on_Btn_Reports_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(15);
+}
+
+void MainWindow::on_Btn_Entregas_or_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(11);
+
+    QString cadena;
+
+    cadena.append("SELECT DISTINCT Tanque_Nombre FROM `cistem`.`entregas`;");
+    QSqlQuery qry;
+    qDebug() << "QRY:" << qry.exec(cadena);
+    while (qry.next()) {
+       ui->CSelecTank->addItem(qry.value(0).toString());
+
+    }
+
+
+    connect(ui->CSelecTank, QOverload<int>::of(&QComboBox::activated),
+            [=](int index){
+        QString cadena;
+        ui->Tab_entregas->clearContents();
+        ui->Tab_entregas->setRowCount(0);
+
+        switch (index)
+         {
+         case 0: cadena.append("SELECT * FROM `cistem`.`entregas` LIMIT 1000;");break;
+         default: qDebug() << "Texto del index:" << ui->CSelecTank->itemText(index);
+cadena.append("SELECT * FROM `cistem`.`entregas` where Tanque_Nombre = '"+ui->CSelecTank->itemText(index)+"';"); break;
+
+        }
+
+        //
+         QSqlQuery qry;
+         qDebug() << "QRY:" << qry.exec(cadena);
+         while (qry.next())
+         {
+             //ui->Tab_entregas->removeRow(0);
+
+
+             ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
+             //ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(QString::number(qry.value(0).toInt())));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(1).toString()));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 1, new QTableWidgetItem(QString::number(qry.value(2).toInt())));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 2, new QTableWidgetItem(QString::number(qry.value(3).toInt())));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 3, new QTableWidgetItem(QString::number(qry.value(4).toInt())));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1,4 , new QTableWidgetItem(QString::number(qry.value(5).toInt())));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 6, new QTableWidgetItem(qry.value(7).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
+             //ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
+
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 6)->setTextAlignment(Qt::AlignCenter);
+             //  ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 6)->setFont(A);
+             qDebug() << qry.value(0).toInt() << qry.value(1).toString() << qry.value(2).toInt() << qry.value(4).toInt();
+         }
+
+
+
+    });
+
 }

@@ -22,6 +22,7 @@ class Tanque :public QWidget
     QString NomTank;
     QString Cad;
     QString ID;
+    int IdTanque;
     bool TMaximizado = true;
 
     int contador=0;
@@ -42,7 +43,12 @@ class Tanque :public QWidget
     double Tankaltura;
     double Tanklargo;
     double Tankancho;
-    double Capacidad;
+    double Capacidad ;
+    int CodigoProducto;
+    int CodigoCombustible;
+    double CoeficienteTermico;
+    double AjusteAltura;
+    QString Producto;
     double TankTiempoEntrega;
     double TankMinimoEntrega;
     bool Config;
@@ -324,6 +330,27 @@ public:
 
    double getNivelAgua() const;
    void setNivelAgua(double value);
+
+   double getCapacidad() const;
+   void setCapacidad(double value);
+
+   int getCodigoProducto() const;
+   void setCodigoProducto(int value);
+
+   int getCodigoCombustible() const;
+   void setCodigoCombustible(int value);
+
+   double getAjusteAltura() const;
+   void setAjusteAltura(double value);
+
+   double getCoeficienteTermico() const;
+   void setCoeficienteTermico(double value);
+
+   QString getProducto() const;
+   void setProducto(const QString &value);
+
+   int getIdTanque() const;
+   void setIdTanque(int value);
 };
 
 #endif // TANQUE_H

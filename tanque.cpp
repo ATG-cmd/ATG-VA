@@ -9,8 +9,6 @@
 #include <QToolButton>
 #include <QTabWidget>
 
-
-
 QString Tanque::getID() const { return ID; }
 
 void Tanque::setID(const QString &value) { ID = value; }
@@ -39,71 +37,59 @@ void Tanque::offline()
 {
      latanq->setStyleSheet("background-color:lightgray;");
      latanq->setText("Sin Conexion");
-
 }
 
+double Tanque::getAngle() const { return angle; }
 
+void Tanque::setAngle(double value) { angle = value; }
 
-double Tanque::getAngle() const
-{
-    return angle;
-}
+double Tanque::getFrombase() const { return frombase; }
 
-void Tanque::setAngle(double value)
-{
-    angle = value;
-}
+void Tanque::setFrombase(double value) {frombase = value; }
 
-double Tanque::getFrombase() const
-{
-    return frombase;
-}
+bool Tanque::getIshabilitado() const {return ishabilitado;}
 
-void Tanque::setFrombase(double value)
-{
-    frombase = value;
-}
+void Tanque::setIshabilitado(bool value) {ishabilitado = value;}
 
-bool Tanque::getIshabilitado() const
-{
-    return ishabilitado;
-}
+double Tanque::getVolumenCon() const{return VolumenCon;}
 
-void Tanque::setIshabilitado(bool value)
-{
-    ishabilitado = value;
-}
+void Tanque::setVolumenCon(double value){VolumenCon = value;}
 
-double Tanque::getVolumenCon() const
-{
-    return VolumenCon;
-}
+double Tanque::getVolumenA() const { return VolumenA; }
 
-void Tanque::setVolumenCon(double value)
-{
-    VolumenCon = value;
-}
+void Tanque::setVolumenA(double value){VolumenA = value;}
 
-double Tanque::getVolumenA() const
-{
-    return VolumenA;
-}
+double Tanque::getNivelAgua() const{return NivelAgua;}
 
-void Tanque::setVolumenA(double value)
-{
-    VolumenA = value;
-}
+void Tanque::setNivelAgua(double value){NivelAgua = value;}
 
+double Tanque::getCapacidad() const{ return Capacidad;}
 
-double Tanque::getNivelAgua() const
-{
-    return NivelAgua;
-}
+void Tanque::setCapacidad(double value){ Capacidad = value;}
 
-void Tanque::setNivelAgua(double value)
-{
-    NivelAgua = value;
-}
+int Tanque::getCodigoProducto() const { return CodigoProducto; }
+
+void Tanque::setCodigoProducto(int value) { CodigoProducto = value; }
+
+int Tanque::getCodigoCombustible() const { return CodigoCombustible; }
+
+void Tanque::setCodigoCombustible(int value) { CodigoCombustible = value; }
+
+double Tanque::getAjusteAltura() const { return AjusteAltura; }
+
+void Tanque::setAjusteAltura(double value) { AjusteAltura = value; }
+
+double Tanque::getCoeficienteTermico() const { return CoeficienteTermico; }
+
+void Tanque::setCoeficienteTermico(double value) {CoeficienteTermico = value; }
+
+QString Tanque::getProducto() const { return Producto; }
+
+void Tanque::setProducto(const QString &value) {Producto = value; }
+
+int Tanque::getIdTanque() const { return IdTanque;}
+
+void Tanque::setIdTanque(int value){IdTanque = value;}
 
 void Tanque::clickbuton(){ setTMaximizado(true); emit Camino(); }
 
@@ -111,7 +97,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 {
     Config = config;
 
- if(config){
+    if(config){
 
      T1 = new QGroupBox(parent);
      Boton = new QPushButton (T1);
@@ -308,7 +294,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 
 
      double r=0;
-     double h=0;
+     double h= height;
      double res=0;
      double reswater=0;
      //double K= 0;
@@ -329,30 +315,56 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
      AlturaTank = height;
 
 
+        double result = 0.0;
+
+//         switch(Tipo){
+//             case 0:
+//                 h = TankDiametro;
+//                 r = TankDiametro/ 2.0;
+//                 d = TankDiametro;
+//                 qDebug() << "Altura" <<  h;
+//                 qDebug () << "Radio " << r;
+//                 qDebug() << "D" << d;
+//                 result = Capacidad / ((((r * r) * (qAcos((r - h) / r ))) - ((r - h) * (qSqrt((d * h) - (h * h))))) * 1000);
+//                 break;
+//             case 1:
+//                 r = TankDiametro / 2;
+//                 result = Capacidad / (pi * (r * r) * 1000);
+//                 break;
+//         }
+//         qDebug() << "getTankLength" << result;
+
+
+
+
      switch(Tipo)
      {
          case 0:
           qDebug() << "Cilindro vertical";
              r = TankDiametro / 2;
              h = height;
-            // res = (pi * (r * r) * h) / 1000;
-             Capacidad = (pi*((TankDiametro/2)*(TankDiametro/2)*Tankaltura))/1000000;
+            qDebug() << "Diametro del tanque:"<<TankDiametro;
+            qDebug() <<"altura del tanque"<< h;
+
            res = (pi * (r * r) * h) / 1000000;
+           reswater = (pi * (r * r) *water) / 1000000;
+            qDebug() <<"Volumen del tanque"<< res;
 
              break;
          case 1:
          qDebug() << "Cilindro Horizontal";
              r = TankDiametro / 2;
-             Tankaltura = TankDiametro;
+            // Tankaltura = TankDiametro;
              h = height;
-             qDebug () << "Radio:" << r;
-             qDebug() << "Altura" << Tankaltura;
-             qDebug() << "Diametro:" << TankDiametro;
-             qDebug() << "Largo:" << Tanklargo;
-            Capacidad = ((((r * r) * (qAcos((r -Tankaltura ) / r ))) - ((r - Tankaltura) * (qSqrt((TankDiametro * Tankaltura) - (Tankaltura * Tankaltura))))) * Tanklargo) / 1000000;
-             //qDebug() << "Capacidad:" << Capacidad;
-            res = ((((r * r) * (qAcos((r - h) / r ))) - ((r - h) * (qSqrt((TankDiametro * h) - (h * h))))) * Tanklargo) / 1000000;
-            reswater = ((((r * r) * (qAcos((r - water) / r ))) - ((r - water) * (qSqrt((TankDiametro * water) - (water * water))))) * Tanklargo) / 1000000;
+             Tankaltura = height;
+
+             d = TankDiametro;
+
+             result = (Capacidad * 1000000) /(pi * qPow(r,2));
+             //result = Capacidad / ((((r * r) * (qAcos((r - h) / r ))) - ((r - h) * (qSqrt((d * h) - (h * h))))) * 1000);
+                qDebug() << "Resultado" << result;
+             res = ((((r * r) * (qAcos((r - h) / r ))) - ((r - h) * (qSqrt((TankDiametro * h) - (h * h))))) * result) / 1000000;
+            reswater = ((((r * r) * (qAcos((r - water) / r ))) - ((r - water) * (qSqrt((TankDiametro * water) - (water * water))))) * result) / 1000000;
 
              //            ho = Tankaltura-h;
 
@@ -360,11 +372,12 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 
 //              Capacidad = (qPow(r,3)/qTan( qRadiansToDegrees(15.0))) * (K * qAcos(K)-(1/3) *qSqrt((1-qPow(K,2)* (qPow(K,2)+2))) -(K-(Tanklargo/r)) + (1/3) *qSqrt(1-(K-qPow((Tanklargo/r),2)) * (qPow(K-(Tanklargo/r),2)+2)));
               d = TankDiametro;
+
              a = angle / 180 * M_PI;
              tana = qTan(a);
-             from =  Sup ? frombase : Tanklargo - frombase;
+             from =  Sup ? frombase : result - frombase;
              ho = level - tana * from;
-             x = Tanklargo;
+             x = result;
                             if (ho < 0) {
                                 x += ho / tana;
                                 ho = 0;
@@ -403,7 +416,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 
           qDebug() << "Rctangular";
              h = height;
-             Capacidad = Tanklargo *Tankancho *Tankaltura /1000000;
+            // Capacidad = Tanklargo *Tankancho *Tankaltura /1000000;
              res = Tanklargo * Tankancho * h / 1000000;
 
             break;
@@ -467,13 +480,17 @@ void Tanque::SetVolumen(double c ,double a)
     double d=0;
     double b=0;
     double CD;
+    qDebug() << "Capacidad" << Capacidad ;
 
     c=(Capacidad-c)/Capacidad;
+
+    qDebug() << "C" << c;
     if (c<0)
         c=0;
     if (c>a)
         c=0.99-a;
     a=(Capacidad-a)/Capacidad;
+    qDebug() << "a" << a;
 
     d= c+0.01;
     b=a+0.01;
