@@ -198,6 +198,9 @@ void MainWindow::on_Btb_Sonda_clicked()
     frame = 1;
 }
 
+
+
+
 /*--------------------------------------------------------------------------------------------------------
  * En esta parte del codigo se maneja el stalcked del tanque, primeramente se le da el valor 2 a frame para
  * saber que estamos en el stalcked 2 a la hora de guardar, se le da un focus al mainwindos para que el teclado
