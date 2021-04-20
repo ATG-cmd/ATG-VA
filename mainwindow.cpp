@@ -8,7 +8,7 @@
 #include <qmath.h>
 #include "wiringPi.h"
 
-#define SMenu 0
+#define SMenu 8
 #define SHome 1
 #define SSonda 2
 #define STanque 3
