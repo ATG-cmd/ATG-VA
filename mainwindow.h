@@ -54,6 +54,7 @@ public:
     int indice =0;
     QString Series[8];
     int frame = 0;
+    int frameant= 0;
      QSqlDatabase DB;
      QSerialPort *puertoserie;
      QString portname;
@@ -88,23 +89,11 @@ private slots:
 
     void on_Btn_Home_clicked();
 
-    void on_pushButton_clicked();
-
-    void Botones_Barra();
-
     void on_Btb_Sonda_clicked();
 
     void on_Btn_Tanque_clicked();
 
    void ConCombocol(QComboBox *combo);
-
-//   void Horizontal();
-
-//   void Vertical();
-
-  // void Rectangular();
-
-//   void ocultar();
 
    void Modificar_TextoTank();
 
@@ -182,8 +171,6 @@ private slots:
 
    void on_Btn_SalveComunicacion_clicked();
 
-
-
    void on_btn_menu_clicked();
 
    void on_Btn_Inventario_clicked();
@@ -191,6 +178,8 @@ private slots:
    void on_Btn_Reports_clicked();
 
    void on_Btn_Entregas_or_clicked();
+
+   void Botones();
 
 private:
     Ui::MainWindow *ui;

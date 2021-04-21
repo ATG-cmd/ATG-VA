@@ -8,7 +8,7 @@
 #include <qmath.h>
 #include "wiringPi.h"
 
-#define SMenu 8
+#define SMenu 0
 #define SHome 1
 #define SSonda 2
 #define STanque 3
@@ -21,6 +21,9 @@
 #define Slimites 10
 #define SEntregas 11
 #define SComunicador 12
+#define SMenuPub  13
+#define sInventario 14
+#define SReportes 15
 
 
 #define SOH 0x01
@@ -74,15 +77,16 @@ MainWindow::MainWindow(QWidget *parent)
 
     int x=10;
 
-    for (int i=0; i < 3; i++)
-    {
-        Indicadores[i] = new QLabel(ui->Btn_Barra_Estados);
-        Indicadores[i]->setGeometry(QRect(x,10,40,29));
-        Indicadores[i]->setStyleSheet("color: white; background-color:cyan ; border: 3px solid gray; border-radius: 35px; padding: 2px;");
-        x+=45;
-    }
+//    for (int i=0; i < 3; i++)
+//    {
+//        Indicadores[i] = new QLabel(ui->Btn_Barra_Estados);
+//        Indicadores[i]->setGeometry(QRect(x,10,40,29));
+//        Indicadores[i]->setStyleSheet("color: white; background-color:cyan ; border: 3px solid gray; border-radius: 35px; padding: 2px;");
+//        x+=45;
+//    }
 
   connect(ui->Regresar_Home,&QPushButton::clicked,this,&MainWindow::on_Btn_Home_clicked);
+  connect(ui->stackedWidget,&QStackedWidget::currentChanged,this,&MainWindow::Botones);
 
 //    Tconf = new Tanque(ui->Tanque,false);
     Maximizado = new Tanque(ui->Tanque_Maximizado,false);
@@ -146,6 +150,12 @@ MainWindow::MainWindow(QWidget *parent)
 
    ui->Tab_entregas->horizontalHeader()->setVisible(true);
    ui->tableWidget->horizontalHeader()->setVisible(true);
+
+   ui->stackedWidget->setCurrentIndex(SHome);
+   ui->Btn_Guardar->setVisible(false);
+   ui->Regresar->setVisible(false);
+   ui->Btn_user->setVisible(true);
+   ui->btn_menu->setVisible(true);
 }
 
 MainWindow::~MainWindow()
@@ -156,7 +166,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_Btn_Home_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+    frame =SHome;
+    ui->stackedWidget->setCurrentIndex(SHome);
     ui->Lab_Titulo->setText("Inicio");
     ui->Btn_Guardar->setVisible(false);
     //ui->Btn_Config->setVisible(false);
@@ -175,31 +186,15 @@ void MainWindow::on_Btn_Home_clicked()
         }
 
     }
-}
-
-void MainWindow::on_pushButton_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(1);
-    ui->Lab_Titulo->setText("Menu Principal");
-}
-
-void MainWindow::Botones_Barra()
-{   MainWindow::setFocus();
-    ui->Btn_Guardar->setVisible(true);
-    ui->Regresar->setVisible(true);
-    ui->Btn_user->setVisible(false);
+    frame = SHome;
 }
 
 void MainWindow::on_Btb_Sonda_clicked()
-{
-    Botones_Barra();
-    ui->stackedWidget->setCurrentIndex(2);
+{   frame = SSonda;
+    ui->stackedWidget->setCurrentIndex(SSonda);
     ui->Lab_Titulo->setText("Sonda");
-    frame = 1;
+
 }
-
-
-
 
 /*--------------------------------------------------------------------------------------------------------
  * En esta parte del codigo se maneja el stalcked del tanque, primeramente se le da el valor 2 a frame para
@@ -220,12 +215,11 @@ void MainWindow::on_Btb_Sonda_clicked()
 
 void MainWindow::on_Btn_Tanque_clicked()
 {
-     frame = 2;
-     Botones_Barra();
+     frame = STanque;
      ui->Combo_Sonda->clear();
      ui->ComboSeleccion->clear();
      ui->ComboSeleccion->setVisible(true);
-     ui->stackedWidget->setCurrentIndex(3);
+     ui->stackedWidget->setCurrentIndex(STanque);
      ui->ComboSeleccion->addItem("General");
      ui->ComboSeleccion->addItem("Limites");
 
@@ -234,12 +228,8 @@ void MainWindow::on_Btn_Tanque_clicked()
 
          switch (index)
           {
-          case 0:ui->stackedWidget->setCurrentIndex(3); break;
-          case 1: ui->stackedWidget->setCurrentIndex(10); frame = 10;break;
-          //case 2: Vertical();break;
-          case 3:
-             ui->stackedWidget->setCurrentIndex(4);
-             ui->Lab_Titulo->setText("Tabla De Cubicacion");
+          case 0:ui->stackedWidget->setCurrentIndex(STanque); break;
+          case 1: ui->stackedWidget->setCurrentIndex(Slimites); frame = Slimites;break;
          } });
 
      ui->Lab_Titulo->setText("Tanque");
@@ -266,74 +256,10 @@ void MainWindow::on_Btn_Tanque_clicked()
         ui->Combo_Sonda->addItem(qry.value(0).toString());
         qDebug() << qry.value(0);
     }
-   // connect(ui->Line_Nombre,&QLineEdit::textChanged,this,&MainWindow::Modificar_TextoTank);
-//    connect(ui->Combo_Tipo, QOverload<int>::of(&QComboBox::activated),
-//            [=](int index){
-
-//        switch (index)
-//        {
-//        // case 0: Rectangular();break;
-//        case 1: Horizontal();break;
-//        case 2: Vertical();break;
-//        } });
-
+   
 });
 }
 //Fin del StackedTanque
-
-/*--------------------------------------------------------------------------------------------------------------
- * Esta parte del codigo es para ocultar y mostrar los TextEdit del frame de configuracion de tanques estos metodos son
- * llamados en un switch  que esta en la parte superior, tambien consta de un slot local que es activado
- * cuando el combo es presionado.
- * -------------------------------------------------------------------------------------------------------------*/
-
-// Inicio de ocultar y Mostrar
-
-//void MainWindow::Horizontal()
-//{
-//    ocultar();
-//    ui->Lab_Medida1->setText("Diametro");
-//    ui->Lab_Medida1->setGeometry(0,300,175,52);
-//    ui->Lab_Medida1->setVisible(true);
-//    ui->diametro->setVisible(true);
-//    ui->Lab_Medida2->setText("Largo");
-//    ui->Lab_Medida2->setVisible(true);
-//    ui->Line_Capacidad->setVisible(true);
-//    //  ui->lineEdit->setText("0");
-//    G = 1;
-
-//}
-
-//void MainWindow::Vertical()
-//{
-//    ocultar();
-//    ui->Lab_Medida1->setText("Diametro");
-//    ui->Lab_Medida1->setGeometry(0,300,175,52);
-//    ui->Lab_Medida1->setVisible(true);
-//    ui->Line_Diametro->setVisible(true);
-//    ui->Lab_Medida2->setText("Alto");
-//    ui->Lab_Medida2->setVisible(true);
-//    ui->Line_Capacidad->setVisible(true);
-//    //  ui->lineEdit->setText("0");
-//    G=0;
-
-//}
-
-//void MainWindow::ocultar()
-//{
-
-//    ui->Lab_Medida1->setVisible(false);
-//    ui->Line_Diametro->setVisible(false);
-//    ui->Lab_Medida2->setVisible(false);
-//    ui->Line_Capacidad->setVisible(false);
-//    // ui->Lab_Medida3->setVisible(false);
-//    //ui->lineEdit->setVisible(false);
-//    //ui->ComboSeleccion->setVisible(false);
-
-
-
-//} //Fin de de ocultar y Mostrar
-
 
 /*------------------------------------------------------------------------------------------------------------
  * Color Del ComboBox  en esta parte se selecciona el color utilizando ccs
@@ -519,6 +445,7 @@ void MainWindow::on_Btn_Config_clicked()
 
 void MainWindow::on_pushButton_3_clicked()  // boton log in
 {
+    frame =SMenu;
     QMessageBox msg;
     bool user = false, pas = false;
     QSqlQuery qry;
@@ -549,7 +476,7 @@ void MainWindow::on_pushButton_3_clicked()  // boton log in
     {
         if(pas == true)
         {
-            ui->stackedWidget->setCurrentIndex(0);
+            ui->stackedWidget->setCurrentIndex(SMenu);
             ui->Btn_Guardar->setVisible(false);
             //ui->Btn_Config->setVisible(false);
             ui->Btn_user->setVisible(false);
@@ -570,15 +497,11 @@ void MainWindow::on_pushButton_3_clicked()  // boton log in
 }
 
 void MainWindow::on_Btn_user_clicked()
-{
-
+{   frame = SLogin;
     MainWindow::setFocus();
-    ui->stackedWidget->setCurrentIndex(5);
-    ui->Btn_Guardar->setVisible(false);
-    //ui->Btn_Config->setVisible(false);
-    ui->Btn_user->setVisible(false);
-    ui->Regresar->setVisible(false);
+    ui->stackedWidget->setCurrentIndex(SLogin);
     ui->Lab_Titulo->setText("Iniciar Secion");
+
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
@@ -1180,12 +1103,14 @@ void MainWindow::Tanque_Maximisado()
 
     qDebug() << "Hola desde Tanque maximizado ;p";
 
-    ui->stackedWidget->setCurrentIndex(7);
+    ui->stackedWidget->setCurrentIndex(STMaxi);
+    frame = STMaxi;
 }
 
 void MainWindow::on_Regresar_clicked()
 {
-    frame = 0;
+    if(frame > SMenuPub || frame ==SEntregas) frame =SMenuPub;
+    else frame = SMenu;
     ui->Btn_Guardar->setVisible(false);
     ui->Regresar->setVisible(false);
     //ui->ComboSeleccion->setVisible(false);
@@ -1258,8 +1183,8 @@ void MainWindow::SendCMD()
 
 void MainWindow::on_Btn_Comunicacion_clicked()
 {
-    frame = 4; ui->Btn_Guardar->setVisible(true); ui->Regresar->setVisible(true);
-    ui->stackedWidget->setCurrentIndex(8);
+    frame = SComunicacion;
+    ui->stackedWidget->setCurrentIndex(SComunicacion);
 
     ui->Combo_Sonda->clear();
     ui->ComboSeleccion->clear();
@@ -1294,7 +1219,8 @@ void MainWindow::Guardar_Comunicacion()
 }
 void MainWindow::on_Btn_tabla_cubicacion_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(4);
+    frame = STablaCub;
+    ui->stackedWidget->setCurrentIndex(STablaCub);
     ui->Lab_Titulo->setText("Tabla De Cubicacion");
     enableCubicTableFields(false);
     enableCubicTableBtn(true,false,false);
@@ -1538,62 +1464,6 @@ void MainWindow::on_Btn_CubGenerar_clicked()
 //}
 void MainWindow::on_Btn_Entregas_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(11);
-
-    QString cadena;
-
-    cadena.append("SELECT DISTINCT Tanque_Nombre FROM `cistem`.`entregas`;");
-    QSqlQuery qry;
-    qDebug() << "QRY:" << qry.exec(cadena);
-    while (qry.next()) {
-       ui->CSelecTank->addItem(qry.value(0).toString());
-
-    }
-    connect(ui->CSelecTank, QOverload<int>::of(&QComboBox::activated),
-            [=](int index){
-        QString cadena;
-        ui->Tab_entregas->clearContents();
-        ui->Tab_entregas->setRowCount(0);
-
-        switch (index)
-         {
-         case 0: cadena.append("SELECT * FROM `cistem`.`entregas` LIMIT 1000;");break;
-         default: qDebug() << "Texto del index:" << ui->CSelecTank->itemText(index);
-cadena.append("SELECT * FROM `cistem`.`entregas` where Tanque_Nombre = '"+ui->CSelecTank->itemText(index)+"';"); break;
-
-        }
-
-        //
-         QSqlQuery qry;
-         qDebug() << "QRY:" << qry.exec(cadena);
-         while (qry.next())
-         {
-             //ui->Tab_entregas->removeRow(0);
-
-
-             ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
-             //ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(QString::number(qry.value(0).toInt())));
-             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(1).toString()));
-             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 1, new QTableWidgetItem(QString::number(qry.value(2).toInt())));
-             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 2, new QTableWidgetItem(QString::number(qry.value(3).toInt())));
-             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 3, new QTableWidgetItem(QString::number(qry.value(4).toInt())));
-             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1,4 , new QTableWidgetItem(QString::number(qry.value(5).toInt())));
-             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 6, new QTableWidgetItem(qry.value(7).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
-             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
-             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
-             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
-             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
-             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
-             //ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
-
-             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 6)->setTextAlignment(Qt::AlignCenter);
-             //  ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 6)->setFont(A);
-             qDebug() << qry.value(0).toInt() << qry.value(1).toString() << qry.value(2).toInt() << qry.value(4).toInt();
-         }
-
-
-
-    });
 }
 
 void MainWindow::deliveryProGaugeCountIncrement(){
@@ -1713,7 +1583,7 @@ void MainWindow::on_Btn_SaveTank_clicked()
 
     Descargar();
     // S++;
-    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget->setCurrentIndex(SMenu);
 
 }
 
@@ -1734,22 +1604,25 @@ void MainWindow::on_Btn_SalveComunicacion_clicked()
 
 void MainWindow::on_btn_menu_clicked()
 {
-      ui->stackedWidget->setCurrentIndex(13);
+      ui->stackedWidget->setCurrentIndex(SMenuPub);
 }
 
 void MainWindow::on_Btn_Inventario_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(14);
+    frame = sInventario;
+    ui->stackedWidget->setCurrentIndex(sInventario);
 }
 
 void MainWindow::on_Btn_Reports_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(15);
+    frame = SReportes;
+    ui->stackedWidget->setCurrentIndex(SReportes);
 }
 
 void MainWindow::on_Btn_Entregas_or_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(11);
+    frame = SEntregas;
+    ui->stackedWidget->setCurrentIndex(SEntregas);
 
     QString cadena;
 
@@ -1808,4 +1681,25 @@ cadena.append("SELECT * FROM `cistem`.`entregas` where Tanque_Nombre = '"+ui->CS
 
     });
 
+}
+
+void MainWindow::Botones()
+{
+   qDebug() << "Hola Desde Stalked:" << frame;
+
+   ui->Btn_user->setVisible(false);
+   ui->Regresar->setVisible(false);
+   ui->Btn_Guardar->setVisible(false);
+   ui->btn_menu->setVisible(false);
+   ui->ComboSeleccion->setVisible(false);
+
+   switch (frame) {
+  // case 1: ui->Regresar->setVisible(true); ui->btn_menu->setVisible(true); break;
+   case SHome: case SHome2: ui->btn_menu->setVisible(true); ui->Btn_user->setVisible(true); break;
+   case SMenuPub: case SLogin: case SMenu: case STMaxi: break;
+   case sInventario: case SReportes: case STablaCub: case SVialarmas:case SEntregas:
+       ui->Regresar->setVisible(true); break;
+   default: ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
+
+   }
 }
