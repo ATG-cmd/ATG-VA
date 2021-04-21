@@ -1699,6 +1699,8 @@ void MainWindow::Botones()
    case SMenuPub: case SLogin: case SMenu: case STMaxi: break;
    case sInventario: case SReportes: case STablaCub: case SVialarmas:case SEntregas:
        ui->Regresar->setVisible(true); break;
+   case STanque: ui->ComboSeleccion->setVisible(true); ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
+   case Slimites: ui->ComboSeleccion->setVisible(true); ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
    default: ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
 
    }
