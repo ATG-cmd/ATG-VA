@@ -1251,7 +1251,7 @@ void MainWindow::Rellenar_combo_taques(QString tanque_index)
 {
     ui->Combo_CubTanque->addItem(tanque_index);
     ui->Combo_cub_generar->addItem(tanque_index);
-//    ui->Combo_taque_limites->addItem(tanque_index);
+    ui->Combo_tanque_limites->addItem(tanque_index);
 }
 
 void MainWindow::Rellenar_tabla_cubicacion(int Id_tanque)
@@ -1384,6 +1384,8 @@ void MainWindow::clearCubicTableFields()
     ui->Line_Altura->setText("");
     ui->Line_Volumen->setText("");
 }
+
+
 
 /* Este Metodo es para colocar las bolitas de colores en su lugar
   Respecto al limite que le corresponde, la siguiente formula es la
@@ -1704,4 +1706,24 @@ void MainWindow::Botones()
    default: ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
 
    }
+}
+
+void MainWindow::guardar_limites()
+{
+    QSqlQuery qry;
+    QString cadena;
+    cadena.append("UPDATE cistem.limites SET Volumen_total = '" + ui->Line_volumen_total->text() + "',"
+                  " Volumen_maximo = '" + ui->Line_volumen_maximo->text() + "',"
+                  " Producto_alto = '" + ui->Line_producto_alto->text() + "',"
+                  " Desbordamiento = '" + ui->Line_desbordamiento->text() + "',"
+                  " Entrega_necesaria = '" + ui->Line_limite_entrega->text() + "',"
+                  " Producto_bajo = '" + ui->Line_producto_bajo->text() + "',"
+                  " Alarma_agua_alta = '" + ui->Line_alarma_agua->text() + "',"
+                  " Advertencia_agua_alta = '" + ui->Line_advertencia_agua->text() + "'"
+                  " WHERE Id_Taque = '" + ui->Combo_tanque_limites->currentText() + "';");
+
+    qDebug() << cadena;
+    qDebug() << qry.exec(cadena);
+    ui->stackedWidget->setCurrentIndex(0);
+    frame = 0;
 }

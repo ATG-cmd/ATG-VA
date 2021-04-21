@@ -81,6 +81,7 @@ public:
     void enableCubicTableFields(bool v);
     void enableCubicTableBtn(bool a, bool b, bool c);
     void clearCubicTableFields();
+    void guardar_limites();
     int X(int Y);
     int calcY(int y );
 
