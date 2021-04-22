@@ -1457,7 +1457,8 @@ void MainWindow::guardar_limites()
                   " Entrega_necesaria = '" + ui->Line_limite_entrega->text() + "',"
                   " Producto_bajo = '" + ui->Line_producto_bajo->text() + "',"
                   " Alarma_agua_alta = '" + ui->Line_alarma_agua->text() + "',"
-                  " Advertencia_agua_alta = '" + ui->Line_advertencia_agua->text() + "'"
+                  " Advertencia_agua_alta = '" + ui->Line_advertencia_agua->text() + "',"
+                  " Fecha_modificacion = '" + QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+ "'"
                   " WHERE Id_Taque = '" + ui->Combo_tanque_limites->currentText() + "';");
     qDebug() << cadena;
     qDebug() << qry.exec(cadena);
