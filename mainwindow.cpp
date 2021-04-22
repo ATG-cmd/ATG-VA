@@ -229,7 +229,7 @@ void MainWindow::on_Btn_Tanque_clicked()
          switch (index)
           {
           case 0:ui->stackedWidget->setCurrentIndex(STanque); break;
-          case 1: ui->stackedWidget->setCurrentIndex(Slimites); frame = Slimites;break;
+          case 1: ui->stackedWidget->setCurrentIndex(Slimites); frame = Slimites;break; // //////////////////////////
          } });
 
      ui->Lab_Titulo->setText("Tanque");
@@ -419,7 +419,7 @@ void MainWindow::on_Btn_Guardar_clicked()
     switch(frame){
     case 1 : Guardar_Sonda(); break;
     case 2 : Guardar_Tanque(); break;
-//    case 10: guardar_limites(); break;
+    case 10: guardar_limites(); break;
     case 4: Guardar_Comunicacion(); break;
     } 
 }
@@ -1237,7 +1237,7 @@ void MainWindow::on_Btn_Alarmas_clicked()
 void MainWindow::Buscar_Tanques()
 {
     QString cadena;
-    cadena = "SELECT Id_Taque FROM cistem.tanques;";
+    cadena = "SELECT Id_Taque FROM cistem.tanques"; // WHERE Configurado = 1;
     QSqlQuery qry;
     qDebug() << qry.exec(cadena);
     while (qry.next())
@@ -1414,7 +1414,7 @@ void MainWindow::on_Btn_Cub_Guardar_clicked()
     QSqlQuery qry;
     QString consulta;
     consulta.append("UPDATE cistem.tablacubicacion SET Altura = '" + ui->Line_Altura->text()+ "',"
-                                                                                              " Volumen = '" + ui->Line_Volumen->text() + "' "
+                    " Volumen = '" + ui->Line_Volumen->text() + "' "
                                                                                                                                           "WHERE Punto = '" + ui->Line_Punto->text() + "' "
                                                                                                                                                                                        "AND TanqueId = '" + QString::number(ui->Combo_CubTanque->currentIndex() + 1) + "';");
     res = Validar_update_cubicacion(ui->Line_Punto->text().toInt(),ui->Combo_CubTanque->currentIndex() + 1,ui->Line_Altura->text().toDouble(),ui->Line_Volumen->text().toDouble());
@@ -1447,23 +1447,63 @@ void MainWindow::on_Btn_CubGenerar_clicked()
 
 /* Termina la configuracion de la tabla de cubicacion*/
 
-//void MainWindow::guardar_limites()
-//{
-//    QSqlQuery qry;
-//    QString cadena;
-//    cadena.append("UPDATE cistem.limites SET Volumen_total = '" + ui->Line_volumen_total->text() + "',"
-//                  " Volumen_maximo = '" + ui->Line_volumen_maximo->text() + "',"
-//                  " Producto_alto = '" + ui->Line_producto_alto->text() + "',"
-//                  " Desbordamiento = '" + ui->Line_desbordamiento->text() + "',"
-//                  " Entrega_necesaria = '" + ui->Line_limite_entrega->text() + "',"
-//                  " Producto_bajo = '" + ui->Line_producto_bajo->text() + "',"
-//                  " Alarma_agua_alta = '" + ui->Line_alarma_agua->text() + "',"
-//                  " Advertencia_agua_alta = '" + ui->Line_advertencia_agua->text() + "'"
-//                  " WHERE Id_Taque = '" + ui->Combo_taque_limites->currentText() + "';");
+void MainWindow::guardar_limites()
+{
+    QSqlQuery qry;
+    QString cadena;
+    cadena.append("UPDATE cistem.limites SET Volumen_maximo = '" + ui->Line_volumen_maximo->text() + "',"
+                  " Producto_alto = '" + ui->Line_producto_alto->text() + "',"
+                  " Desbordamiento = '" + ui->Line_desbordamiento->text() + "',"
+                  " Entrega_necesaria = '" + ui->Line_limite_entrega->text() + "',"
+                  " Producto_bajo = '" + ui->Line_producto_bajo->text() + "',"
+                  " Alarma_agua_alta = '" + ui->Line_alarma_agua->text() + "',"
+                  " Advertencia_agua_alta = '" + ui->Line_advertencia_agua->text() + "'"
+                  " WHERE Id_Taque = '" + ui->Combo_tanque_limites->currentText() + "';");
+    qDebug() << cadena;
+    qDebug() << qry.exec(cadena);
 
-//    qDebug() << cadena;
-//    qDebug() << qry.exec(cadena);
-//}
+    tanques[0]->SetVolMax(ui->Line_volumen_maximo->text().toDouble());
+    tanques[0]->SetProducto_Alto(ui->Line_producto_alto->text().toDouble());
+    tanques[0]->SetDesbordamiento(ui->Line_desbordamiento->text().toDouble());
+    tanques[0]->SetNecesitaProducto(ui->Line_limite_entrega->text().toDouble());
+    tanques[0]->SetProductoBajo(ui->Line_producto_bajo->text().toDouble());
+    tanques[0]->SetAlarma_de_Agua(ui->Line_alarma_agua->text().toDouble());
+    tanques[0]->SetAdvertencua_de_Agua(ui->Line_advertencia_agua->text().toDouble());
+
+    ui->stackedWidget->setCurrentIndex(0);
+    frame = 0;
+}
+
+void MainWindow::rellenar_limites()
+{
+    QSqlQuery qry;
+    QString cadena;
+    cadena.append("SELECT Volumen_maximo, Producto_alto, Desbordamiento, "
+                  "Entrega_necesaria, Producto_bajo, Alarma_agua_alta,"
+                  "Advertencia_agua_alta FROM cistem.limites "
+                  "WHERE Id_Taque = '" + ui->Combo_tanque_limites->currentText() + "';");
+    qDebug() << cadena;
+    qDebug() << qry.exec(cadena);
+    while(qry.next())
+    {
+        ui->Line_volumen_maximo->setText(QString::number(qry.value(0).toDouble()));
+        ui->Line_producto_alto->setText(QString::number(qry.value(1).toDouble()));
+        ui->Line_desbordamiento->setText(QString::number(qry.value(2).toDouble()));
+        ui->Line_limite_entrega->setText(QString::number(qry.value(3).toDouble()));
+        ui->Line_producto_bajo->setText(QString::number(qry.value(4).toDouble()));
+        ui->Line_alarma_agua->setText(QString::number(qry.value(5).toDouble()));
+        ui->Line_advertencia_agua->setText(QString::number(qry.value(6).toDouble()));
+
+    }
+}
+
+
+void MainWindow::on_Combo_tanque_limites_currentIndexChanged(const QString &arg1)
+{
+    qDebug() << "tanque seleccionando en limites " << arg1;
+    rellenar_limites();
+}
+
 void MainWindow::on_Btn_Entregas_clicked()
 {
 }
@@ -1708,22 +1748,4 @@ void MainWindow::Botones()
    }
 }
 
-void MainWindow::guardar_limites()
-{
-    QSqlQuery qry;
-    QString cadena;
-    cadena.append("UPDATE cistem.limites SET Volumen_total = '" + ui->Line_volumen_total->text() + "',"
-                  " Volumen_maximo = '" + ui->Line_volumen_maximo->text() + "',"
-                  " Producto_alto = '" + ui->Line_producto_alto->text() + "',"
-                  " Desbordamiento = '" + ui->Line_desbordamiento->text() + "',"
-                  " Entrega_necesaria = '" + ui->Line_limite_entrega->text() + "',"
-                  " Producto_bajo = '" + ui->Line_producto_bajo->text() + "',"
-                  " Alarma_agua_alta = '" + ui->Line_alarma_agua->text() + "',"
-                  " Advertencia_agua_alta = '" + ui->Line_advertencia_agua->text() + "'"
-                  " WHERE Id_Taque = '" + ui->Combo_tanque_limites->currentText() + "';");
 
-    qDebug() << cadena;
-    qDebug() << qry.exec(cadena);
-    ui->stackedWidget->setCurrentIndex(0);
-    frame = 0;
-}

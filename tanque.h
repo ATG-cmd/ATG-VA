@@ -351,6 +351,8 @@ public:
 
    int getIdTanque() const;
    void setIdTanque(int value);
+   double getVolMax() const;
+   void setVolMax(double value);
 };
 
 #endif // TANQUE_H

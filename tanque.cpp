@@ -91,6 +91,16 @@ int Tanque::getIdTanque() const { return IdTanque;}
 
 void Tanque::setIdTanque(int value){IdTanque = value;}
 
+double Tanque::getVolMax() const
+{
+    return VolMax;
+}
+
+void Tanque::setVolMax(double value)
+{
+    VolMax = value;
+}
+
 void Tanque::clickbuton(){ setTMaximizado(true); emit Camino(); }
 
 Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)

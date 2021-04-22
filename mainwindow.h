@@ -82,6 +82,7 @@ public:
     void enableCubicTableBtn(bool a, bool b, bool c);
     void clearCubicTableFields();
     void guardar_limites();
+    void rellenar_limites();
     int X(int Y);
     int calcY(int y );
 
@@ -181,6 +182,8 @@ private slots:
    void on_Btn_Entregas_or_clicked();
 
    void Botones();
+
+   void on_Combo_tanque_limites_currentIndexChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;

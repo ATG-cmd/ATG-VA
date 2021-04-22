@@ -2043,7 +2043,7 @@ QScrollBar::add-line:vertical {
        <enum>Qt::NoFocus</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="Tab_editar">
        <property name="font">
@@ -3925,14 +3925,14 @@ border-radius: 16;
      <widget class="QScrollArea" name="scrollArea_2">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>40</y>
-        <width>811</width>
-        <height>381</height>
+        <x>190</x>
+        <y>20</y>
+        <width>761</width>
+        <height>471</height>
        </rect>
       </property>
       <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOn</enum>
+       <enum>Qt::ScrollBarAsNeeded</enum>
       </property>
       <property name="widgetResizable">
        <bool>true</bool>
@@ -3943,10 +3943,85 @@ border-radius: 16;
          <x>0</x>
          <y>0</y>
          <width>761</width>
-         <height>498</height>
+         <height>471</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_9">
+        <item row="8" column="0">
+         <widget class="QLabel" name="label_24">
+          <property name="font">
+           <font>
+            <pointsize>22</pointsize>
+            <weight>75</weight>
+            <italic>true</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Limite de entrega</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="14" column="0">
+         <widget class="QLabel" name="label_30">
+          <property name="font">
+           <font>
+            <pointsize>22</pointsize>
+            <weight>75</weight>
+            <italic>true</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Advertencia agua alta</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0" colspan="2">
+         <widget class="Line" name="line_32">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="15" column="0" colspan="2">
+         <widget class="Line" name="line_37">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="0">
+         <widget class="QLabel" name="label_26">
+          <property name="font">
+           <font>
+            <pointsize>22</pointsize>
+            <weight>75</weight>
+            <italic>true</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Producto bajo</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0" colspan="2">
+         <widget class="Line" name="line_33">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
         <item row="0" column="0">
          <widget class="QLabel" name="label_6">
           <property name="font">
@@ -3965,77 +4040,17 @@ border-radius: 16;
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="Combo_tanque_limites">
+        <item row="8" column="1">
+         <widget class="QLineEdit" name="Line_limite_entrega">
           <property name="maximumSize">
            <size>
             <width>350</width>
             <height>50</height>
            </size>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0" colspan="2">
-         <widget class="Line" name="line_29">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_9">
-          <property name="font">
-           <font>
-            <pointsize>22</pointsize>
-            <weight>75</weight>
-            <italic>true</italic>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Volumen total</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QLineEdit" name="Line_volumen_total">
-          <property name="maximumSize">
-           <size>
-            <width>350</width>
-            <height>50</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0" colspan="2">
-         <widget class="Line" name="line_30">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_16">
-          <property name="font">
-           <font>
-            <pointsize>22</pointsize>
-            <weight>75</weight>
-            <italic>true</italic>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Volumen maximo</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
          <widget class="QLineEdit" name="Line_volumen_maximo">
           <property name="maximumSize">
            <size>
@@ -4045,33 +4060,8 @@ border-radius: 16;
           </property>
          </widget>
         </item>
-        <item row="5" column="0" colspan="2">
-         <widget class="Line" name="line_31">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="0">
-         <widget class="QLabel" name="label_19">
-          <property name="font">
-           <font>
-            <pointsize>22</pointsize>
-            <weight>75</weight>
-            <italic>true</italic>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Producto alto</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="1">
-         <widget class="QLineEdit" name="Line_producto_bajo">
+        <item row="14" column="1">
+         <widget class="QLineEdit" name="Line_advertencia_agua">
           <property name="maximumSize">
            <size>
             <width>350</width>
@@ -4080,14 +4070,7 @@ border-radius: 16;
           </property>
          </widget>
         </item>
-        <item row="7" column="0" colspan="2">
-         <widget class="Line" name="line_32">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="0">
+        <item row="6" column="0">
          <widget class="QLabel" name="label_22">
           <property name="font">
            <font>
@@ -4105,7 +4088,49 @@ border-radius: 16;
           </property>
          </widget>
         </item>
-        <item row="8" column="1">
+        <item row="9" column="0" colspan="2">
+         <widget class="Line" name="line_34">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" colspan="2">
+         <widget class="Line" name="line_31">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_16">
+          <property name="font">
+           <font>
+            <pointsize>22</pointsize>
+            <weight>75</weight>
+            <italic>true</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Volumen maximo</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="1">
+         <widget class="QLineEdit" name="Line_alarma_agua">
+          <property name="maximumSize">
+           <size>
+            <width>350</width>
+            <height>50</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
          <widget class="QLineEdit" name="Line_producto_alto">
           <property name="maximumSize">
            <size>
@@ -4115,33 +4140,8 @@ border-radius: 16;
           </property>
          </widget>
         </item>
-        <item row="9" column="0" colspan="2">
-         <widget class="Line" name="line_33">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="10" column="0">
-         <widget class="QLabel" name="label_24">
-          <property name="font">
-           <font>
-            <pointsize>22</pointsize>
-            <weight>75</weight>
-            <italic>true</italic>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Limite de entrega</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="10" column="1">
-         <widget class="QLineEdit" name="Line_limite_entrega">
+        <item row="4" column="1">
+         <widget class="QLineEdit" name="Line_producto_bajo">
           <property name="maximumSize">
            <size>
             <width>350</width>
@@ -4150,32 +4150,31 @@ border-radius: 16;
           </property>
          </widget>
         </item>
-        <item row="11" column="0" colspan="2">
-         <widget class="Line" name="line_34">
+        <item row="0" column="1">
+         <widget class="QComboBox" name="Combo_tanque_limites">
+          <property name="maximumSize">
+           <size>
+            <width>350</width>
+            <height>50</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="2">
+         <widget class="Line" name="line_30">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
          </widget>
         </item>
-        <item row="12" column="0">
-         <widget class="QLabel" name="label_26">
-          <property name="font">
-           <font>
-            <pointsize>22</pointsize>
-            <weight>75</weight>
-            <italic>true</italic>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Producto bajo</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        <item row="11" column="0" colspan="2">
+         <widget class="Line" name="line_35">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
          </widget>
         </item>
-        <item row="12" column="1">
+        <item row="10" column="1">
          <widget class="QLineEdit" name="Line_desbordamiento">
           <property name="maximumSize">
            <size>
@@ -4185,14 +4184,25 @@ border-radius: 16;
           </property>
          </widget>
         </item>
-        <item row="13" column="0" colspan="2">
-         <widget class="Line" name="line_35">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_19">
+          <property name="font">
+           <font>
+            <pointsize>22</pointsize>
+            <weight>75</weight>
+            <italic>true</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Producto alto</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
          </widget>
         </item>
-        <item row="14" column="0">
+        <item row="12" column="0">
          <widget class="QLabel" name="label_28">
           <property name="font">
            <font>
@@ -4210,53 +4220,8 @@ border-radius: 16;
           </property>
          </widget>
         </item>
-        <item row="14" column="1">
-         <widget class="QLineEdit" name="Line_alarma_agua">
-          <property name="maximumSize">
-           <size>
-            <width>350</width>
-            <height>50</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="15" column="0" colspan="2">
+        <item row="13" column="0" colspan="2">
          <widget class="Line" name="line_36">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="16" column="0">
-         <widget class="QLabel" name="label_30">
-          <property name="font">
-           <font>
-            <pointsize>22</pointsize>
-            <weight>75</weight>
-            <italic>true</italic>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Advertencia agua alta</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="16" column="1">
-         <widget class="QLineEdit" name="Line_advertencia_agua">
-          <property name="maximumSize">
-           <size>
-            <width>350</width>
-            <height>50</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="17" column="0" colspan="2">
-         <widget class="Line" name="line_37">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
