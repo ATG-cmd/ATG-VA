@@ -83,6 +83,7 @@ public:
     void clearCubicTableFields();
     void guardar_limites();
     void rellenar_limites();
+    void evaluar_limites(Tanque *tanque);
     int X(int Y);
     int calcY(int y );
 

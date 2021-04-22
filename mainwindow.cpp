@@ -849,7 +849,7 @@ void MainWindow::Protocolo(QString cad)
                 // ui->lbl_deliveryMaxVolumeRead->setText(QString::number(deliveryMaxVolumeRead));
             }
 
-
+            evaluar_limites(tanques[indice]);
             qDebug() << "Tamano de cadena:"<< cad.length();
         }
         inicbuff1();
@@ -1496,6 +1496,14 @@ void MainWindow::rellenar_limites()
         ui->Line_advertencia_agua->setText(QString::number(qry.value(6).toDouble()));
 
     }
+}
+
+void MainWindow::evaluar_limites(Tanque *tanque)
+{
+  //  tanque->getVolumenCon()  // volumen tanque
+  //  tanque->getVolumenA()    // volumen agua
+    qDebug() << "Aqui se evalua el valumen: "  << tanque->getVolumenCon();
+
 }
 
 
