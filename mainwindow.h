@@ -44,6 +44,7 @@ public:
     QTimer *Time2;
     QTimer *Time3;
     QTimer *deliveryProGaugeTimer;
+    QTimer *Gpio_timer;
     QLabel *Lab_Title;
     QLabel *Avisos;
     QLabel *Indicadores[2];
@@ -71,6 +72,7 @@ public:
      double Temperatura_inicial;
      double Volumen_Final;
      double Temperatura_Final;
+     bool Input[16];
 
     void Buscar_Tanques();  // Es funcion busca los tanques dados de alta en BD
     void Rellenar_combo_taques(QString tanque_index); // Rellenaremos los combobox con los tanque escontrados
@@ -185,6 +187,8 @@ private slots:
    void Botones();
 
    void on_Combo_tanque_limites_currentIndexChanged(const QString &arg1);
+
+   void Leer_GPIO();
 
 private:
     Ui::MainWindow *ui;

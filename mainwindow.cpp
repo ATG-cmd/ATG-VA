@@ -25,6 +25,32 @@
 #define sInventario 14
 #define SReportes 15
 
+#define INPUT_1 4
+#define INPUT_2 2
+#define INPUT_3 1
+#define INPUT_4 0
+#define INPUT_5 14
+#define INPUT_6 6
+#define INPUT_7 5
+#define INPUT_8 3
+#define INPUT_9 21
+#define INPUT_10 31
+#define INPUT_11 30
+#define INPUT_12 11
+#define INPUT_13 23
+#define INPUT_14 27
+#define INPUT_15 22
+#define INPUT_16 26
+#define CTRL 12
+#define Buzzer 29
+#define RX4 13
+#define TX4 8
+#define TX1 15
+#define RX1 16
+#define LD 7
+#define SDA1 8
+#define SCL1 9
+
 
 #define SOH 0x01
 const int lenbuff1 = 1024;              // Longitud de buffer, Ajustar
@@ -51,8 +77,28 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     Time2 = new QTimer();
     Time3 = new QTimer();
+    Gpio_timer = new QTimer();
+
     wiringPiSetup();
-    pinMode(12,OUTPUT);
+    pinMode(CTRL,OUTPUT);
+    pinMode(Buzzer,OUTPUT);
+    pinMode(LD,OUTPUT);
+    pinMode(INPUT_1,INPUT);
+    pinMode(INPUT_2,INPUT);
+    pinMode(INPUT_3,INPUT);
+    pinMode(INPUT_4,INPUT);
+    pinMode(INPUT_5,INPUT);
+    pinMode(INPUT_6,INPUT);
+    pinMode(INPUT_7,INPUT);
+    pinMode(INPUT_8,INPUT);
+    pinMode(INPUT_9,INPUT);
+    pinMode(INPUT_10,INPUT);
+    pinMode(INPUT_11,INPUT);
+    pinMode(INPUT_12,INPUT);
+    pinMode(INPUT_13,INPUT);
+    pinMode(INPUT_14,INPUT);
+    pinMode(INPUT_15,INPUT);
+    pinMode(INPUT_16,INPUT);
 
     QFont Fonttitle;
     Fonttitle.setPointSize(30);
@@ -99,7 +145,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     deliveryProGaugeTimer = new QTimer(this);
     connect(deliveryProGaugeTimer, SIGNAL(timeout()), this, SLOT(deliveryProGaugeCountIncrement()));
+    connect(Gpio_timer,SIGNAL(timeout()),this,SLOT(Leer_GPIO()));
     deliveryProGaugeTimer->start(1000);
+    Gpio_timer->start(2000);
 
 
     MainWindow::setFocus();
@@ -1159,7 +1207,7 @@ void MainWindow::SendCMD()
     switch(ProGaugeCountCMD){
     case 0:
        // puertoserie->setDataTerminalReady(false);
-        digitalWrite(12,HIGH);
+        digitalWrite(CTRL,HIGH);
         ProGaugeCountCMD++;
         break;
     case 1:
@@ -1170,7 +1218,7 @@ void MainWindow::SendCMD()
 
     case 2:
       //  puertoserie->setDataTerminalReady(true);
-        digitalWrite(12,LOW);
+        digitalWrite(CTRL,LOW);
         ProGaugeCountCMD = 0;
         ProGaugeCount++;
         Time3->stop();
@@ -1511,6 +1559,33 @@ void MainWindow::on_Combo_tanque_limites_currentIndexChanged(const QString &arg1
 {
     qDebug() << "tanque seleccionando en limites " << arg1;
     rellenar_limites();
+}
+
+void MainWindow::Leer_GPIO()
+{
+    // aqui se leen los sensores
+          Input[0] = digitalRead(INPUT_1);
+          Input[1] = digitalRead(INPUT_2);
+          Input[2] = digitalRead(INPUT_3);
+          Input[3] = digitalRead(INPUT_4);
+          Input[4] = digitalRead(INPUT_5);
+          Input[5] = digitalRead(INPUT_6);
+          Input[6] = digitalRead(INPUT_7);
+          Input[7] = digitalRead(INPUT_8);
+          Input[8] = digitalRead(INPUT_9);
+          Input[9] = digitalRead(INPUT_10);
+          Input[10] = digitalRead(INPUT_11);
+          Input[11] = digitalRead(INPUT_12);
+          Input[12] = digitalRead(INPUT_13);
+          Input[13] = digitalRead(INPUT_14);
+          Input[14] = digitalRead(INPUT_15);
+          Input[15] = digitalRead(INPUT_16);
+
+         for(int i = 0; i <= 15; i++)
+         {
+             qDebug() << "Valor de senor " << i <<  " :" << Input[i];
+         }
+
 }
 
 void MainWindow::on_Btn_Entregas_clicked()
