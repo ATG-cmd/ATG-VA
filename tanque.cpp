@@ -37,6 +37,7 @@ void Tanque::offline()
 {
      latanq->setStyleSheet("background-color:lightgray;");
      latanq->setText("Sin Conexion");
+     ishabilitado = false;
 }
 
 double Tanque::getAngle() const { return angle; }
