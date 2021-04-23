@@ -20,7 +20,8 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QComboBox{
+   <string notr="true">
+QComboBox{
 border-radius: 10px;
 border: 2px solid  gray ;
 }
@@ -688,7 +689,7 @@ padding: 2px;</string>
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-625</y>
+         <y>0</y>
          <width>721</width>
          <height>1075</height>
         </rect>

@@ -804,7 +804,7 @@ void MainWindow::Protocolo(QString cad)
         N= qry.value(0).toInt();
         qDebug() << "Protocolo:"<< N;
     }
-
+    connect(tanques[indice],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
     switch (N) {
 
     case 1:
@@ -858,6 +858,7 @@ void MainWindow::Descargar()
 
             ui->stackedWidget->setCurrentIndex(3);
            // ProGaugeId[S]=qry.value(1).toString();
+            qDebug() <<   "ID del tanque dw:" <<  qry.value(1).toInt();
             tanques[S]->setIdTanque(qry.value(1).toInt());
             tanques[S]->setIshabilitado(qry.value(2).toBool());
             tanques[S]->SetnameTank(qry.value(3).toString());
@@ -892,33 +893,37 @@ void MainWindow::Descargar()
     {
         QMessageBox::critical(this, "Error",tr(qry.lastError().text().toUtf8()));
     }
-    if(qry.exec("SElECT * FROM CISTEM.LIMITES WHERE Id_Taque = 2"))
-    {
-       while(qry.next())
-       {
+    for (int i=0;i <= S;i++) {
+        if(qry.exec("SElECT * FROM CISTEM.LIMITES WHERE Id_Taque = " +  QString::number(tanques[i]->getIdTanque())))
+        {
+           while(qry.next())
+           {
 
-           tanques[0]->SetVolMax(qry.value(2).toDouble());
-           tanques[0]->SetProducto_Alto(qry.value(3).toDouble());
-           tanques[0]->SetDesbordamiento(qry.value(4).toDouble());
-           tanques[0]->SetNecesitaProducto(qry.value(5).toDouble());
-           tanques[0]->SetProductoBajo(qry.value(6).toDouble());
-           tanques[0]->SetAlarma_de_Agua(qry.value(7).toDouble());
-           tanques[0]->SetAdvertencua_de_Agua(qry.value(8).toDouble());
+               tanques[i]->SetVolMax(qry.value(2).toDouble());
+               tanques[i]->SetProducto_Alto(qry.value(3).toDouble());
+               tanques[i]->SetDesbordamiento(qry.value(4).toDouble());
+               tanques[i]->SetNecesitaProducto(qry.value(5).toDouble());
+               tanques[i]->SetProductoBajo(qry.value(6).toDouble());
+               tanques[i]->SetAlarma_de_Agua(qry.value(7).toDouble());
+               tanques[i]->SetAdvertencua_de_Agua(qry.value(8).toDouble());
 
 
-           qDebug() <<"Hola Desde Limites ;p"
-                    <<qry.value(0).toString()
-                    <<qry.value(1).toString()
-                    <<qry.value(2).toString()
-                    <<qry.value(3).toString()
-                    <<qry.value(4).toString()
-                    <<qry.value(5).toString()
-                    <<qry.value(6).toString();
-       }
+               qDebug() <<"Hola Desde Limites ;p"
+                        <<qry.value(0).toString()
+                        <<qry.value(1).toString()
+                        <<qry.value(2).toString()
+                        <<qry.value(3).toString()
+                        <<qry.value(4).toString()
+                        <<qry.value(5).toString()
+                        <<qry.value(6).toString();
+           }
+        }
+        else {
+            qDebug() << "Valio Cabeza de Puerco";
+        }
     }
-    else {
-        qDebug() << "Valio Cabeza de Puerco";
-    }
+
+
 }
 
 void MainWindow::Geometrytank()
@@ -1133,13 +1138,14 @@ qDebug () << "offlineSonda";
 
     tanques[indice]->offline();
     qDebug ()  << "Id_Tanque:" << tanques[indice]->getIdTanque();
+    disconnect(tanques[indice],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
       QSqlQuery qry;
-     qry.exec("UPDATE `cistem`.`tanques` SET `Configurado`='0' WHERE Id_Taque = "+QString::number(tanques[indice]->getIdTanque())+"");
-     qry.exec("SELECT COUNT(Id_Taque) AS Numero_Tanques FROM Tanques;");
-     while(qry.next())
-     {
-         qDebug() << qry.value(0);
-     }
+    // qry.exec("UPDATE `cistem`.`tanques` SET `Configurado`='0' WHERE Id_Taque = "+QString::number(tanques[indice]->getIdTanque())+"");
+  //  qry.exec("SELECT COUNT(Id_Taque) AS Numero_Tanques FROM Tanques;");
+//     while(qry.next())
+//     {
+//         qDebug() << qry.value(0);
+//     }
 
 //     if (frame == SHome)
 //    {
@@ -1477,7 +1483,6 @@ void MainWindow::on_Btn_CubGenerar_clicked()
 void MainWindow::on_Btn_Entregas_clicked()
 {
 }
-
 void MainWindow::deliveryProGaugeCountIncrement(){
     if(deliveryInProcess == 0){
         if(tanques[indice]->GetVolumen() <= deliveryLastInventoryRead){
@@ -1594,7 +1599,6 @@ void MainWindow::on_Btn_SaveTank_clicked()
                   "'"+ui->Line_Capacidad->text()+"', '"+QString::number(ui->Combo_Tipo->currentIndex())+"',"
                   " '"+ui->Line_Angulo->text()+"', '"+ui->Line_Distancia->text()+"', '"+ui->Line_coeficiente->text()+"',"
                   " 'Gasolina');");
-
 
     Descargar();
     // S++;
