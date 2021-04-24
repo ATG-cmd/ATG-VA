@@ -1559,7 +1559,7 @@ void MainWindow::insertar_incidente(QString tipo, QString Descripcion, QString u
     QSqlQuery qry;
     QString cadena;
     cadena.append("INSERT INTO cistem.incidentes (Tipo_incidente, Descripcion, usuario, Fecha_incidente)"
-                  " VALUES ("+tipo+", "+Descripcion+", "+usuario+", "+ QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss") +";");
+                  " VALUES ('"+tipo+"', '"+Descripcion+"', '"+usuario+"', '"+ QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss") +"');");
 
     qDebug() << cadena;
     qry.exec(cadena);
@@ -1574,6 +1574,8 @@ void MainWindow::on_Combo_tanque_limites_currentIndexChanged(const QString &arg1
 
 void MainWindow::Leer_GPIO()
 {
+          QString Gpio_status;
+          Gpio_status.append( "Sensor_");
     // aqui se leen los sensores
           Input[0] = digitalRead(INPUT_1);
           Input[1] = digitalRead(INPUT_2);
@@ -1596,8 +1598,10 @@ void MainWindow::Leer_GPIO()
          {
              qDebug() << "Valor de senor " << i+1 <<  " :" << Input[i];
              if(Input[i] == false) // se activan en false
-             {
+             {   Gpio_status.append(QString::number(i+1));
+                 Gpio_status.append(": Activado");
                  qDebug() << "El sensor" << i+1 << " se Activo";
+                 insertar_incidente("incidente",Gpio_status,"user");
              }
          }
 
