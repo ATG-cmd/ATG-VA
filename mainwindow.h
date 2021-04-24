@@ -86,6 +86,7 @@ public:
     void guardar_limites();
     void rellenar_limites();
     void evaluar_limites(Tanque *tanque);
+    void insertar_incidente(QString tipo, QString Descripcion, QString usuario);
     int X(int Y);
     int calcY(int y );
 
