@@ -115,8 +115,6 @@ private slots:
 
    void Guardar_Sonda();
 
-   void Guardar_Tanque();
-
    void Estados();
 
    void Enviar_qry(QString qry);

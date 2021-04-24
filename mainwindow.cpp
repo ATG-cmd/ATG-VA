@@ -398,12 +398,10 @@ void MainWindow::Modificar_TextoTank()
 //Inicio de boton de Guardar
 void MainWindow::on_Btn_Guardar_clicked()
 {
-
     qDebug() << frame;
     switch(frame){
-    case 1 : Guardar_Sonda(); break;
+    case SSonda : Guardar_Sonda(); break;
     case STanque: on_Btn_SaveTank_clicked(); break;
-//    case 10: guardar_limites(); break;
     case 4: Guardar_Comunicacion(); break;
     } 
 }
@@ -693,6 +691,7 @@ void MainWindow::addcbuff1(char c){
 
 void MainWindow::Guardar_Sonda()
 {
+    frame = SSonda;
     ui->Combo_Sonda->addItem(" ");
     Sondas[N] = new Sonda(this);
     Sondas[N]->setSerie(ui->line_Serie->text().toInt());
@@ -703,21 +702,18 @@ void MainWindow::Guardar_Sonda()
 
     QSqlQuery qry;
 
-    QString A("INSERT INTO `cistem`.`sonda` "
-              "(`Serie`, `Protocolo`, `Flotadores`, "
-              "`Licencia`, `Unidad Distancia`, `Unidad Temperatura`, "
-              "`Unidad Volumen`, `Ajuste Altura`)"
-              " VALUES ('"+ui->line_Serie->text()+"',"
-                                                  " "+ui->Combo_protocolo->currentText()+","
-                                                  " "+ui->ComboFlotadores->currentText()+","
-                                                  " '"+ui->Line_Licencia->text()+"', "
-                                                  "'"+ui->ComboUDistancia->currentText()+"'"
-                                                  ", '"+ui->Combo_UTemperatura->currentText()+"',"
-                                                  "'"+ui->Combo_UVolumen->currentText()+"',"
-                                                  " "+ui->Line_AjusteAltura->text()+");");
-    qDebug() << A;
+    qry.exec("INSERT INTO `cistem`.`sonda` (`Serie`, `Protocolo`, `Flotadores`, `Licencia`, `fecha`) VALUES ('"+ui->line_Serie->text()+"', '"+ui->Combo_protocolo->currentText()+"', '"+ui->Combo_protocolo->currentText()+"', '"+ui->Line_Licencia->text()+"', '2020-01-14 00:03:00');");
 
-    qry.exec(A);
+//    QString A("INSERT INTO `cistem`.`sonda` (`Serie`, `Protocolo`, `Flotadores`, `Licencia`, `Ajuste Altura`, `fecha`)"
+//    " VALUES ('"+ui->line_Serie->text()+"'"
+//           ", '"+ui->Combo_protocolo->currentText()+"'"
+//           ", '"+ui->Line_Licencia->text()+"'"
+//           ", '"+ui->Line_Licencia->text()+"'"
+//           ", "+ui->Line_AjusteAltura->text()+""
+//           ", '2020-01-14 00:03:00');");
+
+//    qry.exec(A);
+//    qDebug () << A;
 
     ui->line_Serie->clear();
     ui->Combo_protocolo->setCurrentIndex(0);
@@ -728,54 +724,10 @@ void MainWindow::Guardar_Sonda()
     ui->Combo_UVolumen->setCurrentIndex(0);
     ui->Line_AjusteAltura->clear();
 
-    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget->setCurrentIndex(SMenu);
     ui->Lab_Titulo->setText("Menu Principal");
 
     N++;
-}
-
-void MainWindow::Guardar_Tanque()
-{
-    Geometrytank();
-    connect(tanques[S],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
-
-    ui->stackedWidget->setCurrentIndex(3);
-    //ProGaugeId[N]=ID->toPlainText();
-    //tanques[N]->setProtocolo(QcomboProtocolo->currentIndex());
-    tanques[S]->setID(ui->Combo_Sonda->currentText());
-    tanques[S]->SetnameTank(ui->Line_Nombre->text());
-    //tanques[S]->color(Tconf->GetColor(),true);
-
-    switch(G){
-    case 1:
-        tanques[S]->SetTankAltura(ui->Line_Diametro->text().toDouble());
-        tanques[S]->SetTankLargo(ui->Line_Capacidad->text().toDouble());
-        //     tanques[S]->SetTankAncho(ui->lineEdit->text().toDouble());
-        tanques[S]->setTipo(2);
-        break;
-    case 2:
-        tanques[S]->SetTankDiametro(ui->Line_Diametro->text().toDouble());
-        tanques[S]->SetTankLargo(ui->Line_Capacidad->text().toDouble());
-        tanques[S]->setTipo(1);                                                                           break;
-    case 3:
-        tanques[S]->SetTankDiametro(ui->Line_Diametro->text().toDouble());
-        tanques[S]->SetTankAltura(ui->Line_Capacidad->text().toDouble());
-        tanques[S]->setTipo(0);
-        break;
-    }
-    Enviar_qry("INSERT INTO `cistem`.`tanques` "
-               "(`Serie_Sonda`, `Nombre`, `Color`,`Tipo`,`Medida 1`,`Medida 2`) "
-               "VALUES ('"+ui->Combo_Sonda->currentText()+"'"
-                      ", '"+ui->Line_Nombre->text()+"'"
-                      ", '"+QString::number(ui->Combo_Color->currentIndex())+"'"
-                      ", '"+QString::number(ui->Combo_Tipo->currentIndex())+"'"
-                      ", '"+ui->Line_Diametro->text()+"'"
-                      ", '"+ui->Line_Capacidad->text()+"'"
-                      ";");
-
-    Descargar();
-    // S++;
-    ui->stackedWidget->setCurrentIndex(0);
 }
 
 void MainWindow::Protocolo(QString cad)
