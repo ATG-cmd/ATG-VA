@@ -799,7 +799,7 @@ void MainWindow::Protocolo(QString cad)
 void MainWindow::Descargar()
 {
     QSqlQuery qry;
-    S=0;
+
 
     if(qry.exec("SELECT * FROM `cistem`.`tanques` where configurado = 1 ;"))
     {
@@ -1495,9 +1495,9 @@ void MainWindow::deliveryProGaugeCountIncrement(){
 
 void MainWindow::on_Btn_SaveTank_clicked()
 {
-    Geometrytank();
-    connect(tanques[S],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
-
+    //Geometrytank();
+    //connect(tanques[S],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
+    disconnect(Time1,SIGNAL(timeout()),this,SLOT(Estados()));
 //*** Configurar --- 0 Habilitado o Deshabilitado --- ***//
  int hab = 0;
     if(ui->RHabilitado->isChecked())
@@ -1542,22 +1542,27 @@ void MainWindow::on_Btn_SaveTank_clicked()
        // --- *** Producto *** --- //
        tanques[S]->setProducto(ui->Combo_Producto->currentText());
 
-      Enviar_qry( "INSERT INTO `cistem`.`tanques` "
-                  "(`Id_Taque`, `Configurado`, `Nombre`, "
-                  "`CodigoProducto`, `Color`, `CodigoCombustible`, "
-                  "`Serie_Sonda`, `AjusteAltura`, `Diametro`, "
-                  "`Capacidad`, `Tipo`, `Angulo`, `Frombase`, "
-                  "`CoeficienteTermico`, `Producto`) "
-                  "VALUES ('"+QString::number(ui->Combo_IdTanque->currentIndex())+"',"
-                  " '"+QString::number(hab)+"' , '"+ui->Line_Nombre->text()+"', '"+ui->Line_Codigo_producto->text()+"', "
-                  "'"+QString::number(ui->Combo_Color->currentIndex())+"', '"+ui->Line_CodigoCombustible->text()+"',"
-                  " '"+ui->Combo_Sonda->currentText()+"', '"+ui->Line_AjusteAltura->text()+"', '"+ui->Line_Diametro->text()+"', "
-                  "'"+ui->Line_Capacidad->text()+"', '"+QString::number(ui->Combo_Tipo->currentIndex())+"',"
-                  " '"+ui->Line_Angulo->text()+"', '"+ui->Line_Distancia->text()+"', '"+ui->Line_coeficiente->text()+"',"
-                  " 'Gasolina');");
+      Enviar_qry( "UPDATE `cistem`.`tanques` SET "
+                  " `Configurado`='"+QString::number(hab)+"',"
+                  " `Nombre`='"+ui->Line_Nombre->text()+"',"
+                  " `CodigoProducto`='"+ui->Line_Codigo_producto->text()+"',"
+                  " `Color` ='"+QString::number(ui->Combo_Color->currentIndex())+"',"
+                  " `CodigoCombustible`='"+ui->Line_CodigoCombustible->text()+"',"
+                  " `Serie_Sonda`='"+ui->Combo_Sonda->currentText()+"', "
+                  "`AjusteAltura`='"+ui->Line_AjusteAltura->text()+"', "
+                  "`Diametro`='"+ui->Line_Diametro->text()+"', "
+                  "`Capacidad`='"+ui->Line_Capacidad->text()+"', "
+                  "`Tipo`='"+QString::number(ui->Combo_Tipo->currentIndex())+"', "
+                  "`Angulo`='"+ui->Line_Angulo->text()+"', "
+                  "`Frombase`='"+ui->Line_Distancia->text()+"', "
+                  "`CoeficienteTermico`='"+ui->Line_coeficiente->text()+"', "
+                  "`Producto`='Disel' WHERE  `Id_Taque`= '"+QString::number(ui->Combo_IdTanque->currentIndex())+"' ;");
 
-    Descargar();
+
+//    Descargar();
     // S++;
+      consultaBD();
+    frame = SMenu;
     ui->stackedWidget->setCurrentIndex(SMenu);
 
 }
@@ -1590,7 +1595,6 @@ void MainWindow::on_Btn_Entregas_or_clicked()
        ui->CSelecTank->addItem(qry.value(0).toString());
 
     }
-
 
     connect(ui->CSelecTank, QOverload<int>::of(&QComboBox::activated),
             [=](int index){
@@ -1670,13 +1674,15 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_Combo_IdTanque_activated(int index)
 {
+    S=index;
     QSqlQuery qry;
     QString A  = "SELECT * FROM  cistem.tanques WHERE Id_Taque = "+QString::number(index)+";";
     qry.exec(A);
     qDebug () << A;
 while (qry.next())
 {
-
+    if(qry.value(2).toBool()) ui->RHabilitado->setChecked(true);
+    else  ui->RDeshabilitado->setChecked(true);
   ui->Line_Nombre->setText( qry.value(3).toString());
   ui->Line_Codigo_producto->setText(qry.value(4).toString());
   ui->Combo_Color->setCurrentIndex(qry.value(5).toInt());
