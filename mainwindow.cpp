@@ -64,9 +64,9 @@ MainWindow::MainWindow(QWidget *parent)
     Lab_Title->setFont(Fonttitle);
     ui->lbl_ProGaugeDeliveryInProccess->hide();
 
-    Avisos = new QLabel(ui->Btn_Barra_Estados);
-    Avisos->setGeometry(QRect(700,2,105,50));
-    Avisos->setText("Alarmas 0 <br/> Advertencias 0");
+//    Avisos = new QLabel(ui->Btn_Barra_Estados);
+//    Avisos->setGeometry(QRect(700,2,105,50));
+//    Avisos->setText("Alarmas 0 <br/> Advertencias 0");
 
     QFont FontReloj;
     FontReloj.setPointSize(20);
@@ -239,9 +239,15 @@ void MainWindow::on_Btn_Tanque_clicked()
     {
         ui->Combo_Sonda->addItem(qry.value(0).toString());
         qDebug() << qry.value(0);
-    }
-   
-});
+    }  });
+
+    connect(ui->Combo_IdTanque, QOverload<int>:: of(&QComboBox::activated),[=](int index){
+        QSqlQuery qry;
+        QString A  = "SELECT * FROM  cistem.tanques WHERE Id_Taque = "+QString::number(index)+";";
+        qry.exec(A);
+
+     } );
+
 }
 //Fin del StackedTanque
 
@@ -402,7 +408,7 @@ void MainWindow::on_Btn_Guardar_clicked()
     switch(frame){
     case SSonda : Guardar_Sonda(); break;
     case STanque: on_Btn_SaveTank_clicked(); break;
-    case 4: Guardar_Comunicacion(); break;
+    case SComunicacion: Guardar_Comunicacion(); break;
     } 
 }
 //Fin de boton de Guardar
@@ -1155,26 +1161,20 @@ void MainWindow::on_Btn_Comunicacion_clicked()
 {
     frame = SComunicacion;
     ui->stackedWidget->setCurrentIndex(SComunicacion);
-
+    ui->Lab_Titulo->setText("Comunicación");
     ui->Combo_Sonda->clear();
     ui->ComboSeleccion->clear();
     ui->ComboSeleccion->setVisible(true);
-    //ui->stackedWidget->setCurrentIndex(3);
     ui->ComboSeleccion->addItem("Sonda");
     ui->ComboSeleccion->addItem("Comunicador");
 
-    connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
-            [=](int index){
-
+    connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated), [=](int index){
         switch (index)
          {
-         case 0:ui->stackedWidget->setCurrentIndex(8); break;
-         case 1: ui->stackedWidget->setCurrentIndex(12); frame = 10;break;
-         //case 2: Vertical();break;
-         case 3:
-            ui->stackedWidget->setCurrentIndex(4);
-            ui->Lab_Titulo->setText("Tabla De Cubicacion");
+         case 0:ui->stackedWidget->setCurrentIndex(SComunicacion); break;
+         case 1: ui->stackedWidget->setCurrentIndex(SComunicador); frame = SComunicador;break;
         } });
+
 
 }
 
@@ -1185,7 +1185,16 @@ void MainWindow::on_Btn_Barra_Estados_clicked()
 
 void MainWindow::Guardar_Comunicacion()
 {
-
+    QSqlQuery qry;
+   QString A = "UPDATE `cistem`.`config_sonda` SET "
+               "`Baudios`='"+ui->SCombo_Baudios->currentText()+"',"
+               " `Datos`='"+ui->SCombo_Datos->currentText()+"',"
+               " `Stop`='"+ui->SCombo_Stop->currentText()+"', "
+               "`Paridad`='"+ui->SCombo_Paridad->currentText()+"', "
+               "`Unidades Sistema`='"+ui->SUnidadesSistema->currentText()+"' "
+               "WHERE  `ID`=0;";
+   qDebug() << "Hola desde  Guardar Comunicacion" << A;
+   qry.exec(A);
 
 }
 void MainWindow::on_Btn_tabla_cubicacion_clicked()
@@ -1559,19 +1568,11 @@ void MainWindow::on_Btn_SaveTank_clicked()
 
 }
 
-void MainWindow::on_Btn_SalveComunicacion_clicked()
-{
-    QSqlQuery qry;
-    qry.exec("INSERT INTO `cistem`.`config_sonda` (`Baudios`, `Datos`, `Stop`, `Paridad`) VALUES ('300', '2', '7', 'Igualdad');");
-
-}
-
 void MainWindow::on_btn_menu_clicked() {frame = SMenuPub; ui->stackedWidget->setCurrentIndex(SMenuPub);}
 
 void MainWindow::on_Btn_Inventario_clicked()
 {
-    frame = sInventario;
-    ui->stackedWidget->setCurrentIndex(sInventario);
+    frame = sInventario; ui->stackedWidget->setCurrentIndex(sInventario);
 }
 
 void MainWindow::on_Btn_Reports_clicked()
@@ -1660,7 +1661,8 @@ void MainWindow::Botones()
    case SHome: case SHome2: ui->btn_menu->setVisible(true); ui->Btn_user->setVisible(true); break;
    case SMenuPub: case SLogin: case SMenu: case STMaxi: break;
    case sInventario: case SReportes: case STablaCub: case SVialarmas:case SEntregas:
-       ui->Regresar->setVisible(true); break;
+        ui->Regresar->setVisible(true); break;
+   case SComunicador:  case SComunicacion : ui->ComboSeleccion->setVisible(true); ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
    default: ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
 
    }
@@ -1670,4 +1672,9 @@ void MainWindow::on_pushButton_clicked()
 {
     frame = SHome;
     ui->stackedWidget->setCurrentIndex(SHome);
+}
+
+void MainWindow::on_Combo_IdTanque_activated(int index)
+{
+
 }

@@ -171,8 +171,6 @@ private slots:
 
    void on_Btn_SaveTank_clicked();
 
-   void on_Btn_SalveComunicacion_clicked();
-
    void on_btn_menu_clicked();
 
    void on_Btn_Inventario_clicked();
@@ -184,6 +182,8 @@ private slots:
    void Botones();
 
    void on_pushButton_clicked();
+
+   void on_Combo_IdTanque_activated(int index);
 
 private:
     Ui::MainWindow *ui;
