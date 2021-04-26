@@ -44,6 +44,7 @@ public:
     QTimer *Time2;
     QTimer *Time3;
     QTimer *deliveryProGaugeTimer;
+    QTimer *Gpio_timer;
     QLabel *Lab_Title;
     QLabel *Avisos;
     QLabel *Indicadores[2];
@@ -71,6 +72,7 @@ public:
      double Temperatura_inicial;
      double Volumen_Final;
      double Temperatura_Final;
+     bool S_input[15];
 
 
 
@@ -85,6 +87,10 @@ public:
     void enableCubicTableFields(bool v);
     void enableCubicTableBtn(bool a, bool b, bool c);
     void clearCubicTableFields();
+    void guardar_limites();
+    void rellenar_limites();
+    void evaluar_limites(Tanque *tanque);
+    void insertar_incidente(QString tipo, QString Descripcion, QString usuario);
     int X(int Y);
     int calcY(int y );
 
@@ -185,6 +191,7 @@ private slots:
 
    void on_Combo_IdTanque_activated(int index);
 
+   void Leer_GPIO();
 private:
     Ui::MainWindow *ui;
 };
