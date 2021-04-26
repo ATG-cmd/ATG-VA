@@ -64,10 +64,6 @@ MainWindow::MainWindow(QWidget *parent)
     Lab_Title->setFont(Fonttitle);
     ui->lbl_ProGaugeDeliveryInProccess->hide();
 
-//    Avisos = new QLabel(ui->Btn_Barra_Estados);
-//    Avisos->setGeometry(QRect(700,2,105,50));
-//    Avisos->setText("Alarmas 0 <br/> Advertencias 0");
-
     QFont FontReloj;
     FontReloj.setPointSize(20);
     FontReloj.setBold(true);
@@ -77,8 +73,8 @@ MainWindow::MainWindow(QWidget *parent)
     Reloj->setText(QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss ap"));
 
 
-  connect(ui->Regresar_Home,&QPushButton::clicked,this,&MainWindow::on_Btn_Home_clicked);
-  connect(ui->stackedWidget,&QStackedWidget::currentChanged,this,&MainWindow::Botones);
+   connect(ui->Regresar_Home,&QPushButton::clicked,this,&MainWindow::on_Btn_Home_clicked);
+   connect(ui->stackedWidget,&QStackedWidget::currentChanged,this,&MainWindow::Botones);
 
     Maximizado = new Tanque(ui->Tanque_Maximizado,false);
 
@@ -242,9 +238,7 @@ void MainWindow::on_Btn_Tanque_clicked()
     }  });
 
     connect(ui->Combo_IdTanque, QOverload<int>:: of(&QComboBox::activated),[=](int index){
-        QSqlQuery qry;
-        QString A  = "SELECT * FROM  cistem.tanques WHERE Id_Taque = "+QString::number(index)+";";
-        qry.exec(A);
+
 
      } );
 
@@ -409,7 +403,7 @@ void MainWindow::on_Btn_Guardar_clicked()
     case SSonda : Guardar_Sonda(); break;
     case STanque: on_Btn_SaveTank_clicked(); break;
     case SComunicacion: Guardar_Comunicacion(); break;
-    } 
+    }
 }
 //Fin de boton de Guardar
 
@@ -806,7 +800,7 @@ void MainWindow::Descargar()
 {
     QSqlQuery qry;
     S=0;
-    
+
     if(qry.exec("SELECT * FROM `cistem`.`tanques` where configurado = 1 ;"))
     {
         while (qry.next())
@@ -1676,5 +1670,27 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_Combo_IdTanque_activated(int index)
 {
+    QSqlQuery qry;
+    QString A  = "SELECT * FROM  cistem.tanques WHERE Id_Taque = "+QString::number(index)+";";
+    qry.exec(A);
+    qDebug () << A;
+while (qry.next())
+{
+
+  ui->Line_Nombre->setText( qry.value(3).toString());
+  ui->Line_Codigo_producto->setText(qry.value(4).toString());
+  ui->Combo_Color->setCurrentIndex(qry.value(5).toInt());
+  ui->Line_CodigoCombustible->setText(qry.value(6).toString());
+  ui->Combo_Sonda->setCurrentText(qry.value(7).toString());
+  ui->Line_AjusteAltura->setText(qry.value(8).toString());
+  ui->Line_Diametro->setText(qry.value(9).toString());
+  ui->Line_Capacidad->setText(qry.value(10).toString());
+  ui->Combo_Tipo->setCurrentIndex(qry.value(11).toInt());
+  ui->Line_Angulo->setText(qry.value(12).toString());
+  ui->Line_Distancia->setText(qry.value(13).toString());
+  ui->Line_coeficiente->setText(qry.value(14).toString());
+  ui->Combo_Producto->setCurrentText(qry.value(15).toString());
+}
+
 
 }

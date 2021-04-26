@@ -4625,7 +4625,7 @@ border-radius: 16;
      <enum>Qt::RightToLeft</enum>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(128,40,0,200);
+     <string notr="true">background-color: rgb(69,99,122);
 color:white;
 </string>
     </property>
