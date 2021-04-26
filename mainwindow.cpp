@@ -702,7 +702,7 @@ void MainWindow::Guardar_Sonda()
 
     QSqlQuery qry;
 
-    qry.exec("INSERT INTO `cistem`.`sonda` (`Serie`, `Protocolo`, `Flotadores`, `Licencia`, `fecha`) VALUES ('"+ui->line_Serie->text()+"', '"+ui->Combo_protocolo->currentText()+"', '"+ui->Combo_protocolo->currentText()+"', '"+ui->Line_Licencia->text()+"', '2020-01-14 00:03:00');");
+    qry.exec("INSERT INTO `cistem`.`sonda` (`Serie`, `Protocolo`, `Flotadores`, `Licencia`, `fecha`) VALUES ('"+ui->line_Serie->text()+"', '"+ui->Combo_protocolo->currentText()+"', '"+ui->Combo_protocolo->currentText()+"', '"+ui->Line_Licencia->text()+"', '2020-01-14 00:03:00' );");
 
 //    QString A("INSERT INTO `cistem`.`sonda` (`Serie`, `Protocolo`, `Flotadores`, `Licencia`, `Ajuste Altura`, `fecha`)"
 //    " VALUES ('"+ui->line_Serie->text()+"'"
@@ -1185,6 +1185,7 @@ void MainWindow::on_Btn_Barra_Estados_clicked()
 
 void MainWindow::Guardar_Comunicacion()
 {
+
 
 }
 void MainWindow::on_Btn_tabla_cubicacion_clicked()

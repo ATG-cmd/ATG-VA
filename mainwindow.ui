@@ -158,7 +158,7 @@ QHeaderView::section:vertical
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>12</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -3464,7 +3464,7 @@ border-radius: 16;
       <property name="geometry">
        <rect>
         <x>320</x>
-        <y>70</y>
+        <y>20</y>
         <width>521</width>
         <height>371</height>
        </rect>
@@ -4084,8 +4084,8 @@ border-radius: 16;
      <widget class="QWidget" name="gridLayoutWidget_2">
       <property name="geometry">
        <rect>
-        <x>430</x>
-        <y>40</y>
+        <x>400</x>
+        <y>10</y>
         <width>411</width>
         <height>411</height>
        </rect>
@@ -4803,10 +4803,10 @@ color: white;
    <widget class="QComboBox" name="ComboSeleccion">
     <property name="geometry">
      <rect>
-      <x>790</x>
+      <x>120</x>
       <y>530</y>
       <width>181</width>
-      <height>51</height>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
