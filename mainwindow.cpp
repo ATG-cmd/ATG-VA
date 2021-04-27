@@ -456,6 +456,7 @@ void MainWindow::on_Btn_Guardar_clicked()
     case SSonda : Guardar_Sonda(); break;
     case STanque: on_Btn_SaveTank_clicked(); break;
     case SComunicacion: Guardar_Comunicacion(); break;
+    case Slimites : guardar_limites(); break;
     } 
 }
 //Fin de boton de Guardar
@@ -1278,7 +1279,7 @@ void MainWindow::Rellenar_combo_taques(QString tanque_index)
 {
     ui->Combo_CubTanque->addItem(tanque_index);
     ui->Combo_cub_generar->addItem(tanque_index);
-//    ui->Combo_taque_limites->addItem(tanque_index);
+    ui->Combo_tanque_limites->addItem(tanque_index);
 }
 
 void MainWindow::Rellenar_tabla_cubicacion(int Id_tanque)
@@ -1778,7 +1779,7 @@ void MainWindow::Botones()
    case SMenuPub: case SLogin: case SMenu: case STMaxi: break;
    case sInventario: case SReportes: case STablaCub: case SVialarmas:case SEntregas:
         ui->Regresar->setVisible(true); break;
-   case SComunicador:  case SComunicacion : ui->ComboSeleccion->setVisible(true); ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
+   case SComunicador:  case SComunicacion : case Slimites : case STanque: ui->ComboSeleccion->setVisible(true); ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
    default: ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
 
    }
@@ -1817,15 +1818,21 @@ void MainWindow::Leer_GPIO()
     S_input[14] = digitalRead(INPUT_15);
     S_input[15] = digitalRead(INPUT_16);
 
-   for(int i = 0; i <= 5; i++)
+   for(int i = 0; i <= 3; i++)
    {
-      // qDebug() << "Valor de senor " << i+1 <<  " :" << S_input[i];
+      //  qDebug() << "Valor de senor " << i+1 <<  " :" << S_input[i];
        if(S_input[i] == false) // se activan en false
        {   Gpio_status.append(QString::number(i+1));
            Gpio_status.append(": Activado");
            qDebug() << "El sensor" << i+1 << " se Activo";
-           //insertar_incidente("incidente",Gpio_status,"user");
+           insertar_incidente("incidente",Gpio_status,"user");
        }
    }
 
+}
+
+void MainWindow::on_Combo_tanque_limites_currentIndexChanged(const QString &arg1)
+{
+    qDebug() << "tanque seleccionando en limites " << arg1;
+    rellenar_limites();
 }

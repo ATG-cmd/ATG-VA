@@ -72,7 +72,7 @@ public:
      double Temperatura_inicial;
      double Volumen_Final;
      double Temperatura_Final;
-     bool S_input[15];
+     bool S_input[16];
 
 
 
@@ -192,6 +192,8 @@ private slots:
    void on_Combo_IdTanque_activated(int index);
 
    void Leer_GPIO();
+   void on_Combo_tanque_limites_currentIndexChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
 };

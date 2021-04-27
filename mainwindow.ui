@@ -4074,7 +4074,7 @@ border-radius: 16;
          </widget>
         </item>
         <item row="6" column="1">
-         <widget class="QLineEdit" name="Line_producto_alto">
+         <widget class="QLineEdit" name="Line_desbordamiento">
           <property name="maximumSize">
            <size>
             <width>350</width>
@@ -4084,7 +4084,7 @@ border-radius: 16;
          </widget>
         </item>
         <item row="4" column="1">
-         <widget class="QLineEdit" name="Line_producto_bajo">
+         <widget class="QLineEdit" name="Line_producto_alto">
           <property name="maximumSize">
            <size>
             <width>350</width>
@@ -4118,7 +4118,7 @@ border-radius: 16;
          </widget>
         </item>
         <item row="10" column="1">
-         <widget class="QLineEdit" name="Line_desbordamiento">
+         <widget class="QLineEdit" name="Line_producto_bajo">
           <property name="maximumSize">
            <size>
             <width>350</width>
