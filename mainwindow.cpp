@@ -212,7 +212,7 @@ void MainWindow::on_Btn_Home_clicked()
 
         qDebug() << "ando en el if de home";
         for (int i=0;i <= IDSerie-1; i++ )
-        { tanques[i]->setTMaximizado(false);
+        { tanques[i]->setTMaximizado(true);
             qDebug() << "entre al for";
             qDebug() << "Tanque" + QString::number(i)+ ":false";
         }
@@ -1799,7 +1799,7 @@ void MainWindow::on_Combo_IdTanque_activated(int index)
 void MainWindow::Leer_GPIO()
 {
     QString Gpio_status;
-    Gpio_status.append( "Sensor_");
+
 // aqui se leen los sensores
     S_input[0] = digitalRead(INPUT_1);
     S_input[1] = digitalRead(INPUT_2);
@@ -1822,10 +1822,12 @@ void MainWindow::Leer_GPIO()
    {
       //  qDebug() << "Valor de senor " << i+1 <<  " :" << S_input[i];
        if(S_input[i] == false) // se activan en false
-       {   Gpio_status.append(QString::number(i+1));
+       {   Gpio_status.append( "Sensor_");
+           Gpio_status.append(QString::number(i+1));
            Gpio_status.append(": Activado");
            qDebug() << "El sensor" << i+1 << " se Activo";
            insertar_incidente("incidente",Gpio_status,"user");
+           Gpio_status.clear();
        }
    }
 
