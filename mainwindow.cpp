@@ -903,6 +903,7 @@ void MainWindow::Estados()
             ProGaugeCount ++ ; RX=false; intento = 0;
             qDebug () << "Sonda Fuera de Linea: " << ProGaugeId[ProGaugeCount1];
             offlineSonda(ProGaugeId[ProGaugeCount1]);
+            SondasOnline[ProGaugeCount1] = false;
         }
         else { intento ++; ProGaugeCount--; qDebug () << intento; } break;
     case 2:  if(ProGaugeCount1 >= IDSerie-1) ProGaugeCount1= 0;
@@ -1078,7 +1079,7 @@ void MainWindow::offlineSonda(QString offsonda)
 {
     int indice= 0;
     QString busqueda = offsonda;
-qDebug () << "offlineSonda";
+   qDebug () << "offlineSonda";
     for (int i = 0; i <= IDSerie; i++) {
         QString IDactual = ProGaugeId[i];
         qDebug() << "ProGaugeID" << ProGaugeId[i];
@@ -1089,35 +1090,6 @@ qDebug () << "offlineSonda";
     qDebug ()  << "Id_Tanque:" << tanques[indice]->getIdTanque();
     disconnect(tanques[indice],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
       QSqlQuery qry;
-    // qry.exec("UPDATE `cistem`.`tanques` SET `Configurado`='0' WHERE Id_Taque = "+QString::number(tanques[indice]->getIdTanque())+"");
-  //  qry.exec("SELECT COUNT(Id_Taque) AS Numero_Tanques FROM Tanques;");
-//     while(qry.next())
-//     {
-//         qDebug() << qry.value(0);
-//     }
-
-//     if (frame == SHome)
-//    {
-//        for (int i = 0; i <= indice+1 ; i++ )
-//        {
-//            ui->stackedWidget->setCurrentIndex(SHome2);
-//            tanques[i]->Delate();
-//            ui->stackedWidget->setCurrentIndex(SHome);
-//        }
-
-
-//    }
-//    else {
-//        tanques[indice]->Delate();
-//    }
-
-//     S=0;
-//        consultaBD();
-//        Buscar_Tanques();
-//        Descargar();
-//     qApp->quit();
-//     QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
-
 
 }
 
@@ -1143,7 +1115,14 @@ void MainWindow::SendCMD()
         Time3->stop();
         disconnect(Time3,SIGNAL(timeout()),this,SLOT(SendCMD()));
         connect(Time1,SIGNAL(timeout()),this,SLOT(Estados()));
-        Time1->start(1500);                                                                      break;
+
+        QSqlQuery qry;
+        qry.exec("SELECT COUNT(1) FROM cistem.tanques WHERE Configurado = 1;");
+        while(qry.next())
+        {
+           Time1->start(1500 /(qry.value(0).toInt()*2));
+        }
+          break;
     }
 
 }
