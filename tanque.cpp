@@ -445,6 +445,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
      if (TMaximizado){
               NivAVal->setText(QString::number(water, 'f', 2)+ " MM");
               VolVal->setText(QString::number(res,'f',2)+" Lts");}
+
               SetVolumen(res,reswater);
                NivelAgua = water;
        return res;

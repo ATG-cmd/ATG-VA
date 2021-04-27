@@ -26,6 +26,31 @@
 #define sInventario 14
 #define SReportes 15
 
+#define INPUT_1 4
+#define INPUT_2 2
+#define INPUT_3 1
+#define INPUT_4 0
+#define INPUT_5 14
+#define INPUT_6 6
+#define INPUT_7 5
+#define INPUT_8 3
+#define INPUT_9 21
+#define INPUT_10 31
+#define INPUT_11 30
+#define INPUT_12 11
+#define INPUT_13 23
+#define INPUT_14 27
+#define INPUT_15 22
+#define INPUT_16 26
+#define CTRL 12
+#define Buzzer 29
+#define RX4 13
+#define TX4 8
+#define TX1 15
+#define RX1 16
+#define LD 7
+#define SDA1 8
+#define SCL1 9
 
 #define SOH 0x01
 const int lenbuff1 = 1024;              // Longitud de buffer, Ajustar
@@ -52,8 +77,28 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     Time2 = new QTimer();
     Time3 = new QTimer();
+    Gpio_timer = new QTimer();
+
     wiringPiSetup();
-    pinMode(12,OUTPUT);
+    pinMode(CTRL,OUTPUT);
+    pinMode(Buzzer,OUTPUT);
+    pinMode(LD,OUTPUT);
+    pinMode(INPUT_1,INPUT);
+    pinMode(INPUT_2,INPUT);
+    pinMode(INPUT_3,INPUT);
+    pinMode(INPUT_4,INPUT);
+    pinMode(INPUT_5,INPUT);
+    pinMode(INPUT_6,INPUT);
+    pinMode(INPUT_7,INPUT);
+    pinMode(INPUT_8,INPUT);
+    pinMode(INPUT_9,INPUT);
+    pinMode(INPUT_10,INPUT);
+    pinMode(INPUT_11,INPUT);
+    pinMode(INPUT_12,INPUT);
+    pinMode(INPUT_13,INPUT);
+    pinMode(INPUT_14,INPUT);
+    pinMode(INPUT_15,INPUT);
+    pinMode(INPUT_16,INPUT);
 
     QFont Fonttitle;
     Fonttitle.setPointSize(30);
@@ -85,7 +130,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     deliveryProGaugeTimer = new QTimer(this);
     connect(deliveryProGaugeTimer, SIGNAL(timeout()), this, SLOT(deliveryProGaugeCountIncrement()));
+    connect(Gpio_timer,SIGNAL(timeout()),this,SLOT(Leer_GPIO()));
     deliveryProGaugeTimer->start(1000);
+    Gpio_timer->start(2000);
 
 
     MainWindow::setFocus();
@@ -403,7 +450,9 @@ void MainWindow::on_Btn_Guardar_clicked()
     case SSonda : Guardar_Sonda(); break;
     case STanque: on_Btn_SaveTank_clicked(); break;
     case SComunicacion: Guardar_Comunicacion(); break;
-    }
+    case Slimites : guardar_limites(); break;
+    } 
+
 }
 //Fin de boton de Guardar
 /*--------------------------------------------------------------------------------------------------------------------
@@ -1098,7 +1147,7 @@ void MainWindow::SendCMD()
     switch(ProGaugeCountCMD){
     case 0:
        // puertoserie->setDataTerminalReady(false);
-        digitalWrite(12,HIGH);
+        digitalWrite(CTRL,HIGH);
         ProGaugeCountCMD++;
         break;
     case 1:
@@ -1109,7 +1158,7 @@ void MainWindow::SendCMD()
 
     case 2:
       //  puertoserie->setDataTerminalReady(true);
-        digitalWrite(12,LOW);
+        digitalWrite(CTRL,LOW);
         ProGaugeCountCMD = 0;
         ProGaugeCount++;
         Time3->stop();
@@ -1201,7 +1250,7 @@ void MainWindow::Rellenar_combo_taques(QString tanque_index)
 {
     ui->Combo_CubTanque->addItem(tanque_index);
     ui->Combo_cub_generar->addItem(tanque_index);
-//    ui->Combo_taque_limites->addItem(tanque_index);
+    ui->Combo_tanque_limites->addItem(tanque_index);
 }
 
 void MainWindow::Rellenar_tabla_cubicacion(int Id_tanque)
@@ -1333,6 +1382,75 @@ void MainWindow::clearCubicTableFields()
     ui->Line_Punto->setText("");
     ui->Line_Altura->setText("");
     ui->Line_Volumen->setText("");
+}
+
+void MainWindow::guardar_limites()
+{
+    QSqlQuery qry;
+    QString cadena;
+    cadena.append("UPDATE cistem.limites SET Volumen_maximo = '" + ui->Line_volumen_maximo->text() + "',"
+                  " Producto_alto = '" + ui->Line_producto_alto->text() + "',"
+                  " Desbordamiento = '" + ui->Line_desbordamiento->text() + "',"
+                  " Entrega_necesaria = '" + ui->Line_limite_entrega->text() + "',"
+                  " Producto_bajo = '" + ui->Line_producto_bajo->text() + "',"
+                  " Alarma_agua_alta = '" + ui->Line_alarma_agua->text() + "',"
+                  " Advertencia_agua_alta = '" + ui->Line_advertencia_agua->text() + "',"
+                  " Fecha_modificacion = '" + QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+ "'"
+                  " WHERE Id_Taque = '" + ui->Combo_tanque_limites->currentText() + "';");
+    qDebug() << cadena;
+    qDebug() << qry.exec(cadena);
+
+    tanques[0]->SetVolMax(ui->Line_volumen_maximo->text().toDouble());
+    tanques[0]->SetProducto_Alto(ui->Line_producto_alto->text().toDouble());
+    tanques[0]->SetDesbordamiento(ui->Line_desbordamiento->text().toDouble());
+    tanques[0]->SetNecesitaProducto(ui->Line_limite_entrega->text().toDouble());
+    tanques[0]->SetProductoBajo(ui->Line_producto_bajo->text().toDouble());
+    tanques[0]->SetAlarma_de_Agua(ui->Line_alarma_agua->text().toDouble());
+    tanques[0]->SetAdvertencua_de_Agua(ui->Line_advertencia_agua->text().toDouble());
+
+    ui->stackedWidget->setCurrentIndex(0);
+    frame = 0;
+}
+
+void MainWindow::rellenar_limites()
+{
+    QSqlQuery qry;
+    QString cadena;
+    cadena.append("SELECT Volumen_maximo, Producto_alto, Desbordamiento, "
+                  "Entrega_necesaria, Producto_bajo, Alarma_agua_alta,"
+                  "Advertencia_agua_alta FROM cistem.limites "
+                  "WHERE Id_Taque = '" + ui->Combo_tanque_limites->currentText() + "';");
+    qDebug() << cadena;
+    qDebug() << qry.exec(cadena);
+    while(qry.next())
+    {
+        ui->Line_volumen_maximo->setText(QString::number(qry.value(0).toDouble()));
+        ui->Line_producto_alto->setText(QString::number(qry.value(1).toDouble()));
+        ui->Line_desbordamiento->setText(QString::number(qry.value(2).toDouble()));
+        ui->Line_limite_entrega->setText(QString::number(qry.value(3).toDouble()));
+        ui->Line_producto_bajo->setText(QString::number(qry.value(4).toDouble()));
+        ui->Line_alarma_agua->setText(QString::number(qry.value(5).toDouble()));
+        ui->Line_advertencia_agua->setText(QString::number(qry.value(6).toDouble()));
+
+    }
+}
+
+void MainWindow::evaluar_limites(Tanque *tanque)
+{
+    //  tanque->getVolumenCon()  // volumen tanque
+    //  tanque->getVolumenA()    // volumen agua
+    qDebug() << "Aqui se evalua el valumen: "  << tanque->getVolumenCon();
+}
+
+void MainWindow::insertar_incidente(QString tipo, QString Descripcion, QString usuario)
+{
+    QSqlQuery qry;
+    QString cadena;
+    cadena.append("INSERT INTO cistem.incidentes (Tipo_incidente, Descripcion, usuario, Fecha_incidente)"
+                  " VALUES ('"+tipo+"', '"+Descripcion+"', '"+usuario+"', '"+ QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss") +"');");
+
+    qDebug() << cadena;
+    qry.exec(cadena);
 }
 
 /* Este Metodo es para colocar las bolitas de colores en su lugar
@@ -1667,7 +1785,7 @@ void MainWindow::Botones()
    case SMenuPub: case SLogin: case SMenu: case STMaxi: break;
    case sInventario: case SReportes: case STablaCub: case SVialarmas:case SEntregas:
         ui->Regresar->setVisible(true); break;
-   case SComunicador:  case SComunicacion : ui->ComboSeleccion->setVisible(true); ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
+   case SComunicador:  case SComunicacion : case Slimites : case STanque: ui->ComboSeleccion->setVisible(true); ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
    default: ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
 
    }
@@ -1711,4 +1829,47 @@ while (qry.next())
 void MainWindow::on_Regresar_Home_clicked()
 {
 
+}
+
+void MainWindow::Leer_GPIO()
+{
+    QString Gpio_status;
+
+// aqui se leen los sensores
+    S_input[0] = digitalRead(INPUT_1);
+    S_input[1] = digitalRead(INPUT_2);
+    S_input[2] = digitalRead(INPUT_3);
+    S_input[3] = digitalRead(INPUT_4);
+    S_input[4] = digitalRead(INPUT_5);
+    S_input[5] = digitalRead(INPUT_6);
+    S_input[6] = digitalRead(INPUT_7);
+    S_input[7] = digitalRead(INPUT_8);
+    S_input[8] = digitalRead(INPUT_9);
+    S_input[9] = digitalRead(INPUT_10);
+    S_input[10] = digitalRead(INPUT_11);
+    S_input[11] = digitalRead(INPUT_12);
+    S_input[12] = digitalRead(INPUT_13);
+    S_input[13] = digitalRead(INPUT_14);
+    S_input[14] = digitalRead(INPUT_15);
+    S_input[15] = digitalRead(INPUT_16);
+
+   for(int i = 0; i <= 3; i++)
+   {
+      //  qDebug() << "Valor de senor " << i+1 <<  " :" << S_input[i];
+       if(S_input[i] == false) // se activan en false
+       {   Gpio_status.append( "Sensor_");
+           Gpio_status.append(QString::number(i+1));
+           Gpio_status.append(": Activado");
+           qDebug() << "El sensor" << i+1 << " se Activo";
+           insertar_incidente("incidente",Gpio_status,"user");
+           Gpio_status.clear();
+       }
+   }
+
+}
+
+void MainWindow::on_Combo_tanque_limites_currentIndexChanged(const QString &arg1)
+{
+    qDebug() << "tanque seleccionando en limites " << arg1;
+    rellenar_limites();
 }
