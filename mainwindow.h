@@ -185,6 +185,8 @@ private slots:
 
    void on_Combo_IdTanque_activated(int index);
 
+   void on_Regresar_Home_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

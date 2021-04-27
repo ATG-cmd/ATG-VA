@@ -31,7 +31,9 @@ void Tanque::setProtocolo(int value) { Protocolo = value; }
 
 bool Tanque::getTMaximizado() const { return TMaximizado; }
 
-void Tanque::setTMaximizado(bool value) { TMaximizado = value; }
+void Tanque::setTMaximizado(bool value) {
+
+    TMaximizado = value; }
 
 void Tanque::offline()
 {
@@ -92,7 +94,7 @@ int Tanque::getIdTanque() const { return IdTanque;}
 
 void Tanque::setIdTanque(int value){IdTanque = value;}
 
-void Tanque::clickbuton(){ setTMaximizado(true); emit Camino(); }
+void Tanque::clickbuton(){ setTMaximizado(false); emit Camino(); }
 
 Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 {
