@@ -893,12 +893,11 @@ void MainWindow::Descargar()
     {
         QMessageBox::critical(this, "Error",tr(qry.lastError().text().toUtf8()));
     }
-    for (int i=0;i <= S;i++) {
+    for (int i=0;i < S;i++) {
         if(qry.exec("SElECT * FROM CISTEM.LIMITES WHERE Id_Taque = " +  QString::number(tanques[i]->getIdTanque())))
         {
            while(qry.next())
            {
-
                tanques[i]->SetVolMax(qry.value(2).toDouble());
                tanques[i]->SetProducto_Alto(qry.value(3).toDouble());
                tanques[i]->SetDesbordamiento(qry.value(4).toDouble());
@@ -1044,8 +1043,8 @@ void MainWindow::Tanque_Maximisado()
             ui->Bola_ProductoAlto->setGeometry(200,200,50,50);
             ui->Bola_Desbordamiento->setGeometry(200,200,50,50);
             ui->Bola_NecesitaEntrega->setGeometry(200,300,50,50);
-             ui->Bola_ProductoBajo->setGeometry(200,350,50,50);
-             ui->Bola_AlarmaAgua->setGeometry(200,380,50,50);
+            ui->Bola_ProductoBajo->setGeometry(200,350,50,50);
+            ui->Bola_AlarmaAgua->setGeometry(200,380,50,50);
             ui->Bola_Advertencia_Agua->setGeometry(200,400,50,50);
 
 
@@ -1113,7 +1112,7 @@ void MainWindow::consultaBD()
         ProGaugeId[i] = qry.value(0).toString();
         qDebug() << qry.value(0);
         i++;
-        IDSerie = i;
+         IDSerie = i;
         if (IDSerie > 0)
         {
             qDebug()<<"entre No se por que  pero id serie vale" << IDSerie;
@@ -1134,13 +1133,10 @@ void MainWindow::offlineSonda(QString offsonda)
         qDebug() << "ProGaugeID" << ProGaugeId[i];
         if (IDactual == busqueda) {  indice = i; break;  }
     }
-
     tanques[indice]->offline();
     qDebug ()  << "Id_Tanque:" << tanques[indice]->getIdTanque();
     disconnect(tanques[indice],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
-      QSqlQuery qry;
-
-}
+  }
 
 void MainWindow::SendCMD()
 {
