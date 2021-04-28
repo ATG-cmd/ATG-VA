@@ -893,7 +893,7 @@ void MainWindow::Descargar()
     {
         QMessageBox::critical(this, "Error",tr(qry.lastError().text().toUtf8()));
     }
-    for (int i=0;i <= S;i++) {
+    for (int i=0;i < S;i++) {
         if(qry.exec("SElECT * FROM CISTEM.LIMITES WHERE Id_Taque = " +  QString::number(tanques[i]->getIdTanque())))
         {
            while(qry.next())
@@ -1043,8 +1043,8 @@ void MainWindow::Tanque_Maximisado()
             ui->Bola_ProductoAlto->setGeometry(200,200,50,50);
             ui->Bola_Desbordamiento->setGeometry(200,200,50,50);
             ui->Bola_NecesitaEntrega->setGeometry(200,300,50,50);
-             ui->Bola_ProductoBajo->setGeometry(200,350,50,50);
-             ui->Bola_AlarmaAgua->setGeometry(200,380,50,50);
+            ui->Bola_ProductoBajo->setGeometry(200,350,50,50);
+            ui->Bola_AlarmaAgua->setGeometry(200,380,50,50);
             ui->Bola_Advertencia_Agua->setGeometry(200,400,50,50);
 
 
