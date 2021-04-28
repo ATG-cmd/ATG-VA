@@ -1388,7 +1388,7 @@ void MainWindow::guardar_limites()
 {
     QSqlQuery qry;
     QString cadena;
-    int tank_id =  ui->Combo_tanque_limites->currentText().toInt() - 1;
+    int tank_id =  0;
     cadena.append("UPDATE cistem.limites SET Volumen_maximo = '" + ui->Line_volumen_maximo->text() + "',"
                   " Producto_alto = '" + ui->Line_producto_alto->text() + "',"
                   " Desbordamiento = '" + ui->Line_desbordamiento->text() + "',"
@@ -1399,8 +1399,18 @@ void MainWindow::guardar_limites()
                   " Fecha_modificacion = '" + QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+ "'"
                   " WHERE Id_Taque = '" + ui->Combo_tanque_limites->currentText() + "';");
     qDebug() << cadena;
-    qDebug() << tank_id;
+
     qDebug() << qry.exec(cadena);
+    for (int i = 0; i <= IDSerie; i++) {
+        if(tanques[i]->getIdTanque() == ui->Combo_tanque_limites->currentText().toInt())
+        {
+            tank_id = i;
+              //  qDebug() << " posicion en el arreglo tanques[] de tanque ID :" << tank_id;
+                break;
+        }
+    }
+
+//    qDebug() << "este es el ID del tenque que guardo limites : " << tanques[tank_id]->getIdTanque();
 
     tanques[tank_id]->SetVolMax(ui->Line_volumen_maximo->text().toDouble());
     tanques[tank_id]->SetProducto_Alto(ui->Line_producto_alto->text().toDouble());
