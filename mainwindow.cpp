@@ -1384,6 +1384,7 @@ void MainWindow::guardar_limites()
 {
     QSqlQuery qry;
     QString cadena;
+    int tank_id =  ui->Combo_tanque_limites->currentText().toInt() - 1;
     cadena.append("UPDATE cistem.limites SET Volumen_maximo = '" + ui->Line_volumen_maximo->text() + "',"
                   " Producto_alto = '" + ui->Line_producto_alto->text() + "',"
                   " Desbordamiento = '" + ui->Line_desbordamiento->text() + "',"
@@ -1394,15 +1395,16 @@ void MainWindow::guardar_limites()
                   " Fecha_modificacion = '" + QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+ "'"
                   " WHERE Id_Taque = '" + ui->Combo_tanque_limites->currentText() + "';");
     qDebug() << cadena;
+    qDebug() << tank_id;
     qDebug() << qry.exec(cadena);
 
-    tanques[0]->SetVolMax(ui->Line_volumen_maximo->text().toDouble());
-    tanques[0]->SetProducto_Alto(ui->Line_producto_alto->text().toDouble());
-    tanques[0]->SetDesbordamiento(ui->Line_desbordamiento->text().toDouble());
-    tanques[0]->SetNecesitaProducto(ui->Line_limite_entrega->text().toDouble());
-    tanques[0]->SetProductoBajo(ui->Line_producto_bajo->text().toDouble());
-    tanques[0]->SetAlarma_de_Agua(ui->Line_alarma_agua->text().toDouble());
-    tanques[0]->SetAdvertencua_de_Agua(ui->Line_advertencia_agua->text().toDouble());
+    tanques[tank_id]->SetVolMax(ui->Line_volumen_maximo->text().toDouble());
+    tanques[tank_id]->SetProducto_Alto(ui->Line_producto_alto->text().toDouble());
+    tanques[tank_id]->SetDesbordamiento(ui->Line_desbordamiento->text().toDouble());
+    tanques[tank_id]->SetNecesitaProducto(ui->Line_limite_entrega->text().toDouble());
+    tanques[tank_id]->SetProductoBajo(ui->Line_producto_bajo->text().toDouble());
+    tanques[tank_id]->SetAlarma_de_Agua(ui->Line_alarma_agua->text().toDouble());
+    tanques[tank_id]->SetAdvertencua_de_Agua(ui->Line_advertencia_agua->text().toDouble());
 
     ui->stackedWidget->setCurrentIndex(0);
     frame = 0;
@@ -1435,7 +1437,21 @@ void MainWindow::evaluar_limites(Tanque *tanque)
 {
     //  tanque->getVolumenCon()  // volumen tanque
     //  tanque->getVolumenA()    // volumen agua
+
     qDebug() << "Aqui se evalua el valumen: "  << tanque->getVolumenCon();
+    int porcentaje = ((tanque->getVolumenCon() * 100) / tanque->getCapacidad());
+    qDebug() << "porcentaje de volumen de tanque: " << porcentaje;
+//    tanques[tank_id]->SetVolMax(ui->Line_volumen_maximo->text().toDouble());
+//    tanques[tank_id]->SetProducto_Alto(ui->Line_producto_alto->text().toDouble());
+//    tanques[tank_id]->SetDesbordamiento(ui->Line_desbordamiento->text().toDouble());
+//    tanques[tank_id]->SetNecesitaProducto(ui->Line_limite_entrega->text().toDouble());
+//    tanques[tank_id]->SetProductoBajo(ui->Line_producto_bajo->text().toDouble());
+//    tanques[tank_id]->SetAlarma_de_Agua(ui->Line_alarma_agua->text().toDouble());
+//    tanques[tank_id]->SetAdvertencua_de_Agua(ui->Line_advertencia_agua->text().toDouble());
+
+
+//    if(((tanque->getVolumenCon() * 100) / tanque->getCapacidad()) >= tanque->GetProducto_Alto()){}
+//    if(tanque->getVolumenCon() >= tanque->GetDesbordamiento()){}
 }
 
 void MainWindow::insertar_incidente(QString tipo, QString Descripcion, QString usuario)
@@ -1578,6 +1594,7 @@ void MainWindow::deliveryProGaugeCountIncrement(){
     }
     qDebug() <<tanques[indice]->GetVolumen() << deliveryLastInventoryRead << deliveryCountDecrement << deliveryCountIncrement;
     deliveryLastInventoryRead = tanques[indice]->GetVolumen();
+    evaluar_limites(tanques[indice]);
     //ui->lbl_deliveryCountIncrement->setText(QString::number(deliveryCountIncrement));
     //ui->lbl_deliveryCountDecrement->setText(QString::number(deliveryCountDecrement));
     //ui->lbl_deliveryLastInventoryRead->setText(QString::number(deliveryLastInventoryRead));
