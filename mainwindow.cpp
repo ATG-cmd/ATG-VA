@@ -898,7 +898,6 @@ void MainWindow::Descargar()
         {
            while(qry.next())
            {
-
                tanques[i]->SetVolMax(qry.value(2).toDouble());
                tanques[i]->SetProducto_Alto(qry.value(3).toDouble());
                tanques[i]->SetDesbordamiento(qry.value(4).toDouble());
@@ -1113,7 +1112,7 @@ void MainWindow::consultaBD()
         ProGaugeId[i] = qry.value(0).toString();
         qDebug() << qry.value(0);
         i++;
-        IDSerie = i;
+         IDSerie = i;
         if (IDSerie > 0)
         {
             qDebug()<<"entre No se por que  pero id serie vale" << IDSerie;
@@ -1134,13 +1133,10 @@ void MainWindow::offlineSonda(QString offsonda)
         qDebug() << "ProGaugeID" << ProGaugeId[i];
         if (IDactual == busqueda) {  indice = i; break;  }
     }
-
     tanques[indice]->offline();
     qDebug ()  << "Id_Tanque:" << tanques[indice]->getIdTanque();
     disconnect(tanques[indice],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
-      QSqlQuery qry;
-
-}
+  }
 
 void MainWindow::SendCMD()
 {
