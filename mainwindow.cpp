@@ -1620,14 +1620,14 @@ void MainWindow::on_Btn_SaveTank_clicked()
 
         QSqlQuery qry;
 
-        qry.exec("SELECT COUNT(1) FROM cistem.tanques WHERE Id_Taque = "+QString::number(S)+";");
-
+        qry.exec("SELECT COUNT(1) FROM cistem.tanques WHERE Id_Taque = "+QString::number(S)+" AND Configurado = 1;");
+          qDebug() << "El Id_Taque Seleccionado es :" << S;
         while(qry.next())
         {
             qDebug() << "Hola desde Tanque Habilitado";
             qDebug() << qry.value(0).toBool();
 
-          if (qry.value(0).toBool()){
+          if (!qry.value(0).toBool()){
 
               qDebug () << "Hola No Existo";
 
@@ -1637,11 +1637,12 @@ void MainWindow::on_Btn_SaveTank_clicked()
 
                 while(qry.next())  { S = qry.value(0).toInt();}
 
-                    tanques[S]->setIshabilitado(true);
                     Geometrytank();
                     connect(tanques[S],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
                     hab=1;
+                    tanques[S]->setIdTanque(ui->Combo_IdTanque->currentIndex()+1);
 
+                    tanques[S]->setIshabilitado(true);
                     // *** --- Etiqueta Tanque --- ***//
                      tanques[S]->SetnameTank(ui->Line_Nombre->text());
                     // ***---Codigo del Producto ---***
@@ -1676,6 +1677,41 @@ void MainWindow::on_Btn_SaveTank_clicked()
                       tanques[S]->setProducto(ui->Combo_Producto->currentText());
             }
           else {
+
+
+              tanques[S]->setIshabilitado(true);
+              // *** --- Etiqueta Tanque --- ***//
+               tanques[S]->SetnameTank(ui->Line_Nombre->text());
+              // ***---Codigo del Producto ---***
+               tanques[S]->setCodigoProducto(ui->Line_Codigo_producto->text().toInt());
+              // ***---Color Del Producto ---***//
+               switch (ui->Combo_Color->currentIndex())
+               {
+               case 1: tanques[S]->color("gray", true);  break;
+               case 2: tanques[S]->color("green",true);  break;
+               case 3: tanques[S]->color("yellow",true); break;
+               case 4: tanques[S]->color("cyan",true);   break;
+               }
+               // --- *** Codigo Combustible ***---//
+               tanques[S]->setCodigoCombustible(ui->Line_CodigoCombustible->text().toInt());
+               // ---*** Sonda ***---//
+                tanques[S]->setID(ui->Combo_Sonda->currentText());
+                // --- *** Ajuste De Altura *** --- //
+                tanques[S]->setAjusteAltura(ui->Line_AjusteAltura->text().toDouble());
+                // --- *** Capacidad ***-- //
+                tanques[S]->setCapacidad(ui->Line_Capacidad->text().toDouble());
+                // --- *** Diametro *** --- ///
+                tanques[S]->SetTankDiametro(ui->Line_Diametro->text().toDouble());
+                // --- *** Tipo de Tanque ***--- ///
+                tanques[S]->setTipo(G);
+                // --- *** Angulo *** --- //
+                tanques[S]->setAngle(ui->Line_Angulo->text().toDouble());
+                // --- *** Distancia *** ---  //
+                tanques[S]->setFrombase(ui->Line_Distancia->text().toDouble());
+                // --- *** Coeficiente Termico *** ---
+                tanques[S]->setCoeficienteTermico(ui->Line_coeficiente->text().toDouble());
+                // --- *** Producto *** --- //
+                tanques[S]->setProducto(ui->Combo_Producto->currentText());
 
 
           }
