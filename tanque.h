@@ -86,7 +86,7 @@ private slots:
 
 signals:
 
-    void Camino();
+    void Camino(int value);
 
 
 public:

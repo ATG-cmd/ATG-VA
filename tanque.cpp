@@ -94,7 +94,7 @@ int Tanque::getIdTanque() const { return IdTanque;}
 
 void Tanque::setIdTanque(int value){IdTanque = value;}
 
-void Tanque::clickbuton(){ setTMaximizado(false); emit Camino(); }
+void Tanque::clickbuton(){ setTMaximizado(false); int a =241;emit Camino(a); }
 
 Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 {
