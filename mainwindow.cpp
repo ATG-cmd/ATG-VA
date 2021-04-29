@@ -1098,10 +1098,10 @@ void MainWindow::Tanque_Maximisado()
 
 void MainWindow::on_Regresar_clicked()
 {
+    MainWindow::setFocus();
     if(frame > SMenuPub || frame ==SEntregas) frame =SMenuPub;
     else frame = SMenu;
     ui->stackedWidget->setCurrentIndex(frame);
-
 }
 
 void MainWindow::consultaBD()
@@ -1673,7 +1673,6 @@ void MainWindow::on_Btn_Entregas_or_clicked()
 {
     frame = SEntregas;
     ui->stackedWidget->setCurrentIndex(SEntregas);
-
     QString cadena;
      ui->CSelecTank->clear();
      ui->CSelecTank->addItem("ALL");
@@ -1682,7 +1681,6 @@ void MainWindow::on_Btn_Entregas_or_clicked()
     qDebug() << "QRY:" << qry.exec(cadena);
     while (qry.next()) {
        ui->CSelecTank->addItem(qry.value(0).toString());
-
     }
 
     connect(ui->CSelecTank, QOverload<int>::of(&QComboBox::activated),
@@ -1695,18 +1693,14 @@ void MainWindow::on_Btn_Entregas_or_clicked()
          {
          case 0: cadena.append("SELECT * FROM `cistem`.`entregas` LIMIT 1000;");break;
          default: qDebug() << "Texto del index:" << ui->CSelecTank->itemText(index);
-cadena.append("SELECT * FROM `cistem`.`entregas` where Tanque_Nombre = '"+ui->CSelecTank->itemText(index)+"';"); break;
-
+         cadena.append("SELECT * FROM `cistem`.`entregas` where Tanque_Nombre = '"+ui->CSelecTank->itemText(index)+"';"); break;
         }
-
         //
          QSqlQuery qry;
          qDebug() << "QRY:" << qry.exec(cadena);
          while (qry.next())
          {
              //ui->Tab_entregas->removeRow(0);
-
-
              ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
              //ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(QString::number(qry.value(0).toInt())));
              ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(1).toString()));
@@ -1726,15 +1720,13 @@ cadena.append("SELECT * FROM `cistem`.`entregas` where Tanque_Nombre = '"+ui->CS
              //  ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 6)->setFont(A);
              qDebug() << qry.value(0).toInt() << qry.value(1).toString() << qry.value(2).toInt() << qry.value(4).toInt();
          }
-
-
-
     });
 
 }
 
 void MainWindow::Botones()
 {
+
    qDebug() << "Hola Desde Stalked:" << frame;
 
    ui->Btn_user->setVisible(false);
@@ -1751,10 +1743,9 @@ void MainWindow::Botones()
         ui->Regresar->setVisible(true); break;
    case SComunicador:  case SComunicacion : case Slimites : case STanque: ui->ComboSeleccion->setVisible(true); ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
    default: ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
-
    }
-}
 
+}
 void MainWindow::on_pushButton_clicked()
 {
     frame = SHome;
