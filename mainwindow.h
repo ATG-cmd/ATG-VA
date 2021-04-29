@@ -134,7 +134,7 @@ private slots:
 
    void on_pushButton_2_clicked();
 
-   void Tanque_Maximisado(int a);
+   void Tanque_Maximisado();
 
    void on_Regresar_clicked();
 

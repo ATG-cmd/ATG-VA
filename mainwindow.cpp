@@ -867,8 +867,8 @@ void MainWindow::Protocolo(QString cad)
         break;
     }
 
-    //if(Maxi)
-        //Tanque_Maximisado(int a);
+    if(Maxi)
+       Tanque_Maximisado();
 }
 
 void MainWindow::Descargar()
@@ -1020,9 +1020,9 @@ void MainWindow::on_pushButton_2_clicked()
     ui->stackedWidget->setCurrentIndex(SHome2);
 }
 
-void MainWindow::Tanque_Maximisado(int a)
+void MainWindow::Tanque_Maximisado()
 {
-    qDebug() << "Esto es un EXITO:" << a;
+
     if(!Maxi)
     {
         indiceM =0;

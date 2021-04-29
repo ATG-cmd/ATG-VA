@@ -86,8 +86,7 @@ private slots:
 
 signals:
 
-    void Camino(int value);
-
+    void Camino();
 
 public:
     QString Radio="90";
@@ -241,11 +240,12 @@ public:
     void SetTemperatura(double T);
     double GetTemperatura();
 
-
     void Setgeometry(int x, int y,int XTG,int YTG);
     void color(QString Ct1,bool A);
+
     QString GetColor();
     void SetnameTank(const QString &SNT);
+
     QString GetNameTank();
     void inicbuff1();
     double volumen(int Tipo,double height);
@@ -261,13 +261,11 @@ public:
     void SetDesbordamiento(double desboramiento);
     double GetDesbordamiento();
 
-
     void SetNecesitaProducto(double necesita_producto);
     double GetNecesitaProducto();
 
     void SetProductoBajo(double producto_bajo);
     double GetProductoBajo();
-
 
     void SetAlarma_de_Agua(double alarma_agua);
     double GetAlarma_de_Agua();
@@ -286,7 +284,6 @@ public:
 
    void SetTankAncho(double Ancho);
    double GetTankAncho();
-
 
    QString getID() const;
    void setID(const QString &value);
