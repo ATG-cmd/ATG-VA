@@ -1195,7 +1195,7 @@ void MainWindow::on_Btn_Comunicacion_clicked()
 
 void MainWindow::on_Btn_Barra_Estados_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(9);
+    ui->stackedWidget->setCurrentIndex(SReportes);
 }
 
 void MainWindow::Guardar_Comunicacion()
