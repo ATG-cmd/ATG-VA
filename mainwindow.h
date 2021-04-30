@@ -17,6 +17,7 @@
 #include <QPluginLoader>
 #include <QSerialPort>
 #include <QSerialPortInfo>
+#include "select_fechas.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -50,6 +51,7 @@ public:
     QLabel *Indicadores[2];
     QLabel *Reloj;
     QFrame *line1;
+    QPushButton *Btn_select_rango;
     int N =-1;
     int S=0;
     int indice =0;
@@ -88,6 +90,7 @@ public:
     void rellenar_limites();
     void evaluar_limites(Tanque *tanque);
     void insertar_incidente(QString tipo, QString Descripcion, QString usuario);
+    void rellenar_incidentes(QString T_inicial, QString T_Final);
     int X(int Y);
     int calcY(int y );
 
@@ -188,11 +191,14 @@ private slots:
 
    void on_Combo_IdTanque_activated(int index);
 
+   void btn_clicked();
 
    void on_Regresar_Home_clicked();
 
    void Leer_GPIO();
+
    void on_Combo_tanque_limites_currentIndexChanged(const QString &arg1);
+
 
 private:
     Ui::MainWindow *ui;

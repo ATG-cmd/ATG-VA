@@ -117,10 +117,14 @@ MainWindow::MainWindow(QWidget *parent)
     Reloj->setFont(FontReloj);
     Reloj->setText(QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss ap"));
 
+    Btn_select_rango = new QPushButton(ui->Lab_Rango_Fecha);
+    Btn_select_rango->setGeometry(30,5,200,40);
+    Btn_select_rango->setText("Select Range");
+    Btn_select_rango->setFont(FontReloj);
 
    connect(ui->Regresar_Home,&QPushButton::clicked,this,&MainWindow::on_Btn_Home_clicked);
    connect(ui->stackedWidget,&QStackedWidget::currentChanged,this,&MainWindow::Botones);
-
+   connect(Btn_select_rango,&QPushButton::clicked,this,&MainWindow::btn_clicked);
     Maximizado = new Tanque(ui->Tanque_Maximizado,false);
 
     ConCombocol(ui->Combo_Color);
@@ -183,7 +187,7 @@ MainWindow::MainWindow(QWidget *parent)
 
    ui->Tab_entregas->horizontalHeader()->setVisible(true);
    ui->tableWidget->horizontalHeader()->setVisible(true);
-
+   ui->tabla_incidentes->horizontalHeader()->setVisible(true);
    ui->stackedWidget->setCurrentIndex(SHome);
    ui->Btn_Guardar->setVisible(false);
    ui->Regresar->setVisible(false);
@@ -244,6 +248,7 @@ void MainWindow::on_Btb_Sonda_clicked()
 void MainWindow::on_Btn_Tanque_clicked()
 {
      frame = STanque;
+     MainWindow::setFocus();
      ui->Combo_Sonda->clear();
      ui->ComboSeleccion->clear();
      ui->ComboSeleccion->setVisible(true);
@@ -451,7 +456,7 @@ void MainWindow::on_Btn_Guardar_clicked()
     case STanque: on_Btn_SaveTank_clicked(); break;
     case SComunicacion: Guardar_Comunicacion(); break;
     case Slimites : guardar_limites(); break;
-    } 
+    }
 
 }
 //Fin de boton de Guardar
@@ -1196,6 +1201,7 @@ void MainWindow::on_Btn_Comunicacion_clicked()
 void MainWindow::on_Btn_Barra_Estados_clicked()
 {
     ui->stackedWidget->setCurrentIndex(SReportes);
+    rellenar_incidentes("2021-04-24 10:35:46","2021-04-26 10:41:46");
 }
 
 void MainWindow::Guardar_Comunicacion()
@@ -1473,6 +1479,33 @@ void MainWindow::insertar_incidente(QString tipo, QString Descripcion, QString u
 
     qDebug() << cadena;
     qry.exec(cadena);
+}
+
+void MainWindow::rellenar_incidentes(QString T_inicial, QString T_Final)
+{
+    QString cadena;
+    QSqlQuery qry;
+
+    cadena.append("SELECT * FROM cistem.incidentes WHERE Fecha_incidente "
+                  "BETWEEN ('"+T_inicial+"') AND ('"+T_Final+"');");
+    qDebug() << cadena;
+    qry.exec(cadena);
+    while(qry.next())
+    {
+//        ui->tabla_incidentes->removeRow(0);
+        ui->tabla_incidentes->insertRow(ui->tabla_incidentes->rowCount());
+        ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 0, new QTableWidgetItem(qry.value(1).toString()));
+        ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 1, new QTableWidgetItem(qry.value(2).toString()));
+        ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 2, new QTableWidgetItem(qry.value(4).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
+        ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 4, new QTableWidgetItem(qry.value(3).toString()));
+        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
+        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
+        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
+        //ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
+        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
+        qDebug() << qry.value(0).toString() << qry.value(1).toString() << qry.value(2).toString() << qry.value(3).toString() << qry.value(4).toString();
+    }
+
 }
 
 /* Este Metodo es para colocar las bolitas de colores en su lugar
@@ -1847,6 +1880,26 @@ while (qry.next())
 }
 
 
+}
+
+void MainWindow::btn_clicked()
+{
+    QString cadena;
+    Select_fechas *dlg_rango  = new Select_fechas(this);
+    int res = dlg_rango->exec();
+    if(res == QDialog::Accepted)
+    {
+        cadena.append("Desde: ");
+        cadena.append(dlg_rango->getFecha_desde());
+        cadena.append("  Hasta: ");
+        cadena.append(dlg_rango->getFecha_hasta() + "      ");
+        ui->Lab_Rango_Fecha->setText(cadena);
+
+     //   Desde: 2021/29/4 00:00  HASTA: 2021/04/29 12:00
+
+    }
+
+    delete dlg_rango;
 }
 
 void MainWindow::on_Regresar_Home_clicked()
