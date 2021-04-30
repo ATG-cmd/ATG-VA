@@ -1201,7 +1201,11 @@ void MainWindow::on_Btn_Comunicacion_clicked()
 void MainWindow::on_Btn_Barra_Estados_clicked()
 {
     ui->stackedWidget->setCurrentIndex(SReportes);
-    rellenar_incidentes("2021-04-24 10:35:46","2021-04-26 10:41:46");
+    rellenar_incidentes(QDateTime::currentDateTime().toString("yyyy-MM-dd")+" 00:00:00",  // modificar aqui
+                        QDateTime::currentDateTime().toString("yyyy-MM-dd")+" "+
+                        QDateTime::currentDateTime().toString("HH")+ ":" +
+                        QDateTime::currentDateTime().toString("mm")+":00");
+
 }
 
 void MainWindow::Guardar_Comunicacion()
@@ -1490,6 +1494,7 @@ void MainWindow::rellenar_incidentes(QString T_inicial, QString T_Final)
                   "BETWEEN ('"+T_inicial+"') AND ('"+T_Final+"');");
     qDebug() << cadena;
     qry.exec(cadena);
+
     while(qry.next())
     {
 //        ui->tabla_incidentes->removeRow(0);
@@ -1503,7 +1508,7 @@ void MainWindow::rellenar_incidentes(QString T_inicial, QString T_Final)
         ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
         //ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
         ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
-        qDebug() << qry.value(0).toString() << qry.value(1).toString() << qry.value(2).toString() << qry.value(3).toString() << qry.value(4).toString();
+        //qDebug() << qry.value(0).toString() << qry.value(1).toString() << qry.value(2).toString() << qry.value(3).toString() << qry.value(4).toString();
     }
 
 }
@@ -1894,7 +1899,13 @@ void MainWindow::btn_clicked()
         cadena.append("  Hasta: ");
         cadena.append(dlg_rango->getFecha_hasta() + "      ");
         ui->Lab_Rango_Fecha->setText(cadena);
+        ui->tabla_incidentes->clearContents();
 
+            int i = ui->tabla_incidentes->rowCount() -1;
+            for(int n = i; n >= 0;n--)
+            {
+                ui->tabla_incidentes->removeRow(n);
+            }
         rellenar_incidentes(dlg_rango->getFecha_desde(),dlg_rango->getFecha_hasta());
      //   Desde: 2021/29/4 00:00  HASTA: 2021/04/29 12:00
 
