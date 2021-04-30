@@ -605,6 +605,9 @@
          <bold>true</bold>
         </font>
        </property>
+       <property name="inputMask">
+        <string extracomment="9999-99-99"/>
+       </property>
        <property name="text">
         <string/>
        </property>

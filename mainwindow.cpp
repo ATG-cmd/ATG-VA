@@ -1895,6 +1895,7 @@ void MainWindow::btn_clicked()
         cadena.append(dlg_rango->getFecha_hasta() + "      ");
         ui->Lab_Rango_Fecha->setText(cadena);
 
+        rellenar_incidentes(dlg_rango->getFecha_desde(),dlg_rango->getFecha_hasta());
      //   Desde: 2021/29/4 00:00  HASTA: 2021/04/29 12:00
 
     }
