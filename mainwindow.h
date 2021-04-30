@@ -102,7 +102,7 @@ private slots:
 
    void ConCombocol(QComboBox *combo);
 
-   void Modificar_TextoTank();
+   QString ColorTank(QString Color);
 
    void on_Btn_Guardar_clicked();
 
@@ -170,7 +170,7 @@ private slots:
 
    void on_Btn_Entregas_clicked();
 
-   void deliveryProGaugeCountIncrement();
+   //void deliveryProGaugeCountIncrement();
 
    void on_Btn_SaveTank_clicked();
 
@@ -188,11 +188,10 @@ private slots:
 
    void on_Combo_IdTanque_activated(int index);
 
-
-   void on_Regresar_Home_clicked();
-
    void Leer_GPIO();
+
    void on_Combo_tanque_limites_currentIndexChanged(const QString &arg1);
+
 
 private:
     Ui::MainWindow *ui;

@@ -94,6 +94,96 @@ int Tanque::getIdTanque() const { return IdTanque;}
 
 void Tanque::setIdTanque(int value){IdTanque = value;}
 
+int Tanque::getDeliveryTimeOut() const
+{
+    return deliveryTimeOut;
+}
+
+void Tanque::setDeliveryTimeOut(int value)
+{
+    deliveryTimeOut = value;
+}
+
+double Tanque::getDeliveryMinimunVolume() const
+{
+    return deliveryMinimunVolume;
+}
+
+void Tanque::setDeliveryMinimunVolume(double value)
+{
+    deliveryMinimunVolume = value;
+}
+
+double Tanque::getDeliveryMaxVolumeRead() const
+{
+    return deliveryMaxVolumeRead;
+}
+
+void Tanque::setDeliveryMaxVolumeRead(double value)
+{
+    deliveryMaxVolumeRead = value;
+}
+
+int Tanque::getDeliveryInProcess() const
+{
+    return deliveryInProcess;
+}
+
+void Tanque::setDeliveryInProcess(int value)
+{
+    deliveryInProcess = value;
+}
+
+double Tanque::getDeliveryLastInventoryRead() const
+{
+    return deliveryLastInventoryRead;
+}
+
+void Tanque::setDeliveryLastInventoryRead(double value)
+{
+    deliveryLastInventoryRead = value;
+}
+
+double Tanque::getDeliveryCountIncrement() const
+{
+    return deliveryCountIncrement;
+}
+
+void Tanque::setDeliveryCountIncrement(double value)
+{
+    deliveryCountIncrement = value;
+}
+
+double Tanque::getDeliveryCountDecrement() const
+{
+    return deliveryCountDecrement;
+}
+
+void Tanque::setDeliveryCountDecrement(double value)
+{
+    deliveryCountDecrement = value;
+}
+
+double Tanque::getDeliveryInventoryStart() const
+{
+    return deliveryInventoryStart;
+}
+
+void Tanque::setDeliveryInventoryStart(double value)
+{
+    deliveryInventoryStart = value;
+}
+
+double Tanque::getDeliverySensivilityVolume() const
+{
+    return deliverySensivilityVolume;
+}
+
+void Tanque::setDeliverySensivilityVolume(double value)
+{
+    deliverySensivilityVolume = value;
+}
+
 void Tanque::clickbuton(){ setTMaximizado(false); emit Camino(); }
 
 Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
@@ -102,7 +192,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 
     if(config){
 
-     T1 = new QGroupBox(parent);
+        T1 = new QGroupBox(parent);
      Boton = new QPushButton (T1);
     // TituloTank = new QLabel(Boton);
      layoutWidget1 = new QWidget(Boton);
@@ -748,4 +838,60 @@ QString Tanque::GetColor() { return Color2; }
 void Tanque::SetnameTank(const QString &SNT) {T1->setTitle(SNT); NomTank = SNT; }
 
 QString Tanque::GetNameTank(){ return NomTank; }
+
+void Tanque::deliveryProGaugeCountIncrement(){
+//    if(deliveryInProcess == 0){
+//        if(tanques[indice]->GetVolumen() <= deliveryLastInventoryRead){
+//            deliveryCountDecrement++;
+//            if(deliveryCountDecrement >= 10){
+//                deliveryCountDecrement = 0;
+//                deliveryCountIncrement = 0;
+//                deliveryInventoryStart = 0;
+//                //   ui->lbl_deliveryInventoryStart->setText(QString::number(deliveryInventoryStart));
+//                deliveryMaxVolumeRead = deliveryLastInventoryRead;
+//                //   ui->lbl_deliveryMaxVolumeRead->setText(QString::number(deliveryMaxVolumeRead));
+//            }
+//            if(deliveryCountIncrement >= 30){
+//                deliveryCountDecrement = 0;
+//                deliveryCountIncrement = 0;
+//                deliveryInProcess = 1;
+//                Volumen_inicial =  tanques[indice]->GetVolumen();
+//                ui->lbl_ProGaugeDeliveryInProccess->show();
+//            }
+//        } else{
+//            deliveryCountIncrement++;
+//            if(deliveryCountIncrement == 1.00){
+//                deliveryInventoryStart = tanques[indice]->GetVolumen();
+//                //  ui->lbl_deliveryInventoryStart->setText(QString::number(deliveryInventoryStart));
+//            }
+//            deliveryCountDecrement = 0;
+//        }
+//    }
+//    else{
+//        deliveryCountIncrement++;
+//        if(tanques[indice]->GetVolumen() > (deliveryLastInventoryRead + deliverySensivilityVolume)){
+//            deliveryCountIncrement = 0;
+//        }
+//        if(deliveryCountIncrement >= (1 * 60)){
+//            deliveryCountIncrement = 0;
+//            deliveryInProcess = 0;
+//            int VolumenEntregado=  Volumen_Final -Volumen_inicial;
+//            QSqlQuery qry;
+//            qry.exec("INSERT INTO `cistem`.`entregas` (`Tanque_Nombre`, `Volumen Inicial`, `Temperatura Inicial`, `Volumen Final`, `Temperatrura Final`, `Volumen Entregado`, `Fecha`) VALUES ('"+tanques[indice]->GetNameTank()+"', '"+QString::number(Volumen_inicial)+"', '"+QString::number(Temperatura_inicial)+"', '"+QString::number(Volumen_Final)+"', '"+QString::number(Temperatura_Final)+"', '"+QString::number(VolumenEntregado)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');");
+//            // qry.exec("INSERT INTO `cistem`.`entregas` (`Tanque_Nombre`, `Volumen Inicial`, `Volumen Final`, `Temperatura`, `Fecha`) VALUES ('"+tanques[indice]->GetNameTank()+"', '"+QString::number(Volumen_inicial)+"', '"+QString::number(tanques[indice]->GetVolumen())+"', '"+QString::number(tanques[indice]->GetTemperatura())+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');");
+//            qDebug() << QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
+//            Volumen_inicial =0;
+//            ui->lbl_ProGaugeDeliveryInProccess->hide();
+//            deliveryInventoryStart = 0;
+//            // ui->lbl_deliveryInventoryStart->setText(QString::number(deliveryInventoryStart));
+//        }
+//    }
+//    qDebug() <<tanques[indice]->GetVolumen() << deliveryLastInventoryRead << deliveryCountDecrement << deliveryCountIncrement;
+//    deliveryLastInventoryRead = tanques[indice]->GetVolumen();
+//    evaluar_limites(tanques[indice]);
+    //ui->lbl_deliveryCountIncrement->setText(QString::number(deliveryCountIncrement));
+    //ui->lbl_deliveryCountDecrement->setText(QString::number(deliveryCountDecrement));
+    //ui->lbl_deliveryLastInventoryRead->setText(QString::number(deliveryLastInventoryRead));
+}
+
 
