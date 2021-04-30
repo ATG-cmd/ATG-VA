@@ -59,6 +59,17 @@ class Tanque :public QWidget
     double NivelAgua;
 
 
+    int    deliveryTimeOut = 0;
+    double deliveryMinimunVolume = 0;
+    //double deliveryVolumeRead = 0;
+    double deliveryMaxVolumeRead = 0;
+    int    deliveryInProcess = 0;
+    double deliveryLastInventoryRead = 0;
+    double deliveryCountIncrement = 0;
+    double deliveryCountDecrement = 0;
+    double deliveryInventoryStart = 0;
+    double deliverySensivilityVolume = ProGaugeCapacidad * 0.0001;
+
     int nivA;
     int PosX;
     int PosY;
@@ -348,6 +359,35 @@ public:
 
    int getIdTanque() const;
    void setIdTanque(int value);
+
+   int getDeliveryTimeOut() const;
+   void setDeliveryTimeOut(int value);
+
+   double getDeliveryMinimunVolume() const;
+   void setDeliveryMinimunVolume(double value);
+
+   double getDeliveryMaxVolumeRead() const;
+   void setDeliveryMaxVolumeRead(double value);
+
+   int getDeliveryInProcess() const;
+   void setDeliveryInProcess(int value);
+
+   double getDeliveryLastInventoryRead() const;
+   void setDeliveryLastInventoryRead(double value);
+
+   double getDeliveryCountIncrement() const;
+   void setDeliveryCountIncrement(double value);
+
+   double getDeliveryCountDecrement() const;
+   void setDeliveryCountDecrement(double value);
+
+   double getDeliveryInventoryStart() const;
+   void setDeliveryInventoryStart(double value);
+
+   double getDeliverySensivilityVolume() const;
+   void setDeliverySensivilityVolume(double value);
+
+   void deliveryProGaugeCountIncrement();
 };
 
 #endif // TANQUE_H

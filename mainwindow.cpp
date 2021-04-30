@@ -9,6 +9,10 @@
 #include "wiringPi.h"
 #include <QProcess>
 
+/*----------------------------------------------------------------------------
+ *  Stalkeds
+ * ---------------------------------------------------------------*/
+
 #define SMenu 0
 #define SHome 1
 #define SSonda 2
@@ -59,16 +63,6 @@ char cbuff1[lenbuff1];                  // Buffer
 char rcvchar1 = 0x00;                   // último carácter recibido
 double ProGaugeCapacidad = 40001.0;
 
-int    deliveryTimeOut = 0;
-double deliveryMinimunVolume = 0;
-//double deliveryVolumeRead = 0;
-double deliveryMaxVolumeRead = 0;
-int    deliveryInProcess = 0;
-double deliveryLastInventoryRead = 0;
-double deliveryCountIncrement = 0;
-double deliveryCountDecrement = 0;
-double deliveryInventoryStart = 0;
-double deliverySensivilityVolume = ProGaugeCapacidad * 0.0001;
 //
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -297,24 +291,6 @@ void MainWindow::on_Btn_Tanque_clicked()
             ui->Combo_Sonda->addItem(qry.value(0).toString());
             qDebug() << qry.value(0);
         }
-     connect(ui->Combo_Tipo, QOverload<int>::of(&QComboBox::activated),
-             [=](int index){
-
-    ui->Lab_Titulo->setText("Tanque");
-    ui->Combo_Sonda->addItem(" ");
-
-    QSqlQuery qry;
-    qry.exec("SELECT Serie FROM `cistem`.`sonda` LIMIT 100 ;");
-    while(qry.next())
-    {
-        ui->Combo_Sonda->addItem(qry.value(0).toString());
-        qDebug() << qry.value(0);
-    }  });
-
-    connect(ui->Combo_IdTanque, QOverload<int>:: of(&QComboBox::activated),[=](int index){
-
-
-     } );
 
 }
 //Fin del StackedTanque
@@ -349,120 +325,35 @@ void MainWindow::ConCombocol(QComboBox *combo)
     combo->setItemData(4, QBrush(Qt::cyan), Qt::BackgroundColorRole);
     combo->setItemData(4, QBrush(Qt::cyan), Qt::TextColorRole);
 
-    connect(combo, QOverload<int>::of(&QComboBox::activated),
-            [=](int index){
-
+    connect(combo, QOverload<int>::of(&QComboBox::activated), [=](int index){
         switch(index){
-        case 1 :
-            combo->setStyleSheet(
-                        "QComboBox{background-color: gray ;}"
-                        "QComboBox::drop-down {"
-                        "width: 40px;"
-                        "background-color: transparent;"
-                        "}"
-                        "QComboBox::down-arrow {"
-                        "margin: 5px 0px 0px 0px;"
-                        "width: 0;"
-                        "height: 0;"
-                        /*border: 2px solid #000;*/
-                        "border-top: 10px solid black;"
-                        "border-right: 10px solid gray;"
-                        "border-bottom: 5px solid gray; ;"
-                        " border-left: 10px  solid gray; ;"
-                        "}");
-
-            break;
-
-        case 2:
-            combo->setStyleSheet(
-                        "QComboBox{background-color: green ;}"
-                        "QComboBox::drop-down {"
-                        "width: 40px;"
-                        "background-color: transparent;"
-                        "}"
-                        "QComboBox::down-arrow {"
-                        "margin: 5px 0px 0px 0px;"
-                        "width: 0;"
-                        "height: 0;"
-                        /*border: 2px solid #000;*/
-                        "border-top: 10px solid black;"
-                        "border-right: 10px solid green ;"
-                        "border-bottom: 5px solid green ; ;"
-                        " border-left: 10px  solid green ; ;"
-                        "}"
-                        );
-
-            break;
-        case 3:
-            combo->setStyleSheet(
-                        "QComboBox{background-color: yellow;}"
-                        "QComboBox::drop-down {"
-                        "width: 40px;"
-                        "background-color: transparent;"
-                        "}"
-                        "QComboBox::down-arrow {"
-                        "margin: 5px 0px 0px 0px;"
-                        "width: 0;"
-                        "height: 0;"
-                        /*border: 2px solid #000;*/
-                        "border-top: 10px solid black;"
-                        "border-right: 10px solid yellow;"
-                        "border-bottom: 5px solid yellow;"
-                        " border-left: 10px  solid yellow;"
-                        "}"
-
-
-                        );
-
-            break;
-
-        case 4:
-            combo->setStyleSheet(            "QComboBox{background-color: cyan;}"
-                                             "QComboBox::drop-down {"
-                                             "width: 40px;"
-                                             "background-color: transparent;"
-                                             "}"
-                                             "QComboBox::down-arrow {"
-                                             "margin: 5px 0px 0px 0px;"
-                                             "width: 0;"
-                                             "height: 0;"
-                                             /*border: 2px solid #000;*/
-                                             "border-top: 10px solid black;"
-                                             "border-right: 10px solid cyan;"
-                                             "border-bottom: 5px solid cyan;"
-                                             " border-left: 10px  solid cyan;"
-                                             "}"
-
-                                             );
-
-
-            break;
-        default:
-            break;
-        }
-
+        case 1: combo->setStyleSheet(ColorTank("gray")); break;
+        case 2: combo->setStyleSheet(ColorTank("green")); break;
+        case 3: combo->setStyleSheet(ColorTank("yellow"));break;
+        case 4: combo->setStyleSheet(ColorTank("cyan;")); break;
+        default: break; }
     });
-
 }
 
-
-
-// Final  Del Combo Color
-
-
-/*----------------------------------------------------------------------------------------------------------
- * En esta parte se modifica el tecto del tanque que aparece en el stalck de configuracion del tanque,
- * este slot es activado con la señal texchanged, que se activa al modificar el texedit de nombre, en este slot
- * se toma el texto del textedit Nombre para asignalo al tanque mediante el metodo setnameTank
- * -------------------------------------------------------------------------------------------------------*/
-
-// Inicio de Modificacion de texto de Tanque Configuracion
-
-void MainWindow::Modificar_TextoTank()
+QString MainWindow::ColorTank(QString Color)
 {
-    Tconf->SetnameTank(ui->Line_Nombre->text());
+    return   "QComboBox{background-color: "+Color+";}"
+             "QComboBox::drop-down {"
+             "width: 40px;"
+             "background-color: transparent;"
+             "}"
+             "QComboBox::down-arrow {"
+             "margin: 5px 0px 0px 0px;"
+             "width: 0;"
+             "height: 0;"
+             /*border: 2px solid #000;*/
+             "border-top: 10px solid black;"
+             "border-right: 10px solid "+Color+";"
+             "border-bottom: 5px solid "+Color+";"
+             " border-left: 10px  solid "+Color+";"
+                                                 "}" ;
 
-}// FIN de Modificacion de texto de Tanque Configuraci
+}// Final  Del Combo Color
 
 /*-------------------------------------------------------------------------------------------------------------
  * Cada stalcked tiene su bonton de guardar y volver al momento de de entrar a un stalcked mediante el munu dentro del
@@ -850,12 +741,12 @@ void MainWindow::Protocolo(QString cad)
             tanques[indice]->SetTemperatura(cad.mid(9,3).toDouble()/10);
 
 
-            if(tanques[indice]->GetVolumen() > deliveryMaxVolumeRead || deliveryCountIncrement == 0){
-                qDebug() << "ProGaugeVolumen:" << tanques[indice]->GetVolumen() << "deliveryMaxVolumeRead:" << deliveryMaxVolumeRead;
+//            if(tanques[indice]->GetVolumen() > deliveryMaxVolumeRead || deliveryCountIncrement == 0){
+//                qDebug() << "ProGaugeVolumen:" << tanques[indice]->GetVolumen() << "deliveryMaxVolumeRead:" << deliveryMaxVolumeRead;
 
-                deliveryMaxVolumeRead = tanques[indice]->GetVolumen();
-                // ui->lbl_deliveryMaxVolumeRead->setText(QString::number(deliveryMaxVolumeRead));
-            }
+//                deliveryMaxVolumeRead = tanques[indice]->GetVolumen();
+//                // ui->lbl_deliveryMaxVolumeRead->setText(QString::number(deliveryMaxVolumeRead));
+//            }
 
 
             qDebug() << "Tamano de cadena:"<< cad.length();
@@ -1582,60 +1473,6 @@ void MainWindow::on_Btn_CubGenerar_clicked()
 void MainWindow::on_Btn_Entregas_clicked()
 {
 }
-void MainWindow::deliveryProGaugeCountIncrement(){
-    if(deliveryInProcess == 0){
-        if(tanques[indice]->GetVolumen() <= deliveryLastInventoryRead){
-            deliveryCountDecrement++;
-            if(deliveryCountDecrement >= 10){
-                deliveryCountDecrement = 0;
-                deliveryCountIncrement = 0;
-                deliveryInventoryStart = 0;
-                //   ui->lbl_deliveryInventoryStart->setText(QString::number(deliveryInventoryStart));
-                deliveryMaxVolumeRead = deliveryLastInventoryRead;
-                //   ui->lbl_deliveryMaxVolumeRead->setText(QString::number(deliveryMaxVolumeRead));
-            }
-            if(deliveryCountIncrement >= 30){
-                deliveryCountDecrement = 0;
-                deliveryCountIncrement = 0;
-                deliveryInProcess = 1;
-                Volumen_inicial =  tanques[indice]->GetVolumen();
-                ui->lbl_ProGaugeDeliveryInProccess->show();
-            }
-        } else{
-            deliveryCountIncrement++;
-            if(deliveryCountIncrement == 1.00){
-                deliveryInventoryStart = tanques[indice]->GetVolumen();
-                //  ui->lbl_deliveryInventoryStart->setText(QString::number(deliveryInventoryStart));
-            }
-            deliveryCountDecrement = 0;
-        }
-    }
-    else{
-        deliveryCountIncrement++;
-        if(tanques[indice]->GetVolumen() > (deliveryLastInventoryRead + deliverySensivilityVolume)){
-            deliveryCountIncrement = 0;
-        }
-        if(deliveryCountIncrement >= (1 * 60)){
-            deliveryCountIncrement = 0;
-            deliveryInProcess = 0;
-            int VolumenEntregado=  Volumen_Final -Volumen_inicial;
-            QSqlQuery qry;
-            qry.exec("INSERT INTO `cistem`.`entregas` (`Tanque_Nombre`, `Volumen Inicial`, `Temperatura Inicial`, `Volumen Final`, `Temperatrura Final`, `Volumen Entregado`, `Fecha`) VALUES ('"+tanques[indice]->GetNameTank()+"', '"+QString::number(Volumen_inicial)+"', '"+QString::number(Temperatura_inicial)+"', '"+QString::number(Volumen_Final)+"', '"+QString::number(Temperatura_Final)+"', '"+QString::number(VolumenEntregado)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');");
-            // qry.exec("INSERT INTO `cistem`.`entregas` (`Tanque_Nombre`, `Volumen Inicial`, `Volumen Final`, `Temperatura`, `Fecha`) VALUES ('"+tanques[indice]->GetNameTank()+"', '"+QString::number(Volumen_inicial)+"', '"+QString::number(tanques[indice]->GetVolumen())+"', '"+QString::number(tanques[indice]->GetTemperatura())+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');");
-            qDebug() << QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
-            Volumen_inicial =0;
-            ui->lbl_ProGaugeDeliveryInProccess->hide();
-            deliveryInventoryStart = 0;
-            // ui->lbl_deliveryInventoryStart->setText(QString::number(deliveryInventoryStart));
-        }
-    }
-    qDebug() <<tanques[indice]->GetVolumen() << deliveryLastInventoryRead << deliveryCountDecrement << deliveryCountIncrement;
-    deliveryLastInventoryRead = tanques[indice]->GetVolumen();
-    evaluar_limites(tanques[indice]);
-    //ui->lbl_deliveryCountIncrement->setText(QString::number(deliveryCountIncrement));
-    //ui->lbl_deliveryCountDecrement->setText(QString::number(deliveryCountDecrement));
-    //ui->lbl_deliveryLastInventoryRead->setText(QString::number(deliveryLastInventoryRead));
-}
 
 void MainWindow::on_Btn_SaveTank_clicked()
 {
@@ -1811,14 +1648,7 @@ while (qry.next())
   ui->Combo_Producto->setCurrentText(qry.value(15).toString());
 }
 
-
 }
-
-void MainWindow::on_Regresar_Home_clicked()
-{
-
-}
-
 void MainWindow::Leer_GPIO()
 {
     QString Gpio_status;
