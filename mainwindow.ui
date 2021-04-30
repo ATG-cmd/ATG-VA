@@ -5126,7 +5126,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>1110</x>
-      <y>450</y>
+      <y>520</y>
       <width>91</width>
       <height>81</height>
      </rect>
