@@ -71,11 +71,9 @@ public:
      bool RX= false;
      bool SondasOnline[8];
      int intento = 0;
-     double Volumen_inicial;
-     double Temperatura_inicial;
-     double Volumen_Final;
-     double Temperatura_Final;
      bool S_input[16];
+     int numerodetanques=0;
+     int TanqueActual;
 
     void Buscar_Tanques();  // Es funcion busca los tanques dados de alta en BD
     void Rellenar_combo_taques(QString tanque_index); // Rellenaremos los combobox con los tanque escontrados
@@ -173,7 +171,7 @@ private slots:
 
    void on_Btn_Entregas_clicked();
 
-   //void deliveryProGaugeCountIncrement();
+   void deliveryProGaugeCountIncrement();
 
    void on_Btn_SaveTank_clicked();
 
@@ -196,6 +194,8 @@ private slots:
    void Leer_GPIO();
 
    void on_Combo_tanque_limites_currentIndexChanged(const QString &arg1);
+
+   void Qry_Entrega(QString  Entrega_Realizada);
 
 
 private:

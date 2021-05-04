@@ -14,6 +14,11 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QWidget>
+#include <QTimer>
+#include <QDateTime>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlError>
 
 class Tanque :public QWidget
 {
@@ -58,10 +63,9 @@ class Tanque :public QWidget
     double frombase=500;
     double NivelAgua;
 
-
     int    deliveryTimeOut = 0;
     double deliveryMinimunVolume = 0;
-    //double deliveryVolumeRead = 0;
+    double deliveryVolumeRead = 0;
     double deliveryMaxVolumeRead = 0;
     int    deliveryInProcess = 0;
     double deliveryLastInventoryRead = 0;
@@ -69,6 +73,10 @@ class Tanque :public QWidget
     double deliveryCountDecrement = 0;
     double deliveryInventoryStart = 0;
     double deliverySensivilityVolume = ProGaugeCapacidad * 0.0001;
+    double Volumen_inicial;
+    double Temperatura_inicial;
+    double Volumen_Final;
+    double Temperatura_Final;
 
     int nivA;
     int PosX;
@@ -98,9 +106,11 @@ private slots:
 signals:
 
     void Camino();
+    void Entrega(QString SeRealizoEntrega);
 
 public:
-    QString Radio="90";
+
+   QString Radio="90";
    QGroupBox *T1;
    QWidget *layoutWidget1;
    QLabel *Volumen;
@@ -185,6 +195,7 @@ public:
        QLabel *label_24;
        QLabel *label_20;
        QLabel *label_33;
+       QLabel *Cargando;
 
    /*
        Max_volumen  Volumen Maximo

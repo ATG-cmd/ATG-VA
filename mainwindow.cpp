@@ -9,7 +9,7 @@
 #include "wiringPi.h"
 #include <QProcess>
 
-/*----------------------------------------------------------------------------
+/*-----------------------------------------------------------------
  *  Stalkeds
  * ---------------------------------------------------------------*/
 
@@ -127,10 +127,11 @@ MainWindow::MainWindow(QWidget *parent)
     //Time2->start(1000);
 
     deliveryProGaugeTimer = new QTimer(this);
-    //connect(deliveryProGaugeTimer, SIGNAL(timeout()), this, SLOT(deliveryProGaugeCountIncrement()));
+
     connect(Gpio_timer,SIGNAL(timeout()),this,SLOT(Leer_GPIO()));
-    deliveryProGaugeTimer->start(1000);
+
     Gpio_timer->start(2000);
+
 
 
     MainWindow::setFocus();
@@ -153,7 +154,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->stackedWidget->setCurrentIndex(3);
 
-    //puertoserie->setPortName("Com3");
+  // puertoserie->setPortName("ttyUSB0");
     puertoserie->setPortName("ttyAMA3");
     puertoserie->setBaudRate(9600);
     puertoserie->setDataBits(QSerialPort::Data8);
@@ -199,7 +200,6 @@ MainWindow::MainWindow(QWidget *parent)
    ui->SCombo_Datos->addItem(QStringLiteral("7"), QSerialPort::Data7);
    ui->SCombo_Datos->addItem(QStringLiteral("8"), QSerialPort::Data8);
 
-
    ui->SCombo_Paridad->addItem(tr("None"), QSerialPort::NoParity);
    ui->SCombo_Paridad->addItem(tr("Even"), QSerialPort::EvenParity);
    ui->SCombo_Paridad->addItem(tr("Odd"), QSerialPort::OddParity);
@@ -211,6 +211,8 @@ MainWindow::MainWindow(QWidget *parent)
    ui->SCombo_Stop->addItem(tr("1.5"), QSerialPort::OneAndHalfStop);
 #endif
    ui->SCombo_Stop->addItem(QStringLiteral("2"), QSerialPort::TwoStop);
+
+   ui->SelecTank->setVisible(false);
 
 }
 
@@ -524,8 +526,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         int res;
         res = dlg->exec();
         if(res == QDialog::Accepted)
-        {
-            ui->Line_Usuario->clear();
+        { ui->Line_Usuario->clear();
             ui->Line_Usuario->setText(dlg->getDatos());
         }
         delete dlg;
@@ -632,16 +633,16 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
 void MainWindow::Leer_datos()
 {
-    qDebug() << "Hola Me llego un dato";
+   // qDebug() << "Hola Me llego un dato";
     RX=true;
     QByteArray data;
     char dato;
     while( puertoserie->bytesAvailable())
     {
         data =  puertoserie->read(1);
-        qDebug() << data;
+       // qDebug() << data;
         dato = data.at(0);
-        qDebug()<< dato;
+      //  qDebug()<< dato;
         addcbuff1(dato);
     }
 
@@ -706,13 +707,13 @@ void MainWindow::Protocolo(QString cad)
 
     indice =0;
 
-    qDebug() << "Cadena: " << cad;
+   // qDebug() << "Cadena: " << cad;
 
     QString busqueda = cad.mid(0,5);
 
     for (int i = 0; i <= IDSerie; i++) {
         QString IDactual = ProGaugeId[i];
-        qDebug() << "ProGaugeID" << ProGaugeId[i];
+        //qDebug() << "ProGaugeID" << ProGaugeId[i];
         if (IDactual == busqueda)
         {
             indice = i;
@@ -768,6 +769,9 @@ void MainWindow::Protocolo(QString cad)
 
 void MainWindow::Descargar()
 {
+    connect(deliveryProGaugeTimer, SIGNAL(timeout()), this, SLOT(deliveryProGaugeCountIncrement()));
+    deliveryProGaugeTimer->start(1000);
+
     qDebug() << "Descargado Tanques .....";
     S=0;
     QSqlQuery qry;
@@ -775,7 +779,7 @@ void MainWindow::Descargar()
  while(qry.next())   {
 qDebug() << "Que esta pasando";
    if (qry.value(0).toInt() > 0)
-   {
+   {  numerodetanques = qry.value(0).toInt();
   qDebug () << "En este momento S:" << S;
     if(qry.exec("SELECT * FROM `cistem`.`tanques` where configurado = 1 ;"))
     {
@@ -783,7 +787,7 @@ qDebug() << "Que esta pasando";
         {
             Geometrytank();
             connect(tanques[S],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
-
+            connect(tanques[S],&Tanque::Entrega,this,&MainWindow::Qry_Entrega);
             ui->stackedWidget->setCurrentIndex(3);
            // ProGaugeId[S]=qry.value(1).toString();
             qDebug() <<   "ID del tanque dw:" <<  qry.value(1).toInt();
@@ -835,7 +839,6 @@ qDebug() << "Que esta pasando";
                tanques[i]->SetAlarma_de_Agua(qry.value(7).toDouble());
                tanques[i]->SetAdvertencua_de_Agua(qry.value(8).toDouble());
 
-
                qDebug() <<"Hola Desde Limites ;p"
                         <<qry.value(0).toString()
                         <<qry.value(1).toString()
@@ -873,6 +876,8 @@ void MainWindow::Geometrytank()
 
 void MainWindow::Estados()
 {
+
+
     switch(ProGaugeCount){
     case 0:
         connect(Time3,SIGNAL(timeout()),this,SLOT(SendCMD()));
@@ -917,7 +922,6 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::Tanque_Maximisado()
 {
-
     if(!Maxi)
     {
         indiceM =0;
@@ -1073,7 +1077,7 @@ void MainWindow::SendCMD()
 {
     switch(ProGaugeCountCMD){
     case 0:
-       // puertoserie->setDataTerminalReady(false);
+        //puertoserie->setDataTerminalReady(false);
         digitalWrite(CTRL,HIGH);
         ProGaugeCountCMD++;
         break;
@@ -1084,7 +1088,7 @@ void MainWindow::SendCMD()
         break;
 
     case 2:
-      //  puertoserie->setDataTerminalReady(true);
+        //puertoserie->setDataTerminalReady(true);
         digitalWrite(CTRL,LOW);
         ProGaugeCountCMD = 0;
         ProGaugeCount++;
@@ -1100,7 +1104,6 @@ void MainWindow::SendCMD()
         }
           break;
     }
-
 }
 
 void MainWindow::on_Btn_Comunicacion_clicked()
@@ -1114,7 +1117,7 @@ void MainWindow::on_Btn_Comunicacion_clicked()
     ui->ComboSeleccion->addItem("Sonda");
     ui->ComboSeleccion->addItem("Comunicador");
 
-    connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated), [=](int index){
+   connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated), [=](int index){
         switch (index)
          {
          case 0:ui->stackedWidget->setCurrentIndex(SComunicacion); break;
@@ -1264,8 +1267,6 @@ bool MainWindow::Validar_update_cubicacion(int punto, int tanque, double altura,
     if(alt == true && vol == true) return true;
     else return false;
 }
-
-
 void MainWindow::on_Combo_CubTanque_currentIndexChanged(int index)
 {
     Rellenar_tabla_cubicacion(index + 1);
@@ -1372,7 +1373,6 @@ void MainWindow::rellenar_limites()
         ui->Line_producto_bajo->setText(QString::number(qry.value(4).toDouble()));
         ui->Line_alarma_agua->setText(QString::number(qry.value(5).toDouble()));
         ui->Line_advertencia_agua->setText(QString::number(qry.value(6).toDouble()));
-
     }
 }
 
@@ -1432,14 +1432,12 @@ void MainWindow::rellenar_incidentes(QString T_inicial, QString T_Final)
         ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
         qDebug() << qry.value(0).toString() << qry.value(1).toString() << qry.value(2).toString() << qry.value(3).toString() << qry.value(4).toString();
     }
-
 }
 
 /* Este Metodo es para colocar las bolitas de colores en su lugar
   Respecto al limite que le corresponde, la siguiente formula es la
   formula del semicirculo
  Referencia : https://www.youtube.com/watch?v=uDS4Q-QCU8M */
-
 int MainWindow::X(int Y)
 {
     return  qSqrt(50625 - qPow(Y-215,2))+270;
@@ -1464,7 +1462,7 @@ void MainWindow::on_Btn_Cub_Guardar_clicked()
     consulta.append("UPDATE cistem.tablacubicacion SET Altura = '" + ui->Line_Altura->text()+ "',"
                                                                                               " Volumen = '" + ui->Line_Volumen->text() + "' "
                                                                                                                                           "WHERE Punto = '" + ui->Line_Punto->text() + "' "
-                                                                                                                                                                                       "AND TanqueId = '" + QString::number(ui->Combo_CubTanque->currentIndex() + 1) + "';");
+                                                                                                                                                                                    "AND TanqueId = '" + QString::number(ui->Combo_CubTanque->currentIndex() + 1) + "';");
     res = Validar_update_cubicacion(ui->Line_Punto->text().toInt(),ui->Combo_CubTanque->currentIndex() + 1,ui->Line_Altura->text().toDouble(),ui->Line_Volumen->text().toDouble());
     if(res == true)
     {
@@ -1514,8 +1512,14 @@ void MainWindow::on_Btn_CubGenerar_clicked()
 //}
 void MainWindow::on_Btn_Entregas_clicked()
 {
-}
 
+}
+void MainWindow::deliveryProGaugeCountIncrement()
+{
+        if (TanqueActual == numerodetanques-1) { TanqueActual = 0;}
+        else { TanqueActual++;}
+        tanques[TanqueActual]->deliveryProGaugeCountIncrement();
+}
 void MainWindow::on_Btn_SaveTank_clicked()
 {
     disconnect(Time1,SIGNAL(timeout()),this,SLOT(Estados()));
@@ -1532,7 +1536,6 @@ void MainWindow::on_Btn_SaveTank_clicked()
 
     if(ui->RHabilitado->isChecked()) {hab=1;}
     else { hab=0; }
-
 
       Enviar_qry( "UPDATE `cistem`.`tanques` SET "
                   " `Configurado`='"+QString::number(hab)+"',"
@@ -1594,7 +1597,7 @@ void MainWindow::on_Btn_Entregas_or_clicked()
 
         switch (index)
          {
-         case 0: cadena.append("SELECT * FROM `cistem`.`entregas` LIMIT 1000;");break;
+         case 0: cadena.append("SELECT * FROM `cistem`.`entregas` LIMIT 1000;");  break;
          default: qDebug() << "Texto del index:" << ui->CSelecTank->itemText(index);
          cadena.append("SELECT * FROM `cistem`.`entregas` where Tanque_Nombre = '"+ui->CSelecTank->itemText(index)+"';"); break;
         }
@@ -1611,25 +1614,24 @@ void MainWindow::on_Btn_Entregas_or_clicked()
              ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 2, new QTableWidgetItem(QString::number(qry.value(3).toInt())));
              ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 3, new QTableWidgetItem(QString::number(qry.value(4).toInt())));
              ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1,4 , new QTableWidgetItem(QString::number(qry.value(5).toInt())));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1,5 , new QTableWidgetItem(QString::number(qry.value(6).toInt())));
              ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 6, new QTableWidgetItem(qry.value(7).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
              ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
              ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
              ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
              ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
              ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
-             //ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
 
              ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 6)->setTextAlignment(Qt::AlignCenter);
              //  ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 6)->setFont(A);
              qDebug() << qry.value(0).toInt() << qry.value(1).toString() << qry.value(2).toInt() << qry.value(4).toInt();
          }
     });
-
 }
 
 void MainWindow::Botones()
 {
-
    qDebug() << "Hola Desde Stalked:" << frame;
 
    ui->Btn_user->setVisible(false);
@@ -1733,7 +1735,7 @@ void MainWindow::Leer_GPIO()
            Gpio_status.append(QString::number(i+1));
            Gpio_status.append(": Activado");
            qDebug() << "El sensor" << i+1 << " se Activo";
-           insertar_incidente("incidente",Gpio_status,"user");
+         //  insertar_incidente("incidente",Gpio_status,"user");
            Gpio_status.clear();
        }
    }
@@ -1744,5 +1746,12 @@ void MainWindow::on_Combo_tanque_limites_currentIndexChanged(const QString &arg1
 {
     qDebug() << "tanque seleccionando en limites " << arg1;
     rellenar_limites();
+}
+
+void MainWindow::Qry_Entrega(QString SeRealizoEntrega)
+{
+    qDebug() << "Qry Entrega" << SeRealizoEntrega;
+    QSqlQuery qry;
+    qry.exec(SeRealizoEntrega);
 }
 
