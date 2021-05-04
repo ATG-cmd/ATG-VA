@@ -66,14 +66,16 @@ void Select_fechas::on_Btn_Guardar_clicked()
     cadena1.append(ui->Line_H_horas->text());
     cadena1.append(":");
     cadena1.append(ui->Line_H_minutos->text());
-    cadena1.append(":00");
+    cadena1.append(":");
+    cadena1.append(QDateTime::currentDateTime().toString("ss"));
 
     cadena2.append(ui->Line_D_Fecha->text());
     cadena2.append(" ");
     cadena2.append(ui->Line_D_horas->text());
     cadena2.append(":");
     cadena2.append(ui->Line_D_minutos->text());
-    cadena2.append(":00");
+    cadena2.append(":");
+    cadena2.append("00");
 
     setFecha_hasta(cadena1);
     setFecha_desde(cadena2);

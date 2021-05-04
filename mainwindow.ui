@@ -5059,6 +5059,7 @@ border-radius: 16;
      </widget>
     </widget>
     <widget class="QWidget" name="InventarioConfig"/>
+    <widget class="QWidget" name="page"/>
    </widget>
    <widget class="QLabel" name="Lab_Titulo">
     <property name="geometry">

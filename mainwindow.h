@@ -18,7 +18,7 @@
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include "select_fechas.h"
-
+#include <QTableWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -61,7 +61,7 @@ public:
      QSqlDatabase DB;
      QSerialPort *puertoserie;
      QString portname;
-     int G;
+     int G = 0;
      QString ProGaugeId[8];
      int IDSerie;
      bool Maxi=false;
@@ -89,8 +89,11 @@ public:
     void guardar_limites();
     void rellenar_limites();
     void evaluar_limites(Tanque *tanque);
-    void insertar_incidente(QString tipo, QString Descripcion, QString usuario);
-    void rellenar_incidentes(QString T_inicial, QString T_Final);
+    void insertar_incidente(QString tipo, QString Descripcion, QString usuario, QString Prioridad);
+    void rellenar_incidentes(QString T_inicial, QString T_Final, int index);
+    void limpiar_tabla(QTableWidget *tabla,int cont);
+    void buscar_prioridad(QString priodidad);
+    void rellenar_activos(QPushButton *btn);
     int X(int Y);
     int calcY(int y );
 

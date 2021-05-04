@@ -118,7 +118,7 @@ MainWindow::MainWindow(QWidget *parent)
     Reloj->setText(QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss ap"));
 
     Btn_select_rango = new QPushButton(ui->Lab_Rango_Fecha);
-    Btn_select_rango->setGeometry(30,5,200,40);
+
     Btn_select_rango->setText("Select Range");
     Btn_select_rango->setFont(FontReloj);
 
@@ -1102,6 +1102,10 @@ void MainWindow::on_Regresar_clicked()
 {
     if(frame > SMenuPub || frame ==SEntregas) frame =SMenuPub;
     else frame = SMenu;
+    if(frame == SReportes){
+       // disconnect(ui->ComboSeleccion,&QComboBox::activated,this,)
+
+    }
     ui->stackedWidget->setCurrentIndex(frame);
 
 }
@@ -1200,12 +1204,30 @@ void MainWindow::on_Btn_Comunicacion_clicked()
 
 void MainWindow::on_Btn_Barra_Estados_clicked()
 {
+    frame = SReportes;
     ui->stackedWidget->setCurrentIndex(SReportes);
-    rellenar_incidentes(QDateTime::currentDateTime().toString("yyyy-MM-dd")+" 00:00:00",  // modificar aqui
-                        QDateTime::currentDateTime().toString("yyyy-MM-dd")+" "+
-                        QDateTime::currentDateTime().toString("HH")+ ":" +
-                        QDateTime::currentDateTime().toString("mm")+":00");
+    Btn_select_rango->setGeometry(0,0,0,0);
+    ui->ComboSeleccion->clear();
+    ui->ComboSeleccion->addItem("Activos");
+    ui->ComboSeleccion->addItem("Prioritarios");
+    ui->ComboSeleccion->addItem("No Prioritarios");
+    ui->ComboSeleccion->addItem("Historico");
+    limpiar_tabla(ui->tabla_incidentes,ui->tabla_incidentes->rowCount());
+    connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
+            [=](int index){
 
+        switch (index)
+         {
+         case 0: rellenar_activos(Btn_select_rango); break;
+         case 1: buscar_prioridad("1"); break;
+         case 2: buscar_prioridad("0"); break;
+         case 3:rellenar_incidentes(QDateTime::currentDateTime().toString("yyyy-MM-dd")+" 00:00:00",  // modificar aqui
+                                    QDateTime::currentDateTime().toString("yyyy-MM-dd")+" "+
+                                    QDateTime::currentDateTime().toString("HH")+ ":" +
+                                    QDateTime::currentDateTime().toString("mm")+":00",3); break;
+        } });
+ //   disconnect(ui->ComboSeleccion,&QComboBox::activated,this,[=]);
+    ui->ComboSeleccion->setCurrentIndex(0);
 }
 
 void MainWindow::Guardar_Comunicacion()
@@ -1474,26 +1496,40 @@ void MainWindow::evaluar_limites(Tanque *tanque)
 //    if(tanque->getVolumenCon() >= tanque->GetDesbordamiento()){}
 }
 
-void MainWindow::insertar_incidente(QString tipo, QString Descripcion, QString usuario)
+void MainWindow::insertar_incidente(QString tipo, QString Descripcion, QString usuario,QString Prioridad)
 {
     QSqlQuery qry;
     QString cadena;
-    cadena.append("INSERT INTO cistem.incidentes (Tipo_incidente, Descripcion, usuario, Fecha_incidente)"
-                  " VALUES ('"+tipo+"', '"+Descripcion+"', '"+usuario+"', '"+ QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss") +"');");
+    cadena.append("INSERT INTO cistem.incidentes (Tipo_incidente, Descripcion, usuario, Fecha_incidente,Prioridad)"
+                  " VALUES ('"+tipo+"', '"+Descripcion+"', '"+usuario+"', '"+ QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss") +"','"+ Prioridad+"');");
 
     qDebug() << cadena;
     qry.exec(cadena);
 }
 
-void MainWindow::rellenar_incidentes(QString T_inicial, QString T_Final)
-{
-    QString cadena;
+void MainWindow::rellenar_incidentes(QString T_inicial, QString T_Final,int index)
+{   int i;
+    QString cadena1;
     QSqlQuery qry;
+    limpiar_tabla(ui->tabla_incidentes,ui->tabla_incidentes->rowCount());
+    Btn_select_rango->setGeometry(30,5,200,40);
+    switch (index) {
 
-    cadena.append("SELECT * FROM cistem.incidentes WHERE Fecha_incidente "
-                  "BETWEEN ('"+T_inicial+"') AND ('"+T_Final+"');");
-    qDebug() << cadena;
-    qry.exec(cadena);
+    case 1:     cadena1 = ("SELECT * FROM cistem.incidentes WHERE "
+                                  "Prioridad = '1' AND (Fecha_incidente "
+                                  "BETWEEN ('"+T_inicial+"') AND ('"+T_Final+"'));"); break;
+
+    case 2:     cadena1 = ("SELECT * FROM cistem.incidentes WHERE "
+                                  "Prioridad = '0' AND (Fecha_incidente "
+                                  "BETWEEN ('"+T_inicial+"') AND ('"+T_Final+"'));"); break;
+
+    case 3:     cadena1 = ("SELECT * FROM cistem.incidentes WHERE Fecha_incidente "
+                                      "BETWEEN ('"+T_inicial+"') AND ('"+T_Final+"');"); break;
+    default:break;
+    }
+    qry.exec(cadena1);
+    qDebug() << cadena1;
+    cadena1.clear();
 
     while(qry.next())
     {
@@ -1502,14 +1538,62 @@ void MainWindow::rellenar_incidentes(QString T_inicial, QString T_Final)
         ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 0, new QTableWidgetItem(qry.value(1).toString()));
         ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 1, new QTableWidgetItem(qry.value(2).toString()));
         ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 2, new QTableWidgetItem(qry.value(4).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
+        ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 3, new QTableWidgetItem(qry.value(5).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
         ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 4, new QTableWidgetItem(qry.value(3).toString()));
         ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
         ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
         ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
-        //ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
+        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
         ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
         //qDebug() << qry.value(0).toString() << qry.value(1).toString() << qry.value(2).toString() << qry.value(3).toString() << qry.value(4).toString();
     }
+    i ++;
+    qDebug() << i;
+}
+
+void MainWindow::limpiar_tabla(QTableWidget *tabla, int cont)
+{
+       tabla->clearContents();
+        int i = cont; //ui->tabla_incidentes->rowCount() -1;
+        for(int n = i; n >= 0;n--)
+        {
+            tabla->removeRow(n);
+        }
+}
+
+void MainWindow::buscar_prioridad(QString priodidad)
+{
+    QString cadena;
+    QSqlQuery qry;
+    limpiar_tabla(ui->tabla_incidentes,ui->tabla_incidentes->rowCount());
+    Btn_select_rango->setGeometry(30,5,200,40);
+    cadena = ("SELECT * FROM cistem.incidentes WHERE Prioridad = '"+ priodidad +"' ;");
+
+    qry.exec(cadena);
+    qDebug() << cadena;
+    cadena.clear();
+
+    while(qry.next())
+    {
+        ui->tabla_incidentes->insertRow(ui->tabla_incidentes->rowCount());
+        ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 0, new QTableWidgetItem(qry.value(1).toString()));
+        ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 1, new QTableWidgetItem(qry.value(2).toString()));
+        ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 2, new QTableWidgetItem(qry.value(4).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
+        ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 3, new QTableWidgetItem(qry.value(5).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
+        ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 4, new QTableWidgetItem(qry.value(3).toString()));
+        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
+        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
+        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
+        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
+        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
+    }
+    G++;
+    qDebug() << G;
+}
+
+void MainWindow::rellenar_activos(QPushButton *btn)
+{
+    btn->setGeometry(0,0,0,0);
 
 }
 
@@ -1764,6 +1848,27 @@ void MainWindow::on_Btn_Reports_clicked()
 {
     frame = SReportes;
     ui->stackedWidget->setCurrentIndex(SReportes);
+    Btn_select_rango->setGeometry(30,5,200,40);
+    ui->ComboSeleccion->clear();
+    ui->ComboSeleccion->addItem("Activos");
+    ui->ComboSeleccion->addItem("Prioritarios");
+    ui->ComboSeleccion->addItem("No Prioritarios");
+    ui->ComboSeleccion->addItem("Historico");
+
+    connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
+            [=](int index){
+
+        switch (index)
+         {
+         case 0: rellenar_activos(Btn_select_rango); break;
+         case 1: buscar_prioridad("1"); break;
+         case 2: buscar_prioridad("0"); break;
+         case 3:rellenar_incidentes(QDateTime::currentDateTime().toString("yyyy-MM-dd")+" 00:00:00",  // modificar aqui
+                                    QDateTime::currentDateTime().toString("yyyy-MM-dd")+" "+
+                                    QDateTime::currentDateTime().toString("HH")+ ":" +
+                                    QDateTime::currentDateTime().toString("mm")+":00",3); break;
+        } });
+    ui->ComboSeleccion->setCurrentIndex(3);
 }
 
 void MainWindow::on_Btn_Entregas_or_clicked()
@@ -1844,11 +1949,11 @@ void MainWindow::Botones()
   // case 1: ui->Regresar->setVisible(true); ui->btn_menu->setVisible(true); break;
    case SHome: case SHome2: ui->btn_menu->setVisible(true); ui->Btn_user->setVisible(true); break;
    case SMenuPub: case SLogin: case SMenu: case STMaxi: break;
-   case sInventario: case SReportes: case STablaCub: case SVialarmas:case SEntregas:
+   case sInventario: case STablaCub: case SVialarmas:case SEntregas:
         ui->Regresar->setVisible(true); break;
    case SComunicador:  case SComunicacion : case Slimites : case STanque: ui->ComboSeleccion->setVisible(true); ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
    default: ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
-
+    case SReportes: ui->Regresar->setVisible(true); ui->ComboSeleccion->setVisible(true); break;
    }
 }
 
@@ -1899,17 +2004,11 @@ void MainWindow::btn_clicked()
         cadena.append("  Hasta: ");
         cadena.append(dlg_rango->getFecha_hasta() + "      ");
         ui->Lab_Rango_Fecha->setText(cadena);
-        ui->tabla_incidentes->clearContents();
-
-            int i = ui->tabla_incidentes->rowCount() -1;
-            for(int n = i; n >= 0;n--)
-            {
-                ui->tabla_incidentes->removeRow(n);
-            }
-        rellenar_incidentes(dlg_rango->getFecha_desde(),dlg_rango->getFecha_hasta());
+        rellenar_incidentes(dlg_rango->getFecha_desde(),dlg_rango->getFecha_hasta(),ui->ComboSeleccion->currentIndex());
+      }
      //   Desde: 2021/29/4 00:00  HASTA: 2021/04/29 12:00
 
-    }
+
 
     delete dlg_rango;
 }
@@ -1949,7 +2048,7 @@ void MainWindow::Leer_GPIO()
            Gpio_status.append(QString::number(i+1));
            Gpio_status.append(": Activado");
            qDebug() << "El sensor" << i+1 << " se Activo";
-           insertar_incidente("incidente",Gpio_status,"user");
+           insertar_incidente("incidente",Gpio_status,"user","0");
            Gpio_status.clear();
        }
    }
