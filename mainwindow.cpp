@@ -205,6 +205,8 @@ void MainWindow::on_Btn_Home_clicked()
 {
     frame =SHome;
     ui->stackedWidget->setCurrentIndex(SHome);
+    QObject::disconnect( combo_connect1 );
+    QObject::disconnect( combo_connect2 );
     ui->Lab_Titulo->setText("Inicio");
 
     if (Maxi == true)
@@ -1100,12 +1102,25 @@ void MainWindow::Tanque_Maximisado()
 
 void MainWindow::on_Regresar_clicked()
 {
-    if(frame > SMenuPub || frame ==SEntregas) frame =SMenuPub;
-    else frame = SMenu;
-    if(frame == SReportes){
-       // disconnect(ui->ComboSeleccion,&QComboBox::activated,this,)
-        QObject::disconnect( combo_connect );
+    if(frame > SMenuPub || frame ==SEntregas){
+        if(frame == SReportes){
+        // disconnect(ui->ComboSeleccion,&QComboBox::activated,this,)
+         QObject::disconnect( combo_connect1 );
+         QObject::disconnect( combo_connect2 );
+         qDebug() << "se desconectarion los combos";
+        }
+        frame =SMenuPub;
     }
+    else {
+        if(frame == SReportes){
+        // disconnect(ui->ComboSeleccion,&QComboBox::activated,this,)
+         QObject::disconnect( combo_connect1 );
+         QObject::disconnect( combo_connect2 );
+         qDebug() << "se desconectarion los combos";
+        }
+       frame = SMenu;
+    }
+
     ui->stackedWidget->setCurrentIndex(frame);
 
 }
@@ -1213,15 +1228,16 @@ void MainWindow::on_Btn_Barra_Estados_clicked()
     ui->ComboSeleccion->addItem("No Prioritarios");
     ui->ComboSeleccion->addItem("Historico");
     limpiar_tabla(ui->tabla_incidentes,ui->tabla_incidentes->rowCount());
-    combo_connect = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
+    QObject::disconnect( combo_connect1 );
+    combo_connect2 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
             [=](int index){
 
         switch (index)
          {
-         case 0: rellenar_activos(Btn_select_rango); break;
-         case 1: buscar_prioridad("1"); break;
-         case 2: buscar_prioridad("0"); break;
-         case 3:rellenar_incidentes(QDateTime::currentDateTime().toString("yyyy-MM-dd")+" 00:00:00",  // modificar aqui
+         case 0: G++; qDebug() << "G iteracion:"  << G;rellenar_activos(Btn_select_rango); break;
+         case 1: G++; qDebug() << "G iteracion:"  << G;buscar_prioridad("1"); break;
+         case 2: G++; qDebug() << "G iteracion:"  << G;buscar_prioridad("0"); break;
+         case 3: G++; qDebug() << "G iteracion:"  << G;rellenar_incidentes(QDateTime::currentDateTime().toString("yyyy-MM-dd")+" 00:00:00",  // modificar aqui
                                     QDateTime::currentDateTime().toString("yyyy-MM-dd")+" "+
                                     QDateTime::currentDateTime().toString("HH")+ ":" +
                                     QDateTime::currentDateTime().toString("mm")+":00",3); break;
@@ -1507,22 +1523,22 @@ void MainWindow::insertar_incidente(QString tipo, QString Descripcion, QString u
 }
 
 void MainWindow::rellenar_incidentes(QString T_inicial, QString T_Final,int index)
-{   int i;
+{
     QString cadena1;
     QSqlQuery qry;
     limpiar_tabla(ui->tabla_incidentes,ui->tabla_incidentes->rowCount());
     Btn_select_rango->setGeometry(30,5,200,40);
     switch (index) {
 
-    case 1:     cadena1 = ("SELECT * FROM cistem.incidentes WHERE "
+    case 1:    cadena1 = ("SELECT * FROM cistem.incidentes WHERE "
                                   "Prioridad = '1' AND (Fecha_incidente "
                                   "BETWEEN ('"+T_inicial+"') AND ('"+T_Final+"'));"); break;
 
-    case 2:     cadena1 = ("SELECT * FROM cistem.incidentes WHERE "
+    case 2:    cadena1 = ("SELECT * FROM cistem.incidentes WHERE "
                                   "Prioridad = '0' AND (Fecha_incidente "
                                   "BETWEEN ('"+T_inicial+"') AND ('"+T_Final+"'));"); break;
 
-    case 3:     cadena1 = ("SELECT * FROM cistem.incidentes WHERE Fecha_incidente "
+    case 3:    cadena1 = ("SELECT * FROM cistem.incidentes WHERE Fecha_incidente "
                                       "BETWEEN ('"+T_inicial+"') AND ('"+T_Final+"');"); break;
     default:break;
     }
@@ -1546,8 +1562,7 @@ void MainWindow::rellenar_incidentes(QString T_inicial, QString T_Final,int inde
         ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
         //qDebug() << qry.value(0).toString() << qry.value(1).toString() << qry.value(2).toString() << qry.value(3).toString() << qry.value(4).toString();
     }
-    i ++;
-    qDebug() << i;
+
 }
 
 void MainWindow::limpiar_tabla(QTableWidget *tabla, int cont)
@@ -1586,8 +1601,6 @@ void MainWindow::buscar_prioridad(QString priodidad)
         ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
         ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
     }
-    G++;
-    qDebug() << G;
 }
 
 void MainWindow::rellenar_activos(QPushButton *btn)
@@ -1853,18 +1866,17 @@ void MainWindow::on_Btn_Reports_clicked()
     ui->ComboSeleccion->addItem("Prioritarios");
     ui->ComboSeleccion->addItem("No Prioritarios");
     ui->ComboSeleccion->addItem("Historico");
+    QObject::disconnect( combo_connect2 );
 
-//auto c =
-
-   combo_connect = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
+   combo_connect1 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
             [=](int index){
 
         switch (index)
          {
-         case 0: rellenar_activos(Btn_select_rango); break;
-         case 1: buscar_prioridad("1"); break;
-         case 2: buscar_prioridad("0"); break;
-         case 3:rellenar_incidentes(QDateTime::currentDateTime().toString("yyyy-MM-dd")+" 00:00:00",  // modificar aqui
+         case 0:  J++; qDebug() << "J iteracion:"  << J; rellenar_activos(Btn_select_rango); break;
+         case 1:  J++; qDebug() << "J iteracion:"  << J; buscar_prioridad("1"); break;
+         case 2:  J++; qDebug() << "J iteracion:"  << J; buscar_prioridad("0"); break;
+         case 3:  J++; qDebug() << "J iteracion:"  << J; rellenar_incidentes(QDateTime::currentDateTime().toString("yyyy-MM-dd")+" 00:00:00",  // modificar aqui
                                     QDateTime::currentDateTime().toString("yyyy-MM-dd")+" "+
                                     QDateTime::currentDateTime().toString("HH")+ ":" +
                                     QDateTime::currentDateTime().toString("mm")+":00",3); break;

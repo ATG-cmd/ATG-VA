@@ -62,6 +62,7 @@ public:
      QSerialPort *puertoserie;
      QString portname;
      int G = 0;
+     int J = 0;
      QString ProGaugeId[8];
      int IDSerie;
      bool Maxi=false;
@@ -76,7 +77,9 @@ public:
      double Volumen_Final;
      double Temperatura_Final;
      bool S_input[16];
-     QMetaObject::Connection combo_connect;
+     QMetaObject::Connection combo_connect1;
+     QMetaObject::Connection combo_connect2;
+
 
     void Buscar_Tanques();  // Es funcion busca los tanques dados de alta en BD
     void Rellenar_combo_taques(QString tanque_index); // Rellenaremos los combobox con los tanque escontrados
