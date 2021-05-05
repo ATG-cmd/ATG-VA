@@ -82,6 +82,8 @@ public:
      int TanqueActual= 0;
      QMetaObject::Connection combo_connect1;
      QMetaObject::Connection combo_connect2;
+     QMetaObject::Connection combo_connect3;
+     QMetaObject::Connection combo_connect4;
 
 
     void Buscar_Tanques();  // Es funcion busca los tanques dados de alta en BD

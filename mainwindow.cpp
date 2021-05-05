@@ -247,7 +247,7 @@ void MainWindow::on_Btn_Tanque_clicked()
      ui->ComboSeleccion->addItem("General");
      ui->ComboSeleccion->addItem("Limites");
 
-     connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
+     combo_connect3 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
              [=](int index){
 
          switch (index)
@@ -1138,13 +1138,12 @@ void MainWindow::on_Btn_Comunicacion_clicked()
     ui->ComboSeleccion->addItem("Sonda");
     ui->ComboSeleccion->addItem("Comunicador");
 
-    connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated), [=](int index){
+    combo_connect4 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated), [=](int index){
         switch (index)
          {
          case 0:ui->stackedWidget->setCurrentIndex(SComunicacion); break;
          case 1: ui->stackedWidget->setCurrentIndex(SComunicador); frame = SComunicador;break;
         } });
-
 
 }
 
@@ -1785,6 +1784,11 @@ void MainWindow::Botones()
    ui->SelecTank->setVisible(false);
   // ui->ComboSeleccion->clear();
 
+   QObject::disconnect( combo_connect1 ); // btn reporte
+   QObject::disconnect( combo_connect2 ); // barra estados
+   QObject::disconnect( combo_connect3 ); // tanque
+   QObject::disconnect( combo_connect4 ); // comunicador
+
    switch (frame) {
   // case 1: ui->Regresar->setVisible(true); ui->btn_menu->setVisible(true); break;
    case SHome: case SHome2: ui->btn_menu->setVisible(true); ui->Btn_user->setVisible(true); break;
@@ -1794,7 +1798,7 @@ void MainWindow::Botones()
     case sInventario:ui->ComboSeleccion->setVisible(true);ui->SelecTank->setVisible(true);ui->Regresar->setVisible(true);break;
    case SComunicador:  case SComunicacion : case Slimites : case STanque: ui->ComboSeleccion->setVisible(true); ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
    default: ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
-    case SReportes: ui->Regresar->setVisible(true); ui->ComboSeleccion->setVisible(true); break;
+   case SReportes: ui->Regresar->setVisible(true); ui->ComboSeleccion->setVisible(true); break;
    }
 }
 
