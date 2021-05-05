@@ -8,6 +8,7 @@
 #include <QtMath>
 #include <QToolButton>
 #include <QTabWidget>
+#include <QDateTime>
 
 QString Tanque::getID() const { return ID; }
 
@@ -94,6 +95,95 @@ int Tanque::getIdTanque() const { return IdTanque;}
 
 void Tanque::setIdTanque(int value){IdTanque = value;}
 
+int Tanque::getDeliveryTimeOut() const
+{
+    return deliveryTimeOut;
+}
+
+void Tanque::setDeliveryTimeOut(int value)
+{
+    deliveryTimeOut = value;
+}
+
+double Tanque::getDeliveryMinimunVolume() const
+{
+    return deliveryMinimunVolume;
+}
+
+void Tanque::setDeliveryMinimunVolume(double value)
+{
+    deliveryMinimunVolume = value;
+}
+
+double Tanque::getDeliveryMaxVolumeRead() const
+{
+    return deliveryMaxVolumeRead;
+}
+
+void Tanque::setDeliveryMaxVolumeRead(double value)
+{
+    deliveryMaxVolumeRead = value;
+}
+
+int Tanque::getDeliveryInProcess() const
+{
+    return deliveryInProcess;
+}
+
+void Tanque::setDeliveryInProcess(int value)
+{
+    deliveryInProcess = value;
+}
+
+double Tanque::getDeliveryLastInventoryRead() const
+{
+    return deliveryLastInventoryRead;
+}
+
+void Tanque::setDeliveryLastInventoryRead(double value)
+{
+    deliveryLastInventoryRead = value;
+}
+
+double Tanque::getDeliveryCountIncrement() const
+{
+    return deliveryCountIncrement;
+}
+
+void Tanque::setDeliveryCountIncrement(double value)
+{
+    deliveryCountIncrement = value;
+}
+
+double Tanque::getDeliveryCountDecrement() const
+{
+    return deliveryCountDecrement;
+}
+
+void Tanque::setDeliveryCountDecrement(double value)
+{
+    deliveryCountDecrement = value;
+}
+
+double Tanque::getDeliveryInventoryStart() const
+{
+    return deliveryInventoryStart;
+}
+
+void Tanque::setDeliveryInventoryStart(double value)
+{
+    deliveryInventoryStart = value;
+}
+
+double Tanque::getDeliverySensivilityVolume() const
+{
+    return deliverySensivilityVolume;
+}
+
+void Tanque::setDeliverySensivilityVolume(double value)
+{
+    deliverySensivilityVolume = value;
+}
 void Tanque::clickbuton(){ setTMaximizado(false); emit Camino(); }
 
 Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
@@ -346,12 +436,12 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
           qDebug() << "Cilindro vertical";
              r = TankDiametro / 2;
              h = height;
-            qDebug() << "Diametro del tanque:"<<TankDiametro;
-            qDebug() <<"altura del tanque"<< h;
+           // qDebug() << "Diametro del tanque:"<<TankDiametro;
+            //qDebug() <<"altura del tanque"<< h;
 
            res = (pi * (r * r) * h) / 1000000;
            reswater = (pi * (r * r) *water) / 1000000;
-            qDebug() <<"Volumen del tanque"<< res;
+          //  qDebug() <<"Volumen del tanque"<< res;
 
              break;
          case 1:
@@ -406,9 +496,9 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
                     v = r * r / 2 * (theta - qSin(theta)) * x;
                       }
              
-           qDebug () <<  "Volumen con Formula de pagina" << v/ 1000000;
-           qDebug () << "Volumen con Formula del jefe" << res;
-           qDebug() << "Volumen del agua: " << reswater;
+          // qDebug () <<  "Volumen con Formula de pagina" << v/ 1000000;
+          // qDebug () << "Volumen con Formula del jefe" << res;
+          // qDebug() << "Volumen del agua: " << reswater;
 
              if (TMaximizado)
              VolVal->setText(QString::number(res,'f',2)+" Lts");
@@ -417,7 +507,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
              break;
          case 2:
 
-          qDebug() << "Rctangular";
+         // qDebug() << "Rctangular";
              h = height;
             // Capacidad = Tanklargo *Tankancho *Tankaltura /1000000;
              res = Tanklargo * Tankancho * h / 1000000;
@@ -748,4 +838,78 @@ QString Tanque::GetColor() { return Color2; }
 void Tanque::SetnameTank(const QString &SNT) {T1->setTitle(SNT); NomTank = SNT; }
 
 QString Tanque::GetNameTank(){ return NomTank; }
+
+void Tanque::deliveryProGaugeCountIncrement(){
+     qDebug () << "Cargando...." << NomTank;
+     qDebug () << "Temperatura: " << Temperatura;
+     qDebug () << "Volumen:" << VolumenCon;
+
+      if(deliveryInProcess == 0){
+        if(VolumenCon <= deliveryLastInventoryRead){
+            deliveryCountDecrement++;
+            if(deliveryCountDecrement >= 10){
+                deliveryCountDecrement = 0;
+                deliveryCountIncrement = 0;
+                deliveryInventoryStart = 0;
+                  //   ui->lbl_deliveryInventoryStart->setText(QString::number(deliveryInventoryStart));
+                deliveryMaxVolumeRead = deliveryLastInventoryRead;
+                //   ui->lbl_deliveryMaxVolumeRead->setText(QString::number(deliveryMaxVolumeRead));
+            }
+            if(deliveryCountIncrement >= 30){
+               // Volumen_inicial =  VolumenCon;
+                deliveryCountDecrement = 0;
+                deliveryCountIncrement = 0;
+                deliveryInProcess = 1;
+
+               // ui->lbl_ProGaugeDeliveryInProccess->show();
+            }
+        } else{
+            deliveryCountIncrement++;
+            if(deliveryCountIncrement == 1.00){
+                qDebug () << "Hola El volumen :" << VolumenCon;
+                deliveryInventoryStart = VolumenCon;
+                Temperatura_inicial = Temperatura;
+                //  ui->lbl_deliveryInventoryStart->setText(QString::number(deliveryInventoryStart));
+            }
+            deliveryCountDecrement = 0;
+        }
+    }
+    else{
+        deliveryCountIncrement++;
+        if(VolumenCon > (deliveryLastInventoryRead + deliverySensivilityVolume)){
+            deliveryCountIncrement = 0;
+        }
+        if(deliveryCountIncrement >= (1 * 60)){
+            deliveryCountIncrement = 0;
+            deliveryInProcess = 0;
+            double VolumenEntregado=  VolumenCon -deliveryInventoryStart;
+           QString SeRealizoEntrega;
+            //QSqlQuery qry;
+           SeRealizoEntrega =  "INSERT INTO `cistem`.`entregas` (`Tanque_Nombre`, `Volumen Inicial`, `Temperatura Inicial`, `Volumen Final`, `Temperatrura Final`, `Volumen Entregado`, `Fecha`) VALUES ('"+NomTank+"', '"+QString::number(deliveryInventoryStart)+"', '"+QString::number(Temperatura_inicial)+"', '"+QString::number(VolumenCon)+"', '"+QString::number(Temperatura)+"', '"+QString::number(VolumenEntregado)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');";
+           //SeRealizoEntrega  ="INSERT INTO `cistem`.`entregas` (`Tanque_Nombre`, `Volumen Inicial`, `Temperatura Inicial`, `Volumen Final`, `Temperatrura Final`, `Volumen Entregado`, `Fecha`) VALUES ( '"+NomTank+"', '"+QString::number(deliveryInventoryStart)+"', '"+QString::number(Temperatura_inicial)+"', '"+QString::number(Volumen_Final)+"', '"+QString::number(Temperatura_Final)+"', '"+QString::number(VolumenEntregado)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');";
+           // SeRealizoEntrega  = "INSERT INTO `cistem`.`entregas` (`Tanque_Nombre`, `Volumen Inicial`, `Temperatura Inicial`, `Volumen Final`, `Temperatrura Final`, `Volumen Entregado`, `Fecha`) VALUES ('"+NomTank+"', '"+QString::number(deliveryInventoryStart)+"', '"+QString::number(Temperatura_inicial)+"', '"+QString::number(Volumen_Final)+"', '"+QString::number(Temperatura_Final)+"', '"+QString::number(VolumenEntregado)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');";
+            //SeRealizoEntrega = "Hola Mundo";
+            qDebug() << "Trono";
+             qDebug()<< SeRealizoEntrega;
+
+            // emit Camino();
+
+            emit Entrega(SeRealizoEntrega);
+             qDebug() << " Ya Camino";
+
+            Volumen_inicial =0;
+           // ui->lbl_ProGaugeDeliveryInProccess->hide();
+            deliveryInventoryStart = 0;
+            // ui->lbl_deliveryInventoryStart->setText(QString::number(deliveryInventoryStart));
+        }
+    }
+    qDebug() << VolumenCon << deliveryLastInventoryRead << deliveryCountDecrement << deliveryCountIncrement;
+    deliveryLastInventoryRead = VolumenCon;
+  //  evaluar_limites(tanques[indice]);
+//    ui->lbl_deliveryCountIncrement->setText(QString::number(deliveryCountIncrement));
+ //   ui->lbl_deliveryCountDecrement->setText(QString::number(deliveryCountDecrement));
+ //   ui->lbl_deliveryLastInventoryRead->setText(QString::number(deliveryLastInventoryRead));
+}
+
+
 

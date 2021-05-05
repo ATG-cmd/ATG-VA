@@ -58,6 +58,21 @@ class Tanque :public QWidget
     double frombase=500;
     double NivelAgua;
 
+    int    deliveryTimeOut = 0;
+    double deliveryMinimunVolume = 0;
+    double deliveryVolumeRead = 0;
+    double deliveryMaxVolumeRead = 0;
+    int    deliveryInProcess = 0;
+    double deliveryLastInventoryRead = 0;
+    double deliveryCountIncrement = 0;
+    double deliveryCountDecrement = 0;
+    double deliveryInventoryStart = 0;
+    double deliverySensivilityVolume = ProGaugeCapacidad * 0.0001;
+    double Volumen_inicial;
+    double Temperatura_inicial;
+    double Volumen_Final;
+    double Temperatura_Final;
+
 
     int nivA;
     int PosX;
@@ -87,6 +102,7 @@ private slots:
 signals:
 
     void Camino();
+    void Entrega(QString SeRealizoEntrega);
 
 
 public:
@@ -244,8 +260,10 @@ public:
 
     void Setgeometry(int x, int y,int XTG,int YTG);
     void color(QString Ct1,bool A);
+
     QString GetColor();
     void SetnameTank(const QString &SNT);
+
     QString GetNameTank();
     void inicbuff1();
     double volumen(int Tipo,double height);
@@ -351,6 +369,36 @@ public:
 
    int getIdTanque() const;
    void setIdTanque(int value);
+
+   int getDeliveryTimeOut() const;
+   void setDeliveryTimeOut(int value);
+
+   double getDeliveryMinimunVolume() const;
+   void setDeliveryMinimunVolume(double value);
+
+   double getDeliveryMaxVolumeRead() const;
+   void setDeliveryMaxVolumeRead(double value);
+
+   int getDeliveryInProcess() const;
+   void setDeliveryInProcess(int value);
+
+   double getDeliveryLastInventoryRead() const;
+   void setDeliveryLastInventoryRead(double value);
+
+   double getDeliveryCountIncrement() const;
+   void setDeliveryCountIncrement(double value);
+
+   double getDeliveryCountDecrement() const;
+   void setDeliveryCountDecrement(double value);
+
+   double getDeliveryInventoryStart() const;
+   void setDeliveryInventoryStart(double value);
+
+   double getDeliverySensivilityVolume() const;
+   void setDeliverySensivilityVolume(double value);
+
+   void deliveryProGaugeCountIncrement();
+
 };
 
 #endif // TANQUE_H

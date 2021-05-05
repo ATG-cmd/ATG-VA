@@ -76,6 +76,8 @@ public:
      double Volumen_Final;
      double Temperatura_Final;
      bool S_input[16];
+     int numerodetanques=0;
+     int TanqueActual;
      QMetaObject::Connection combo_connect;
 
     void Buscar_Tanques();  // Es funcion busca los tanques dados de alta en BD
@@ -108,6 +110,8 @@ private slots:
     void on_Btn_Tanque_clicked();
 
    void ConCombocol(QComboBox *combo);
+
+   QString ColorTank(QString Color);
 
    void Modificar_TextoTank();
 
@@ -197,12 +201,11 @@ private slots:
 
    void btn_clicked();
 
-   void on_Regresar_Home_clicked();
-
    void Leer_GPIO();
 
    void on_Combo_tanque_limites_currentIndexChanged(const QString &arg1);
 
+   void Qry_Entrega(QString  Entrega_Realizada);
 
 private:
     Ui::MainWindow *ui;
