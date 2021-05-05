@@ -159,7 +159,7 @@ QHeaderView::section:vertical
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>14</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -690,7 +690,7 @@ padding: 2px;</string>
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
+         <y>-360</y>
          <width>721</width>
          <height>1111</height>
         </rect>
@@ -3891,7 +3891,7 @@ border-radius: 16;
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>405</width>
+         <width>711</width>
          <height>532</height>
         </rect>
        </property>
@@ -4951,6 +4951,26 @@ border-radius: 16;
         <height>371</height>
        </rect>
       </property>
+      <column>
+       <property name="text">
+        <string>Nombre</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Volumen</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>New Column</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>New Column</string>
+       </property>
+      </column>
      </widget>
     </widget>
     <widget class="QWidget" name="Reportes">
@@ -5285,6 +5305,164 @@ color: white;
      </property>
     </item>
    </widget>
+   <widget class="QComboBox" name="SelecTank">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>520</y>
+      <width>81</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>36</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="tabletTracking">
+     <bool>false</bool>
+    </property>
+    <property name="statusTip">
+     <string/>
+    </property>
+    <property name="whatsThis">
+     <string/>
+    </property>
+    <property name="accessibleDescription">
+     <string/>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 40px;
+border: 4px solid  gray ;
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 white, stop:0.33 white, stop:0.34 white, stop:0.66 white, stop:0.67 rgba(255, 255, 0, 255), stop:1 rgba(255, 255, 0, 255));
+
+QComboBox::down-arrow {
+margin: 5px 0px 0px 0px;  
+  width: 0;
+  height: 0;
+  /*border: 2px solid #000;*/
+  border-top: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 10px  solid transparent;
+}
+QComboBox::drop-down {
+    width: 40px
+	background-color: transparent;
+}</string>
+    </property>
+    <property name="editable">
+     <bool>false</bool>
+    </property>
+    <property name="frame">
+     <bool>true</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>A</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <activeon>:/Tanque.png</activeon>
+      </iconset>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <activeon>:/Tanque.png</activeon>
+      </iconset>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>2</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <activeon>:/Tanque.png</activeon>
+      </iconset>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>3</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <activeon>:/Tanque.png</activeon>
+      </iconset>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>4</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <activeon>:/Tanque.png</activeon>
+      </iconset>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>5</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <activeon>:/Tanque.png</activeon>
+      </iconset>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>6</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <activeon>:/Tanque.png</activeon>
+      </iconset>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>7</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <activeon>:/Tanque.png</activeon>
+      </iconset>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>8</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <activeon>:/Tanque.png</activeon>
+      </iconset>
+     </property>
+    </item>
+   </widget>
    <zorder>Lab_Titulo</zorder>
    <zorder>btn_menu</zorder>
    <zorder>stackedWidget</zorder>
@@ -5294,6 +5472,7 @@ color: white;
    <zorder>Btn_Guardar</zorder>
    <zorder>Btn_user</zorder>
    <zorder>ComboSeleccion</zorder>
+   <zorder>SelecTank</zorder>
   </widget>
  </widget>
  <resources>

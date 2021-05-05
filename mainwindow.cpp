@@ -179,6 +179,7 @@ MainWindow::MainWindow(QWidget *parent)
    ui->Regresar->setVisible(false);
    ui->Btn_user->setVisible(true);
    ui->btn_menu->setVisible(true);
+   ui->SelecTank->setVisible(false);
 }
 
 MainWindow::~MainWindow()
@@ -1657,7 +1658,8 @@ void MainWindow::on_btn_menu_clicked() {ui->Lab_Titulo->setText("Menu");frame = 
 void MainWindow::on_Btn_Inventario_clicked()
 {
     ui->Lab_Titulo->setText("Inventario");
-    //ui->SelecTank->setVisible(true);
+    ui->SelecTank->setVisible(true);
+    ui->ComboSeleccion->clear();
     frame = sInventario; ui->stackedWidget->setCurrentIndex(sInventario);
 }
 
@@ -1764,6 +1766,8 @@ void MainWindow::Botones()
    ui->Btn_Guardar->setVisible(false);
    ui->btn_menu->setVisible(false);
    ui->ComboSeleccion->setVisible(false);
+   ui->SelecTank->setVisible(false);
+  // ui->ComboSeleccion->clear();
 
    switch (frame) {
   // case 1: ui->Regresar->setVisible(true); ui->btn_menu->setVisible(true); break;
@@ -1771,7 +1775,7 @@ void MainWindow::Botones()
    case SMenuPub: case SLogin: case SMenu: case STMaxi: break;
    case STablaCub: case SVialarmas:case SEntregas:
         ui->Regresar->setVisible(true); break;
-    case sInventario:ui->ComboSeleccion->setVisible(true);/*ui->SelecTank->setVisible(true);*/ui->Regresar->setVisible(true);break;
+    case sInventario:ui->ComboSeleccion->setVisible(true);ui->SelecTank->setVisible(true);ui->Regresar->setVisible(true);break;
    case SComunicador:  case SComunicacion : case Slimites : case STanque: ui->ComboSeleccion->setVisible(true); ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
    default: ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
     case SReportes: ui->Regresar->setVisible(true); ui->ComboSeleccion->setVisible(true); break;
