@@ -1104,7 +1104,7 @@ void MainWindow::on_Regresar_clicked()
     else frame = SMenu;
     if(frame == SReportes){
        // disconnect(ui->ComboSeleccion,&QComboBox::activated,this,)
-
+        QObject::disconnect( combo_connect );
     }
     ui->stackedWidget->setCurrentIndex(frame);
 
@@ -1213,7 +1213,7 @@ void MainWindow::on_Btn_Barra_Estados_clicked()
     ui->ComboSeleccion->addItem("No Prioritarios");
     ui->ComboSeleccion->addItem("Historico");
     limpiar_tabla(ui->tabla_incidentes,ui->tabla_incidentes->rowCount());
-    connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
+    combo_connect = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
             [=](int index){
 
         switch (index)
@@ -1226,7 +1226,6 @@ void MainWindow::on_Btn_Barra_Estados_clicked()
                                     QDateTime::currentDateTime().toString("HH")+ ":" +
                                     QDateTime::currentDateTime().toString("mm")+":00",3); break;
         } });
- //   disconnect(ui->ComboSeleccion,&QComboBox::activated,this,[=]);
     ui->ComboSeleccion->setCurrentIndex(0);
 }
 
@@ -1855,7 +1854,9 @@ void MainWindow::on_Btn_Reports_clicked()
     ui->ComboSeleccion->addItem("No Prioritarios");
     ui->ComboSeleccion->addItem("Historico");
 
-    connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
+//auto c =
+
+   combo_connect = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
             [=](int index){
 
         switch (index)
