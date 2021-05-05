@@ -258,7 +258,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 
      Lim_Sup->setObjectName(QString::fromUtf8("Lim_Sup"));
      Lim_Sup->setFont(font2);
-     Lim_Sup->setText("Limite Superior");
+     Lim_Sup->setText("Gasto");
      Lim_Sup->setStyleSheet("QLabel{ background-color: rgb(230, 230, 230); }");
 
      verticalLayout_2->addWidget(Lim_Sup);
@@ -534,7 +534,9 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
                   }
      if (TMaximizado){
               NivAVal->setText(QString::number(water, 'f', 2)+ " MM");
-              VolVal->setText(QString::number(res,'f',2)+" Lts");}
+              VolVal->setText(QString::number(res,'f',2)+" Lts");
+              LsVal->setText(QString::number(Capacidad-res));
+     }
 
               SetVolumen(res,reswater);
                NivelAgua = water;

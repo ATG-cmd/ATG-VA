@@ -159,7 +159,7 @@ QHeaderView::section:vertical
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>15</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -692,7 +692,7 @@ padding: 2px;</string>
          <x>0</x>
          <y>0</y>
          <width>721</width>
-         <height>1075</height>
+         <height>1111</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -1600,6 +1600,11 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
               <height>50</height>
              </size>
             </property>
+            <item>
+             <property name="text">
+              <string/>
+             </property>
+            </item>
             <item>
              <property name="text">
               <string>Tanque 1</string>
@@ -2683,7 +2688,7 @@ QScrollBar::add-line:vertical {
           <x>10</x>
           <y>10</y>
           <width>521</width>
-          <height>401</height>
+          <height>419</height>
          </rect>
         </property>
         <layout class="QFormLayout" name="formLayout">
@@ -3886,7 +3891,7 @@ border-radius: 16;
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>711</width>
+         <width>405</width>
          <height>532</height>
         </rect>
        </property>
