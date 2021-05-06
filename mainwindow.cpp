@@ -1036,8 +1036,8 @@ void MainWindow::on_Regresar_clicked()
     if(frame > SMenuPub || frame ==SEntregas){
         if(frame == SReportes){
         // disconnect(ui->ComboSeleccion,&QComboBox::activated,this,)
-         QObject::disconnect( combo_connect1 );
-         QObject::disconnect( combo_connect2 );
+//         QObject::disconnect( combo_connect1 );
+//         QObject::disconnect( combo_connect2 );
          qDebug() << "se desconectarion los combos";
         }
         frame =SMenuPub;
@@ -1045,8 +1045,8 @@ void MainWindow::on_Regresar_clicked()
     else {
         if(frame == SReportes){
         // disconnect(ui->ComboSeleccion,&QComboBox::activated,this,)
-         QObject::disconnect( combo_connect1 );
-         QObject::disconnect( combo_connect2 );
+//         QObject::disconnect( combo_connect1 );
+//         QObject::disconnect( combo_connect2 );
          qDebug() << "se desconectarion los combos";
         }
        frame = SMenu;
@@ -1159,6 +1159,8 @@ void MainWindow::on_Btn_Barra_Estados_clicked()
     ui->ComboSeleccion->addItem("Historico");
     limpiar_tabla(ui->tabla_incidentes,ui->tabla_incidentes->rowCount());
     QObject::disconnect( combo_connect1 );
+    QObject::disconnect( combo_connect2 );
+
     combo_connect2 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
             [=](int index){
 
@@ -1172,7 +1174,9 @@ void MainWindow::on_Btn_Barra_Estados_clicked()
                                     QDateTime::currentDateTime().toString("HH")+ ":" +
                                     QDateTime::currentDateTime().toString("mm")+":00",3); break;
         } });
+
     ui->ComboSeleccion->setCurrentIndex(0);
+    ui->ComboSeleccion->activated(0);
 }
 
 void MainWindow::Guardar_Comunicacion()
@@ -1689,9 +1693,8 @@ void MainWindow::on_Btn_Reports_clicked()
     ui->ComboSeleccion->addItem("Prioritarios");
     ui->ComboSeleccion->addItem("No Prioritarios");
     ui->ComboSeleccion->addItem("Historico");
-    QObject::disconnect( combo_connect2 );
 
-   combo_connect1 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
+    combo_connect1 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
             [=](int index){
 
         switch (index)
@@ -1704,7 +1707,9 @@ void MainWindow::on_Btn_Reports_clicked()
                                     QDateTime::currentDateTime().toString("HH")+ ":" +
                                     QDateTime::currentDateTime().toString("mm")+":00",3); break;
         } });
+
     ui->ComboSeleccion->setCurrentIndex(3);
+    ui->ComboSeleccion->activated(3);
 }
 
 void MainWindow::on_Btn_Entregas_or_clicked()
@@ -1786,8 +1791,9 @@ void MainWindow::Botones()
 
    QObject::disconnect( combo_connect1 ); // btn reporte
    QObject::disconnect( combo_connect2 ); // barra estados
-   QObject::disconnect( combo_connect3 ); // tanque
-   QObject::disconnect( combo_connect4 ); // comunicador
+   if(frame != STanque && frame != Slimites)  QObject::disconnect( combo_connect3 ); // tanque
+   if(frame != SComunicacion && frame != SComunicador) QObject::disconnect( combo_connect4 ); // comunicador
+
 
    switch (frame) {
   // case 1: ui->Regresar->setVisible(true); ui->btn_menu->setVisible(true); break;
