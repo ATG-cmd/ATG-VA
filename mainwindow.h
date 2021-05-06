@@ -61,8 +61,8 @@ public:
      QSqlDatabase DB;
      QSerialPort *puertoserie;
      QString portname;
-     int G = 0;
-     int J = 0;
+     int Alarmas = 0;
+     int warnings = 0;
      QString ProGaugeId[8];
      int IDSerie;
      bool Maxi=false;
@@ -98,11 +98,12 @@ public:
     void guardar_limites();
     void rellenar_limites();
     void evaluar_limites(Tanque *tanque);
-    void insertar_incidente(QString tipo, QString Descripcion, QString usuario, QString Prioridad);
+    void insertar_incidente(QString tipo, QString Descripcion, QString usuario, QString Prioridad,QString Activo);
     void rellenar_incidentes(QString T_inicial, QString T_Final, int index);
     void limpiar_tabla(QTableWidget *tabla,int cont);
     void buscar_prioridad(QString priodidad);
     void rellenar_activos(QPushButton *btn);
+    void limpiar_Activos();
     int X(int Y);
     int calcY(int y );
 

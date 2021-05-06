@@ -108,6 +108,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     Btn_select_rango = new QPushButton(ui->Lab_Rango_Fecha);
     Btn_select_rango->setText("Select Range");
+    Btn_select_rango->setGeometry(30,5,200,40);
     Btn_select_rango->setFont(FontReloj);
 
    connect(ui->Regresar_Home,&QPushButton::clicked,this,&MainWindow::on_Btn_Home_clicked);
@@ -1151,7 +1152,8 @@ void MainWindow::on_Btn_Barra_Estados_clicked()
 {
     frame = SReportes;
     ui->stackedWidget->setCurrentIndex(SReportes);
-    Btn_select_rango->setGeometry(0,0,0,0);
+    //Btn_select_rango->setGeometry(0,0,0,0);
+    Btn_select_rango->setText("Limpiar Activos");
     ui->ComboSeleccion->clear();
     ui->ComboSeleccion->addItem("Activos");
     ui->ComboSeleccion->addItem("Prioritarios");
@@ -1166,10 +1168,10 @@ void MainWindow::on_Btn_Barra_Estados_clicked()
 
         switch (index)
          {
-         case 0: G++; qDebug() << "G iteracion:"  << G;rellenar_activos(Btn_select_rango); break;
-         case 1: G++; qDebug() << "G iteracion:"  << G;buscar_prioridad("1"); break;
-         case 2: G++; qDebug() << "G iteracion:"  << G;buscar_prioridad("0"); break;
-         case 3: G++; qDebug() << "G iteracion:"  << G;rellenar_incidentes(QDateTime::currentDateTime().toString("yyyy-MM-dd")+" 00:00:00",  // modificar aqui
+         case 0:rellenar_activos(Btn_select_rango); break;
+         case 1:buscar_prioridad("1"); break;
+         case 2:buscar_prioridad("0"); break;
+         case 3:rellenar_incidentes(QDateTime::currentDateTime().toString("yyyy-MM-dd")+" 00:00:00",  // modificar aqui
                                     QDateTime::currentDateTime().toString("yyyy-MM-dd")+" "+
                                     QDateTime::currentDateTime().toString("HH")+ ":" +
                                     QDateTime::currentDateTime().toString("mm")+":00",3); break;
@@ -1445,12 +1447,12 @@ void MainWindow::evaluar_limites(Tanque *tanque)
 //    if(tanque->getVolumenCon() >= tanque->GetDesbordamiento()){}
 }
 
-void MainWindow::insertar_incidente(QString tipo, QString Descripcion, QString usuario,QString Prioridad)
+void MainWindow::insertar_incidente(QString tipo, QString Descripcion, QString usuario,QString Prioridad,QString Activo)
 {
     QSqlQuery qry;
     QString cadena;
-    cadena.append("INSERT INTO cistem.incidentes (Tipo_incidente, Descripcion, usuario, Fecha_incidente,Prioridad)"
-                  " VALUES ('"+tipo+"', '"+Descripcion+"', '"+usuario+"', '"+ QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss") +"','"+ Prioridad+"');");
+    cadena.append("INSERT INTO cistem.incidentes (Tipo_incidente, Descripcion, usuario, Fecha_incidente,Prioridad,Activo)"
+                  " VALUES ('"+tipo+"', '"+Descripcion+"', '"+usuario+"', '"+ QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss") +"','"+ Prioridad+"', '"+Activo+"');");
 
     qDebug() << cadena;
     qry.exec(cadena);
@@ -1461,7 +1463,8 @@ void MainWindow::rellenar_incidentes(QString T_inicial, QString T_Final,int inde
     QString cadena1;
     QSqlQuery qry;
     limpiar_tabla(ui->tabla_incidentes,ui->tabla_incidentes->rowCount());
-    Btn_select_rango->setGeometry(30,5,200,40);
+    //Btn_select_rango->setGeometry(30,5,200,40);
+    Btn_select_rango->setText("Select Range");
     switch (index) {
 
     case 1:    cadena1 = ("SELECT * FROM cistem.incidentes WHERE "
@@ -1477,9 +1480,7 @@ void MainWindow::rellenar_incidentes(QString T_inicial, QString T_Final,int inde
     default:break;
     }
     qry.exec(cadena1);
-    qDebug() << cadena1;
-    cadena1.clear();
-
+   // qDebug() << cadena1;
     while(qry.next())
     {
 //        ui->tabla_incidentes->removeRow(0);
@@ -1514,13 +1515,12 @@ void MainWindow::buscar_prioridad(QString priodidad)
     QString cadena;
     QSqlQuery qry;
     limpiar_tabla(ui->tabla_incidentes,ui->tabla_incidentes->rowCount());
-    Btn_select_rango->setGeometry(30,5,200,40);
+    //Btn_select_rango->setGeometry(30,5,200,40);
+    Btn_select_rango->setText("Select Range");
     cadena = ("SELECT * FROM cistem.incidentes WHERE Prioridad = '"+ priodidad +"' ;");
 
     qry.exec(cadena);
-    qDebug() << cadena;
-    cadena.clear();
-
+   // qDebug() << cadena;
     while(qry.next())
     {
         ui->tabla_incidentes->insertRow(ui->tabla_incidentes->rowCount());
@@ -1539,7 +1539,49 @@ void MainWindow::buscar_prioridad(QString priodidad)
 
 void MainWindow::rellenar_activos(QPushButton *btn)
 {
-    btn->setGeometry(0,0,0,0);
+    btn->setText("Limpiar Activos");
+    limpiar_tabla(ui->tabla_incidentes,ui->tabla_incidentes->rowCount());
+    QString cadena;
+    cadena.append("SELECT * FROM cistem.incidentes WHERE Activo = '1';");
+
+    QSqlQuery qry;
+    qry.exec(cadena);
+
+    while (qry.next()) {
+        ui->tabla_incidentes->insertRow(ui->tabla_incidentes->rowCount());
+        ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 0, new QTableWidgetItem(qry.value(1).toString()));
+        ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 1, new QTableWidgetItem(qry.value(2).toString()));
+        ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 2, new QTableWidgetItem(qry.value(4).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
+        ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 3, new QTableWidgetItem(qry.value(5).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
+        ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 4, new QTableWidgetItem(qry.value(3).toString()));
+        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
+        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
+        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
+        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
+        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
+    }
+
+
+}
+
+void MainWindow::limpiar_Activos()
+{   qDebug() <<  "hola desde limpiar activos";
+    QString cadena;
+    QSqlQuery qry;
+    qDebug() <<  ui->tabla_incidentes->rowCount();
+//    for (int i = ui->tabla_incidentes->rowCount();i <= 0;i--) {
+     for (int i = ui->tabla_incidentes->rowCount() - 1;i >= 0;i--) {
+        cadena.append("UPDATE cistem.incidentes SET Activo = '0', "
+                      "Clear_time = '"+ QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss") +"' "
+                      "WHERE "
+                      "Tipo_incidente = '"+ ui->tabla_incidentes->item(i,0)->text() +"' AND "
+                      "Descripcion = '" +ui->tabla_incidentes->item(i,1)->text() + "' AND "
+                      "Fecha_incidente = '" +ui->tabla_incidentes->item(i,2)->text() + "' AND "
+                      "usuario = '" +ui->tabla_incidentes->item(i,4)->text() + "';");
+        qDebug() << cadena;
+        qry.exec(cadena);
+        cadena.clear();
+    }
 
 }
 
@@ -1699,10 +1741,10 @@ void MainWindow::on_Btn_Reports_clicked()
 
         switch (index)
          {
-         case 0:  J++; qDebug() << "J iteracion:"  << J; rellenar_activos(Btn_select_rango); break;
-         case 1:  J++; qDebug() << "J iteracion:"  << J; buscar_prioridad("1"); break;
-         case 2:  J++; qDebug() << "J iteracion:"  << J; buscar_prioridad("0"); break;
-         case 3:  J++; qDebug() << "J iteracion:"  << J; rellenar_incidentes(QDateTime::currentDateTime().toString("yyyy-MM-dd")+" 00:00:00",  // modificar aqui
+         case 0:rellenar_activos(Btn_select_rango); break;
+         case 1:buscar_prioridad("1"); break;
+         case 2:buscar_prioridad("0"); break;
+         case 3:rellenar_incidentes(QDateTime::currentDateTime().toString("yyyy-MM-dd")+" 00:00:00",  // modificar aqui
                                     QDateTime::currentDateTime().toString("yyyy-MM-dd")+" "+
                                     QDateTime::currentDateTime().toString("HH")+ ":" +
                                     QDateTime::currentDateTime().toString("mm")+":00",3); break;
@@ -1845,6 +1887,8 @@ while (qry.next())
 
 void MainWindow::btn_clicked()
 {
+    if(Btn_select_rango->text() == "Select Range")
+    {
     QString cadena;
     Select_fechas *dlg_rango  = new Select_fechas(this);
     int res = dlg_rango->exec();
@@ -1857,11 +1901,14 @@ void MainWindow::btn_clicked()
         ui->Lab_Rango_Fecha->setText(cadena);
         rellenar_incidentes(dlg_rango->getFecha_desde(),dlg_rango->getFecha_hasta(),ui->ComboSeleccion->currentIndex());
       }
-     //   Desde: 2021/29/4 00:00  HASTA: 2021/04/29 12:00
-
-
 
     delete dlg_rango;
+    }//   Desde: 2021/29/4 00:00  HASTA: 2021/04/29 12:00
+    else if(Btn_select_rango->text() == "Limpiar Activos"){
+        limpiar_Activos();
+    }
+
+
 }
 
 void MainWindow::Leer_GPIO()
@@ -1894,7 +1941,7 @@ void MainWindow::Leer_GPIO()
            Gpio_status.append(QString::number(i+1));
            Gpio_status.append(": Activado");
            qDebug() << "El sensor" << i+1 << " se Activo";
-           insertar_incidente("incidente",Gpio_status,"user","0");
+           insertar_incidente("incidente",Gpio_status,"user","0","1");
            Gpio_status.clear();
        }
    }
