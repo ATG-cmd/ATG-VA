@@ -399,6 +399,8 @@ public:
 
    void deliveryProGaugeCountIncrement();
 
+   QString ActualInventory();
+
 };
 
 #endif // TANQUE_H

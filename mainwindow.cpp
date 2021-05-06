@@ -817,8 +817,6 @@ void MainWindow::Descargar()
             tanques[S]->setCoeficienteTermico(qry.value(14).toDouble());
             tanques[S]->setProducto(qry.value(15).toString());
 
-
-
             S++;
             ui->stackedWidget->setCurrentIndex(SHome);
         }
@@ -1144,8 +1142,6 @@ void MainWindow::on_Btn_Comunicacion_clicked()
          case 0:ui->stackedWidget->setCurrentIndex(SComunicacion); break;
          case 1: ui->stackedWidget->setCurrentIndex(SComunicador); frame = SComunicador;break;
         } });
-
-
 }
 
 void MainWindow::on_Btn_Barra_Estados_clicked()
@@ -1626,6 +1622,8 @@ void MainWindow::deliveryProGaugeCountIncrement(){
   }
       qDebug() << "Tanque Actual"<< TanqueActual;
     tanques[TanqueActual]->deliveryProGaugeCountIncrement();
+    QSqlQuery qry;
+    qry.exec(tanques[TanqueActual]->ActualInventory());
 }
 
 void MainWindow::on_Btn_SaveTank_clicked()
@@ -1677,6 +1675,23 @@ void MainWindow::on_Btn_Inventario_clicked()
     ui->Lab_Titulo->setText("Inventario");
     ui->SelecTank->setVisible(true);
     ui->ComboSeleccion->clear();
+    ui->ComboSeleccion->addItem("Actual");
+    ui->ComboSeleccion->addItem("Historico");
+    ui->ComboSeleccion->addItem("Cortes de Energía");
+    ui->ComboSeleccion->addItem("Turnos");
+
+    QObject::disconnect( combo_connect5 );
+
+   combo_connect5 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
+            [=](int index){
+
+        switch (index)
+         {
+         case 0:   break;
+         case 1:   break;
+         case 2:   break;
+         case 3:   break;
+        } });
     frame = sInventario; ui->stackedWidget->setCurrentIndex(sInventario);
 }
 

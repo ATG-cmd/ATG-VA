@@ -80,8 +80,10 @@ public:
 
      int numerodetanques=0;
      int TanqueActual= 0;
+
      QMetaObject::Connection combo_connect1;
      QMetaObject::Connection combo_connect2;
+     QMetaObject::Connection combo_connect5;
 
 
     void Buscar_Tanques();  // Es funcion busca los tanques dados de alta en BD
@@ -103,6 +105,7 @@ public:
     void rellenar_activos(QPushButton *btn);
     int X(int Y);
     int calcY(int y );
+    //void
 
 
 private slots:
