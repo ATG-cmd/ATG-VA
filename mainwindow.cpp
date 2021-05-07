@@ -1034,24 +1034,8 @@ void MainWindow::Tanque_Maximisado()
 
 void MainWindow::on_Regresar_clicked()
 {
-    if(frame > SMenuPub || frame ==SEntregas){
-        if(frame == SReportes){
-        // disconnect(ui->ComboSeleccion,&QComboBox::activated,this,)
-//         QObject::disconnect( combo_connect1 );
-//         QObject::disconnect( combo_connect2 );
-         qDebug() << "se desconectarion los combos";
-        }
-        frame =SMenuPub;
-    }
-    else {
-        if(frame == SReportes){
-        // disconnect(ui->ComboSeleccion,&QComboBox::activated,this,)
-//         QObject::disconnect( combo_connect1 );
-//         QObject::disconnect( combo_connect2 );
-         qDebug() << "se desconectarion los combos";
-        }
-       frame = SMenu;
-    }
+    if(frame > SMenuPub || frame == SEntregas) frame =SMenuPub;
+    else frame = SMenu;
 
     ui->stackedWidget->setCurrentIndex(frame);
 
