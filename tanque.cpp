@@ -566,8 +566,6 @@ QString Tanque::Temp1( double T)
     return  t;
 
 }
-
-
 void Tanque::SetVolumen(double c ,double a)
 {
     VolumenA = a;
@@ -910,7 +908,16 @@ void Tanque::deliveryProGaugeCountIncrement(){
   //  evaluar_limites(tanques[indice]);
 //    ui->lbl_deliveryCountIncrement->setText(QString::number(deliveryCountIncrement));
  //   ui->lbl_deliveryCountDecrement->setText(QString::number(deliveryCountDecrement));
- //   ui->lbl_deliveryLastInventoryRead->setText(QString::number(deliveryLastInventoryRead));
+    //   ui->lbl_deliveryLastInventoryRead->setText(QString::number(deliveryLastInventoryRead));
+}
+
+QString Tanque::ActualInventory()
+{
+    if(ishabilitado)
+    return  "INSERT INTO `cistem`.`inventario` (`IDTank`, `NombreTank`, `VolumenCo`, `VolumenA`, `AlturaC`, `AlturaA`) VALUES ('"+QString::number(IdTanque)+"', '"+NomTank+"', '"+QString::number(VolumenCon)+"', '13', '"+QString::number(AlturaTank)+"', '123');";
+    else {
+        return "";
+    }
 }
 
 

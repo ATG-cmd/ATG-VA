@@ -159,7 +159,7 @@ QHeaderView::section:vertical
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>7</number>
+     <number>13</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -692,7 +692,7 @@ padding: 2px;</string>
          <x>0</x>
          <y>0</y>
          <width>721</width>
-         <height>1075</height>
+         <height>1111</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -4945,12 +4945,21 @@ border-radius: 16;
      <widget class="QTableWidget" name="tableWidget_3">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>90</y>
-        <width>1141</width>
-        <height>371</height>
+        <x>10</x>
+        <y>20</y>
+        <width>1161</width>
+        <height>431</height>
        </rect>
       </property>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>150</number>
+      </attribute>
+      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>true</bool>
+      </attribute>
       <column>
        <property name="text">
         <string>Nombre</string>
@@ -4963,12 +4972,22 @@ border-radius: 16;
       </column>
       <column>
        <property name="text">
-        <string>New Column</string>
+        <string>Temperatura</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>New Column</string>
+        <string>Altura Combustible</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Altura Agua </string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Fecha </string>
        </property>
       </column>
      </widget>
