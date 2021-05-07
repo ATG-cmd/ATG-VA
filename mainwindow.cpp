@@ -25,6 +25,7 @@
 #define SMenuPub  13
 #define sInventario 14
 #define SReportes 15
+#define SInventoryConfig 16
 
 #define INPUT_1 4
 #define INPUT_2 2
@@ -180,6 +181,7 @@ MainWindow::MainWindow(QWidget *parent)
    ui->Btn_user->setVisible(true);
    ui->btn_menu->setVisible(true);
    ui->SelecTank->setVisible(false);
+
    qDebug () << "Aqui ando";
 }
 
@@ -1031,29 +1033,19 @@ void MainWindow::Tanque_Maximisado()
 
 void MainWindow::on_Regresar_clicked()
 {
-    if(frame > SMenuPub || frame ==SEntregas){
-        if(frame == SReportes){
-        // disconnect(ui->ComboSeleccion,&QComboBox::activated,this,)
-//         QObject::disconnect( combo_connect1 );
-//         QObject::disconnect( combo_connect2 );
-         qDebug() << "se desconectarion los combos";
-        }
-        frame =SMenuPub;
-    }
-    else {
-        if(frame == SReportes){
-        // disconnect(ui->ComboSeleccion,&QComboBox::activated,this,)
-//         QObject::disconnect( combo_connect1 );
-//         QObject::disconnect( combo_connect2 );
-         qDebug() << "se desconectarion los combos";
-        }
-       frame = SMenu;
-    }
 
-    ui->stackedWidget->setCurrentIndex(frame);
+    switch (frame) {
+    // MENU DE CONFIGURACION
+case SMenu :case SHome :case SSonda :case STanque :case STablaCub:
+case SLogin :case SHome2 :case STMaxi :case SComunicacion: case SVialarmas :
+case Slimites :case SComunicador :case SInventoryConfig:  frame= SMenu;break;
+        //MENU PUBLICO
+case  sInventario: case SReportes: case SEntregas : frame= SMenuPub; break;
 
+
+  }
+ui->stackedWidget->setCurrentIndex(frame);
 }
-
 void MainWindow::consultaBD()
 {
     int i= 0;
@@ -1504,6 +1496,7 @@ void MainWindow::limpiar_tabla(QTableWidget *tabla, int cont)
         {
             tabla->removeRow(n);
         }
+
 }
 
 void MainWindow::buscar_prioridad(QString priodidad)
@@ -1554,6 +1547,8 @@ int MainWindow::calcY(int y)
 {
     return  430-(430 * y )/100;
 }
+
+
 
 void MainWindow::on_Btn_Cub_Editar_clicked()
 {
@@ -1786,9 +1781,6 @@ cadena.append("SELECT * FROM `cistem`.`entregas` where Tanque_Nombre = '"+ui->CS
              //  ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 6)->setFont(A);
              qDebug() << qry.value(0).toInt() << qry.value(1).toString() << qry.value(2).toInt() << qry.value(4).toInt();
          }
-
-
-
     });
 
 }
@@ -1910,7 +1902,7 @@ void MainWindow::Leer_GPIO()
            Gpio_status.append(QString::number(i+1));
            Gpio_status.append(": Activado");
            qDebug() << "El sensor" << i+1 << " se Activo";
-           insertar_incidente("incidente",Gpio_status,"user","0");
+          // insertar_incidente("incidente",Gpio_status,"user","0");
            Gpio_status.clear();
        }
    }
@@ -1929,3 +1921,122 @@ void MainWindow::Qry_Entrega(QString SeRealizoEntrega)
     qry.exec(SeRealizoEntrega);
 }
 
+void MainWindow::on_Btn_inventarioConfig_clicked()
+{ frame = SInventoryConfig; ui->stackedWidget->setCurrentIndex(SInventoryConfig);}
+
+void MainWindow::on_BtnMasIntervalo_clicked()
+{
+    ui->Line_Intervalo->clear();
+    if(SelecIntervalo == 11) SelecIntervalo= 0;
+    else SelecIntervalo ++;
+    ui->Line_Intervalo->setText(Bitso[SelecIntervalo]);
+}
+
+void MainWindow::on_Btn_IntervaloMenos_clicked()
+{
+    ui->Line_Intervalo->clear();
+    if(SelecIntervalo == 0)  SelecIntervalo= 11;
+    else SelecIntervalo --;
+    ui->Line_Intervalo->setText(Bitso[SelecIntervalo]);
+}
+
+void MainWindow::on_BtnMasIntervalo_pressed()
+{connect(Time1,&QTimer::timeout,this,&MainWindow::on_BtnMasIntervalo_clicked);}
+
+void MainWindow::on_BtnMasIntervalo_released()
+{disconnect(Time1,&QTimer::timeout,this,&MainWindow::on_BtnMasIntervalo_clicked);}
+
+void MainWindow::on_Btn_IntervaloMenos_pressed()
+{connect(Time1,&QTimer::timeout,this,&MainWindow::on_Btn_IntervaloMenos_clicked);}
+
+void MainWindow::on_Btn_IntervaloMenos_released()
+{disconnect(Time1,&QTimer::timeout,this,&MainWindow::on_Btn_IntervaloMenos_clicked);}
+
+void MainWindow::on_Btn_D_masH_clicked()
+{
+    ui->Line_HoraLog->clear();
+    if(SelecHora == 23) SelecHora = 0;
+    else SelecHora ++;
+    ui->Line_HoraLog->setText(QString::number(SelecHora));
+}
+
+void MainWindow::on_Btn_D_menosH_clicked()
+{
+    ui->Line_HoraLog->clear();
+    if(SelecHora == 0) SelecHora = 23;
+    else SelecHora --;
+    ui->Line_HoraLog->setText(QString::number(SelecHora));
+}
+
+void MainWindow::on_Btn_D_masH_pressed()
+{connect(Time1,&QTimer::timeout,this,&MainWindow::on_Btn_D_masH_clicked);}
+
+void MainWindow::on_Btn_D_menosH_released()
+{disconnect(Time1,&QTimer::timeout,this,&MainWindow::on_Btn_D_menosH_clicked);}
+
+void MainWindow::on_Btn_D_masH_released()
+{disconnect(Time1,&QTimer::timeout,this,&MainWindow::on_Btn_D_masH_clicked);}
+
+void MainWindow::on_Btn_D_menosH_pressed()
+{connect(Time1,&QTimer::timeout,this,&MainWindow::on_Btn_D_menosH_clicked);}
+
+void MainWindow::on_Btn_H_masM_clicked()
+{
+    ui->Line_H_minutos->clear();
+    if(SelecMinutos == 59) SelecMinutos = 00;
+    else SelecMinutos ++;
+    ui->Line_H_minutos->setText(QString::number(SelecMinutos));
+}
+
+void MainWindow::on_Btn_H_masM_pressed()
+{connect(Time1,&QTimer::timeout,this,&MainWindow::on_Btn_H_masM_clicked);}
+
+void MainWindow::on_Btn_H_masM_released()
+{disconnect(Time1,&QTimer::timeout,this,&MainWindow::on_Btn_H_masM_clicked);}
+
+void MainWindow::on_Btn_H_menosM_clicked()
+{
+    ui->Line_H_minutos->clear();
+    if(SelecMinutos == 0) SelecMinutos = 59;
+    else SelecMinutos --;
+    ui->Line_H_minutos->setText(QString::number(SelecMinutos));
+}
+
+void MainWindow::on_Btn_H_menosM_released()
+{disconnect(Time1,&QTimer::timeout,this,&MainWindow::on_Btn_H_menosM_clicked);}
+
+void MainWindow::on_Btn_H_menosM_pressed()
+{ connect(Time1,&QTimer::timeout,this,&MainWindow::on_Btn_H_menosM_clicked);}
+
+void MainWindow::on_Line_Intervalo_textChanged(const QString &arg1)
+{
+    if (SelecIntervalo >6)
+    {   btn_Habilitado(ui->Btn_D_masH,true);
+        btn_Habilitado(ui->Btn_D_menosH,true);
+        btn_Habilitado(ui->Btn_H_masM,true);
+        btn_Habilitado(ui->Btn_H_menosM,true);
+        ui->Line_HoraLog->setEnabled(true);
+        ui->Line_H_minutos->setEnabled(true);
+        ui->Lab_HoraInicio->setEnabled(true);
+        ui->Lab_Horas->setEnabled(true);
+        ui->Lab_Minutos->setEnabled(true);
+
+
+    }else{
+         btn_Habilitado(ui->Btn_D_masH,false);
+         btn_Habilitado(ui->Btn_D_menosH,false);
+         btn_Habilitado(ui->Btn_H_masM,false);
+         btn_Habilitado(ui->Btn_H_menosM,false);
+         ui->Line_HoraLog->setEnabled(false);
+         ui->Line_H_minutos->setEnabled(false);
+         ui->Lab_HoraInicio->setEnabled(false);
+         ui->Lab_Horas->setEnabled(false);
+         ui->Lab_Minutos->setEnabled(false);
+    }
+}
+
+void MainWindow::btn_Habilitado(QPushButton *Boton,bool hab )
+{   if(hab) Boton->setStyleSheet("QPushButton{color:white;border-radius: 25px;border: 2px solid  gray ; background: royalblue; margin: 0px 0 0px 0;}");
+    else    Boton->setStyleSheet("QPushButton{color:white; border-radius: 25px;border: 2px solid  gray ;background: gray; margin: 0px 0 0px 0; }");
+            Boton->setEnabled(hab);
+}
