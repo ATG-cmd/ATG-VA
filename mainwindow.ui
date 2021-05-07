@@ -159,7 +159,7 @@ QHeaderView::section:vertical
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>13</number>
+     <number>15</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -692,7 +692,7 @@ padding: 2px;</string>
          <x>0</x>
          <y>0</y>
          <width>721</width>
-         <height>1111</height>
+         <height>1075</height>
         </rect>
        </property>
        <property name="styleSheet">

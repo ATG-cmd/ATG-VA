@@ -188,6 +188,7 @@ MainWindow::MainWindow(QWidget *parent)
     consultaBD();
     Buscar_Tanques();
     Descargar();
+    buscar_alarmas();
  qDebug () << "Sali de descargar";
    ui->Tab_entregas->horizontalHeader()->setVisible(true);
    ui->tableWidget->horizontalHeader()->setVisible(true);
@@ -1600,7 +1601,18 @@ void MainWindow::limpiar_Activos()
 
 void MainWindow::buscar_alarmas()
 {
+    QString cadena = "SELECT * FROM cistem.incidentes WHERE Activo = 1;";
+    QSqlQuery qry;
 
+    qry.exec(cadena);
+    while(qry.next())
+    {
+      if(qry.value(1).toString() == "Alarma")   Alarmas++;
+      else if(qry.value(1).toString() == "Warning") warnings++;
+
+    }
+        Indicadores[0]->setText("Alarmas:   "+QString::number(Alarmas)+"");
+        Indicadores[1]->setText("Warnings: "+QString::number(warnings)+"");
 }
 
 /* Este Metodo es para colocar las bolitas de colores en su lugar
