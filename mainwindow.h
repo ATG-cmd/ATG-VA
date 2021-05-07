@@ -81,12 +81,19 @@ public:
      int numerodetanques=0;
      int TanqueActual= 0;
 
+
      QMetaObject::Connection combo_connect1;
      QMetaObject::Connection combo_connect2;
      QMetaObject::Connection combo_connect3;
      QMetaObject::Connection combo_connect4;
      QMetaObject::Connection combo_connect5;
 
+     int SelecIntervalo= 0;
+     int SelecHora =0;
+     int SelecMinutos =0;
+
+     QString Bitso [13]= {"Deshabilitado","5 Minutos","10 Minutos","15 Minutos","20 Minutos","30 Minutos",
+                    "1 Hora","2Horas","4 Horas","6 Horas","8 Horas", "12 Horas", "24 Horas"};
 
 
     void Buscar_Tanques();  // Es funcion busca los tanques dados de alta en BD
@@ -110,6 +117,7 @@ public:
     void buscar_alarmas();
     int X(int Y);
     int calcY(int y );
+    void btn_Habilitado(QPushButton *Boton,bool hab);
     //void
 
 
@@ -218,6 +226,47 @@ private slots:
    void on_Combo_tanque_limites_currentIndexChanged(const QString &arg1);
 
    void Qry_Entrega(QString  Entrega_Realizada);
+
+
+   void on_Btn_inventarioConfig_clicked();
+
+   void on_BtnMasIntervalo_clicked();
+
+   void on_Btn_IntervaloMenos_clicked();
+
+   void on_BtnMasIntervalo_pressed();
+
+   void on_BtnMasIntervalo_released();
+
+   void on_Btn_IntervaloMenos_pressed();
+
+   void on_Btn_IntervaloMenos_released();
+
+   void on_Btn_D_masH_clicked();
+
+   void on_Btn_D_menosH_clicked();
+
+   void on_Btn_D_masH_pressed();
+
+   void on_Btn_D_menosH_released();
+
+   void on_Btn_D_masH_released();
+
+   void on_Btn_D_menosH_pressed();
+
+   void on_Btn_H_masM_clicked();
+
+   void on_Btn_H_masM_pressed();
+
+   void on_Btn_H_masM_released();
+
+   void on_Btn_H_menosM_clicked();
+
+   void on_Btn_H_menosM_released();
+
+   void on_Btn_H_menosM_pressed();
+
+   void on_Line_Intervalo_textChanged(const QString &arg1);
 
 
 private:
