@@ -1988,15 +1988,15 @@ void MainWindow::Leer_GPIO()
            Gpio_status.append(": Activado");
            qDebug() << "El sensor" << i+1 << " se Activo";
 
-           if(S_input[0] == false || S_input[1] == false ){
-               insertar_incidente("Alarma",Gpio_status,"user","1","1");
-               Alarmas ++;
-               Indicadores[0]->setText("Alarmas:   "+QString::number(Alarmas)+"");
-           }else {
-               insertar_incidente("Warning",Gpio_status,"user","0","1");
-               warnings ++;
-               Indicadores[1]->setText("Warnings: "+QString::number(warnings)+"");
-           }
+//           if(S_input[0] == false || S_input[1] == false ){
+//               insertar_incidente("Alarma",Gpio_status,"user","1","1");
+//               Alarmas ++;
+//               Indicadores[0]->setText("Alarmas:   "+QString::number(Alarmas)+"");
+//           }else {
+//               insertar_incidente("Warning",Gpio_status,"user","0","1");
+//               warnings ++;
+//               Indicadores[1]->setText("Warnings: "+QString::number(warnings)+"");
+//           }
 
           // insertar_incidente("incidente",Gpio_status,"user","0");
 
