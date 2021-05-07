@@ -104,6 +104,7 @@ public:
     void buscar_prioridad(QString priodidad);
     void rellenar_activos(QPushButton *btn);
     void limpiar_Activos();
+    void buscar_alarmas();
     int X(int Y);
     int calcY(int y );
 
@@ -213,6 +214,7 @@ private slots:
    void on_Combo_tanque_limites_currentIndexChanged(const QString &arg1);
 
    void Qry_Entrega(QString  Entrega_Realizada);
+
 
 private:
     Ui::MainWindow *ui;

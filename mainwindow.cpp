@@ -111,6 +111,23 @@ MainWindow::MainWindow(QWidget *parent)
     Btn_select_rango->setGeometry(30,5,200,40);
     Btn_select_rango->setFont(FontReloj);
 
+    Indicadores[0] = new QLabel(ui->Btn_Barra_Estados); // Alarma
+    Indicadores[1] = new QLabel(ui->Btn_Barra_Estados); // warnings
+
+    QFont fontAlarmas;
+    fontAlarmas.setPointSize(14);
+    fontAlarmas.setBold(true);
+
+    Indicadores[0]->setGeometry(650,3,120,18);
+    Indicadores[0]->setFont(fontAlarmas);
+    Indicadores[0]->setText("Alarmas:   "+QString::number(Alarmas)+"");
+
+    Indicadores[1]->setGeometry(650,22,120,25);
+    Indicadores[1]->setFont(fontAlarmas);
+    Indicadores[1]->setText("Warnings: "+QString::number(warnings)+"");
+
+
+
    connect(ui->Regresar_Home,&QPushButton::clicked,this,&MainWindow::on_Btn_Home_clicked);
    connect(ui->stackedWidget,&QStackedWidget::currentChanged,this,&MainWindow::Botones);
    connect(Btn_select_rango,&QPushButton::clicked,this,&MainWindow::btn_clicked);
@@ -1135,6 +1152,16 @@ void MainWindow::on_Btn_Comunicacion_clicked()
 void MainWindow::on_Btn_Barra_Estados_clicked()
 {
     frame = SReportes;
+    if (Maxi == true)
+    { Maxi = false;
+        qDebug() << "ando en el if de home";
+        for (int i=0;i <= IDSerie-1; i++ )
+        { tanques[i]->setTMaximizado(true);
+            qDebug() << "entre al for";
+            qDebug() << "Tanque" + QString::number(i)+ "true";
+        }
+    }
+
     ui->stackedWidget->setCurrentIndex(SReportes);
     //Btn_select_rango->setGeometry(0,0,0,0);
     Btn_select_rango->setText("Limpiar Activos");
@@ -1566,6 +1593,16 @@ void MainWindow::limpiar_Activos()
         qry.exec(cadena);
         cadena.clear();
     }
+   limpiar_tabla(ui->tabla_incidentes,ui->tabla_incidentes->rowCount());
+    Alarmas = 0;
+    warnings = 0;
+    Indicadores[0]->setText("Alarmas:   "+QString::number(Alarmas)+"");
+    Indicadores[1]->setText("Warnings: "+QString::number(warnings)+"");
+
+}
+
+void MainWindow::buscar_alarmas()
+{
 
 }
 
@@ -1925,7 +1962,15 @@ void MainWindow::Leer_GPIO()
            Gpio_status.append(QString::number(i+1));
            Gpio_status.append(": Activado");
            qDebug() << "El sensor" << i+1 << " se Activo";
-           insertar_incidente("incidente",Gpio_status,"user","0","1");
+           if(S_input[0] == false || S_input[1] == false ){
+               insertar_incidente("Alarma",Gpio_status,"user","1","1");
+               Alarmas ++;
+               Indicadores[0]->setText("Alarmas:   "+QString::number(Alarmas)+"");
+           }else {
+               insertar_incidente("Warning",Gpio_status,"user","0","1");
+               warnings ++;
+               Indicadores[1]->setText("Warnings: "+QString::number(warnings)+"");
+           }
            Gpio_status.clear();
        }
    }
