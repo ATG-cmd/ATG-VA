@@ -46,6 +46,7 @@ public:
     QTimer *Time3;
     QTimer *deliveryProGaugeTimer;
     QTimer *Gpio_timer;
+    QTimer *onesecond;
     QLabel *Lab_Title;
     QLabel *Avisos;
     QLabel *Indicadores[2];
@@ -115,6 +116,7 @@ public:
     void rellenar_activos(QPushButton *btn);
     void limpiar_Activos();
     void buscar_alarmas();
+    bool validar_activos(QString tipo, QString Descripcion, QString usuario);
     int X(int Y);
     int calcY(int y );
     void btn_Habilitado(QPushButton *Boton,bool hab);
@@ -223,10 +225,11 @@ private slots:
 
    void Leer_GPIO();
 
+   void everysecond();
+
    void on_Combo_tanque_limites_currentIndexChanged(const QString &arg1);
 
    void Qry_Entrega(QString  Entrega_Realizada);
-
 
    void on_Btn_inventarioConfig_clicked();
 

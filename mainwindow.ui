@@ -165,7 +165,7 @@ QHeaderView::section:vertical
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>15</number>
+     <number>16</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -697,7 +697,7 @@ padding: 2px;</string>
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>769</width>
+         <width>721</width>
          <height>1075</height>
         </rect>
        </property>
@@ -2337,16 +2337,6 @@ QScrollBar::add-line:vertical {
          <string/>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit">
-        <property name="geometry">
-         <rect>
-          <x>140</x>
-          <y>80</y>
-          <width>113</width>
-          <height>32</height>
-         </rect>
-        </property>
-       </widget>
       </widget>
       <widget class="QWidget" name="Tab_generar">
        <attribute name="title">
@@ -2698,7 +2688,7 @@ QScrollBar::add-line:vertical {
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -3913,7 +3903,7 @@ border-radius: 16;
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>394</width>
+         <width>711</width>
          <height>532</height>
         </rect>
        </property>
@@ -5380,6 +5370,9 @@ border-radius: 16;
            <bold>true</bold>
           </font>
          </property>
+         <property name="mouseTracking">
+          <bool>true</bool>
+         </property>
          <property name="text">
           <string>00</string>
          </property>
@@ -5388,6 +5381,9 @@ border-radius: 16;
          </property>
          <property name="readOnly">
           <bool>true</bool>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -5607,6 +5603,9 @@ border-radius: 16;
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>false</bool>
          </property>
         </widget>
        </item>

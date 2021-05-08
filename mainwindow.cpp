@@ -68,6 +68,7 @@ MainWindow::MainWindow(QWidget *parent)
     Time2 = new QTimer();
     Time3 = new QTimer();
     Gpio_timer = new QTimer();
+    onesecond = new QTimer();
 
     wiringPiSetup();
     pinMode(CTRL,OUTPUT);
@@ -127,11 +128,9 @@ MainWindow::MainWindow(QWidget *parent)
     Indicadores[1]->setFont(fontAlarmas);
     Indicadores[1]->setText("Warnings: "+QString::number(warnings)+"");
 
-
-
-   connect(ui->Regresar_Home,&QPushButton::clicked,this,&MainWindow::on_Btn_Home_clicked);
-   connect(ui->stackedWidget,&QStackedWidget::currentChanged,this,&MainWindow::Botones);
-   connect(Btn_select_rango,&QPushButton::clicked,this,&MainWindow::btn_clicked);
+    connect(ui->Regresar_Home,&QPushButton::clicked,this,&MainWindow::on_Btn_Home_clicked);
+    connect(ui->stackedWidget,&QStackedWidget::currentChanged,this,&MainWindow::Botones);
+    connect(Btn_select_rango,&QPushButton::clicked,this,&MainWindow::btn_clicked);
     Maximizado = new Tanque(ui->Tanque_Maximizado,false);
 
     ConCombocol(ui->Combo_Color);
@@ -141,6 +140,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     deliveryProGaugeTimer = new QTimer(this);
     connect(Gpio_timer,SIGNAL(timeout()),this,SLOT(Leer_GPIO()));
+    connect(onesecond,SIGNAL(timeout()),this,SLOT(everysecond()));
+    onesecond->start(1000);
     Gpio_timer->start(2000);
 
 
@@ -153,9 +154,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Line_Diametro->installEventFilter(this);
     ui->Line_Capacidad->installEventFilter(this);
     ui->Line_Nombre->installEventFilter(this);
-    //ui->lineEdit->installEventFilter(this);
 
-    // ui->stackedWidget->setCurrentIndex(1);
+    //ui->lineEdit->installEventFilter(this);
+    //ui->stackedWidget->setCurrentIndex(1);
     ui->Lab_Titulo->setText("Inicio");
    // ocultar();
 
@@ -1472,7 +1473,8 @@ void MainWindow::insertar_incidente(QString tipo, QString Descripcion, QString u
                   " VALUES ('"+tipo+"', '"+Descripcion+"', '"+usuario+"', '"+ QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss") +"','"+ Prioridad+"', '"+Activo+"');");
 
     qDebug() << cadena;
-    qry.exec(cadena);
+    if (validar_activos(tipo,Descripcion,usuario))     qry.exec(cadena);
+
 }
 
 void MainWindow::rellenar_incidentes(QString T_inicial, QString T_Final,int index)
@@ -1625,6 +1627,25 @@ void MainWindow::buscar_alarmas()
 
 }
 
+bool MainWindow::validar_activos(QString tipo, QString Descripcion, QString usuario)
+{
+    bool valido = true;
+    QString cadena = "SELECT * FROM cistem.incidentes WHERE Activo = 1;";
+    QSqlQuery qry;
+
+    qry.exec(cadena);
+    while(qry.next())
+    {
+      if(qry.value(1).toString() == tipo
+         && qry.value(2).toString() == Descripcion
+         && qry.value(3).toString() == usuario)
+           valido = false;
+      else valido = true;
+    }
+
+    return valido;
+}
+
 /* Este Metodo es para colocar las bolitas de colores en su lugar
   Respecto al limite que le corresponde, la siguiente formula es la
   formula del semicirculo
@@ -1714,7 +1735,7 @@ void MainWindow::deliveryProGaugeCountIncrement(){
       qDebug() << "Tanque Actual"<< TanqueActual;
     tanques[TanqueActual]->deliveryProGaugeCountIncrement();
     QSqlQuery qry;
-    qry.exec(tanques[TanqueActual]->ActualInventory());
+  //  qry.exec(tanques[TanqueActual]->ActualInventory());
 }
 
 void MainWindow::on_Btn_SaveTank_clicked()
@@ -1973,7 +1994,7 @@ void MainWindow::Leer_GPIO()
 {
     QString Gpio_status;
 
-// aqui se leen los sensores
+    // aqui se leen los sensores
     S_input[0] = digitalRead(INPUT_1);
     S_input[1] = digitalRead(INPUT_2);
     S_input[2] = digitalRead(INPUT_3);
@@ -2015,6 +2036,11 @@ void MainWindow::Leer_GPIO()
            Gpio_status.clear();
        }
    }
+
+}
+
+void MainWindow::everysecond()
+{
 
 }
 
