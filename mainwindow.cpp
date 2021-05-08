@@ -1460,7 +1460,6 @@ void MainWindow::evaluar_limites(Tanque *tanque)
 //    tanques[tank_id]->SetAlarma_de_Agua(ui->Line_alarma_agua->text().toDouble());
 //    tanques[tank_id]->SetAdvertencua_de_Agua(ui->Line_advertencia_agua->text().toDouble());
 
-
 //    if(((tanque->getVolumenCon() * 100) / tanque->getCapacidad()) >= tanque->GetProducto_Alto()){}
 //    if(tanque->getVolumenCon() >= tanque->GetDesbordamiento()){}
 }

@@ -165,7 +165,7 @@ QHeaderView::section:vertical
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>16</number>
+     <number>15</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -697,7 +697,7 @@ padding: 2px;</string>
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>721</width>
+         <width>769</width>
          <height>1075</height>
         </rect>
        </property>
@@ -3913,7 +3913,7 @@ border-radius: 16;
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>711</width>
+         <width>394</width>
          <height>532</height>
         </rect>
        </property>
@@ -5038,6 +5038,9 @@ border-radius: 16;
       <property name="sizeAdjustPolicy">
        <enum>QAbstractScrollArea::AdjustIgnored</enum>
       </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
       <property name="alternatingRowColors">
        <bool>true</bool>
       </property>
@@ -6006,4 +6009,3 @@ QComboBox::drop-down {
  </resources>
  <connections/>
 </ui>
-
