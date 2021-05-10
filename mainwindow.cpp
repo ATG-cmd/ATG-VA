@@ -769,7 +769,7 @@ void MainWindow::Protocolo(QString cad)
             tanques[indice]->SetAltura(cad.mid(13,8).toDouble(),cad.mid(22,8).toDouble());
             tanques[indice]->SetTemperatura(cad.mid(9,3).toDouble()/10);
 
-
+            evaluar_limites(tanques[indice]);
 //            if(tanques[indice]->GetVolumen() > deliveryMaxVolumeRead || deliveryCountIncrement == 0){
 //                qDebug() << "ProGaugeVolumen:" << tanques[indice]->GetVolumen() << "deliveryMaxVolumeRead:" << deliveryMaxVolumeRead;
 
@@ -1454,7 +1454,11 @@ void MainWindow::evaluar_limites(Tanque *tanque)
     int porcentaje = ((tanque->getVolumenCon() * 100) / tanque->getCapacidad());
     qDebug() << "porcentaje de volumen de tanque: " << porcentaje;
 
-    if(porcentaje >= tanque->GetDesbordamiento()) insertar_incidente("Alarma",tanque->GetNameTank() + "Desbordado","user","1","1");
+    if(porcentaje >= tanque->GetDesbordamiento()) insertar_incidente("Alarma",tanque->GetNameTank() + " Desbordado","user","1","1");
+    if(porcentaje >= tanque->GetProducto_Alto()) insertar_incidente("Alarma",tanque->GetNameTank() + " Producto Alto","user","1","1");
+    if(porcentaje <= tanque->GetNecesitaProducto()) insertar_incidente("Alarma",tanque->GetNameTank() + " Necesita producto","user","1","1");
+    if(tanque->getVolumenCon() <= tanque->GetProductoBajo()) insertar_incidente("Alarma",tanque->GetNameTank() + " Producto Bajo","user","1","1");
+    //if(porcentaje >= tanque->GetDesbordamiento()) insertar_incidente("Alarma",tanque->GetNameTank() + " Desbordado","user","1","1");
 
 
 //    tanques[tank_id]->SetVolMax(ui->Line_volumen_maximo->text().toDouble());
@@ -1483,6 +1487,8 @@ void MainWindow::insertar_incidente(QString tipo, QString Descripcion, QString u
         if(tipo == "Alarma") Alarmas++;
         else if(tipo == "Warning") warnings++;
     }
+    Indicadores[0]->setText("Alarmas:   "+QString::number(Alarmas)+"");
+    Indicadores[1]->setText("Warnings: "+QString::number(warnings)+"");
 
 }
 
