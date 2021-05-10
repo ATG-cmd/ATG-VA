@@ -1453,6 +1453,10 @@ void MainWindow::evaluar_limites(Tanque *tanque)
     qDebug() << "Aqui se evalua el valumen: "  << tanque->getVolumenCon();
     int porcentaje = ((tanque->getVolumenCon() * 100) / tanque->getCapacidad());
     qDebug() << "porcentaje de volumen de tanque: " << porcentaje;
+
+    if(porcentaje >= tanque->GetDesbordamiento()) insertar_incidente("Alarma",tanque->GetNameTank() + "Desbordado","user","1","1");
+
+
 //    tanques[tank_id]->SetVolMax(ui->Line_volumen_maximo->text().toDouble());
 //    tanques[tank_id]->SetProducto_Alto(ui->Line_producto_alto->text().toDouble());
 //    tanques[tank_id]->SetDesbordamiento(ui->Line_desbordamiento->text().toDouble());
