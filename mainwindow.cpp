@@ -1473,7 +1473,12 @@ void MainWindow::insertar_incidente(QString tipo, QString Descripcion, QString u
                   " VALUES ('"+tipo+"', '"+Descripcion+"', '"+usuario+"', '"+ QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss") +"','"+ Prioridad+"', '"+Activo+"');");
 
     qDebug() << cadena;
-    if (validar_activos(tipo,Descripcion,usuario))     qry.exec(cadena);
+    if (validar_activos(tipo,Descripcion,usuario)){
+
+        qry.exec(cadena);
+        if(tipo == "Alarma") Alarmas++;
+        else if(tipo == "Warning") warnings++;
+    }
 
 }
 
@@ -1639,7 +1644,10 @@ bool MainWindow::validar_activos(QString tipo, QString Descripcion, QString usua
       if(qry.value(1).toString() == tipo
          && qry.value(2).toString() == Descripcion
          && qry.value(3).toString() == usuario)
+      {
            valido = false;
+           break;
+      }
       else valido = true;
     }
 
@@ -1995,10 +2003,10 @@ void MainWindow::Leer_GPIO()
     QString Gpio_status;
 
     // aqui se leen los sensores
-    S_input[0] = digitalRead(INPUT_1);
-    S_input[1] = digitalRead(INPUT_2);
-    S_input[2] = digitalRead(INPUT_3);
-    S_input[3] = digitalRead(INPUT_4);
+    S_input[0] = true; // **
+    S_input[1] = true; // **
+    S_input[2] = true; // **
+    S_input[3] = true; // **
     S_input[4] = digitalRead(INPUT_5);
     S_input[5] = digitalRead(INPUT_6);
     S_input[6] = digitalRead(INPUT_7);
@@ -2014,6 +2022,12 @@ void MainWindow::Leer_GPIO()
 
    for(int i = 0; i <= 3; i++)
    {
+       // herramientas para debugear las alarmas // **
+      if(i == 0) S_input[0] = digitalRead(INPUT_1); // **
+      if(i == 1) S_input[1] = digitalRead(INPUT_2); // **
+      if(i == 2) S_input[2] = digitalRead(INPUT_3); // **
+      if(i == 3) S_input[3] = digitalRead(INPUT_4); // **
+
       //  qDebug() << "Valor de senor " << i+1 <<  " :" << S_input[i];
        if(S_input[i] == false) // se activan en false
        {   Gpio_status.append( "Sensor_");
@@ -2021,20 +2035,19 @@ void MainWindow::Leer_GPIO()
            Gpio_status.append(": Activado");
            qDebug() << "El sensor" << i+1 << " se Activo";
 
-           if(S_input[0] == false || S_input[1] == false ){
-               insertar_incidente("Alarma",Gpio_status,"user","1","1");
-               Alarmas ++;
-               Indicadores[0]->setText("Alarmas:   "+QString::number(Alarmas)+"");
+           if(S_input[2] == false || S_input[3] == false){ // **
+               insertar_incidente("Alarma",Gpio_status,"user","1","1");  //**
+               Indicadores[0]->setText("Alarmas:   "+QString::number(Alarmas)+"");  //**
            }else {
                insertar_incidente("Warning",Gpio_status,"user","0","1");
-               warnings ++;
                Indicadores[1]->setText("Warnings: "+QString::number(warnings)+"");
            }
-
+            // expresion usada solo para debugiar alarmas y warnings
           // insertar_incidente("incidente",Gpio_status,"user","0");
 
            Gpio_status.clear();
        }
+       S_input[i] = true; // **
    }
 
 }
