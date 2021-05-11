@@ -432,7 +432,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 
      switch(Tipo)
      {
-         case 0:
+         case 2:
           qDebug() << "Cilindro vertical";
              r = TankDiametro / 2;
              h = height;
@@ -442,7 +442,8 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
            res = (pi * (r * r) * h) / 1000000;
            reswater = (pi * (r * r) *water) / 1000000;
           //  qDebug() <<"Volumen del tanque"<< res;
-
+           if (TMaximizado)
+           VolVal->setText(QString::number(res,'f',2)+" Lts");
              break;
          case 1:
          qDebug() << "Cilindro Horizontal";
@@ -505,14 +506,14 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 
             // qDebug() << (ProGaugeCapacidad / (((r * r) * (qAcos((r - h) / r ))) - ((r - h) * (qSqrt((ProGaugeDiametro * h) - (h * h)))))) * 1000000;
              break;
-         case 2:
+//         case 2:
 
-         // qDebug() << "Rctangular";
-             h = height;
-            // Capacidad = Tanklargo *Tankancho *Tankaltura /1000000;
-             res = Tanklargo * Tankancho * h / 1000000;
+//         // qDebug() << "Rctangular";
+//             h = height;
+//            // Capacidad = Tanklargo *Tankancho *Tankaltura /1000000;
+//             res = Tanklargo * Tankancho * h / 1000000;
 
-            break;
+//            break;
 //         case 3:
 //             h = tmpFuelLevel.toFloat() / 1000;
 //             for(byte i = 0; i < maxPoint; i++){

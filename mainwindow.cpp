@@ -600,7 +600,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         dlg->set_etiqueta("Ingrese "+ ui->Lab_Medida1->text());
         //dlg->use_validator(val_1);
         //QValidator *val_1 = new QIntValidator(100,2000,this);
-        dlg->validador(2,0,2500,2);
+        dlg->validador(2,0,5000,2);
         int res;
         res = dlg->exec();
         if(res == QDialog::Accepted)
@@ -620,7 +620,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         dlg->set_etiqueta("Ingrese " + ui->Lab_Medida2->text());
         //dlg->use_validator(val_1);
         //QValidator *val_1 = new QIntValidator(100,2000,this);
-        dlg->validador(2,0,2500,2);
+        dlg->validador(2,0,50000,2);
         int res;
         res = dlg->exec();
         if(res == QDialog::Accepted)
@@ -1408,8 +1408,6 @@ void MainWindow::guardar_limites()
         }
     }
 
-//    qDebug() << "este es el ID del tenque que guardo limites : " << tanques[tank_id]->getIdTanque();
-
     tanques[tank_id]->SetVolMax(ui->Line_volumen_maximo->text().toDouble());
     tanques[tank_id]->SetProducto_Alto(ui->Line_producto_alto->text().toDouble());
     tanques[tank_id]->SetDesbordamiento(ui->Line_desbordamiento->text().toDouble());
@@ -1418,8 +1416,10 @@ void MainWindow::guardar_limites()
     tanques[tank_id]->SetAlarma_de_Agua(ui->Line_alarma_agua->text().toDouble());
     tanques[tank_id]->SetAdvertencua_de_Agua(ui->Line_advertencia_agua->text().toDouble());
 
-    ui->stackedWidget->setCurrentIndex(0);
-    frame = 0;
+    frame = SMenu;
+    ui->stackedWidget->setCurrentIndex(SMenu);
+    ui->Lab_Titulo->setText("Menu Principal");
+
 }
 
 void MainWindow::rellenar_limites()
@@ -1458,6 +1458,9 @@ void MainWindow::evaluar_limites(Tanque *tanque)
     if(porcentaje >= tanque->GetProducto_Alto()) insertar_incidente("Alarma",tanque->GetNameTank() + " Producto Alto","user","1","1");
     if(porcentaje <= tanque->GetNecesitaProducto()) insertar_incidente("Alarma",tanque->GetNameTank() + " Necesita producto","user","1","1");
     if(tanque->getVolumenCon() <= tanque->GetProductoBajo()) insertar_incidente("Alarma",tanque->GetNameTank() + " Producto Bajo","user","1","1");
+    if(tanque->getVolumenA() >= tanque->GetAlarma_de_Agua()) insertar_incidente("Alarma",tanque->GetNameTank() + " Alarma Agua alta","user","1","1");
+    if(tanque->getVolumenA() >= tanque->GetAdvertencia_de_Agua()) insertar_incidente("Alarma",tanque->GetNameTank() + " Warning Agua alta","user","1","1");
+
     //if(porcentaje >= tanque->GetDesbordamiento()) insertar_incidente("Alarma",tanque->GetNameTank() + " Desbordado","user","1","1");
 
 
@@ -2004,8 +2007,6 @@ void MainWindow::btn_clicked()
     else if(Btn_select_rango->text() == "Limpiar Activos"){
         limpiar_Activos();
     }
-
-
 }
 
 void MainWindow::Leer_GPIO()
