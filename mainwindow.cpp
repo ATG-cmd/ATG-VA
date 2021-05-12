@@ -2288,7 +2288,7 @@ void MainWindow::InventoryActivos()
     qDebug() << "Numero de Tanques" << numerodetanques;
     qDebug() << "Hola Desde Inventory Activos";
     limpiar_tabla(ui->Tabla_Inventario,ui->Tabla_Inventario->rowCount());
-    for (int i= 0;i <= numerodetanques ; i++) {
+    for (int i= 0;i <= numerodetanques-1 ; i++) {
         qDebug() << "hola desde el for" << i;
         if (tanques[i]->getIshabilitado())
         {
