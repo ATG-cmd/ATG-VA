@@ -79,6 +79,7 @@ public:
      double Temperatura_Final;
      bool S_input[16];
 
+
      int numerodetanques=0;
      int TanqueActual= 0;
 
@@ -121,6 +122,8 @@ public:
     void btn_Habilitado(QPushButton *Boton,bool hab);
     void GuardarConfigInv();
     void TimerConfigInventoryDB();
+    void InventoryActivos();
+    void InVentoryHistory();
 
 
 

@@ -165,7 +165,7 @@ QHeaderView::section:vertical
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>16</number>
+     <number>13</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -5239,7 +5239,7 @@ border-radius: 16;
      </widget>
     </widget>
     <widget class="QWidget" name="Inventario">
-     <widget class="QTableWidget" name="tableWidget_3">
+     <widget class="QTableWidget" name="Tabla_Inventario">
       <property name="geometry">
        <rect>
         <x>10</x>

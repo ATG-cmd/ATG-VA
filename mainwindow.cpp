@@ -1780,12 +1780,14 @@ void MainWindow::on_Btn_Inventario_clicked()
 
         switch (index)
          {
-         case 0:   break;
-         case 1:   break;
+         case 0: InventoryActivos();  break;
+         case 1: InVentoryHistory();  break;
          case 2:   break;
          case 3:   break;
         } });
     frame = sInventario; ui->stackedWidget->setCurrentIndex(sInventario);
+    ui->ComboSeleccion->setCurrentIndex(0);
+    ui->ComboSeleccion->activated(0);
 }
 
 void MainWindow::on_Btn_Reports_clicked()
@@ -2046,8 +2048,6 @@ void MainWindow::on_Btn_inventarioConfig_clicked()
         SelecIntervalo = Inter;
 
       }
-
-
 }
 
 void MainWindow::on_BtnMasIntervalo_clicked()
@@ -2163,15 +2163,18 @@ void MainWindow::on_Line_Intervalo_textChanged(const QString &arg1)
 
 void MainWindow::InventoryTank()
 {
-    if (TanqueActual == numerodetanques-1) { TanqueActual = 0;}
-    else { TanqueActual++;qDebug() << TanqueActual;
-  }
-    qDebug() << "Tanque Actual"<< TanqueActual;
-    qDebug() << "Online" << tanques[TanqueActual]->getIshabilitado();
-    QSqlQuery qry;
-    qry.exec(tanques[TanqueActual]->ActualInventory());
-    qDebug() << tanques[TanqueActual]->ActualInventory();
-    qDebug() << "-----------------------------------------------------------------------";
+    for (int i= 0;i<=numerodetanques-1;i++) {
+        QSqlQuery qry;
+        qry.exec(tanques[i]->ActualInventory());
+        qDebug() << tanques[i]->ActualInventory();
+        qDebug() << "-----------------------------------------------------------------------";
+
+}
+//    if (TanqueActual == numerodetanques) { TanqueActual = 0;}
+//    else { TanqueActual++;qDebug() << TanqueActual;
+//  }
+//    qDebug() << "Tanque Actual"<< TanqueActual;
+//    qDebug() << "Online" << tanques[TanqueActual]->getIshabilitado();
 
 }
 
@@ -2233,6 +2236,65 @@ void MainWindow::TimerConfigInventoryDB()
     }
 
 
+
+}
+
+void MainWindow::InventoryActivos()
+{
+    qDebug() << "Numero de Tanques" << numerodetanques;
+    qDebug() << "Hola Desde Inventory Activos";
+    limpiar_tabla(ui->Tabla_Inventario,ui->Tabla_Inventario->rowCount());
+    for (int i= 0;i <= numerodetanques ; i++) {
+        qDebug() << "hola desde el for" << i;
+        if (tanques[i]->getIshabilitado())
+        {
+            qDebug() << "Hola desde el if";
+            ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
+            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(tanques[i]->GetNameTank()));
+            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 1, new QTableWidgetItem(QString::number(tanques[i]->GetVolumen())));
+            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 2, new QTableWidgetItem(QString::number(tanques[i]->GetTemperatura())));
+            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 3, new QTableWidgetItem(QString::number(tanques[i]->GetAltura())));
+            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 4, new QTableWidgetItem(QString::number(tanques[i]->getNivelAgua())));
+            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 5, new QTableWidgetItem("Actual"));
+           ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
+           ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
+           ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
+           ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
+           ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
+           ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
+
+        }
+
+    }
+}
+
+void MainWindow::InVentoryHistory()
+{
+        QString cadena;
+        QSqlQuery qry;
+        limpiar_tabla(ui->Tabla_Inventario,ui->Tabla_Inventario->rowCount());
+        //Btn_select_rango->setGeometry(30,5,200,40);
+        //Btn_select_rango->setText("Select Range");
+        cadena = ("SELECT * FROM `cistem`.`inventario` LIMIT 1000;");
+
+        qry.exec(cadena);
+       // qDebug() << cadena;
+        while(qry.next())
+        {
+            ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
+            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(2).toString()));
+            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 1, new QTableWidgetItem(qry.value(3).toString()));
+            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 2, new QTableWidgetItem(qry.value(4).toString()));
+            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 3, new QTableWidgetItem(qry.value(5).toString()));
+            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 4, new QTableWidgetItem(qry.value(6).toString()));
+            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 5, new QTableWidgetItem(qry.value(7).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
+            ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
+            ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
+            ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
+            ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
+            ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
+            ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
+        }
 
 }
 

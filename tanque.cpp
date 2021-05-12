@@ -41,6 +41,7 @@ void Tanque::offline()
      latanq->setStyleSheet("background-color:lightgray;");
      latanq->setText("Sin Conexion");
     // ishabilitado = false;
+     Desconectado= false;
 }
 
 double Tanque::getAngle() const { return angle; }
@@ -385,6 +386,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
  double Tanque::SetAltura(double height, double water)
  {
     ishabilitado = true;
+    Desconectado = true;
 
      double r=0;
      double h= height;
@@ -913,8 +915,9 @@ void Tanque::deliveryProGaugeCountIncrement(){
 
 QString Tanque::ActualInventory()
 {
-    if(ishabilitado)
-    return "INSERT INTO `cistem`.`inventario` (`IDTank`, `NombreTank`, `VolumenCo`, `VolumenA`, `AlturaC`, `AlturaA`, `Fecha`) VALUES ('"+QString::number(IdTanque)+"', '"+NomTank+"', '"+QString::number(VolumenCon)+"', '123', '"+QString::number(AlturaTank)+"', '123', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');";
+    if(Desconectado)
+      return  "INSERT INTO `cistem`.`inventario` (`IDTank`, `NombreTank`, `VolumenCo`, `Temperatura`, `AlturaC`, `AlturaA`, `Fecha`) VALUES ('"+QString::number(IdTanque)+"','"+NomTank+"','"+QString::number(VolumenCon)+"','"+QString::number(Temperatura)+"', '"+QString::number(AlturaTank)+"', '"+QString::number(NivelAgua)+"','"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');";
+     //"INSERT INTO `cistem`.`inventario` (`IDTank`, `NombreTank`, `VolumenCo`, `VolumenA`, `AlturaC`, `AlturaA`, `Fecha`) VALUES ('"+QString::number(IdTanque)+"', '"+NomTank+"', '"+QString::number(VolumenCon)+"', '123', '"+QString::number(AlturaTank)+"', '123', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');";
     //  "INSERT INTO `cistem`.`inventario` (`IDTank`, `NombreTank`, `VolumenCo`, `VolumenA`, `AlturaC`, `AlturaA`) VALUES ('"+QString::number(IdTanque)+"', '"+NomTank+"', '"+QString::number(VolumenCon)+"', '13', '"+QString::number(AlturaTank)+"', '123');";
     else {
         return "hola";
