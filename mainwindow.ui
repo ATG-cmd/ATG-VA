@@ -2358,6 +2358,79 @@ QScrollBar::add-line:vertical {
           </widget>
          </item>
         </layout>
+        </property>
+        <property name="text">
+         <string>Cancelar</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="Line_Punto">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>90</y>
+          <width>250</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>21</pointsize>
+          <weight>75</weight>
+          <italic>true</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="placeholderText">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="Line_Altura">
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>160</y>
+          <width>250</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>21</pointsize>
+          <weight>75</weight>
+          <italic>true</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="placeholderText">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="Line_Volumen">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>230</y>
+          <width>250</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>21</pointsize>
+          <weight>75</weight>
+          <italic>true</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="placeholderText">
+         <string/>
+        </property>
        </widget>
       </widget>
       <widget class="QWidget" name="Tab_generar">
@@ -5369,6 +5442,9 @@ border-radius: 16;
       <property name="sizeAdjustPolicy">
        <enum>QAbstractScrollArea::AdjustIgnored</enum>
       </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
       <property name="alternatingRowColors">
        <bool>true</bool>
       </property>
@@ -5890,6 +5966,11 @@ border-radius: 16;
 	background: royalblue;
 	margin: 0px 0 0px 0;   
 }</string>
+         <property name="mouseTracking">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>00</string>
          </property>
          <property name="text">
           <string>-</string>
@@ -5899,6 +5980,9 @@ border-radius: 16;
            <width>50</width>
            <height>50</height>
           </size>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -6097,6 +6181,8 @@ border-radius: 16;
          </property>
          <property name="readOnly">
           <bool>true</bool>
+         <property name="clearButtonEnabled">
+          <bool>false</bool>
          </property>
         </widget>
        </item>

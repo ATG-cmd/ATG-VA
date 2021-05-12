@@ -72,7 +72,7 @@ class Tanque :public QWidget
     double Temperatura_inicial;
     double Volumen_Final;
     double Temperatura_Final;
-
+    bool isConnected = false;
 
     int nivA;
     int PosX;
@@ -402,6 +402,8 @@ public:
 
    QString ActualInventory();
 
+   bool getIsConnected() const;
+   void setIsConnected(bool value);
 };
 
 #endif // TANQUE_H

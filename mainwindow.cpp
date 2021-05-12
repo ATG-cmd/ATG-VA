@@ -69,6 +69,8 @@ MainWindow::MainWindow(QWidget *parent)
     Time3 = new QTimer();
     Gpio_timer = new QTimer();
     Inventory_Timer  = new QTimer();
+    onesecond = new QTimer();
+
     wiringPiSetup();
     pinMode(CTRL,OUTPUT);
     pinMode(Buzzer,OUTPUT);
@@ -127,11 +129,9 @@ MainWindow::MainWindow(QWidget *parent)
     Indicadores[1]->setFont(fontAlarmas);
     Indicadores[1]->setText("Warnings: "+QString::number(warnings)+"");
 
-
-
-   connect(ui->Regresar_Home,&QPushButton::clicked,this,&MainWindow::on_Btn_Home_clicked);
-   connect(ui->stackedWidget,&QStackedWidget::currentChanged,this,&MainWindow::Botones);
-   connect(Btn_select_rango,&QPushButton::clicked,this,&MainWindow::btn_clicked);
+    connect(ui->Regresar_Home,&QPushButton::clicked,this,&MainWindow::on_Btn_Home_clicked);
+    connect(ui->stackedWidget,&QStackedWidget::currentChanged,this,&MainWindow::Botones);
+    connect(Btn_select_rango,&QPushButton::clicked,this,&MainWindow::btn_clicked);
     Maximizado = new Tanque(ui->Tanque_Maximizado,false);
 
     ConCombocol(ui->Combo_Color);
@@ -141,6 +141,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     deliveryProGaugeTimer = new QTimer(this);
     connect(Gpio_timer,SIGNAL(timeout()),this,SLOT(Leer_GPIO()));
+    connect(onesecond,SIGNAL(timeout()),this,SLOT(everysecond()));
+    onesecond->start(1000);
     Gpio_timer->start(2000);
 
 
@@ -153,9 +155,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Line_Diametro->installEventFilter(this);
     ui->Line_Capacidad->installEventFilter(this);
     ui->Line_Nombre->installEventFilter(this);
-    //ui->lineEdit->installEventFilter(this);
 
-    // ui->stackedWidget->setCurrentIndex(1);
+    //ui->lineEdit->installEventFilter(this);
+    //ui->stackedWidget->setCurrentIndex(1);
     ui->Lab_Titulo->setText("Inicio");
    // ocultar();
 
@@ -471,8 +473,7 @@ void MainWindow::on_pushButton_3_clicked()  // boton log in
         msg.setText(" Usuario y contraseña invalidos");
         msg.exec();
     }
-
-}
+    insertar_incidente("Warning","usuario a iniciado sesion","user","0","1");}
 
 void MainWindow::on_Btn_user_clicked()
 {   frame = SLogin;
@@ -601,7 +602,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         dlg->set_etiqueta("Ingrese "+ ui->Lab_Medida1->text());
         //dlg->use_validator(val_1);
         //QValidator *val_1 = new QIntValidator(100,2000,this);
-        dlg->validador(2,0,2500,2);
+        dlg->validador(2,0,5000,2);
         int res;
         res = dlg->exec();
         if(res == QDialog::Accepted)
@@ -621,7 +622,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         dlg->set_etiqueta("Ingrese " + ui->Lab_Medida2->text());
         //dlg->use_validator(val_1);
         //QValidator *val_1 = new QIntValidator(100,2000,this);
-        dlg->validador(2,0,2500,2);
+        dlg->validador(2,0,50000,2);
         int res;
         res = dlg->exec();
         if(res == QDialog::Accepted)
@@ -670,7 +671,6 @@ void MainWindow::Leer_datos()
         //qDebug()<< dato;
         addcbuff1(dato);
     }
-
 }
 
 void MainWindow::inicbuff1(){
@@ -771,8 +771,11 @@ void MainWindow::Protocolo(QString cad)
         {
             tanques[indice]->SetAltura(cad.mid(13,8).toDouble(),cad.mid(22,8).toDouble());
             tanques[indice]->SetTemperatura(cad.mid(9,3).toDouble()/10);
-
-
+            if(tanques[indice]->getIsConnected() == false){
+                tanques[indice]->setIsConnected(true);
+                insertar_incidente("Warning" ,tanques[indice]->GetNameTank() + " Conectado","user","1","1");
+            }
+            evaluar_limites(tanques[indice]);
 //            if(tanques[indice]->GetVolumen() > deliveryMaxVolumeRead || deliveryCountIncrement == 0){
 //                qDebug() << "ProGaugeVolumen:" << tanques[indice]->GetVolumen() << "deliveryMaxVolumeRead:" << deliveryMaxVolumeRead;
 
@@ -1102,6 +1105,10 @@ void MainWindow::offlineSonda(QString offsonda)
         qDebug() << "ProGaugeID" << ProGaugeId[i];
         if (IDactual == busqueda) {  indice = i; break;  }
     }
+    if(tanques[indice]->getIsConnected() == true){
+        tanques[indice]->setIsConnected(false);
+        insertar_incidente("Alarma",tanques[indice]->GetNameTank() + " Desconectado","user","1","1");
+    }
     tanques[indice]->offline();
     qDebug ()  << "Id_Tanque:" << tanques[indice]->getIdTanque();
     disconnect(tanques[indice],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
@@ -1411,8 +1418,6 @@ void MainWindow::guardar_limites()
         }
     }
 
-//    qDebug() << "este es el ID del tenque que guardo limites : " << tanques[tank_id]->getIdTanque();
-
     tanques[tank_id]->SetVolMax(ui->Line_volumen_maximo->text().toDouble());
     tanques[tank_id]->SetProducto_Alto(ui->Line_producto_alto->text().toDouble());
     tanques[tank_id]->SetDesbordamiento(ui->Line_desbordamiento->text().toDouble());
@@ -1421,8 +1426,10 @@ void MainWindow::guardar_limites()
     tanques[tank_id]->SetAlarma_de_Agua(ui->Line_alarma_agua->text().toDouble());
     tanques[tank_id]->SetAdvertencua_de_Agua(ui->Line_advertencia_agua->text().toDouble());
 
-    ui->stackedWidget->setCurrentIndex(0);
-    frame = 0;
+    frame = SMenu;
+    ui->stackedWidget->setCurrentIndex(SMenu);
+    ui->Lab_Titulo->setText("Menu Principal");
+
 }
 
 void MainWindow::rellenar_limites()
@@ -1456,17 +1463,15 @@ void MainWindow::evaluar_limites(Tanque *tanque)
     qDebug() << "Aqui se evalua el valumen: "  << tanque->getVolumenCon();
     int porcentaje = ((tanque->getVolumenCon() * 100) / tanque->getCapacidad());
     qDebug() << "porcentaje de volumen de tanque: " << porcentaje;
-//    tanques[tank_id]->SetVolMax(ui->Line_volumen_maximo->text().toDouble());
-//    tanques[tank_id]->SetProducto_Alto(ui->Line_producto_alto->text().toDouble());
-//    tanques[tank_id]->SetDesbordamiento(ui->Line_desbordamiento->text().toDouble());
-//    tanques[tank_id]->SetNecesitaProducto(ui->Line_limite_entrega->text().toDouble());
-//    tanques[tank_id]->SetProductoBajo(ui->Line_producto_bajo->text().toDouble());
-//    tanques[tank_id]->SetAlarma_de_Agua(ui->Line_alarma_agua->text().toDouble());
-//    tanques[tank_id]->SetAdvertencua_de_Agua(ui->Line_advertencia_agua->text().toDouble());
 
+    if(porcentaje >= tanque->GetDesbordamiento()) insertar_incidente("Alarma",tanque->GetNameTank() + " Desbordado","user","1","1");
+    if(porcentaje >= tanque->GetProducto_Alto()) insertar_incidente("Alarma",tanque->GetNameTank() + " Producto Alto","user","1","1");
+    if(porcentaje <= tanque->GetNecesitaProducto()) insertar_incidente("Alarma",tanque->GetNameTank() + " Necesita producto","user","1","1");
+    if(tanque->getVolumenCon() <= tanque->GetProductoBajo()) insertar_incidente("Alarma",tanque->GetNameTank() + " Producto Bajo","user","1","1");
+    if(tanque->getVolumenA() >= tanque->GetAlarma_de_Agua()) insertar_incidente("Alarma",tanque->GetNameTank() + " Alarma Agua alta","user","1","1");
+    if(tanque->getVolumenA() >= tanque->GetAdvertencia_de_Agua()) insertar_incidente("Warning",tanque->GetNameTank() + " Warning Agua alta","user","1","1");
 
-//    if(((tanque->getVolumenCon() * 100) / tanque->getCapacidad()) >= tanque->GetProducto_Alto()){}
-//    if(tanque->getVolumenCon() >= tanque->GetDesbordamiento()){}
+    //if(porcentaje >= tanque->GetDesbordamiento()) insertar_incidente("Alarma",tanque->GetNameTank() + " Desbordado","user","1","1");
 }
 
 void MainWindow::insertar_incidente(QString tipo, QString Descripcion, QString usuario,QString Prioridad,QString Activo)
@@ -1477,7 +1482,15 @@ void MainWindow::insertar_incidente(QString tipo, QString Descripcion, QString u
                   " VALUES ('"+tipo+"', '"+Descripcion+"', '"+usuario+"', '"+ QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss") +"','"+ Prioridad+"', '"+Activo+"');");
 
     qDebug() << cadena;
-    qry.exec(cadena);
+    if (validar_activos(tipo,Descripcion,usuario)){
+
+        qry.exec(cadena);
+        if(tipo == "Alarma") Alarmas++;
+        else if(tipo == "Warning") warnings++;
+    }
+    Indicadores[0]->setText("Alarmas:   "+QString::number(Alarmas)+"");
+    Indicadores[1]->setText("Warnings: "+QString::number(warnings)+"");
+
 }
 
 void MainWindow::rellenar_incidentes(QString T_inicial, QString T_Final,int index)
@@ -1628,6 +1641,28 @@ void MainWindow::buscar_alarmas()
         Indicadores[0]->setText("Alarmas:   "+QString::number(Alarmas)+"");
         Indicadores[1]->setText("Warnings: "+QString::number(warnings)+"");
 
+}
+
+bool MainWindow::validar_activos(QString tipo, QString Descripcion, QString usuario)
+{
+    bool valido = true;
+    QString cadena = "SELECT * FROM cistem.incidentes WHERE Activo = 1;";
+    QSqlQuery qry;
+
+    qry.exec(cadena);
+    while(qry.next())
+    {
+      if(qry.value(1).toString() == tipo
+         && qry.value(2).toString() == Descripcion
+         && qry.value(3).toString() == usuario)
+      {
+           valido = false;
+           break;
+      }
+      else valido = true;
+    }
+
+    return valido;
 }
 
 /* Este Metodo es para colocar las bolitas de colores en su lugar
@@ -1969,19 +2004,17 @@ void MainWindow::btn_clicked()
     else if(Btn_select_rango->text() == "Limpiar Activos"){
         limpiar_Activos();
     }
-
-
 }
 
 void MainWindow::Leer_GPIO()
 {
     QString Gpio_status;
 
-// aqui se leen los sensores
-    S_input[0] = digitalRead(INPUT_1);
-    S_input[1] = digitalRead(INPUT_2);
-    S_input[2] = digitalRead(INPUT_3);
-    S_input[3] = digitalRead(INPUT_4);
+    // aqui se leen los sensores
+    S_input[0] = true; // **
+    S_input[1] = true; // **
+    S_input[2] = true; // **
+    S_input[3] = true; // **
     S_input[4] = digitalRead(INPUT_5);
     S_input[5] = digitalRead(INPUT_6);
     S_input[6] = digitalRead(INPUT_7);
@@ -1997,6 +2030,12 @@ void MainWindow::Leer_GPIO()
 
    for(int i = 0; i <= 3; i++)
    {
+       // herramientas para debugear las alarmas // **
+      if(i == 0) S_input[0] = digitalRead(INPUT_1); // **
+      if(i == 1) S_input[1] = digitalRead(INPUT_2); // **
+      if(i == 2) S_input[2] = digitalRead(INPUT_3); // **
+      if(i == 3) S_input[3] = digitalRead(INPUT_4); // **
+
       //  qDebug() << "Valor de senor " << i+1 <<  " :" << S_input[i];
        if(S_input[i] == false) // se activan en false
        {   Gpio_status.append( "Sensor_");
@@ -2004,21 +2043,26 @@ void MainWindow::Leer_GPIO()
            Gpio_status.append(": Activado");
            qDebug() << "El sensor" << i+1 << " se Activo";
 
-//           if(S_input[0] == false || S_input[1] == false ){
-//               insertar_incidente("Alarma",Gpio_status,"user","1","1");
-//               Alarmas ++;
-//               Indicadores[0]->setText("Alarmas:   "+QString::number(Alarmas)+"");
-//           }else {
-//               insertar_incidente("Warning",Gpio_status,"user","0","1");
-//               warnings ++;
-//               Indicadores[1]->setText("Warnings: "+QString::number(warnings)+"");
-//           }
+           if(S_input[2] == false || S_input[3] == false){ // **
+               insertar_incidente("Alarma",Gpio_status,"user","1","1");  //**
+               Indicadores[0]->setText("Alarmas:   "+QString::number(Alarmas)+"");  //**
+           }else {
+               insertar_incidente("Warning",Gpio_status,"user","0","1");
+               Indicadores[1]->setText("Warnings: "+QString::number(warnings)+"");
+           }
+            // expresion usada solo para debugiar alarmas y warnings
 
           // insertar_incidente("incidente",Gpio_status,"user","0");
 
            Gpio_status.clear();
        }
+       S_input[i] = true; // **
    }
+
+}
+
+void MainWindow::everysecond()
+{
 
 }
 
