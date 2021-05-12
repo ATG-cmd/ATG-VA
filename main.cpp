@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     }
     w.show();
      splash->close()*/;
-   // w.showFullScreen();
-    w.show();
+    w.showFullScreen();
+   //w.show();
     return a.exec();
 }

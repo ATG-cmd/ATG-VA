@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1200</width>
-    <height>600</height>
+    <width>1920</width>
+    <height>1080</height>
    </rect>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1200</width>
-    <height>600</height>
+    <width>1920</width>
+    <height>1080</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -135,9 +135,9 @@ QHeaderView::section:vertical
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>50</y>
-      <width>1191</width>
-      <height>471</height>
+      <y>100</y>
+      <width>1911</width>
+      <height>841</height>
      </rect>
     </property>
     <property name="font">
@@ -173,13 +173,201 @@ QHeaderView::section:vertical
        <rect>
         <x>61</x>
         <y>40</y>
-        <width>1066</width>
-        <height>416</height>
+        <width>1821</width>
+        <height>751</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="1">
+        <widget class="QPushButton" name="Btn_Tanque">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(20,40,200,100);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/Tanque.png</normaloff>:/Tanque.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>350</width>
+           <height>350</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="Btn_Entregas">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(230,145,50,100);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/Entregas.png</normaloff>:/Entregas.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>350</width>
+           <height>350</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QPushButton" name="Btn_Impresora">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(60,50,70,100);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/Impresora.png</normaloff>:/Impresora.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>350</width>
+           <height>350</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QPushButton" name="Btn_Comunicacion">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(150,80,120,100);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/Comunicacion.png</normaloff>:/Comunicacion.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>350</width>
+           <height>350</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="Btn_tabla_cubicacion">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(150,80,120,100);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/Tabla C.png</normaloff>:/Tabla C.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>350</width>
+           <height>350</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="Btn_Alarmas">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(250,45,14,100);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/Alarmas.png</normaloff>:/Alarmas.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>350</width>
+           <height>350</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QPushButton" name="Btn_inventarioConfig">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(110,145,141,100);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/Inventario.png</normaloff>:/Inventario.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>350</width>
+           <height>350</height>
+          </size>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="0">
         <widget class="QPushButton" name="Btb_Sonda">
+         <property name="maximumSize">
+          <size>
+           <width>600</width>
+           <height>600</height>
+          </size>
+         </property>
          <property name="font">
           <font>
            <pointsize>8</pointsize>
@@ -209,190 +397,8 @@ QHeaderView::section:vertical
          </property>
          <property name="iconSize">
           <size>
-           <width>200</width>
-           <height>200</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QPushButton" name="Btn_Tanque">
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(20,40,200,100);
-	border-width: 3px;
-	border-radius: 10px;
-	padding: 2px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Tanque.png</normaloff>:/Tanque.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>200</width>
-           <height>200</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QPushButton" name="Btn_Entregas">
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(230,145,50,100);
-	border-width: 3px;
-	border-radius: 10px;
-	padding: 2px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Entregas.png</normaloff>:/Entregas.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>200</width>
-           <height>200</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QPushButton" name="Btn_Impresora">
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(60,50,70,100);
-	border-width: 3px;
-	border-radius: 10px;
-	padding: 2px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Impresora.png</normaloff>:/Impresora.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>200</width>
-           <height>200</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="4">
-        <widget class="QPushButton" name="Btn_Comunicacion">
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(150,80,120,100);
-	border-width: 3px;
-	border-radius: 10px;
-	padding: 2px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Comunicacion.png</normaloff>:/Comunicacion.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>200</width>
-           <height>200</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="Btn_tabla_cubicacion">
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(150,80,120,100);
-	border-width: 3px;
-	border-radius: 10px;
-	padding: 2px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Tabla C.png</normaloff>:/Tabla C.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>200</width>
-           <height>200</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="Btn_Alarmas">
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(250,45,14,100);
-	border-width: 3px;
-	border-radius: 10px;
-	padding: 2px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Alarmas.png</normaloff>:/Alarmas.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>200</width>
-           <height>200</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QPushButton" name="Btn_inventarioConfig">
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(110,145,141,100);
-	border-width: 3px;
-	border-radius: 10px;
-	padding: 2px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Inventario.png</normaloff>:/Inventario.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>200</width>
-           <height>200</height>
+           <width>350</width>
+           <height>350</height>
           </size>
          </property>
         </widget>
@@ -404,10 +410,10 @@ QHeaderView::section:vertical
      <widget class="QPushButton" name="pushButton_2">
       <property name="geometry">
        <rect>
-        <x>1160</x>
-        <y>10</y>
-        <width>41</width>
-        <height>491</height>
+        <x>1810</x>
+        <y>30</y>
+        <width>91</width>
+        <height>831</height>
        </rect>
       </property>
       <property name="text">
@@ -420,8 +426,8 @@ QHeaderView::section:vertical
       </property>
       <property name="geometry">
        <rect>
-        <x>160</x>
-        <y>300</y>
+        <x>190</x>
+        <y>380</y>
         <width>301</width>
         <height>51</height>
        </rect>
@@ -461,10 +467,10 @@ padding: 2px;</string>
      <widget class="QWidget" name="gridLayoutWidget_3">
       <property name="geometry">
        <rect>
-        <x>390</x>
+        <x>610</x>
         <y>20</y>
-        <width>421</width>
-        <height>243</height>
+        <width>669</width>
+        <height>481</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_6">
@@ -472,7 +478,7 @@ padding: 2px;</string>
         <widget class="QLabel" name="Lab_Protocolo">
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -491,9 +497,15 @@ padding: 2px;</string>
        </item>
        <item row="2" column="1">
         <widget class="QComboBox" name="Combo_protocolo">
+         <property name="minimumSize">
+          <size>
+           <width>441</width>
+           <height>71</height>
+          </size>
+         </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -521,9 +533,15 @@ padding: 2px;</string>
        </item>
        <item row="6" column="1">
         <widget class="QLineEdit" name="Line_Licencia">
+         <property name="maximumSize">
+          <size>
+           <width>441</width>
+           <height>71</height>
+          </size>
+         </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -535,7 +553,7 @@ padding: 2px;</string>
         <widget class="QLabel" name="LabFlotadores">
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -554,9 +572,15 @@ padding: 2px;</string>
        </item>
        <item row="4" column="1">
         <widget class="QComboBox" name="ComboFlotadores">
+         <property name="maximumSize">
+          <size>
+           <width>441</width>
+           <height>71</height>
+          </size>
+         </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -583,7 +607,7 @@ padding: 2px;</string>
         <widget class="QLabel" name="Lab_Licencia">
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -602,9 +626,15 @@ padding: 2px;</string>
        </item>
        <item row="0" column="1">
         <widget class="QLineEdit" name="line_Serie">
+         <property name="maximumSize">
+          <size>
+           <width>441</width>
+           <height>71</height>
+          </size>
+         </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -616,7 +646,7 @@ padding: 2px;</string>
         <widget class="QLabel" name="Lab_Serie">
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -669,10 +699,10 @@ padding: 2px;</string>
      <widget class="QScrollArea" name="scrollArea">
       <property name="geometry">
        <rect>
-        <x>150</x>
+        <x>270</x>
         <y>10</y>
-        <width>771</width>
-        <height>450</height>
+        <width>1141</width>
+        <height>811</height>
        </rect>
       </property>
       <property name="font">
@@ -697,8 +727,8 @@ padding: 2px;</string>
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>721</width>
-         <height>1075</height>
+         <width>1107</width>
+         <height>1471</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -711,13 +741,13 @@ padding: 2px;</string>
            <widget class="QComboBox" name="Combo_Sonda">
             <property name="maximumSize">
              <size>
-              <width>300</width>
-              <height>50</height>
+              <width>600</width>
+              <height>71</height>
              </size>
             </property>
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -735,7 +765,7 @@ padding: 2px;</string>
             </property>
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -763,7 +793,7 @@ padding: 2px;</string>
            <widget class="QLabel" name="Lab_Config">
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -865,7 +895,7 @@ padding: 2px;</string>
            <widget class="QLabel" name="Lab_Sonda_3">
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -883,13 +913,13 @@ padding: 2px;</string>
            <widget class="QLineEdit" name="Line_coeficiente">
             <property name="maximumSize">
              <size>
-              <width>300</width>
-              <height>500</height>
+              <width>600</width>
+              <height>71</height>
              </size>
             </property>
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -901,13 +931,13 @@ padding: 2px;</string>
            <widget class="QLineEdit" name="Line_CodigoCombustible">
             <property name="maximumSize">
              <size>
-              <width>300</width>
-              <height>50</height>
+              <width>600</width>
+              <height>71</height>
              </size>
             </property>
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -919,13 +949,13 @@ padding: 2px;</string>
            <widget class="QLineEdit" name="Line_AjusteAltura">
             <property name="maximumSize">
              <size>
-              <width>300</width>
-              <height>50</height>
+              <width>600</width>
+              <height>71</height>
              </size>
             </property>
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -944,13 +974,13 @@ padding: 2px;</string>
            <widget class="QComboBox" name="Combo_Color">
             <property name="maximumSize">
              <size>
-              <width>300</width>
-              <height>50</height>
+              <width>600</width>
+              <height>71</height>
              </size>
             </property>
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -962,13 +992,13 @@ padding: 2px;</string>
            <widget class="QComboBox" name="Combo_Tipo">
             <property name="maximumSize">
              <size>
-              <width>300</width>
-              <height>50</height>
+              <width>600</width>
+              <height>71</height>
              </size>
             </property>
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -1002,7 +1032,7 @@ padding: 2px;</string>
            <widget class="QLabel" name="Lab_Nombre_3">
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -1023,13 +1053,13 @@ padding: 2px;</string>
             </property>
             <property name="maximumSize">
              <size>
-              <width>300</width>
-              <height>50</height>
+              <width>600</width>
+              <height>71</height>
              </size>
             </property>
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -1092,13 +1122,13 @@ padding: 2px;</string>
             </property>
             <property name="maximumSize">
              <size>
-              <width>300</width>
-              <height>50</height>
+              <width>600</width>
+              <height>71</height>
              </size>
             </property>
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -1110,13 +1140,13 @@ padding: 2px;</string>
            <widget class="QLineEdit" name="Line_Nombre">
             <property name="maximumSize">
              <size>
-              <width>300</width>
-              <height>50</height>
+              <width>600</width>
+              <height>71</height>
              </size>
             </property>
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -1133,7 +1163,7 @@ border-radius: 10px;
            <widget class="QLabel" name="Lab_Nombre">
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -1154,13 +1184,13 @@ border-radius: 10px;
            <widget class="QLineEdit" name="Line_Distancia">
             <property name="maximumSize">
              <size>
-              <width>300</width>
-              <height>50</height>
+              <width>600</width>
+              <height>71</height>
              </size>
             </property>
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -1174,15 +1204,15 @@ border-radius: 10px;
              <widget class="QRadioButton" name="RHabilitado">
               <property name="font">
                <font>
-                <pointsize>20</pointsize>
+                <pointsize>36</pointsize>
                 <weight>75</weight>
                 <italic>true</italic>
                 <bold>true</bold>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">QRadioButton::indicator::unchecked{ width: 30px; height: 30px; }
-QRadioButton::indicator::checked{ width: 30px; height: 30px; }
+               <string notr="true">QRadioButton::indicator::unchecked{ width: 50px; height: 50px; }
+QRadioButton::indicator::checked{ width: 50px; height: 50px; }
 </string>
               </property>
               <property name="text">
@@ -1194,15 +1224,15 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
              <widget class="QRadioButton" name="RDeshabilitado">
               <property name="font">
                <font>
-                <pointsize>22</pointsize>
+                <pointsize>36</pointsize>
                 <weight>75</weight>
                 <italic>true</italic>
                 <bold>true</bold>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">QRadioButton::indicator::unchecked{ width: 30px; height: 30px; }
-QRadioButton::indicator::checked{ width: 30px; height: 30px; }
+               <string notr="true">QRadioButton::indicator::unchecked{ width: 50px; height: 50px; }
+QRadioButton::indicator::checked{ width: 50px; height: 50px; }
 </string>
               </property>
               <property name="text">
@@ -1270,7 +1300,7 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
            <widget class="QLabel" name="Lab_Licencia_3">
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -1288,7 +1318,7 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
            <widget class="QLabel" name="Lab_Angulo">
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -1306,7 +1336,7 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
            <widget class="QLabel" name="Lab_Color">
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -1327,7 +1357,7 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
            <widget class="QLabel" name="Lab_Codcom">
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -1355,7 +1385,7 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
             </property>
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -1376,7 +1406,7 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
            <widget class="QLabel" name="Lab_Nombre_5">
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -1397,13 +1427,13 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
             </property>
             <property name="maximumSize">
              <size>
-              <width>300</width>
-              <height>50</height>
+              <width>600</width>
+              <height>71</height>
              </size>
             </property>
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -1418,13 +1448,13 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
            <widget class="QComboBox" name="Combo_Producto">
             <property name="maximumSize">
              <size>
-              <width>300</width>
-              <height>50</height>
+              <width>600</width>
+              <height>71</height>
              </size>
             </property>
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -1446,7 +1476,7 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
            <widget class="QLabel" name="Lab_Nombre_2">
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -1480,7 +1510,7 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
            <widget class="QLabel" name="Lab_Tipo">
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -1515,13 +1545,13 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
            <widget class="QLineEdit" name="Line_Angulo">
             <property name="maximumSize">
              <size>
-              <width>300</width>
-              <height>50</height>
+              <width>600</width>
+              <height>71</height>
              </size>
             </property>
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -1533,7 +1563,7 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
            <widget class="QLabel" name="Lab_Sonda">
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -1602,9 +1632,17 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
            <widget class="QComboBox" name="Combo_IdTanque">
             <property name="maximumSize">
              <size>
-              <width>300</width>
-              <height>50</height>
+              <width>600</width>
+              <height>71</height>
              </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
             </property>
             <item>
              <property name="text">
@@ -1662,7 +1700,7 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
            <widget class="QLabel" name="label_5">
             <property name="font">
              <font>
-              <pointsize>22</pointsize>
+              <pointsize>36</pointsize>
               <weight>75</weight>
               <italic>true</italic>
               <bold>true</bold>
@@ -1696,15 +1734,15 @@ QRadioButton::indicator::checked{ width: 30px; height: 30px; }
      <widget class="QTableWidget" name="tableWidget">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>30</x>
         <y>30</y>
-        <width>531</width>
-        <height>411</height>
+        <width>801</width>
+        <height>781</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>26</pointsize>
         <weight>75</weight>
         <italic>true</italic>
         <bold>true</bold>
@@ -2038,18 +2076,18 @@ QScrollBar::add-line:vertical {
      <widget class="QTabWidget" name="tabWidget">
       <property name="geometry">
        <rect>
-        <x>600</x>
-        <y>10</y>
-        <width>540</width>
-        <height>451</height>
+        <x>880</x>
+        <y>60</y>
+        <width>1021</width>
+        <height>751</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
-        <weight>50</weight>
-        <italic>false</italic>
-        <bold>false</bold>
+        <pointsize>26</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
        </font>
       </property>
       <property name="focusPolicy">
@@ -2070,282 +2108,256 @@ QScrollBar::add-line:vertical {
        <attribute name="title">
         <string>Editar   </string>
        </attribute>
-       <widget class="QLabel" name="label">
+       <widget class="QWidget" name="gridLayoutWidget_6">
         <property name="geometry">
          <rect>
-          <x>30</x>
-          <y>20</y>
-          <width>151</width>
-          <height>51</height>
+          <x>100</x>
+          <y>70</y>
+          <width>551</width>
+          <height>391</height>
          </rect>
         </property>
-        <property name="font">
-         <font>
-          <pointsize>20</pointsize>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Tanque</string>
-        </property>
+        <layout class="QGridLayout" name="gridLayout_11">
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="Line_Volumen">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="placeholderText">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_12">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Volumen</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_11">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Altura</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="Line_Punto">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="placeholderText">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="Line_Altura">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="placeholderText">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_10">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Punto</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="Combo_CubTanque">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <item>
+            <property name="text">
+             <string/>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Tanque</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
-       <widget class="QComboBox" name="Combo_CubTanque">
+       <widget class="QWidget" name="gridLayoutWidget_7">
         <property name="geometry">
          <rect>
-          <x>270</x>
-          <y>20</y>
-          <width>250</width>
-          <height>51</height>
+          <x>340</x>
+          <y>570</y>
+          <width>641</width>
+          <height>80</height>
          </rect>
         </property>
-        <item>
-         <property name="text">
-          <string/>
-         </property>
-        </item>
-       </widget>
-       <widget class="QLabel" name="label_10">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>90</y>
-          <width>151</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>20</pointsize>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Punto</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_11">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>160</y>
-          <width>151</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>20</pointsize>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Altura</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_12">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>230</y>
-          <width>181</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>20</pointsize>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Volumen</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="Btn_Cub_Guardar">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>310</y>
-          <width>150</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>18</pointsize>
-          <weight>75</weight>
-          <italic>false</italic>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="focusPolicy">
-         <enum>Qt::NoFocus</enum>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
+        <layout class="QGridLayout" name="gridLayout_12">
+         <item row="0" column="2">
+          <widget class="QPushButton" name="Btn_Cub_Cancelar">
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>90</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>26</pointsize>
+             <weight>75</weight>
+             <italic>false</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
 	color: white;
 	background-color: royalblue;
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
 }</string>
-        </property>
-        <property name="text">
-         <string>Guardar</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="Btn_Cub_Editar">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>310</y>
-          <width>150</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>18</pointsize>
-          <weight>75</weight>
-          <italic>false</italic>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="focusPolicy">
-         <enum>Qt::NoFocus</enum>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
+           </property>
+           <property name="text">
+            <string>Cancelar</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QPushButton" name="Btn_Cub_Guardar">
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>90</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>26</pointsize>
+             <weight>75</weight>
+             <italic>false</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
 	color: white;
 	background-color: royalblue;
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
 }</string>
-        </property>
-        <property name="text">
-         <string>Editar</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="Btn_Cub_Cancelar">
-        <property name="geometry">
-         <rect>
-          <x>370</x>
-          <y>310</y>
-          <width>150</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>18</pointsize>
-          <weight>75</weight>
-          <italic>false</italic>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="focusPolicy">
-         <enum>Qt::NoFocus</enum>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
+           </property>
+           <property name="text">
+            <string>Guardar</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QPushButton" name="Btn_Cub_Editar">
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>90</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>26</pointsize>
+             <weight>75</weight>
+             <italic>false</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
 	color: white;
 	background-color: royalblue;
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
 }</string>
-        </property>
-        <property name="text">
-         <string>Cancelar</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="Line_Punto">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>270</x>
-          <y>90</y>
-          <width>250</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>21</pointsize>
-          <weight>75</weight>
-          <italic>true</italic>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="placeholderText">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="Line_Altura">
-        <property name="geometry">
-         <rect>
-          <x>270</x>
-          <y>160</y>
-          <width>250</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>21</pointsize>
-          <weight>75</weight>
-          <italic>true</italic>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="placeholderText">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="Line_Volumen">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>270</x>
-          <y>230</y>
-          <width>250</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>21</pointsize>
-          <weight>75</weight>
-          <italic>true</italic>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="placeholderText">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit">
-        <property name="geometry">
-         <rect>
-          <x>140</x>
-          <y>80</y>
-          <width>113</width>
-          <height>32</height>
-         </rect>
-        </property>
+           </property>
+           <property name="text">
+            <string>Editar</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </widget>
       <widget class="QWidget" name="Tab_generar">
@@ -2355,15 +2367,15 @@ QScrollBar::add-line:vertical {
        <widget class="QPushButton" name="Btn_CubGenerar">
         <property name="geometry">
          <rect>
-          <x>30</x>
-          <y>310</y>
+          <x>470</x>
+          <y>560</y>
           <width>491</width>
-          <height>61</height>
+          <height>90</height>
          </rect>
         </property>
         <property name="font">
          <font>
-          <pointsize>18</pointsize>
+          <pointsize>26</pointsize>
           <weight>75</weight>
           <italic>true</italic>
           <bold>true</bold>
@@ -2385,130 +2397,150 @@ QScrollBar::add-line:vertical {
          <string>Generar</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_2">
+       <widget class="QWidget" name="gridLayoutWidget_8">
         <property name="geometry">
          <rect>
-          <x>30</x>
-          <y>20</y>
-          <width>151</width>
-          <height>51</height>
+          <x>50</x>
+          <y>40</y>
+          <width>641</width>
+          <height>361</height>
          </rect>
         </property>
-        <property name="text">
-         <string>Tanque</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_13">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>160</y>
-          <width>211</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Altura max</string>
-        </property>
-       </widget>
-       <widget class="QComboBox" name="Combo_cub_generar">
-        <property name="geometry">
-         <rect>
-          <x>270</x>
-          <y>20</y>
-          <width>250</width>
-          <height>51</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="Line_Puntos">
-        <property name="geometry">
-         <rect>
-          <x>270</x>
-          <y>90</y>
-          <width>250</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>21</pointsize>
-          <weight>75</weight>
-          <italic>true</italic>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="placeholderText">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="Line_Altura_max">
-        <property name="geometry">
-         <rect>
-          <x>270</x>
-          <y>160</y>
-          <width>250</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>21</pointsize>
-          <weight>75</weight>
-          <italic>true</italic>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="placeholderText">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_14">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>90</y>
-          <width>151</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Puntos</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_15">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>230</y>
-          <width>211</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Capacidad</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="Capacidad">
-        <property name="geometry">
-         <rect>
-          <x>270</x>
-          <y>230</y>
-          <width>250</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>21</pointsize>
-          <weight>75</weight>
-          <italic>true</italic>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="placeholderText">
-         <string/>
-        </property>
+        <layout class="QGridLayout" name="gridLayout_13">
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="Capacidad">
+           <property name="maximumSize">
+            <size>
+             <width>441</width>
+             <height>71</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>21</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="placeholderText">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="Line_Altura_max">
+           <property name="maximumSize">
+            <size>
+             <width>441</width>
+             <height>71</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>21</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="placeholderText">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="Line_Puntos">
+           <property name="maximumSize">
+            <size>
+             <width>441</width>
+             <height>71</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>21</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="placeholderText">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_15">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Capacidad</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="Combo_cub_generar">
+           <property name="maximumSize">
+            <size>
+             <width>441</width>
+             <height>71</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_13">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Altura max</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_14">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Puntos</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Tanque</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_11">
@@ -2520,13 +2552,13 @@ QScrollBar::add-line:vertical {
          <rect>
           <x>80</x>
           <y>170</y>
-          <width>391</width>
-          <height>51</height>
+          <width>441</width>
+          <height>71</height>
          </rect>
         </property>
         <property name="font">
          <font>
-          <pointsize>21</pointsize>
+          <pointsize>36</pointsize>
           <weight>75</weight>
           <italic>true</italic>
           <bold>true</bold>
@@ -2541,9 +2573,17 @@ QScrollBar::add-line:vertical {
          <rect>
           <x>80</x>
           <y>100</y>
-          <width>431</width>
+          <width>451</width>
           <height>41</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>36</pointsize>
+          <weight>75</weight>
+          <italic>true</italic>
+          <bold>true</bold>
+         </font>
         </property>
         <property name="text">
          <string>Puntos de cubicacion</string>
@@ -2556,15 +2596,15 @@ QScrollBar::add-line:vertical {
      <widget class="QLineEdit" name="Line_Usuario">
       <property name="geometry">
        <rect>
-        <x>430</x>
-        <y>230</y>
-        <width>331</width>
-        <height>51</height>
+        <x>800</x>
+        <y>540</y>
+        <width>441</width>
+        <height>71</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>21</pointsize>
+        <pointsize>36</pointsize>
         <weight>75</weight>
         <italic>true</italic>
         <bold>true</bold>
@@ -2577,15 +2617,15 @@ QScrollBar::add-line:vertical {
      <widget class="QLineEdit" name="Line_Contra">
       <property name="geometry">
        <rect>
-        <x>430</x>
-        <y>290</y>
-        <width>331</width>
-        <height>51</height>
+        <x>800</x>
+        <y>630</y>
+        <width>441</width>
+        <height>71</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>18</pointsize>
+        <pointsize>36</pointsize>
         <weight>75</weight>
         <italic>true</italic>
         <bold>true</bold>
@@ -2601,15 +2641,15 @@ QScrollBar::add-line:vertical {
      <widget class="QPushButton" name="pushButton_3">
       <property name="geometry">
        <rect>
-        <x>450</x>
-        <y>360</y>
-        <width>301</width>
-        <height>81</height>
+        <x>840</x>
+        <y>720</y>
+        <width>381</width>
+        <height>101</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>30</pointsize>
+        <pointsize>36</pointsize>
         <weight>75</weight>
         <italic>true</italic>
         <bold>true</bold>
@@ -2630,18 +2670,18 @@ QScrollBar::add-line:vertical {
       </property>
       <property name="iconSize">
        <size>
-        <width>50</width>
-        <height>50</height>
+        <width>80</width>
+        <height>80</height>
        </size>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_4">
       <property name="geometry">
        <rect>
-        <x>460</x>
-        <y>30</y>
-        <width>271</width>
-        <height>181</height>
+        <x>680</x>
+        <y>50</y>
+        <width>671</width>
+        <height>471</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -2658,8 +2698,8 @@ QScrollBar::add-line:vertical {
       </property>
       <property name="iconSize">
        <size>
-        <width>200</width>
-        <height>200</height>
+        <width>500</width>
+        <height>500</height>
        </size>
       </property>
      </widget>
@@ -2683,22 +2723,25 @@ QScrollBar::add-line:vertical {
      <widget class="QTabWidget" name="tabWidget_2">
       <property name="geometry">
        <rect>
-        <x>590</x>
-        <y>10</y>
-        <width>551</width>
-        <height>471</height>
+        <x>1080</x>
+        <y>60</y>
+        <width>751</width>
+        <height>741</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>22</pointsize>
+        <pointsize>36</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
        </font>
       </property>
       <property name="styleSheet">
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -2709,8 +2752,8 @@ QScrollBar::add-line:vertical {
          <rect>
           <x>10</x>
           <y>10</y>
-          <width>521</width>
-          <height>419</height>
+          <width>691</width>
+          <height>641</height>
          </rect>
         </property>
         <layout class="QFormLayout" name="formLayout">
@@ -2718,7 +2761,10 @@ QScrollBar::add-line:vertical {
           <widget class="QLabel" name="label_8">
            <property name="font">
             <font>
-             <pointsize>22</pointsize>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
             </font>
            </property>
            <property name="text">
@@ -2730,7 +2776,10 @@ QScrollBar::add-line:vertical {
           <widget class="QLabel" name="Lab_VolMaxi">
            <property name="font">
             <font>
-             <pointsize>22</pointsize>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
             </font>
            </property>
            <property name="text">
@@ -2745,7 +2794,10 @@ QScrollBar::add-line:vertical {
           <widget class="QLabel" name="label_17">
            <property name="font">
             <font>
-             <pointsize>22</pointsize>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
             </font>
            </property>
            <property name="text">
@@ -2757,7 +2809,10 @@ QScrollBar::add-line:vertical {
           <widget class="QLabel" name="Lab_100">
            <property name="font">
             <font>
-             <pointsize>22</pointsize>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
             </font>
            </property>
            <property name="text">
@@ -2772,7 +2827,10 @@ QScrollBar::add-line:vertical {
           <widget class="QLabel" name="label_21">
            <property name="font">
             <font>
-             <pointsize>22</pointsize>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
             </font>
            </property>
            <property name="text">
@@ -2784,7 +2842,10 @@ QScrollBar::add-line:vertical {
           <widget class="QLabel" name="Lab_TcVolumen">
            <property name="font">
             <font>
-             <pointsize>22</pointsize>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
             </font>
            </property>
            <property name="text">
@@ -2799,7 +2860,10 @@ QScrollBar::add-line:vertical {
           <widget class="QLabel" name="label_23">
            <property name="font">
             <font>
-             <pointsize>22</pointsize>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
             </font>
            </property>
            <property name="text">
@@ -2811,7 +2875,10 @@ QScrollBar::add-line:vertical {
           <widget class="QLabel" name="Lab_AlturaMaxi">
            <property name="font">
             <font>
-             <pointsize>22</pointsize>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
             </font>
            </property>
            <property name="text">
@@ -2826,7 +2893,10 @@ QScrollBar::add-line:vertical {
           <widget class="QLabel" name="label_25">
            <property name="font">
             <font>
-             <pointsize>22</pointsize>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
             </font>
            </property>
            <property name="text">
@@ -2838,7 +2908,10 @@ QScrollBar::add-line:vertical {
           <widget class="QLabel" name="Lab_VolAgua">
            <property name="font">
             <font>
-             <pointsize>22</pointsize>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
             </font>
            </property>
            <property name="text">
@@ -2853,7 +2926,10 @@ QScrollBar::add-line:vertical {
           <widget class="QLabel" name="label_27">
            <property name="font">
             <font>
-             <pointsize>22</pointsize>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
             </font>
            </property>
            <property name="text">
@@ -2865,7 +2941,10 @@ QScrollBar::add-line:vertical {
           <widget class="QLabel" name="Lab_AlturaAgua">
            <property name="font">
             <font>
-             <pointsize>22</pointsize>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
             </font>
            </property>
            <property name="text">
@@ -2880,7 +2959,10 @@ QScrollBar::add-line:vertical {
           <widget class="QLabel" name="label_29">
            <property name="font">
             <font>
-             <pointsize>22</pointsize>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
             </font>
            </property>
            <property name="text">
@@ -2892,7 +2974,10 @@ QScrollBar::add-line:vertical {
           <widget class="QLabel" name="Lab_Maxitemp">
            <property name="font">
             <font>
-             <pointsize>22</pointsize>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
             </font>
            </property>
            <property name="layoutDirection">
@@ -2910,7 +2995,10 @@ QScrollBar::add-line:vertical {
           <widget class="QLabel" name="label_31">
            <property name="font">
             <font>
-             <pointsize>22</pointsize>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
             </font>
            </property>
            <property name="text">
@@ -2922,7 +3010,10 @@ QScrollBar::add-line:vertical {
           <widget class="QLabel" name="label_32">
            <property name="font">
             <font>
-             <pointsize>22</pointsize>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
             </font>
            </property>
            <property name="text">
@@ -2934,7 +3025,10 @@ QScrollBar::add-line:vertical {
           <widget class="QLabel" name="label_33">
            <property name="font">
             <font>
-             <pointsize>22</pointsize>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
             </font>
            </property>
            <property name="layoutDirection">
@@ -2952,7 +3046,10 @@ QScrollBar::add-line:vertical {
           <widget class="QLabel" name="Lab_Diametro">
            <property name="font">
             <font>
-             <pointsize>22</pointsize>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
             </font>
            </property>
            <property name="layoutDirection">
@@ -2978,13 +3075,21 @@ QScrollBar::add-line:vertical {
          <rect>
           <x>20</x>
           <y>10</y>
-          <width>516</width>
-          <height>317</height>
+          <width>721</width>
+          <height>621</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_7">
          <item row="3" column="2">
           <widget class="QLabel" name="Lab_NecesitaEntrega">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
             <string>0000</string>
            </property>
@@ -3037,6 +3142,14 @@ border-radius: 16;
          </item>
          <item row="1" column="2">
           <widget class="QLabel" name="Lab_ProductoAlto">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
             <string>0000</string>
            </property>
@@ -3047,6 +3160,14 @@ border-radius: 16;
          </item>
          <item row="2" column="1">
           <widget class="QLabel" name="label_39">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
             <string>Desbordamiento</string>
            </property>
@@ -3054,6 +3175,14 @@ border-radius: 16;
          </item>
          <item row="6" column="2">
           <widget class="QLabel" name="Lab_AdvertenciaAlarmaAlta">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
             <string>0000</string>
            </property>
@@ -3106,6 +3235,14 @@ border-radius: 16;
          </item>
          <item row="5" column="2">
           <widget class="QLabel" name="Lab_AlarmaAguaAlta">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
             <string>0000</string>
            </property>
@@ -3116,6 +3253,14 @@ border-radius: 16;
          </item>
          <item row="4" column="1">
           <widget class="QLabel" name="label_44">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
             <string>Producto Bajo</string>
            </property>
@@ -3123,6 +3268,14 @@ border-radius: 16;
          </item>
          <item row="6" column="1">
           <widget class="QLabel" name="label_45">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
             <string>Advertencia de Agua Alta</string>
            </property>
@@ -3130,6 +3283,14 @@ border-radius: 16;
          </item>
          <item row="3" column="1">
           <widget class="QLabel" name="label_46">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
             <string>Necesita Entrega</string>
            </property>
@@ -3137,6 +3298,14 @@ border-radius: 16;
          </item>
          <item row="4" column="2">
           <widget class="QLabel" name="Lab_ProductoBajo">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
             <string>0000</string>
            </property>
@@ -3168,6 +3337,14 @@ border-radius: 16;
          </item>
          <item row="1" column="1">
           <widget class="QLabel" name="label_49">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
             <string>Producto Alto</string>
            </property>
@@ -3196,6 +3373,14 @@ border-radius: 16;
          </item>
          <item row="0" column="1">
           <widget class="QLabel" name="label_51">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
             <string>Maximo Volumen</string>
            </property>
@@ -3203,6 +3388,14 @@ border-radius: 16;
          </item>
          <item row="2" column="2">
           <widget class="QLabel" name="Lab_DesbordamientomMaxi">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
             <string>0000</string>
            </property>
@@ -3234,6 +3427,14 @@ border-radius: 16;
          </item>
          <item row="0" column="2">
           <widget class="QLabel" name="Lab_VolMaximo">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
             <string>0000</string>
            </property>
@@ -3244,6 +3445,14 @@ border-radius: 16;
          </item>
          <item row="5" column="1">
           <widget class="QLabel" name="label_55">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
             <string>Alarma de Agua Alta</string>
            </property>
@@ -3256,11 +3465,20 @@ border-radius: 16;
      <widget class="QPushButton" name="Regresar_Home">
       <property name="geometry">
        <rect>
-        <x>920</x>
-        <y>10</y>
-        <width>161</width>
-        <height>51</height>
+        <x>1480</x>
+        <y>30</y>
+        <width>221</width>
+        <height>91</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">text-decoration: none;
@@ -3372,8 +3590,8 @@ border-radius: 16;
       </property>
       <property name="geometry">
        <rect>
-        <x>170</x>
-        <y>65</y>
+        <x>260</x>
+        <y>120</y>
         <width>35</width>
         <height>35</height>
        </rect>
@@ -3491,10 +3709,10 @@ border-radius: 16;
      <widget class="QWidget" name="gridLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>320</x>
+        <x>460</x>
         <y>20</y>
-        <width>521</width>
-        <height>371</height>
+        <width>821</width>
+        <height>661</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
@@ -3502,7 +3720,7 @@ border-radius: 16;
         <widget class="QLabel" name="SLab_Baudios">
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -3520,7 +3738,7 @@ border-radius: 16;
         <widget class="QLabel" name="SLab_Stop">
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -3545,7 +3763,7 @@ border-radius: 16;
         <widget class="QLabel" name="SLab_Paridad">
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -3570,13 +3788,13 @@ border-radius: 16;
         <widget class="QComboBox" name="SCombo_Stop">
          <property name="maximumSize">
           <size>
-           <width>300</width>
-           <height>50</height>
+           <width>441</width>
+           <height>71</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -3613,13 +3831,13 @@ border-radius: 16;
         <widget class="QComboBox" name="SCombo_Baudios">
          <property name="maximumSize">
           <size>
-           <width>300</width>
-           <height>50</height>
+           <width>441</width>
+           <height>71</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -3684,7 +3902,7 @@ border-radius: 16;
         <widget class="QLabel" name="SLab_Baudios_2">
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -3709,13 +3927,13 @@ border-radius: 16;
         <widget class="QComboBox" name="SCombo_Datos">
          <property name="maximumSize">
           <size>
-           <width>300</width>
-           <height>50</height>
+           <width>441</width>
+           <height>71</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -3745,13 +3963,13 @@ border-radius: 16;
         <widget class="QComboBox" name="SCombo_Paridad">
          <property name="maximumSize">
           <size>
-           <width>300</width>
-           <height>50</height>
+           <width>441</width>
+           <height>71</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -3786,13 +4004,13 @@ border-radius: 16;
         <widget class="QComboBox" name="SUnidadesSistema">
          <property name="maximumSize">
           <size>
-           <width>300</width>
-           <height>50</height>
+           <width>441</width>
+           <height>71</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -3819,7 +4037,7 @@ border-radius: 16;
         <widget class="QLabel" name="label_18">
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -3842,8 +4060,8 @@ border-radius: 16;
        <rect>
         <x>10</x>
         <y>50</y>
-        <width>1181</width>
-        <height>421</height>
+        <width>1871</width>
+        <height>771</height>
        </rect>
       </property>
      </widget>
@@ -3896,10 +4114,10 @@ border-radius: 16;
      <widget class="QScrollArea" name="scrollArea_2">
       <property name="geometry">
        <rect>
-        <x>190</x>
+        <x>440</x>
         <y>10</y>
-        <width>761</width>
-        <height>471</height>
+        <width>941</width>
+        <height>831</height>
        </rect>
       </property>
       <property name="verticalScrollBarPolicy">
@@ -3913,8 +4131,8 @@ border-radius: 16;
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>711</width>
-         <height>532</height>
+         <width>941</width>
+         <height>831</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_9">
@@ -3922,7 +4140,7 @@ border-radius: 16;
          <widget class="QLabel" name="label_24">
           <property name="font">
            <font>
-            <pointsize>22</pointsize>
+            <pointsize>36</pointsize>
             <weight>75</weight>
             <italic>true</italic>
             <bold>true</bold>
@@ -3940,7 +4158,7 @@ border-radius: 16;
          <widget class="QLabel" name="label_30">
           <property name="font">
            <font>
-            <pointsize>22</pointsize>
+            <pointsize>36</pointsize>
             <weight>75</weight>
             <italic>true</italic>
             <bold>true</bold>
@@ -3961,18 +4179,11 @@ border-radius: 16;
           </property>
          </widget>
         </item>
-        <item row="15" column="0" colspan="2">
-         <widget class="Line" name="line_37">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
         <item row="10" column="0">
          <widget class="QLabel" name="label_26">
           <property name="font">
            <font>
-            <pointsize>22</pointsize>
+            <pointsize>36</pointsize>
             <weight>75</weight>
             <italic>true</italic>
             <bold>true</bold>
@@ -3997,7 +4208,7 @@ border-radius: 16;
          <widget class="QLabel" name="label_6">
           <property name="font">
            <font>
-            <pointsize>22</pointsize>
+            <pointsize>36</pointsize>
             <weight>75</weight>
             <italic>true</italic>
             <bold>true</bold>
@@ -4021,9 +4232,17 @@ border-radius: 16;
           </property>
           <property name="maximumSize">
            <size>
-            <width>350</width>
-            <height>50</height>
+            <width>441</width>
+            <height>71</height>
            </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>36</pointsize>
+            <weight>75</weight>
+            <italic>true</italic>
+            <bold>true</bold>
+           </font>
           </property>
          </widget>
         </item>
@@ -4037,9 +4256,17 @@ border-radius: 16;
           </property>
           <property name="maximumSize">
            <size>
-            <width>350</width>
-            <height>50</height>
+            <width>441</width>
+            <height>71</height>
            </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>36</pointsize>
+            <weight>75</weight>
+            <italic>true</italic>
+            <bold>true</bold>
+           </font>
           </property>
          </widget>
         </item>
@@ -4053,9 +4280,24 @@ border-radius: 16;
           </property>
           <property name="maximumSize">
            <size>
-            <width>350</width>
-            <height>50</height>
+            <width>441</width>
+            <height>71</height>
            </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>36</pointsize>
+            <weight>75</weight>
+            <italic>true</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="0" colspan="2">
+         <widget class="Line" name="line_34">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
          </widget>
         </item>
@@ -4063,7 +4305,7 @@ border-radius: 16;
          <widget class="QLabel" name="label_22">
           <property name="font">
            <font>
-            <pointsize>22</pointsize>
+            <pointsize>36</pointsize>
             <weight>75</weight>
             <italic>true</italic>
             <bold>true</bold>
@@ -4074,13 +4316,6 @@ border-radius: 16;
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="9" column="0" colspan="2">
-         <widget class="Line" name="line_34">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
           </property>
          </widget>
         </item>
@@ -4095,7 +4330,7 @@ border-radius: 16;
          <widget class="QLabel" name="label_16">
           <property name="font">
            <font>
-            <pointsize>22</pointsize>
+            <pointsize>36</pointsize>
             <weight>75</weight>
             <italic>true</italic>
             <bold>true</bold>
@@ -4119,9 +4354,17 @@ border-radius: 16;
           </property>
           <property name="maximumSize">
            <size>
-            <width>350</width>
-            <height>50</height>
+            <width>441</width>
+            <height>71</height>
            </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>36</pointsize>
+            <weight>75</weight>
+            <italic>true</italic>
+            <bold>true</bold>
+           </font>
           </property>
          </widget>
         </item>
@@ -4135,9 +4378,17 @@ border-radius: 16;
           </property>
           <property name="maximumSize">
            <size>
-            <width>350</width>
-            <height>50</height>
+            <width>441</width>
+            <height>71</height>
            </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>36</pointsize>
+            <weight>75</weight>
+            <italic>true</italic>
+            <bold>true</bold>
+           </font>
           </property>
          </widget>
         </item>
@@ -4151,9 +4402,17 @@ border-radius: 16;
           </property>
           <property name="maximumSize">
            <size>
-            <width>350</width>
-            <height>50</height>
+            <width>441</width>
+            <height>71</height>
            </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>36</pointsize>
+            <weight>75</weight>
+            <italic>true</italic>
+            <bold>true</bold>
+           </font>
           </property>
          </widget>
         </item>
@@ -4167,9 +4426,17 @@ border-radius: 16;
           </property>
           <property name="maximumSize">
            <size>
-            <width>350</width>
-            <height>50</height>
+            <width>441</width>
+            <height>71</height>
            </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>36</pointsize>
+            <weight>75</weight>
+            <italic>true</italic>
+            <bold>true</bold>
+           </font>
           </property>
          </widget>
         </item>
@@ -4197,9 +4464,17 @@ border-radius: 16;
           </property>
           <property name="maximumSize">
            <size>
-            <width>350</width>
-            <height>50</height>
+            <width>441</width>
+            <height>71</height>
            </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>36</pointsize>
+            <weight>75</weight>
+            <italic>true</italic>
+            <bold>true</bold>
+           </font>
           </property>
          </widget>
         </item>
@@ -4207,7 +4482,7 @@ border-radius: 16;
          <widget class="QLabel" name="label_19">
           <property name="font">
            <font>
-            <pointsize>22</pointsize>
+            <pointsize>36</pointsize>
             <weight>75</weight>
             <italic>true</italic>
             <bold>true</bold>
@@ -4225,7 +4500,7 @@ border-radius: 16;
          <widget class="QLabel" name="label_28">
           <property name="font">
            <font>
-            <pointsize>22</pointsize>
+            <pointsize>36</pointsize>
             <weight>75</weight>
             <italic>true</italic>
             <bold>true</bold>
@@ -4300,8 +4575,8 @@ border-radius: 16;
        <rect>
         <x>20</x>
         <y>70</y>
-        <width>1151</width>
-        <height>391</height>
+        <width>1851</width>
+        <height>711</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -4470,9 +4745,9 @@ border-radius: 16;
       <property name="geometry">
        <rect>
         <x>400</x>
-        <y>10</y>
-        <width>411</width>
-        <height>411</height>
+        <y>20</y>
+        <width>871</width>
+        <height>661</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
@@ -4480,7 +4755,7 @@ border-radius: 16;
         <widget class="QLabel" name="CLab_Datos">
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -4498,13 +4773,13 @@ border-radius: 16;
         <widget class="QComboBox" name="CCombo_paridad">
          <property name="maximumSize">
           <size>
-           <width>300</width>
-           <height>50</height>
+           <width>441</width>
+           <height>71</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -4546,7 +4821,7 @@ border-radius: 16;
         <widget class="QLabel" name="CLab_Baudios">
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -4567,13 +4842,13 @@ border-radius: 16;
         <widget class="QComboBox" name="CCombo_Baudios">
          <property name="maximumSize">
           <size>
-           <width>300</width>
-           <height>50</height>
+           <width>441</width>
+           <height>71</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -4638,7 +4913,7 @@ border-radius: 16;
         <widget class="QLabel" name="CLab_paridad">
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -4656,8 +4931,8 @@ border-radius: 16;
         <widget class="QComboBox" name="CCombo_Datos">
          <property name="maximumSize">
           <size>
-           <width>300</width>
-           <height>50</height>
+           <width>441</width>
+           <height>71</height>
           </size>
          </property>
          <property name="sizeIncrement">
@@ -4668,7 +4943,7 @@ border-radius: 16;
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -4705,7 +4980,7 @@ border-radius: 16;
         <widget class="QLabel" name="CLab_Stop">
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -4737,13 +5012,13 @@ border-radius: 16;
         <widget class="QComboBox" name="CCombo_Stop">
          <property name="maximumSize">
           <size>
-           <width>300</width>
-           <height>50</height>
+           <width>441</width>
+           <height>71</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -4773,13 +5048,13 @@ border-radius: 16;
         <widget class="QComboBox" name="CCombo_protocolo">
          <property name="maximumSize">
           <size>
-           <width>300</width>
-           <height>50</height>
+           <width>441</width>
+           <height>71</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -4819,7 +5094,7 @@ border-radius: 16;
         <widget class="QLabel" name="CLab_protocolo">
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -4842,8 +5117,8 @@ border-radius: 16;
        <rect>
         <x>60</x>
         <y>40</y>
-        <width>641</width>
-        <height>202</height>
+        <width>1111</width>
+        <height>391</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_8">
@@ -4857,8 +5132,8 @@ border-radius: 16;
         <widget class="QPushButton" name="Btn_Reports">
          <property name="maximumSize">
           <size>
-           <width>200</width>
-           <height>200</height>
+           <width>350</width>
+           <height>350</height>
           </size>
          </property>
          <property name="styleSheet">
@@ -4879,8 +5154,8 @@ border-radius: 16;
          </property>
          <property name="iconSize">
           <size>
-           <width>200</width>
-           <height>200</height>
+           <width>350</width>
+           <height>350</height>
           </size>
          </property>
         </widget>
@@ -4889,8 +5164,8 @@ border-radius: 16;
         <widget class="QPushButton" name="Btn_Entregas_or">
          <property name="maximumSize">
           <size>
-           <width>200</width>
-           <height>200</height>
+           <width>350</width>
+           <height>350</height>
           </size>
          </property>
          <property name="styleSheet">
@@ -4911,8 +5186,8 @@ border-radius: 16;
          </property>
          <property name="iconSize">
           <size>
-           <width>200</width>
-           <height>200</height>
+           <width>350</width>
+           <height>350</height>
           </size>
          </property>
         </widget>
@@ -4921,8 +5196,8 @@ border-radius: 16;
         <widget class="QPushButton" name="Btn_Inventario">
          <property name="maximumSize">
           <size>
-           <width>200</width>
-           <height>200</height>
+           <width>350</width>
+           <height>350</height>
           </size>
          </property>
          <property name="font">
@@ -4954,8 +5229,8 @@ border-radius: 16;
          </property>
          <property name="iconSize">
           <size>
-           <width>200</width>
-           <height>200</height>
+           <width>350</width>
+           <height>350</height>
           </size>
          </property>
         </widget>
@@ -4969,12 +5244,20 @@ border-radius: 16;
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>1161</width>
-        <height>431</height>
+        <width>1881</width>
+        <height>781</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>36</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>150</number>
+       <number>280</number>
       </attribute>
       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -4986,30 +5269,78 @@ border-radius: 16;
        <property name="text">
         <string>Nombre</string>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
+       </property>
       </column>
       <column>
        <property name="text">
         <string>Volumen</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
        </property>
       </column>
       <column>
        <property name="text">
         <string>Temperatura</string>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
+       </property>
       </column>
       <column>
        <property name="text">
         <string>Altura Combustible</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
        </property>
       </column>
       <column>
        <property name="text">
         <string>Altura Agua </string>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
+       </property>
       </column>
       <column>
        <property name="text">
         <string>Fecha </string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
        </property>
       </column>
      </widget>
@@ -5018,15 +5349,15 @@ border-radius: 16;
      <widget class="QTableWidget" name="tabla_incidentes">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>10</x>
         <y>70</y>
-        <width>1141</width>
-        <height>381</height>
+        <width>1881</width>
+        <height>761</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>14</pointsize>
+        <pointsize>26</pointsize>
         <weight>75</weight>
         <italic>true</italic>
         <bold>true</bold>
@@ -5054,47 +5385,90 @@ border-radius: 16;
        <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>220</number>
+       <number>350</number>
       </attribute>
       <attribute name="horizontalHeaderHighlightSections">
        <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderStretchLastSection">
-       <bool>false</bool>
+       <bool>true</bool>
+      </attribute>
+      <attribute name="verticalHeaderHighlightSections">
+       <bool>true</bool>
       </attribute>
       <column>
        <property name="text">
         <string>Label</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
        </property>
       </column>
       <column>
        <property name="text">
         <string>Description</string>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
+       </property>
       </column>
       <column>
        <property name="text">
         <string>Active Time</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
        </property>
       </column>
       <column>
        <property name="text">
         <string>Clear Time</string>
        </property>
+       <property name="font">
+        <font>
+         <pointsize>24</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
+       </property>
       </column>
       <column>
        <property name="text">
         <string>User</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
        </property>
       </column>
      </widget>
      <widget class="QLabel" name="Lab_Rango_Fecha">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>20</y>
-        <width>1141</width>
-        <height>50</height>
+        <x>10</x>
+        <y>9</y>
+        <width>1881</width>
+        <height>61</height>
        </rect>
       </property>
       <property name="minimumSize">
@@ -5105,7 +5479,7 @@ border-radius: 16;
       </property>
       <property name="font">
        <font>
-        <pointsize>22</pointsize>
+        <pointsize>36</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -5128,10 +5502,10 @@ border-radius: 16;
      <widget class="QWidget" name="gridLayoutWidget_5">
       <property name="geometry">
        <rect>
-        <x>370</x>
-        <y>50</y>
-        <width>501</width>
-        <height>361</height>
+        <x>490</x>
+        <y>60</y>
+        <width>881</width>
+        <height>603</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_10">
@@ -5151,34 +5525,6 @@ border-radius: 16;
          </property>
         </spacer>
        </item>
-       <item row="9" column="1">
-        <widget class="QPushButton" name="Btn_D_menosH">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="font">
-          <font>
-           <family>Noto Sans Mahajani</family>
-           <pointsize>30</pointsize>
-           <weight>75</weight>
-           <italic>false</italic>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 25px;
-	border: 2px solid  gray ;
-	background: gray;
-	margin: 0px 0 0px 0;   
-}</string>
-         </property>
-         <property name="text">
-          <string>-</string>
-         </property>
-        </widget>
-       </item>
        <item row="6" column="0" colspan="7">
         <widget class="Line" name="line_38">
          <property name="orientation">
@@ -5193,7 +5539,7 @@ border-radius: 16;
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -5214,31 +5560,6 @@ border-radius: 16;
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
-        <widget class="QPushButton" name="Btn_IntervaloMenos">
-         <property name="font">
-          <font>
-           <family>Noto Sans Mahajani</family>
-           <pointsize>30</pointsize>
-           <weight>75</weight>
-           <italic>false</italic>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 25px;
-	border: 2px solid  gray ;
-	background: royalblue;
-	margin: 0px 0 0px 0;   
-}</string>
-         </property>
-         <property name="text">
-          <string>-</string>
-         </property>
-        </widget>
-       </item>
        <item row="8" column="6">
         <widget class="QLabel" name="Lab_Minutos">
          <property name="enabled">
@@ -5246,7 +5567,7 @@ border-radius: 16;
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -5257,187 +5578,6 @@ border-radius: 16;
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="7">
-        <widget class="QPushButton" name="Btn_H_masM">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="font">
-          <font>
-           <family>Noto Sans Mahajani</family>
-           <pointsize>30</pointsize>
-           <weight>75</weight>
-           <italic>false</italic>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 25px;
-	border: 2px solid  gray ;
-	background: gray;
-	margin: 0px 0 0px 0;   
-}</string>
-         </property>
-         <property name="text">
-          <string>+</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="5">
-        <widget class="QPushButton" name="Btn_H_menosM">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="font">
-          <font>
-           <family>Noto Sans Mahajani</family>
-           <pointsize>30</pointsize>
-           <weight>75</weight>
-           <italic>false</italic>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 25px;
-	border: 2px solid  gray ;
-	background: gray;
-	margin: 0px 0 0px 0;   
-}</string>
-         </property>
-         <property name="text">
-          <string>-</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="2">
-        <widget class="QLineEdit" name="Line_HoraLog">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>45</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>100</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>22</pointsize>
-           <weight>75</weight>
-           <italic>true</italic>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>00</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="6">
-        <widget class="QLineEdit" name="Line_H_minutos">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>45</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>100</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>22</pointsize>
-           <weight>75</weight>
-           <italic>true</italic>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>00</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="7">
-        <widget class="QPushButton" name="BtnMasIntervalo">
-         <property name="font">
-          <font>
-           <family>Noto Sans Mahajani</family>
-           <pointsize>30</pointsize>
-           <weight>75</weight>
-           <italic>false</italic>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 25px;
-	border: 2px solid  gray ;
-	background: royalblue;
-	margin: 0px 0 0px 0;   
-}</string>
-         </property>
-         <property name="text">
-          <string>+</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="3">
-        <widget class="QPushButton" name="Btn_D_masH">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="font">
-          <font>
-           <family>Noto Sans Mahajani</family>
-           <pointsize>30</pointsize>
-           <weight>75</weight>
-           <italic>false</italic>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 25px;
-	border: 2px solid  gray ;
-	background: gray;
-	margin: 0px 0 0px 0;   
-}</string>
-         </property>
-         <property name="text">
-          <string>+</string>
          </property>
         </widget>
        </item>
@@ -5477,7 +5617,7 @@ border-radius: 16;
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -5495,7 +5635,7 @@ border-radius: 16;
         <widget class="QLabel" name="label_34">
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -5516,7 +5656,7 @@ border-radius: 16;
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -5560,7 +5700,7 @@ border-radius: 16;
         <widget class="QLabel" name="label_38">
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -5577,14 +5717,126 @@ border-radius: 16;
          </property>
         </widget>
        </item>
+       <item row="9" column="1">
+        <widget class="QPushButton" name="Btn_D_menosH">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>109</width>
+           <height>111</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>109</width>
+           <height>111</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Noto Sans Mahajani</family>
+           <pointsize>30</pointsize>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: gray;
+	margin: 0px 0 0px 0;   
+}</string>
+         </property>
+         <property name="text">
+          <string>-</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="7">
+        <spacer name="horizontalSpacer_7">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="9" column="3">
+        <widget class="QPushButton" name="Btn_D_masH">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>109</width>
+           <height>111</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>109</width>
+           <height>111</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Noto Sans Mahajani</family>
+           <pointsize>30</pointsize>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: gray;
+	margin: 0px 0 0px 0;   
+}</string>
+         </property>
+         <property name="text">
+          <string>+</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <spacer name="horizontalSpacer_6">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
        <item row="2" column="2" colspan="5">
         <widget class="QLineEdit" name="Line_Intervalo">
          <property name="enabled">
           <bool>false</bool>
          </property>
+         <property name="minimumSize">
+          <size>
+           <width>441</width>
+           <height>71</height>
+          </size>
+         </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <italic>true</italic>
            <bold>true</bold>
@@ -5607,6 +5859,247 @@ border-radius: 16;
          </property>
         </widget>
        </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="Btn_IntervaloMenos">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>109</width>
+           <height>111</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Noto Sans Mahajani</family>
+           <pointsize>76</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: royalblue;
+	margin: 0px 0 0px 0;   
+}</string>
+         </property>
+         <property name="text">
+          <string>-</string>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="7">
+        <widget class="QPushButton" name="BtnMasIntervalo">
+         <property name="maximumSize">
+          <size>
+           <width>109</width>
+           <height>111</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Noto Sans Mahajani</family>
+           <pointsize>30</pointsize>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: royalblue;
+	margin: 0px 0 0px 0;   
+}</string>
+         </property>
+         <property name="text">
+          <string>+</string>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="5">
+        <widget class="QPushButton" name="Btn_H_menosM">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>109</width>
+           <height>111</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>109</width>
+           <height>111</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Noto Sans Mahajani</family>
+           <pointsize>30</pointsize>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: gray;
+	margin: 0px 0 0px 0;   
+}</string>
+         </property>
+         <property name="text">
+          <string>-</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="7">
+        <widget class="QPushButton" name="Btn_H_masM">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>109</width>
+           <height>111</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>109</width>
+           <height>111</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Noto Sans Mahajani</family>
+           <pointsize>30</pointsize>
+           <weight>75</weight>
+           <italic>false</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: gray;
+	margin: 0px 0 0px 0;   
+}</string>
+         </property>
+         <property name="text">
+          <string>+</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="2">
+        <widget class="QLineEdit" name="Line_HoraLog">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>71</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>120</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <property name="text">
+          <string>00</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="6">
+        <widget class="QLineEdit" name="Line_H_minutos">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>45</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>170</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>00</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </widget>
@@ -5616,15 +6109,15 @@ border-radius: 16;
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>520</y>
-      <width>1201</width>
-      <height>81</height>
+      <y>950</y>
+      <width>1921</width>
+      <height>131</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Bitstream Vera Sans</family>
-      <pointsize>36</pointsize>
+      <pointsize>48</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -5655,12 +6148,16 @@ color:white;
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1201</width>
-      <height>51</height>
+      <width>1921</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <pointsize>48</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
       <stylestrategy>PreferDefault</stylestrategy>
      </font>
     </property>
@@ -5670,7 +6167,7 @@ color:white;
     <property name="styleSheet">
      <string notr="true">QPushButton{
 background-color: green;
-background-color: qconicalgradient(cx:0.661, cy:0, angle:19.3, stop:0 rgba(255, 147, 30, 150), stop:0.691897 rgba(255, 88, 30, 150), stop:0.691964  gray , stop:1 gray);
+background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(255, 147, 30, 150), stop:0.691897 rgba(255, 88, 30, 150), stop:0.691964  gray , stop:1 gray);
 color:white;}
 QLabel{
 background-color: transparent;
@@ -5686,9 +6183,9 @@ color: white;
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>520</y>
-      <width>81</width>
-      <height>81</height>
+      <y>950</y>
+      <width>141</width>
+      <height>131</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -5712,18 +6209,18 @@ color: white;
     </property>
     <property name="iconSize">
      <size>
-      <width>50</width>
-      <height>50</height>
+      <width>100</width>
+      <height>100</height>
      </size>
     </property>
    </widget>
    <widget class="QPushButton" name="Regresar">
     <property name="geometry">
      <rect>
-      <x>1110</x>
-      <y>520</y>
-      <width>101</width>
-      <height>81</height>
+      <x>1760</x>
+      <y>950</y>
+      <width>161</width>
+      <height>131</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -5738,18 +6235,18 @@ color: white;
     </property>
     <property name="iconSize">
      <size>
-      <width>60</width>
-      <height>60</height>
+      <width>100</width>
+      <height>100</height>
      </size>
     </property>
    </widget>
    <widget class="QPushButton" name="Btn_Guardar">
     <property name="geometry">
      <rect>
-      <x>990</x>
-      <y>520</y>
-      <width>91</width>
-      <height>81</height>
+      <x>1580</x>
+      <y>950</y>
+      <width>161</width>
+      <height>131</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -5764,18 +6261,18 @@ color: white;
     </property>
     <property name="iconSize">
      <size>
-      <width>50</width>
-      <height>50</height>
+      <width>100</width>
+      <height>100</height>
      </size>
     </property>
    </widget>
    <widget class="QPushButton" name="Btn_user">
     <property name="geometry">
      <rect>
-      <x>1110</x>
-      <y>520</y>
-      <width>91</width>
-      <height>81</height>
+      <x>1760</x>
+      <y>950</y>
+      <width>161</width>
+      <height>131</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -5790,18 +6287,18 @@ color: white;
     </property>
     <property name="iconSize">
      <size>
-      <width>60</width>
-      <height>60</height>
+      <width>100</width>
+      <height>100</height>
      </size>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_menu">
     <property name="geometry">
      <rect>
-      <x>990</x>
-      <y>520</y>
-      <width>91</width>
-      <height>81</height>
+      <x>1580</x>
+      <y>950</y>
+      <width>151</width>
+      <height>131</height>
      </rect>
     </property>
     <property name="text">
@@ -5811,15 +6308,15 @@ color: white;
    <widget class="QComboBox" name="ComboSeleccion">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>530</y>
-      <width>231</width>
-      <height>61</height>
+      <x>200</x>
+      <y>970</y>
+      <width>271</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>22</pointsize>
+      <pointsize>36</pointsize>
       <weight>75</weight>
       <italic>true</italic>
       <bold>true</bold>
@@ -5837,10 +6334,10 @@ color: white;
     </property>
     <property name="geometry">
      <rect>
-      <x>900</x>
-      <y>520</y>
-      <width>81</width>
-      <height>81</height>
+      <x>1350</x>
+      <y>950</y>
+      <width>131</width>
+      <height>131</height>
      </rect>
     </property>
     <property name="font">
@@ -5873,7 +6370,7 @@ color: white;
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-radius: 40px;
+     <string notr="true">border-radius: 65px;
 border: 4px solid  gray ;
 background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 white, stop:0.33 white, stop:0.34 white, stop:0.66 white, stop:0.67 rgba(255, 255, 0, 255), stop:1 rgba(255, 255, 0, 255));
 
@@ -5900,7 +6397,7 @@ QComboBox::drop-down {
     </property>
     <item>
      <property name="text">
-      <string>A</string>
+      <string>ALL</string>
      </property>
      <property name="icon">
       <iconset>
@@ -5989,6 +6486,27 @@ QComboBox::drop-down {
      </property>
     </item>
    </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>960</y>
+      <width>121</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>72</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>x</string>
+    </property>
+   </widget>
    <zorder>Lab_Titulo</zorder>
    <zorder>btn_menu</zorder>
    <zorder>stackedWidget</zorder>
@@ -5999,6 +6517,7 @@ QComboBox::drop-down {
    <zorder>Btn_user</zorder>
    <zorder>ComboSeleccion</zorder>
    <zorder>SelecTank</zorder>
+   <zorder>pushButton_5</zorder>
   </widget>
  </widget>
  <resources>
@@ -6006,4 +6525,3 @@ QComboBox::drop-down {
  </resources>
  <connections/>
 </ui>
-

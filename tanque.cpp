@@ -40,7 +40,7 @@ void Tanque::offline()
 {
      latanq->setStyleSheet("background-color:lightgray;");
      latanq->setText("Sin Conexion");
-     ishabilitado = false;
+    // ishabilitado = false;
 }
 
 double Tanque::getAngle() const { return angle; }
@@ -203,11 +203,11 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
      latanq = new QLabel(groupBox_4);
 
       QFont font3;
-      font3.setPointSize(18);
+      font3.setPointSize(30);
       QFont font2;
-      font3.setPointSize(15);
+      font3.setPointSize(30);
       QFont font1;
-      font2.setPointSize(15);
+      font2.setPointSize(30);
 
       T1->setObjectName(QString::fromUtf8("T1"));
       T1->setEnabled(true);
@@ -216,7 +216,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
       T1->setTitle("Tanque");
       T1->setFlat(true);
 
-      Boton->setGeometry(0,0,560,299);
+      Boton->setGeometry(0,50,560,299);
       Boton->setStyleSheet("QPushButton{background-color: rgb(240, 240, 240);border: 3px solid white; border-radius: 15px; padding: 5px;  }" );
 
       connect(Boton, SIGNAL (clicked()),this, SLOT(clickbuton()));
@@ -384,7 +384,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 
  double Tanque::SetAltura(double height, double water)
  {
-
+    ishabilitado = true;
 
      double r=0;
      double h= height;
@@ -745,7 +745,7 @@ void Tanque::Setgeometry(int x, int y,int XTG,int YTG)
     {
      QFont font5;
      font5.setPointSize(int(XTG*.03));
-     Boton->setGeometry(QRect(0,27,XTG,int(YTG*.8)));
+     Boton->setGeometry(QRect(0,50,XTG,int(YTG*.8)));
      latanq->setGeometry(QRect(5, 5, x1, x1));
      layoutWidget1->setGeometry(QRect(XTG/2, 20,int((XTG/2)*.95),int(YTG*.7)));
      layoutWidget1->setFont(font5);
@@ -914,9 +914,10 @@ void Tanque::deliveryProGaugeCountIncrement(){
 QString Tanque::ActualInventory()
 {
     if(ishabilitado)
-    return  "INSERT INTO `cistem`.`inventario` (`IDTank`, `NombreTank`, `VolumenCo`, `VolumenA`, `AlturaC`, `AlturaA`) VALUES ('"+QString::number(IdTanque)+"', '"+NomTank+"', '"+QString::number(VolumenCon)+"', '13', '"+QString::number(AlturaTank)+"', '123');";
+    return "INSERT INTO `cistem`.`inventario` (`IDTank`, `NombreTank`, `VolumenCo`, `VolumenA`, `AlturaC`, `AlturaA`, `Fecha`) VALUES ('"+QString::number(IdTanque)+"', '"+NomTank+"', '"+QString::number(VolumenCon)+"', '123', '"+QString::number(AlturaTank)+"', '123', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');";
+    //  "INSERT INTO `cistem`.`inventario` (`IDTank`, `NombreTank`, `VolumenCo`, `VolumenA`, `AlturaC`, `AlturaA`) VALUES ('"+QString::number(IdTanque)+"', '"+NomTank+"', '"+QString::number(VolumenCon)+"', '13', '"+QString::number(AlturaTank)+"', '123');";
     else {
-        return "";
+        return "hola";
     }
 }
 
