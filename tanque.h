@@ -93,7 +93,8 @@ class Tanque :public QWidget
     QString U ="0.254";
     QString R="100";
     QString RT="200";
-    bool ishabilitado;
+    bool ishabilitado= false;
+    bool Desconectado= false;
 
 private slots:
 

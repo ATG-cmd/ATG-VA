@@ -46,7 +46,9 @@ public:
     QTimer *Time3;
     QTimer *deliveryProGaugeTimer;
     QTimer *Gpio_timer;
+    QTimer *Inventory_Timer;
     QTimer *onesecond;
+
     QLabel *Lab_Title;
     QLabel *Avisos;
     QLabel *Indicadores[2];
@@ -79,6 +81,7 @@ public:
      double Temperatura_Final;
      bool S_input[16];
 
+
      int numerodetanques=0;
      int TanqueActual= 0;
 
@@ -94,7 +97,7 @@ public:
      int SelecMinutos =0;
 
      QString Bitso [13]= {"Deshabilitado","5 Minutos","10 Minutos","15 Minutos","20 Minutos","30 Minutos",
-                    "1 Hora","2Horas","4 Horas","6 Horas","8 Horas", "12 Horas", "24 Horas"};
+                    "1 Hora","2 Horas","4 Horas","6 Horas","8 Horas", "12 Horas", "24 Horas"};
 
 
     void Buscar_Tanques();  // Es funcion busca los tanques dados de alta en BD
@@ -120,7 +123,11 @@ public:
     int X(int Y);
     int calcY(int y );
     void btn_Habilitado(QPushButton *Boton,bool hab);
-    //void
+    void GuardarConfigInv();
+    void TimerConfigInventoryDB();
+    void InventoryActivos();
+    void InVentoryHistory();
+
 
 
 private slots:
@@ -271,6 +278,10 @@ private slots:
 
    void on_Line_Intervalo_textChanged(const QString &arg1);
 
+   void InventoryTank();
+
+
+   void on_pushButton_5_clicked();
 
 private:
     Ui::MainWindow *ui;
