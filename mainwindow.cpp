@@ -470,8 +470,7 @@ void MainWindow::on_pushButton_3_clicked()  // boton log in
         msg.setText(" Usuario y contraseña invalidos");
         msg.exec();
     }
-
-}
+    insertar_incidente("Warning","usuario a iniciado sesion","user","0","1");}
 
 void MainWindow::on_Btn_user_clicked()
 {   frame = SLogin;
@@ -669,7 +668,6 @@ void MainWindow::Leer_datos()
         qDebug()<< dato;
         addcbuff1(dato);
     }
-
 }
 
 void MainWindow::inicbuff1(){
@@ -768,7 +766,10 @@ void MainWindow::Protocolo(QString cad)
         {
             tanques[indice]->SetAltura(cad.mid(13,8).toDouble(),cad.mid(22,8).toDouble());
             tanques[indice]->SetTemperatura(cad.mid(9,3).toDouble()/10);
-
+            if(tanques[indice]->getIsConnected() == false){
+                tanques[indice]->setIsConnected(true);
+                insertar_incidente("Warning" ,tanques[indice]->GetNameTank() + " Conectado","user","1","1");
+            }
             evaluar_limites(tanques[indice]);
 //            if(tanques[indice]->GetVolumen() > deliveryMaxVolumeRead || deliveryCountIncrement == 0){
 //                qDebug() << "ProGaugeVolumen:" << tanques[indice]->GetVolumen() << "deliveryMaxVolumeRead:" << deliveryMaxVolumeRead;
@@ -1098,6 +1099,10 @@ void MainWindow::offlineSonda(QString offsonda)
         QString IDactual = ProGaugeId[i];
         qDebug() << "ProGaugeID" << ProGaugeId[i];
         if (IDactual == busqueda) {  indice = i; break;  }
+    }
+    if(tanques[indice]->getIsConnected() == true){
+        tanques[indice]->setIsConnected(false);
+        insertar_incidente("Alarma",tanques[indice]->GetNameTank() + " Desconectado","user","1","1");
     }
     tanques[indice]->offline();
     qDebug ()  << "Id_Tanque:" << tanques[indice]->getIdTanque();
@@ -1459,21 +1464,9 @@ void MainWindow::evaluar_limites(Tanque *tanque)
     if(porcentaje <= tanque->GetNecesitaProducto()) insertar_incidente("Alarma",tanque->GetNameTank() + " Necesita producto","user","1","1");
     if(tanque->getVolumenCon() <= tanque->GetProductoBajo()) insertar_incidente("Alarma",tanque->GetNameTank() + " Producto Bajo","user","1","1");
     if(tanque->getVolumenA() >= tanque->GetAlarma_de_Agua()) insertar_incidente("Alarma",tanque->GetNameTank() + " Alarma Agua alta","user","1","1");
-    if(tanque->getVolumenA() >= tanque->GetAdvertencia_de_Agua()) insertar_incidente("Alarma",tanque->GetNameTank() + " Warning Agua alta","user","1","1");
+    if(tanque->getVolumenA() >= tanque->GetAdvertencia_de_Agua()) insertar_incidente("Warning",tanque->GetNameTank() + " Warning Agua alta","user","1","1");
 
     //if(porcentaje >= tanque->GetDesbordamiento()) insertar_incidente("Alarma",tanque->GetNameTank() + " Desbordado","user","1","1");
-
-
-//    tanques[tank_id]->SetVolMax(ui->Line_volumen_maximo->text().toDouble());
-//    tanques[tank_id]->SetProducto_Alto(ui->Line_producto_alto->text().toDouble());
-//    tanques[tank_id]->SetDesbordamiento(ui->Line_desbordamiento->text().toDouble());
-//    tanques[tank_id]->SetNecesitaProducto(ui->Line_limite_entrega->text().toDouble());
-//    tanques[tank_id]->SetProductoBajo(ui->Line_producto_bajo->text().toDouble());
-//    tanques[tank_id]->SetAlarma_de_Agua(ui->Line_alarma_agua->text().toDouble());
-//    tanques[tank_id]->SetAdvertencua_de_Agua(ui->Line_advertencia_agua->text().toDouble());
-
-//    if(((tanque->getVolumenCon() * 100) / tanque->getCapacidad()) >= tanque->GetProducto_Alto()){}
-//    if(tanque->getVolumenCon() >= tanque->GetDesbordamiento()){}
 }
 
 void MainWindow::insertar_incidente(QString tipo, QString Descripcion, QString usuario,QString Prioridad,QString Activo)

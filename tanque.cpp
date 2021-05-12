@@ -184,6 +184,16 @@ void Tanque::setDeliverySensivilityVolume(double value)
 {
     deliverySensivilityVolume = value;
 }
+bool Tanque::getIsConnected() const
+{
+    return isConnected;
+}
+
+void Tanque::setIsConnected(bool value)
+{
+    isConnected = value;
+}
+
 void Tanque::clickbuton(){ setTMaximizado(false); emit Camino(); }
 
 Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
