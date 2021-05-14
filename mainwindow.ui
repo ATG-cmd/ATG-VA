@@ -165,7 +165,7 @@ QHeaderView::section:vertical
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>13</number>
+     <number>15</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -727,7 +727,7 @@ padding: 2px;</string>
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1107</width>
+         <width>1139</width>
          <height>1471</height>
         </rect>
        </property>
@@ -4131,8 +4131,8 @@ border-radius: 16;
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>941</width>
-         <height>831</height>
+         <width>939</width>
+         <height>829</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_9">
@@ -5368,6 +5368,9 @@ border-radius: 16;
       </property>
       <property name="sizeAdjustPolicy">
        <enum>QAbstractScrollArea::AdjustIgnored</enum>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
       </property>
       <property name="alternatingRowColors">
        <bool>true</bool>

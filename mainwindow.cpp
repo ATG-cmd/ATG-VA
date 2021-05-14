@@ -402,7 +402,7 @@ void MainWindow::on_Btn_Guardar_clicked()
     case Slimites : guardar_limites(); break;
     case SInventoryConfig: GuardarConfigInv(); break;
     }
-
+    insertar_incidente("Warning","System Setup Modified","user","0","1",false);
 }
 //Fin de boton de Guardar
 /*--------------------------------------------------------------------------------------------------------------------
@@ -473,7 +473,8 @@ void MainWindow::on_pushButton_3_clicked()  // boton log in
         msg.setText(" Usuario y contraseña invalidos");
         msg.exec();
     }
-    insertar_incidente("Warning","usuario a iniciado sesion","user","0","1");}
+    insertar_incidente("Warning","usuario a iniciado sesion","user","0","1",false);
+}
 
 void MainWindow::on_Btn_user_clicked()
 {   frame = SLogin;
@@ -773,7 +774,7 @@ void MainWindow::Protocolo(QString cad)
             tanques[indice]->SetTemperatura(cad.mid(9,3).toDouble()/10);
             if(tanques[indice]->getIsConnected() == false){
                 tanques[indice]->setIsConnected(true);
-                insertar_incidente("Warning" ,tanques[indice]->GetNameTank() + " Conectado","user","1","1");
+                insertar_incidente("Warning" ,tanques[indice]->GetNameTank() + " Conectado","user","1","1",false);
             }
             evaluar_limites(tanques[indice]);
 //            if(tanques[indice]->GetVolumen() > deliveryMaxVolumeRead || deliveryCountIncrement == 0){
@@ -1107,7 +1108,7 @@ void MainWindow::offlineSonda(QString offsonda)
     }
     if(tanques[indice]->getIsConnected() == true){
         tanques[indice]->setIsConnected(false);
-        insertar_incidente("Alarma",tanques[indice]->GetNameTank() + " Desconectado","user","1","1");
+        insertar_incidente("Alarma",tanques[indice]->GetNameTank() + " Desconectado","user","1","1",false);
     }
     tanques[indice]->offline();
     qDebug ()  << "Id_Tanque:" << tanques[indice]->getIdTanque();
@@ -1464,17 +1465,17 @@ void MainWindow::evaluar_limites(Tanque *tanque)
     int porcentaje = ((tanque->getVolumenCon() * 100) / tanque->getCapacidad());
     qDebug() << "porcentaje de volumen de tanque: " << porcentaje;
 
-    if(porcentaje >= tanque->GetDesbordamiento()) insertar_incidente("Alarma",tanque->GetNameTank() + " Desbordado","user","1","1");
-    if(porcentaje >= tanque->GetProducto_Alto()) insertar_incidente("Alarma",tanque->GetNameTank() + " Producto Alto","user","1","1");
-    if(porcentaje <= tanque->GetNecesitaProducto()) insertar_incidente("Alarma",tanque->GetNameTank() + " Necesita producto","user","1","1");
-    if(tanque->getVolumenCon() <= tanque->GetProductoBajo()) insertar_incidente("Alarma",tanque->GetNameTank() + " Producto Bajo","user","1","1");
-    if(tanque->getVolumenA() >= tanque->GetAlarma_de_Agua()) insertar_incidente("Alarma",tanque->GetNameTank() + " Alarma Agua alta","user","1","1");
-    if(tanque->getVolumenA() >= tanque->GetAdvertencia_de_Agua()) insertar_incidente("Warning",tanque->GetNameTank() + " Warning Agua alta","user","1","1");
+    if(porcentaje >= tanque->GetDesbordamiento()) insertar_incidente("Alarma",tanque->GetNameTank() + " Desbordado","user","1","1",true);
+    if(porcentaje >= tanque->GetProducto_Alto()) insertar_incidente("Alarma",tanque->GetNameTank() + " Producto Alto","user","1","1",true);
+    if(porcentaje <= tanque->GetNecesitaProducto()) insertar_incidente("Alarma",tanque->GetNameTank() + " Necesita producto","user","1","1",true);
+    if(tanque->getVolumenCon() <= tanque->GetProductoBajo()) insertar_incidente("Alarma",tanque->GetNameTank() + " Producto Bajo","user","1","1",true);
+    if(tanque->getVolumenA() >= tanque->GetAlarma_de_Agua()) insertar_incidente("Alarma",tanque->GetNameTank() + " Alarma Agua alta","user","1","1",true);
+    if(tanque->getVolumenA() >= tanque->GetAdvertencia_de_Agua()) insertar_incidente("Warning",tanque->GetNameTank() + " Warning Agua alta","user","1","1",true);
 
     //if(porcentaje >= tanque->GetDesbordamiento()) insertar_incidente("Alarma",tanque->GetNameTank() + " Desbordado","user","1","1");
 }
 
-void MainWindow::insertar_incidente(QString tipo, QString Descripcion, QString usuario,QString Prioridad,QString Activo)
+void MainWindow::insertar_incidente(QString tipo, QString Descripcion, QString usuario,QString Prioridad,QString Activo,bool filtro)
 {
     QSqlQuery qry;
     QString cadena;
@@ -1482,7 +1483,7 @@ void MainWindow::insertar_incidente(QString tipo, QString Descripcion, QString u
                   " VALUES ('"+tipo+"', '"+Descripcion+"', '"+usuario+"', '"+ QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss") +"','"+ Prioridad+"', '"+Activo+"');");
 
     qDebug() << cadena;
-    if (validar_activos(tipo,Descripcion,usuario)){
+    if (validar_activos(tipo,Descripcion,usuario,filtro)){
 
         qry.exec(cadena);
         if(tipo == "Alarma") Alarmas++;
@@ -1643,25 +1644,27 @@ void MainWindow::buscar_alarmas()
 
 }
 
-bool MainWindow::validar_activos(QString tipo, QString Descripcion, QString usuario)
+bool MainWindow::validar_activos(QString tipo, QString Descripcion, QString usuario,bool filtro)
 {
     bool valido = true;
     QString cadena = "SELECT * FROM cistem.incidentes WHERE Activo = 1;";
     QSqlQuery qry;
 
-    qry.exec(cadena);
-    while(qry.next())
+    if(filtro == true)
     {
-      if(qry.value(1).toString() == tipo
-         && qry.value(2).toString() == Descripcion
-         && qry.value(3).toString() == usuario)
-      {
-           valido = false;
-           break;
-      }
-      else valido = true;
-    }
-
+        qry.exec(cadena);
+        while(qry.next())
+        {
+          if(qry.value(1).toString() == tipo
+             && qry.value(2).toString() == Descripcion
+             && qry.value(3).toString() == usuario)
+          {
+               valido = false;
+               break;
+          }
+          else valido = true;
+        }
+    }else valido = true;
     return valido;
 }
 
@@ -1829,7 +1832,7 @@ void MainWindow::on_Btn_Reports_clicked()
 {
     frame = SReportes;
     ui->stackedWidget->setCurrentIndex(SReportes);
-    Btn_select_rango->setGeometry(30,5,200,40);
+    Btn_select_rango->setGeometry(30,5,500,50);
     ui->ComboSeleccion->clear();
     ui->ComboSeleccion->addItem("Activos");
     ui->ComboSeleccion->addItem("Prioritarios");
@@ -2044,10 +2047,10 @@ void MainWindow::Leer_GPIO()
            qDebug() << "El sensor" << i+1 << " se Activo";
 
            if(S_input[2] == false || S_input[3] == false){ // **
-               insertar_incidente("Alarma",Gpio_status,"user","1","1");  //**
+               insertar_incidente("Alarma",Gpio_status,"user","1","1",true);  //**
                Indicadores[0]->setText("Alarmas:   "+QString::number(Alarmas)+"");  //**
            }else {
-               insertar_incidente("Warning",Gpio_status,"user","0","1");
+               insertar_incidente("Warning",Gpio_status,"user","0","1",true);
                Indicadores[1]->setText("Warnings: "+QString::number(warnings)+"");
            }
             // expresion usada solo para debugiar alarmas y warnings
