@@ -97,6 +97,7 @@ MainWindow::MainWindow(QWidget *parent)
     Fonttitle.setBold(true);
     Lab_Title = new QLabel(ui->Btn_Barra_Estados);
     Lab_Title->setGeometry(200,20,500,50);
+    Lab_Title->setStyleSheet("background-color: transparent;");
     Lab_Title->setText("Estado Sistema ");
     Lab_Title->setFont(Fonttitle);
     ui->lbl_ProGaugeDeliveryInProccess->hide();
@@ -106,16 +107,21 @@ MainWindow::MainWindow(QWidget *parent)
     FontReloj.setBold(true);
     Reloj= new QLabel(ui->Btn_Barra_Estados);
     Reloj->setGeometry(QRect(1350,12,800,50));
+    Reloj->setStyleSheet("background-color: transparent;");
     Reloj->setFont(FontReloj);
     Reloj->setText(QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss ap"));
+    estado_sistema(ui->Btn_Barra_Estados,"normal");
 
     Btn_select_rango = new QPushButton(ui->Lab_Rango_Fecha);
     Btn_select_rango->setText("Select Range");
+    Btn_select_rango->setStyleSheet("background-color: transparent;");
     Btn_select_rango->setGeometry(30,5,500,50);
     Btn_select_rango->setFont(FontReloj);
 
     Indicadores[0] = new QLabel(ui->Btn_Barra_Estados); // Alarma
+    Indicadores[0]->setStyleSheet("background-color: transparent;");
     Indicadores[1] = new QLabel(ui->Btn_Barra_Estados); // warnings
+    Indicadores[1]->setStyleSheet("background-color: transparent;");
 
     QFont fontAlarmas;
     fontAlarmas.setPointSize(22);
@@ -1486,11 +1492,22 @@ void MainWindow::insertar_incidente(QString tipo, QString Descripcion, QString u
     if (validar_activos(tipo,Descripcion,usuario,filtro)){
 
         qry.exec(cadena);
-        if(tipo == "Alarma") Alarmas++;
-        else if(tipo == "Warning") warnings++;
+        if(tipo == "Alarma")
+        {
+            Alarmas++;
+            estado_sistema(ui->Btn_Barra_Estados,"alarma");
+        }
+        else if(tipo == "Warning")
+        {
+            warnings++;
+            estado_sistema(ui->Btn_Barra_Estados,"warning");
+        }
     }
     Indicadores[0]->setText("Alarmas:   "+QString::number(Alarmas)+"");
     Indicadores[1]->setText("Warnings: "+QString::number(warnings)+"");
+    if(frame == SReportes && ui->ComboSeleccion->currentIndex() == 0)
+    rellenar_activos(Btn_select_rango);
+
 
 }
 
@@ -1624,7 +1641,7 @@ void MainWindow::limpiar_Activos()
     warnings = 0;
     Indicadores[0]->setText("Alarmas:   "+QString::number(Alarmas)+"");
     Indicadores[1]->setText("Warnings: "+QString::number(warnings)+"");
-
+    estado_sistema(ui->Btn_Barra_Estados,"normal");
 }
 
 void MainWindow::buscar_alarmas()
@@ -1635,8 +1652,16 @@ void MainWindow::buscar_alarmas()
     qry.exec(cadena);
     while(qry.next())
     {
-      if(qry.value(1).toString() == "Alarma")   Alarmas++;
-      else if(qry.value(1).toString() == "Warning") warnings++;
+      if(qry.value(1).toString() == "Alarma")
+      {
+          Alarmas++;
+          estado_sistema(ui->Btn_Barra_Estados,"alarma");
+      }
+      else if(qry.value(1).toString() == "Warning")
+      {
+          warnings++;
+          estado_sistema(ui->Btn_Barra_Estados,"warning");
+      }
 
     }
         Indicadores[0]->setText("Alarmas:   "+QString::number(Alarmas)+"");
@@ -2066,7 +2091,7 @@ void MainWindow::Leer_GPIO()
 
 void MainWindow::everysecond()
 {
-
+    Actualizar_Time();
 }
 
 void MainWindow::on_Combo_tanque_limites_currentIndexChanged(const QString &arg1)
@@ -2343,6 +2368,24 @@ void MainWindow::InVentoryHistory()
             ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
         }
 
+}
+
+void MainWindow::estado_sistema(QPushButton *btn, QString estado)
+{
+    if(estado == "warning" && Alarmas <= 0)
+    {
+        btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(250, 220, 0, 250), stop:0.691897 rgba(250,200,0, 160), stop:0.691964  gray , stop:1 gray); color:white");
+
+    }
+    else if (estado == "alarma")
+    {
+        btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(255,0,0, 250), stop:0.691897 rgba(180,0,0, 160), stop:0.691964  gray , stop:1 gray); color:white");
+
+    }else if(estado == "normal")
+    {
+        btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(0, 250, 0, 250), stop:0.691897 rgba(0,180,0, 160), stop:0.691964  gray , stop:1 gray); color:white");
+
+    }
 }
 
 void MainWindow::on_pushButton_5_clicked()

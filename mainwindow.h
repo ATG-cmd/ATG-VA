@@ -127,7 +127,7 @@ public:
     void TimerConfigInventoryDB();
     void InventoryActivos();
     void InVentoryHistory();
-
+    void estado_sistema(QPushButton *btn,QString estado);
 
 
 private slots:

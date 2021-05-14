@@ -727,7 +727,7 @@ padding: 2px;</string>
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1139</width>
+         <width>1107</width>
          <height>1471</height>
         </rect>
        </property>
@@ -4131,8 +4131,8 @@ border-radius: 16;
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>939</width>
-         <height>829</height>
+         <width>941</width>
+         <height>831</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_9">
@@ -6170,7 +6170,7 @@ color:white;
     <property name="styleSheet">
      <string notr="true">QPushButton{
 background-color: green;
-background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(255, 147, 30, 150), stop:0.691897 rgba(255, 88, 30, 150), stop:0.691964  gray , stop:1 gray);
+background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(0, 250, 0, 250), stop:0.691897 rgba(0,180,0, 160), stop:0.691964  gray , stop:1 gray);
 color:white;}
 QLabel{
 background-color: transparent;
