@@ -113,14 +113,14 @@ public:
     void guardar_limites();
     void rellenar_limites();
     void evaluar_limites(Tanque *tanque);
-    void insertar_incidente(QString tipo, QString Descripcion, QString usuario, QString Prioridad,QString Activo);
+    void insertar_incidente(QString tipo, QString Descripcion, QString usuario, QString Prioridad, QString Activo, bool filtro);
     void rellenar_incidentes(QString T_inicial, QString T_Final, int index);
     void limpiar_tabla(QTableWidget *tabla,int cont);
     void buscar_prioridad(QString priodidad);
     void rellenar_activos(QPushButton *btn);
     void limpiar_Activos();
     void buscar_alarmas();
-    bool validar_activos(QString tipo, QString Descripcion, QString usuario);
+    bool validar_activos(QString tipo, QString Descripcion, QString usuario, bool filtro);
     int X(int Y);
     int calcY(int y );
     void btn_Habilitado(QPushButton *Boton,bool hab);
@@ -128,7 +128,7 @@ public:
     void TimerConfigInventoryDB();
     void InventoryActivos();
     void InVentoryHistory();
-
+    void estado_sistema(QPushButton *btn,QString estado);
 
 
 private slots:
