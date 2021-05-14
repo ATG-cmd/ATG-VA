@@ -91,6 +91,7 @@ public:
      QMetaObject::Connection combo_connect3;
      QMetaObject::Connection combo_connect4;
      QMetaObject::Connection combo_connect5;
+     QMetaObject::Connection combo_connect6;
 
      int SelecIntervalo= 0;
      int SelecHora =0;
@@ -282,6 +283,7 @@ private slots:
 
 
    void on_pushButton_5_clicked();
+
 
 private:
     Ui::MainWindow *ui;

@@ -178,11 +178,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     DB = QSqlDatabase::addDatabase("QMYSQL");
     // DB.setHostName("192.168.10.104");
-    DB.setHostName("192.168.100.216");
-    DB.setDatabaseName("mysql");
+   DB.setHostName("192.168.100.136");
+   // DB.setHostName("192.168.100.216");
+   // DB.setHostName("localhost");
+    DB.setDatabaseName("cistem");
     DB.setPort(3306);
-    DB.setUserName("root");
-    DB.setPassword("flores45");
+    DB.setUserName("ATG");
+    DB.setPassword("Cistem");
     if(!DB.open()){
         QMessageBox::critical(this, "Error", DB.lastError().text());
         return;
@@ -1808,9 +1810,25 @@ void MainWindow::on_Btn_Inventario_clicked()
     ui->ComboSeleccion->addItem("Cortes de Energía");
     ui->ComboSeleccion->addItem("Turnos");
 
+
+
     QObject::disconnect( combo_connect5 );
 
    combo_connect5 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
+            [=](int index){
+
+        switch (index)
+         {
+         case 0: InventoryActivos();  break;
+         case 1: InVentoryHistory();  break;
+         case 2:   break;
+         case 3:   break;
+        } });
+
+
+
+    QObject::disconnect( combo_connect6 );
+   combo_connect6 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
             [=](int index){
 
         switch (index)
@@ -2064,6 +2082,7 @@ void MainWindow::Leer_GPIO()
 void MainWindow::everysecond()
 {
 
+
 }
 
 void MainWindow::on_Combo_tanque_limites_currentIndexChanged(const QString &arg1)
@@ -2273,14 +2292,9 @@ void MainWindow::TimerConfigInventoryDB()
         case 11:Inventory_Timer->stop();Inventory_Timer->start(28800000); break;
         case 12:Inventory_Timer->stop();Inventory_Timer->start(43200000); break;
         case 13:Inventory_Timer->stop();Inventory_Timer->start(86400000); break;
-
-
         }
 
     }
-
-
-
 }
 
 void MainWindow::InventoryActivos()
@@ -2346,3 +2360,4 @@ void MainWindow::on_pushButton_5_clicked()
 {
    close();
 }
+

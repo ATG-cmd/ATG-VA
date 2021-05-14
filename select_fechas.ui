@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>951</width>
-    <height>258</height>
+    <width>1464</width>
+    <height>493</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <widget class="QPushButton" name="Regresar">
      <property name="minimumSize">
       <size>
-       <width>120</width>
-       <height>100</height>
+       <width>161</width>
+       <height>161</height>
       </size>
      </property>
      <property name="styleSheet">
@@ -34,43 +34,28 @@
      </property>
      <property name="iconSize">
       <size>
-       <width>60</width>
-       <height>60</height>
+       <width>120</width>
+       <height>120</height>
       </size>
      </property>
     </widget>
    </item>
    <item row="1" column="0">
     <layout class="QGridLayout" name="gridLayout_21">
-     <item row="2" column="0">
-      <widget class="QLineEdit" name="Line_H_Fecha">
-       <property name="minimumSize">
-        <size>
-         <width>300</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>21</pointsize>
-         <weight>75</weight>
-         <italic>true</italic>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-       <property name="placeholderText">
-        <string>2021-04-20</string>
-       </property>
-      </widget>
-     </item>
      <item row="2" column="3">
       <widget class="QPushButton" name="Btn_H_masH">
+       <property name="minimumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <family>Noto Sans Mahajani</family>
@@ -83,7 +68,7 @@
        <property name="styleSheet">
         <string notr="true">QPushButton{
 	color:white;	
-	border-radius: 25px;
+	border-radius: 53px;
 	border: 2px solid  gray ;
 	background: royalblue;
 	margin: 0px 0 0px 0;   
@@ -107,6 +92,39 @@
        </property>
       </spacer>
      </item>
+     <item row="2" column="0">
+      <widget class="QLineEdit" name="Line_H_Fecha">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>400</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>36</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>2021-04-20</string>
+       </property>
+      </widget>
+     </item>
      <item row="3" column="0" colspan="8">
       <widget class="Line" name="line_84">
        <property name="orientation">
@@ -114,33 +132,20 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
-      <widget class="QPushButton" name="Btn_H_menosH">
-       <property name="font">
-        <font>
-         <family>Noto Sans Mahajani</family>
-         <pointsize>30</pointsize>
-         <weight>75</weight>
-         <italic>false</italic>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 25px;
-	border: 2px solid  gray ;
-	background: royalblue;
-	margin: 0px 0 0px 0;   
-}</string>
-       </property>
-       <property name="text">
-        <string>-</string>
-       </property>
-      </widget>
-     </item>
      <item row="2" column="5">
       <widget class="QPushButton" name="Btn_H_menosM">
+       <property name="minimumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <family>Noto Sans Mahajani</family>
@@ -153,7 +158,7 @@
        <property name="styleSheet">
         <string notr="true">QPushButton{
 	color:white;	
-	border-radius: 25px;
+	border-radius: 53px;
 	border: 2px solid  gray ;
 	background: royalblue;
 	margin: 0px 0 0px 0;   
@@ -168,7 +173,7 @@
       <widget class="QLabel" name="Lab_Protocolo_6">
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>36</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -200,6 +205,18 @@
      </item>
      <item row="2" column="7">
       <widget class="QPushButton" name="Btn_H_masM">
+       <property name="minimumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <family>Noto Sans Mahajani</family>
@@ -212,7 +229,7 @@
        <property name="styleSheet">
         <string notr="true">QPushButton{
 	color:white;	
-	border-radius: 25px;
+	border-radius: 53px;
 	border: 2px solid  gray ;
 	background: royalblue;
 	margin: 0px 0 0px 0;   
@@ -247,7 +264,7 @@
       <widget class="QLabel" name="Lab_Protocolo_4">
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>36</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -294,7 +311,7 @@
       <widget class="QLabel" name="Lab_Protocolo_15">
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>36</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -321,13 +338,13 @@
        </property>
        <property name="maximumSize">
         <size>
-         <width>100</width>
-         <height>16777215</height>
+         <width>170</width>
+         <height>100</height>
         </size>
        </property>
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>36</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -354,13 +371,13 @@
        </property>
        <property name="maximumSize">
         <size>
-         <width>100</width>
-         <height>16777215</height>
+         <width>150</width>
+         <height>100</height>
         </size>
        </property>
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>36</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -377,6 +394,43 @@
        </property>
       </widget>
      </item>
+     <item row="2" column="1">
+      <widget class="QPushButton" name="Btn_H_menosH">
+       <property name="minimumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Noto Sans Mahajani</family>
+         <pointsize>30</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: royalblue;
+	margin: 0px 0 0px 0;   
+}</string>
+       </property>
+       <property name="text">
+        <string>-</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item row="0" column="0">
@@ -385,7 +439,7 @@
       <widget class="QLabel" name="Lab_Protocolo_5">
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>36</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -424,6 +478,18 @@
      </item>
      <item row="2" column="5">
       <widget class="QPushButton" name="Btn_D_menosM">
+       <property name="minimumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <family>Noto Sans Mahajani</family>
@@ -436,7 +502,7 @@
        <property name="styleSheet">
         <string notr="true">QPushButton{
 	color:white;	
-	border-radius: 25px;
+	border-radius: 53px;
 	border: 2px solid  gray ;
 	background: royalblue;
 	margin: 0px 0 0px 0;   
@@ -462,6 +528,18 @@
      </item>
      <item row="2" column="1">
       <widget class="QPushButton" name="Btn_D_menosH">
+       <property name="minimumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <family>Noto Sans Mahajani</family>
@@ -474,7 +552,7 @@
        <property name="styleSheet">
         <string notr="true">QPushButton{
 	color:white;	
-	border-radius: 25px;
+	border-radius: 53px;
 	border: 2px solid  gray ;
 	background: royalblue;
 	margin: 0px 0 0px 0;   
@@ -500,6 +578,12 @@
      </item>
      <item row="2" column="7">
       <widget class="QPushButton" name="Btn_D_masM">
+       <property name="minimumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <family>Noto Sans Mahajani</family>
@@ -512,7 +596,7 @@
        <property name="styleSheet">
         <string notr="true">QPushButton{
 	color:white;	
-	border-radius: 25px;
+	border-radius: 53px;
 	border: 2px solid  gray ;
 	background: royalblue;
 	margin: 0px 0 0px 0;   
@@ -527,7 +611,7 @@
       <widget class="QLabel" name="Lab_Protocolo_7">
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>36</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -566,6 +650,18 @@
      </item>
      <item row="2" column="3">
       <widget class="QPushButton" name="Btn_D_masH">
+       <property name="minimumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <family>Noto Sans Mahajani</family>
@@ -578,7 +674,7 @@
        <property name="styleSheet">
         <string notr="true">QPushButton{
 	color:white;	
-	border-radius: 25px;
+	border-radius: 53px;
 	border: 2px solid  gray ;
 	background: royalblue;
 	margin: 0px 0 0px 0;   
@@ -597,9 +693,15 @@
          <height>0</height>
         </size>
        </property>
+       <property name="maximumSize">
+        <size>
+         <width>400</width>
+         <height>100</height>
+        </size>
+       </property>
        <property name="font">
         <font>
-         <pointsize>21</pointsize>
+         <pointsize>36</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -623,7 +725,7 @@
       <widget class="QLabel" name="Lab_Protocolo_3">
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>36</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -663,13 +765,13 @@
        </property>
        <property name="maximumSize">
         <size>
-         <width>100</width>
-         <height>16777215</height>
+         <width>150</width>
+         <height>100</height>
         </size>
        </property>
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>36</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -699,13 +801,13 @@
        </property>
        <property name="maximumSize">
         <size>
-         <width>100</width>
-         <height>16777215</height>
+         <width>170</width>
+         <height>100</height>
         </size>
        </property>
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>36</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -728,8 +830,8 @@
     <widget class="QPushButton" name="Btn_Guardar">
      <property name="minimumSize">
       <size>
-       <width>120</width>
-       <height>100</height>
+       <width>161</width>
+       <height>161</height>
       </size>
      </property>
      <property name="styleSheet">
@@ -744,8 +846,8 @@
      </property>
      <property name="iconSize">
       <size>
-       <width>50</width>
-       <height>50</height>
+       <width>120</width>
+       <height>120</height>
       </size>
      </property>
     </widget>
