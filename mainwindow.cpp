@@ -26,6 +26,7 @@
 #define sInventario 14
 #define SReportes 15
 #define SInventoryConfig 16
+#define SPrinter 17
 
 #define INPUT_1 4
 #define INPUT_2 2
@@ -183,12 +184,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(puertoserie, &QSerialPort::readyRead, this, &MainWindow::Leer_datos);
 
     DB = QSqlDatabase::addDatabase("QMYSQL");
-    // DB.setHostName("192.168.10.104");
-    DB.setHostName("192.168.100.216");
-    DB.setDatabaseName("mysql");
+    // DB.setHostName("192.168.100.216");
+    DB.setHostName("192.168.100.136");
+    DB.setDatabaseName("cistem"); //mysql
     DB.setPort(3306);
-    DB.setUserName("root");
-    DB.setPassword("flores45");
+    DB.setUserName("abdiel");  //root
+    DB.setPassword("123456");  // flores45
     if(!DB.open()){
         QMessageBox::critical(this, "Error", DB.lastError().text());
         return;
@@ -199,7 +200,8 @@ MainWindow::MainWindow(QWidget *parent)
     Descargar();
     buscar_alarmas();
     TimerConfigInventoryDB();
- qDebug () << "Sali de descargar";
+
+   qDebug () << "Sali de descargar";
    ui->Tab_entregas->horizontalHeader()->setVisible(true);
    ui->tableWidget->horizontalHeader()->setVisible(true);
    ui->tabla_incidentes->horizontalHeader()->setVisible(true);
@@ -861,7 +863,7 @@ void MainWindow::Descargar()
         QMessageBox::critical(this, "Error",tr(qry.lastError().text().toUtf8()));
     }
     for (int i=0;i < S;i++) {
-        if(qry.exec("SElECT * FROM CISTEM.LIMITES WHERE Id_Taque = " +  QString::number(tanques[i]->getIdTanque())))
+        if(qry.exec("SElECT * FROM cistem.limites WHERE Id_Taque = " +  QString::number(tanques[i]->getIdTanque())))
         {
            while(qry.next())
            {
@@ -1072,7 +1074,7 @@ void MainWindow::on_Regresar_clicked()
     // MENU DE CONFIGURACION
 case SMenu :case SHome :case SSonda :case STanque :case STablaCub:
 case SLogin :case SHome2 :case STMaxi :case SComunicacion: case SVialarmas :
-case Slimites :case SComunicador :case SInventoryConfig:  frame= SMenu;break;
+case Slimites :case SComunicador :case SInventoryConfig: case SPrinter: frame= SMenu;break;
         //MENU PUBLICO
 case  sInventario: case SReportes: case SEntregas : frame= SMenuPub; break;
 
@@ -2391,4 +2393,11 @@ void MainWindow::estado_sistema(QPushButton *btn, QString estado)
 void MainWindow::on_pushButton_5_clicked()
 {
    close();
+}
+
+void MainWindow::on_Btn_Impresora_clicked()
+{
+    frame = SPrinter;
+    ui->stackedWidget->setCurrentIndex(SPrinter);
+
 }

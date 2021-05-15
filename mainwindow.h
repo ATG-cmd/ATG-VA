@@ -283,6 +283,8 @@ private slots:
 
    void on_pushButton_5_clicked();
 
+   void on_Btn_Impresora_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
