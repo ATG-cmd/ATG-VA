@@ -2337,17 +2337,18 @@ void MainWindow::InventoryActivos()
     qDebug() << "Numero de Tanques" << numerodetanques;
     qDebug() << "Hola Desde Inventory Activos";
     limpiar_tabla(ui->Tabla_Inventario,ui->Tabla_Inventario->rowCount());
-    for (int i= 0;i <= numerodetanques-1 ; i++) {
-        qDebug() << "hola desde el for" << i;
-        if (tanques[i]->getIshabilitado())
-        {
+   QSqlQuery qry;
+   qry.exec("SELECT * FROM `cistem`.`InventarioMin` LIMIT 1000;");
+   while(qry.next())
+       {
+
             qDebug() << "Hola desde el if";
             ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
-            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(tanques[i]->GetNameTank()));
-            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 1, new QTableWidgetItem(QString::number(tanques[i]->GetVolumen())));
-            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 2, new QTableWidgetItem(QString::number(tanques[i]->GetTemperatura())));
-            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 3, new QTableWidgetItem(QString::number(tanques[i]->GetAltura())));
-            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 4, new QTableWidgetItem(QString::number(tanques[i]->getNivelAgua())));
+            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(0).toString()));
+            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 1, new QTableWidgetItem(qry.value(1).toString()));
+            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 2, new QTableWidgetItem(qry.value(2).toString()));
+            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 3, new QTableWidgetItem(qry.value(3).toString()));
+            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 4, new QTableWidgetItem(qry.value(4).toString()));
             ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 5, new QTableWidgetItem("Actual"));
            ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
            ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
@@ -2355,10 +2356,8 @@ void MainWindow::InventoryActivos()
            ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
            ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
            ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
+}
 
-        }
-
-    }
 }
 
 void MainWindow::InVentoryHistory(int IDTank)
