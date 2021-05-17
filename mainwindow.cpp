@@ -26,6 +26,9 @@
 #define sInventario 14
 #define SReportes 15
 #define SInventoryConfig 16
+#define SPrinter 17
+#define SStation 18
+
 
 #define INPUT_1 4
 #define INPUT_2 2
@@ -183,6 +186,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(puertoserie, &QSerialPort::readyRead, this, &MainWindow::Leer_datos);
 
     DB = QSqlDatabase::addDatabase("QMYSQL");
+
     // DB.setHostName("192.168.10.104");
    DB.setHostName("192.168.100.136");
    // DB.setHostName("192.168.100.216");
@@ -191,6 +195,7 @@ MainWindow::MainWindow(QWidget *parent)
     DB.setPort(3306);
     DB.setUserName("ATG");
     DB.setPassword("Cistem");
+
     if(!DB.open()){
         QMessageBox::critical(this, "Error", DB.lastError().text());
         return;
@@ -201,7 +206,8 @@ MainWindow::MainWindow(QWidget *parent)
     Descargar();
     buscar_alarmas();
     TimerConfigInventoryDB();
- qDebug () << "Sali de descargar";
+
+   qDebug () << "Sali de descargar";
    ui->Tab_entregas->horizontalHeader()->setVisible(true);
    ui->tableWidget->horizontalHeader()->setVisible(true);
    ui->tabla_incidentes->horizontalHeader()->setVisible(true);
@@ -409,6 +415,7 @@ void MainWindow::on_Btn_Guardar_clicked()
     case SComunicacion: Guardar_Comunicacion(); break;
     case Slimites : guardar_limites(); break;
     case SInventoryConfig: GuardarConfigInv(); break;
+    case SStation: guardar_station(); break;
     }
     insertar_incidente("Warning","System Setup Modified","user","0","1",false);
 }
@@ -1074,7 +1081,7 @@ void MainWindow::on_Regresar_clicked()
     // MENU DE CONFIGURACION
 case SMenu :case SHome :case SSonda :case STanque :case STablaCub:
 case SLogin :case SHome2 :case STMaxi :case SComunicacion: case SVialarmas :
-case Slimites :case SComunicador :case SInventoryConfig:  frame= SMenu;break;
+case Slimites :case SComunicador :case SInventoryConfig: case SPrinter: case SStation: frame= SMenu;break;
         //MENU PUBLICO
 case  sInventario: case SReportes: case SEntregas : frame= SMenuPub; break;
 
@@ -1822,8 +1829,9 @@ void MainWindow::on_Btn_SaveTank_clicked()
       Buscar_Tanques();
       Descargar();
 
-    frame = SMenu;
-    ui->stackedWidget->setCurrentIndex(SMenu);
+      frame = SMenu;
+      ui->stackedWidget->setCurrentIndex(SMenu);
+      ui->Lab_Titulo->setText("Menu Principal");
 
 }
 
@@ -2409,8 +2417,45 @@ void MainWindow::estado_sistema(QPushButton *btn, QString estado)
     }
 }
 
+void MainWindow::guardar_station()
+{
+    QSqlQuery qry;
+    QString cadena;
+
+    cadena.append("UPDATE cistem.printer SET "
+                  "station_code = '"+ui->Line_StationCode->text()+"', "
+                  "station_name = '"+ui->Line_StationName->text()+"', "
+                  "usuario = '"+ui->Line_User->text()+"', "
+                  "memo = '"+ui->Line_Memo->text()+"', "
+                  "cb_station_code = '"+QString::number(ui->Combo_StationCode->currentIndex())+"', "
+                  "cb_station_name = '"+QString::number(ui->Combo_StationName->currentIndex())+"', "
+                  "cb_usuario = '"+QString::number(ui->Combo_User->currentIndex())+"', "
+                  "cb_memo = '"+QString::number(ui->Combo_Memo->currentIndex())+"' "
+                  "WHERE Id_station = 1;");
+
+    qDebug() << cadena;
+    qDebug() << qry.exec(cadena);
+    frame = SMenu;
+    ui->stackedWidget->setCurrentIndex(SMenu);
+    ui->Lab_Titulo->setText("Menu Principal");
+}
+
 void MainWindow::on_pushButton_5_clicked()
 {
    close();
+}
+
+
+void MainWindow::on_Btn_Impresora_clicked()
+{
+    frame = SPrinter;
+    ui->stackedWidget->setCurrentIndex(SPrinter);
+
+}
+
+void MainWindow::on_Btn_Station_clicked()
+{
+    frame = SStation;
+    ui->stackedWidget->setCurrentIndex(SStation);
 }
 
