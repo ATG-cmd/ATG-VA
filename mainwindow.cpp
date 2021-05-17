@@ -669,7 +669,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 void MainWindow::Leer_datos()
 {
     qDebug() << "Hola Me llego un dato";
-    RX=true;
+    RX[ProGaugeCount1]=true;
     QByteArray data;
     char dato;
     while( puertoserie->bytesAvailable())
@@ -863,7 +863,7 @@ void MainWindow::Descargar()
         QMessageBox::critical(this, "Error",tr(qry.lastError().text().toUtf8()));
     }
     for (int i=0;i < S;i++) {
-        if(qry.exec("SElECT * FROM CISTEM.LIMITES WHERE Id_Taque = " +  QString::number(tanques[i]->getIdTanque())))
+        if(qry.exec("SElECT * FROM cistem.limites WHERE Id_Taque = " +  QString::number(tanques[i]->getIdTanque())))
         {
            while(qry.next())
            {
@@ -916,18 +916,18 @@ void MainWindow::Estados()
     switch(ProGaugeCount){
     case 0:
         connect(Time3,SIGNAL(timeout()),this,SLOT(SendCMD()));
-        Time3->start(50); Time1->stop();
+        Time3->start(300); Time1->stop();
         disconnect(Time1,SIGNAL(timeout()),this,SLOT(Estados()));
         break;
-    case 1:  if (RX == true ) { ProGaugeCount ++ ; RX=false; }
-        else if (intento >= 3)
+    case 1:  if (RX[ProGaugeCount1] == true ) { ProGaugeCount ++ ; RX[ProGaugeCount1]=false; }
+         else if (intento[ProGaugeCount1] >= 2)
         {
-            ProGaugeCount ++ ; RX=false; intento = 0;
+            ProGaugeCount ++ ; RX[ProGaugeCount1]=false; intento[ProGaugeCount1] = 0;
             qDebug () << "Sonda Fuera de Linea: " << ProGaugeId[ProGaugeCount1];
             offlineSonda(ProGaugeId[ProGaugeCount1]);
             SondasOnline[ProGaugeCount1] = false;
         }
-        else { intento ++; ProGaugeCount--; qDebug () << intento; } break;
+        else { intento[ProGaugeCount1] ++; ProGaugeCount++; qDebug () << intento; } break;
     case 2:  if(ProGaugeCount1 >= IDSerie-1) ProGaugeCount1= 0;
         else  { ProGaugeCount1++;} ProGaugeCount= 0;  break;
     }
@@ -1112,6 +1112,7 @@ void MainWindow::offlineSonda(QString offsonda)
     for (int i = 0; i <= IDSerie; i++) {
         QString IDactual = ProGaugeId[i];
         qDebug() << "ProGaugeID" << ProGaugeId[i];
+        qDebug() << "ProGaugeID" << "--------------------------------------------------";
         if (IDactual == busqueda) {  indice = i; break;  }
     }
     if(tanques[indice]->getIsConnected() == true){
@@ -1150,7 +1151,7 @@ void MainWindow::SendCMD()
         qry.exec("SELECT COUNT(1) FROM cistem.tanques WHERE Configurado = 1;");
         while(qry.next())
         {
-           Time1->start(1500 /(qry.value(0).toInt()*2));
+           Time1->start(1000 /(qry.value(0).toInt()));
         }
           break;
     }
@@ -1843,29 +1844,23 @@ void MainWindow::on_Btn_Inventario_clicked()
     QObject::disconnect( combo_connect5 );
 
    combo_connect5 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
-            [=](int index){
+            [=](){
 
-        switch (index)
-         {
-         case 0: InventoryActivos();  break;
-         case 1: InVentoryHistory();  break;
-         case 2:   break;
-         case 3:   break;
-        } });
+          ui->SelecTank->setCurrentIndex(0); ui->SelecTank->activated(0);
+        });
 
 
 
     QObject::disconnect( combo_connect6 );
-   combo_connect6 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
+   combo_connect6 = QObject::connect(ui->SelecTank, QOverload<int>::of(&QComboBox::activated),
             [=](int index){
+   switch(ui->ComboSeleccion->currentIndex())
+   {
+   case 0: InventoryActivos(); break;
+   case 1:   InVentoryHistory(index); break;
+   }
 
-        switch (index)
-         {
-         case 0: InventoryActivos();  break;
-         case 1: InVentoryHistory();  break;
-         case 2:   break;
-         case 3:   break;
-        } });
+         });
     frame = sInventario; ui->stackedWidget->setCurrentIndex(sInventario);
     ui->ComboSeleccion->setCurrentIndex(0);
     ui->ComboSeleccion->activated(0);
@@ -2110,6 +2105,19 @@ void MainWindow::Leer_GPIO()
 void MainWindow::everysecond()
 {
     Actualizar_Time();
+
+//    if (InvMin == 300){
+//    for (int i= 0;i<=numerodetanques-1;i++) {
+//        QSqlQuery qry;
+//        qry.exec(tanques[i]->ActualInventory(true));
+//        qDebug() << tanques[i]->ActualInventory(true);
+//        qDebug() << "-----------------------------------------------------------------------";
+//}
+//    InvMin =0;
+//   }else {
+//InvMin++;
+//}
+
 }
 
 void MainWindow::on_Combo_tanque_limites_currentIndexChanged(const QString &arg1)
@@ -2255,8 +2263,8 @@ void MainWindow::InventoryTank()
 {
     for (int i= 0;i<=numerodetanques-1;i++) {
         QSqlQuery qry;
-        qry.exec(tanques[i]->ActualInventory());
-        qDebug() << tanques[i]->ActualInventory();
+        qry.exec(tanques[i]->ActualInventory(false));
+        qDebug() << tanques[i]->ActualInventory(false);
         qDebug() << "-----------------------------------------------------------------------";
 
 }
@@ -2353,14 +2361,15 @@ void MainWindow::InventoryActivos()
     }
 }
 
-void MainWindow::InVentoryHistory()
+void MainWindow::InVentoryHistory(int IDTank)
 {
         QString cadena;
         QSqlQuery qry;
         limpiar_tabla(ui->Tabla_Inventario,ui->Tabla_Inventario->rowCount());
-        //Btn_select_rango->setGeometry(30,5,200,40);
-        //Btn_select_rango->setText("Select Range");
-        cadena = ("SELECT * FROM `cistem`.`inventario` LIMIT 1000;");
+      if(IDTank==0)
+           cadena = ("SELECT * FROM `cistem`.`inventario`;");
+          else
+        cadena = ("SELECT * FROM `cistem`.`inventario`  WHERE IDTank ='"+QString::number(IDTank)+"';");
 
         qry.exec(cadena);
        // qDebug() << cadena;

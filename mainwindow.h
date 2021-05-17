@@ -72,9 +72,9 @@ public:
      int ProGaugeCount1 = 0;
      int ProGaugeCountCMD = 0;
      int indiceM = 0;
-     bool RX= false;
+     bool RX[8]= {false,false,false,false,false,false,false,false};
      bool SondasOnline[8];
-     int intento = 0;
+     int intento[8]={0,0,0,0,0,0,0,0};
      double Volumen_inicial;
      double Temperatura_inicial;
      double Volumen_Final;
@@ -96,6 +96,7 @@ public:
      int SelecIntervalo= 0;
      int SelecHora =0;
      int SelecMinutos =0;
+     int InvMin= 0;
 
      QString Bitso [13]= {"Deshabilitado","5 Minutos","10 Minutos","15 Minutos","20 Minutos","30 Minutos",
                     "1 Hora","2 Horas","4 Horas","6 Horas","8 Horas", "12 Horas", "24 Horas"};
@@ -127,7 +128,7 @@ public:
     void GuardarConfigInv();
     void TimerConfigInventoryDB();
     void InventoryActivos();
-    void InVentoryHistory();
+    void InVentoryHistory(int IDTank);
     void estado_sistema(QPushButton *btn,QString estado);
 
 

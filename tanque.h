@@ -14,6 +14,8 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QWidget>
+#include <QSqlDatabase>
+#include <QSqlQuery>
 
 class Tanque :public QWidget
 {
@@ -72,7 +74,7 @@ class Tanque :public QWidget
     double Temperatura_inicial;
     double Volumen_Final;
     double Temperatura_Final;
-    bool isConnected = false;
+    bool isConnected = true;
 
     int nivA;
     int PosX;
@@ -400,7 +402,7 @@ public:
 
    void deliveryProGaugeCountIncrement();
 
-   QString ActualInventory();
+   QString ActualInventory(bool Inv);
 
    bool getIsConnected() const;
    void setIsConnected(bool value);
