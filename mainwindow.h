@@ -128,6 +128,7 @@ public:
     void InventoryActivos();
     void InVentoryHistory();
     void estado_sistema(QPushButton *btn,QString estado);
+    void guardar_station();
 
 
 private slots:
@@ -284,6 +285,8 @@ private slots:
    void on_pushButton_5_clicked();
 
    void on_Btn_Impresora_clicked();
+
+   void on_Btn_Station_clicked();
 
 private:
     Ui::MainWindow *ui;
