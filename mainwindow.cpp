@@ -2306,20 +2306,22 @@ void MainWindow::TimerConfigInventoryDB()
 
         switch (Inter)
         {
+
+//        QString Bitso [13]= {"Deshabilitado","5 Minutos","10 Minutos","15 Minutos","20 Minutos","30 Minutos",
+//                       "1 Hora","2 Horas","4 Horas","6 Horas","8 Horas", "12 Horas", "24 Horas"};
         case 0:Inventory_Timer->stop(); break;
-        case 1:Inventory_Timer->stop();Inventory_Timer->start(300000); break;
-        case 2:Inventory_Timer->stop();Inventory_Timer->start(600000); break;
-        case 3:Inventory_Timer->stop();Inventory_Timer->start(900000); break;
-        case 4:Inventory_Timer->stop();Inventory_Timer->start(12000000); break;
-        case 5:Inventory_Timer->stop();Inventory_Timer->start(18000000); break;
-        default: Inventory_Timer->stop();Inventory_Timer->start(3600000); break;
-        case 7:Inventory_Timer->stop();Inventory_Timer->start(7200000); break;
-        case 8:Inventory_Timer->stop();Inventory_Timer->start(10800000); break;
-        case 9:Inventory_Timer->stop();Inventory_Timer->start(14400000); break;
-        case 10:Inventory_Timer->stop();Inventory_Timer->start(21600000); break;
-        case 11:Inventory_Timer->stop();Inventory_Timer->start(28800000); break;
-        case 12:Inventory_Timer->stop();Inventory_Timer->start(43200000); break;
-        case 13:Inventory_Timer->stop();Inventory_Timer->start(86400000); break;
+        case 1:Inventory_Timer->stop();Inventory_Timer->start(300000); break;//5 Min
+        case 2:Inventory_Timer->stop();Inventory_Timer->start(600000); break;//10 Min
+        case 3:Inventory_Timer->stop();Inventory_Timer->start(900000); break;//15 Min
+        case 4:Inventory_Timer->stop();Inventory_Timer->start(1200000); break;//20 Min
+        case 5:Inventory_Timer->stop();Inventory_Timer->start(1800000); break;//30 Min
+        default: Inventory_Timer->stop();Inventory_Timer->start(3600000); break;//1 H
+        case 7:Inventory_Timer->stop();Inventory_Timer->start(7200000); break;//2 H
+        case 8:Inventory_Timer->stop();Inventory_Timer->start(14400000); break;//4H
+        case 9:Inventory_Timer->stop();Inventory_Timer->start(21600000); break;//6H
+        case 10:Inventory_Timer->stop();Inventory_Timer->start(28800000); break;//8H
+        case 11:Inventory_Timer->stop();Inventory_Timer->start(43200000); break;//12H
+        case 12:Inventory_Timer->stop();Inventory_Timer->start(86400000); break;//24H
         }
 
     }
