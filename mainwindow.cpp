@@ -1862,11 +1862,8 @@ void MainWindow::on_Btn_Inventario_clicked()
     QObject::disconnect( combo_connect6 );
    combo_connect6 = QObject::connect(ui->SelecTank, QOverload<int>::of(&QComboBox::activated),
             [=](int index){
-   switch(ui->ComboSeleccion->currentIndex())
-   {
-   case 0: InventoryActivos(); break;
-   case 1:   InVentoryHistory(index); break;
-   }
+    InVentoryHistory(index,ui->ComboSeleccion->currentIndex());
+
 
          });
     frame = sInventario; ui->stackedWidget->setCurrentIndex(sInventario);
@@ -2114,18 +2111,6 @@ void MainWindow::everysecond()
 {
     Actualizar_Time();
 
-//    if (InvMin == 300){
-//    for (int i= 0;i<=numerodetanques-1;i++) {
-//        QSqlQuery qry;
-//        qry.exec(tanques[i]->ActualInventory(true));
-//        qDebug() << tanques[i]->ActualInventory(true);
-//        qDebug() << "-----------------------------------------------------------------------";
-//}
-//    InvMin =0;
-//   }else {
-//InvMin++;
-//}
-
 }
 
 void MainWindow::on_Combo_tanque_limites_currentIndexChanged(const QString &arg1)
@@ -2340,43 +2325,18 @@ void MainWindow::TimerConfigInventoryDB()
     }
 }
 
-void MainWindow::InventoryActivos()
-{
-    qDebug() << "Numero de Tanques" << numerodetanques;
-    qDebug() << "Hola Desde Inventory Activos";
-    limpiar_tabla(ui->Tabla_Inventario,ui->Tabla_Inventario->rowCount());
-   QSqlQuery qry;
-   qry.exec("SELECT * FROM `cistem`.`InventarioMin` LIMIT 1000;");
-   while(qry.next())
-       {
 
-            qDebug() << "Hola desde el if";
-            ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
-            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(0).toString()));
-            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 1, new QTableWidgetItem(qry.value(1).toString()));
-            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 2, new QTableWidgetItem(qry.value(2).toString()));
-            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 3, new QTableWidgetItem(qry.value(3).toString()));
-            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 4, new QTableWidgetItem(qry.value(4).toString()));
-            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 5, new QTableWidgetItem("Actual"));
-           ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
-           ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
-           ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
-           ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
-           ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
-           ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
-}
-
-}
-
-void MainWindow::InVentoryHistory(int IDTank)
+void MainWindow::InVentoryHistory(int IDTank, int ComboInventory)
 {
         QString cadena;
         QSqlQuery qry;
+
+
         limpiar_tabla(ui->Tabla_Inventario,ui->Tabla_Inventario->rowCount());
       if(IDTank==0)
-           cadena = ("SELECT * FROM `cistem`.`inventario`;");
+           cadena = ("SELECT * FROM `cistem`.`"+SelecionInventario[ComboInventory]+"`;");
           else
-        cadena = ("SELECT * FROM `cistem`.`inventario`  WHERE IDTank ='"+QString::number(IDTank)+"';");
+        cadena = ("SELECT * FROM `cistem`.`"+SelecionInventario[ComboInventory]+"`  WHERE IDTank ='"+QString::number(IDTank)+"';");
 
         qry.exec(cadena);
        // qDebug() << cadena;

@@ -940,7 +940,7 @@ QString Tanque::ActualInventory(bool Inv)
 
              return  "INSERT INTO `cistem`.`InventarioMin` (`IDTank`, `NombreTank`, `VolumenCo`, `Temperatura`, `AlturaC`, `AlturaA`, `Fecha`) VALUES ('"+QString::number(IdTanque)+"','"+NomTank+"','"+QString::number(VolumenCon)+"','"+QString::number(Temperatura)+"', '"+QString::number(AlturaTank)+"', '"+QString::number(NivelAgua)+"','"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');";
             else {
-             return  "INSERT INTO `cistem`.`inventario` (`ID`, `IDTank`, `NombreTank`, `VolumenCo`, `Temperatura`, `AlturaC`, `AlturaA`, `Fecha`) VALUES ('"+QString::number(IdTanque)+"', '"+QString::number(IdTanque)+"','"+NomTank+"','"+QString::number(VolumenCon)+"','"+QString::number(Temperatura)+"', '"+QString::number(AlturaTank)+"', '"+QString::number(NivelAgua)+"','"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');";
+             return  "INSERT INTO `cistem`.`inventario` (`IDTank`, `NombreTank`, `VolumenCo`, `Temperatura`, `AlturaC`, `AlturaA`, `Fecha`) VALUES ('"+QString::number(IdTanque)+"','"+NomTank+"','"+QString::number(VolumenCon)+"','"+QString::number(Temperatura)+"', '"+QString::number(AlturaTank)+"', '"+QString::number(NivelAgua)+"','"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');";
         }
     }
 

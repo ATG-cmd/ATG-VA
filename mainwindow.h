@@ -100,6 +100,7 @@ public:
 
      QString Bitso [13]= {"Deshabilitado","5 Minutos","10 Minutos","15 Minutos","20 Minutos","30 Minutos",
                     "1 Hora","2 Horas","4 Horas","6 Horas","8 Horas", "12 Horas", "24 Horas"};
+     QStringList SelecionInventario = {"InventarioMin","inventario"};
 
 
     void Buscar_Tanques();  // Es funcion busca los tanques dados de alta en BD
@@ -127,11 +128,9 @@ public:
     void btn_Habilitado(QPushButton *Boton,bool hab);
     void GuardarConfigInv();
     void TimerConfigInventoryDB();
-    void InventoryActivos();
-    void InVentoryHistory(int IDTank);
+    void InVentoryHistory(int IDTank, int ComboInventory);
     void estado_sistema(QPushButton *btn,QString estado);
     void guardar_station();
-
 
 private slots:
 
