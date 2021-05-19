@@ -869,6 +869,8 @@ void MainWindow::Descargar()
     {
         QMessageBox::critical(this, "Error",tr(qry.lastError().text().toUtf8()));
     }
+
+
     for (int i=0;i < S;i++) {
         if(qry.exec("SElECT * FROM cistem.limites WHERE Id_Taque = " +  QString::number(tanques[i]->getIdTanque())))
         {
@@ -1075,7 +1077,6 @@ void MainWindow::Tanque_Maximisado()
 
 void MainWindow::on_Regresar_clicked()
 {
-
 
     switch (frame) {
     // MENU DE CONFIGURACION
@@ -1959,7 +1960,6 @@ cadena.append("SELECT * FROM `cistem`.`entregas` where Tanque_Nombre = '"+ui->CS
              qDebug() << qry.value(0).toInt() << qry.value(1).toString() << qry.value(2).toInt() << qry.value(4).toInt();
          }
     });
-
 }
 
 void MainWindow::Botones()
@@ -2339,13 +2339,25 @@ void MainWindow::InVentoryHistory(int IDTank, int ComboInventory)
            cadena = ("SELECT * FROM `cistem`.`"+SelecionInventario[ComboInventory]+"`;");
           else
         cadena = ("SELECT * FROM `cistem`.`"+SelecionInventario[ComboInventory]+"`  WHERE IDTank ='"+QString::number(IDTank)+"';");
-
+int cada2= 2;
         qry.exec(cadena);
        // qDebug() << cadena;
         while(qry.next())
         {
+             if (SelecionInventario[ComboInventory]== "InventarioCortes" )
+             {
+                 if (cada2 == 2){
             ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
             ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(2).toString()));
+            cada2 =0;
+                 }
+                 ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
+                 ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(8).toString()));
+
+             }else{
+            ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
+            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(2).toString()));
+             }
             ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 1, new QTableWidgetItem(qry.value(3).toString()));
             ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 2, new QTableWidgetItem(qry.value(4).toString()));
             ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 3, new QTableWidgetItem(qry.value(5).toString()));
@@ -2357,6 +2369,7 @@ void MainWindow::InVentoryHistory(int IDTank, int ComboInventory)
             ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
             ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
             ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
+cada2++;
         }
 
 }

@@ -100,7 +100,7 @@ public:
 
      QString Bitso [13]= {"Deshabilitado","5 Minutos","10 Minutos","15 Minutos","20 Minutos","30 Minutos",
                     "1 Hora","2 Horas","4 Horas","6 Horas","8 Horas", "12 Horas", "24 Horas"};
-     QStringList SelecionInventario = {"InventarioMin","inventario"};
+     QStringList SelecionInventario = {"InventarioMin","inventario","InventarioCortes"};
 
 
     void Buscar_Tanques();  // Es funcion busca los tanques dados de alta en BD
