@@ -63,6 +63,8 @@ public:
     int frameant= 0;
      QSqlDatabase DB;
      QSerialPort *puertoserie;
+     QSerialPort *Impresora;
+     QString impresora_name;
      QString portname;
      int Alarmas = 0;
      int warnings = 0;
