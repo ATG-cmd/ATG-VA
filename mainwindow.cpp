@@ -171,9 +171,17 @@ MainWindow::MainWindow(QWidget *parent)
    // ocultar();
 
     puertoserie = new QSerialPort();
+    Impresora = new QSerialPort();
     Time1 = new QTimer();
 
     ui->stackedWidget->setCurrentIndex(3);
+    // puerto serie para impresora
+    Impresora->setBaudRate(QSerialPort::Baud9600);
+    Impresora->setDataBits(QSerialPort::Data8);
+    Impresora->setFlowControl(QSerialPort::NoFlowControl);
+    Impresora->setParity(QSerialPort::NoParity);
+    Impresora->setStopBits(QSerialPort::OneStop);
+    Impresora->open(QIODevice::ReadWrite);
 
     //puertoserie->setPortName("Com3");
     puertoserie->setPortName("ttyAMA3");
@@ -193,8 +201,8 @@ MainWindow::MainWindow(QWidget *parent)
    // DB.setHostName("localhost");
     DB.setDatabaseName("cistem");
     DB.setPort(3306);
-    DB.setUserName("ATG");
-    DB.setPassword("Cistem");
+    DB.setUserName("abdiel");
+    DB.setPassword("123456");
 
     if(!DB.open()){
         QMessageBox::critical(this, "Error", DB.lastError().text());
@@ -2426,6 +2434,12 @@ void MainWindow::on_Btn_Impresora_clicked()
 {
     frame = SPrinter;
     ui->stackedWidget->setCurrentIndex(SPrinter);
+
+    foreach (const QSerialPortInfo &puertos, QSerialPortInfo::availablePorts()) {
+        ui->Combo_impresora->addItem(puertos.systemLocation());
+        ui->Combo_device->addItem(puertos.description());
+        ui->Combo_rango->addItem(puertos.serialNumber());
+    }
 
 }
 

@@ -6162,7 +6162,7 @@ border-radius: 16;
      <widget class="QLabel" name="label_37">
       <property name="geometry">
        <rect>
-        <x>670</x>
+        <x>440</x>
         <y>80</y>
         <width>200</width>
         <height>45</height>
@@ -6188,7 +6188,7 @@ border-radius: 16;
      <widget class="QLabel" name="label_40">
       <property name="geometry">
        <rect>
-        <x>640</x>
+        <x>480</x>
         <y>180</y>
         <width>200</width>
         <height>45</height>
@@ -6214,8 +6214,8 @@ border-radius: 16;
      <widget class="QLabel" name="label_43">
       <property name="geometry">
        <rect>
-        <x>630</x>
-        <y>440</y>
+        <x>440</x>
+        <y>430</y>
         <width>200</width>
         <height>45</height>
        </rect>
@@ -6240,7 +6240,7 @@ border-radius: 16;
      <widget class="QLabel" name="label_47">
       <property name="geometry">
        <rect>
-        <x>670</x>
+        <x>470</x>
         <y>520</y>
         <width>200</width>
         <height>45</height>
@@ -6263,10 +6263,10 @@ border-radius: 16;
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBox">
+     <widget class="QComboBox" name="Combo_impresora">
       <property name="geometry">
        <rect>
-        <x>970</x>
+        <x>810</x>
         <y>80</y>
         <width>350</width>
         <height>50</height>
@@ -6276,8 +6276,8 @@ border-radius: 16;
      <widget class="QListWidget" name="listWidget">
       <property name="geometry">
        <rect>
-        <x>970</x>
-        <y>160</y>
+        <x>810</x>
+        <y>140</y>
         <width>350</width>
         <height>250</height>
        </rect>
@@ -6314,20 +6314,20 @@ border-radius: 16;
        </property>
       </item>
      </widget>
-     <widget class="QComboBox" name="comboBox_2">
+     <widget class="QComboBox" name="Combo_device">
       <property name="geometry">
        <rect>
-        <x>970</x>
-        <y>440</y>
+        <x>810</x>
+        <y>430</y>
         <width>350</width>
         <height>50</height>
        </rect>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBox_4">
+     <widget class="QComboBox" name="Combo_rango">
       <property name="geometry">
        <rect>
-        <x>970</x>
+        <x>810</x>
         <y>520</y>
         <width>350</width>
         <height>50</height>
