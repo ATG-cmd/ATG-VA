@@ -406,6 +406,8 @@ public:
 
    bool getIsConnected() const;
    void setIsConnected(bool value);
+   bool getDesconectado() const;
+   void setDesconectado(bool value);
 };
 
 #endif // TANQUE_H

@@ -770,6 +770,7 @@ void MainWindow::Protocolo(QString cad)
         N= qry.value(0).toInt();
         qDebug() << "Protocolo:"<< N;
     }
+    if(tanques[indice]->getDesconectado())
     connect(tanques[indice],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
     switch (N) {
 

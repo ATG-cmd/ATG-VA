@@ -198,6 +198,16 @@ void Tanque::setIsConnected(bool value)
     isConnected = value;
 }
 
+bool Tanque::getDesconectado() const
+{
+    return Desconectado;
+}
+
+void Tanque::setDesconectado(bool value)
+{
+    Desconectado = value;
+}
+
 void Tanque::clickbuton(){ setTMaximizado(false); emit Camino(); }
 
 Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
@@ -676,7 +686,7 @@ void Tanque::SetTemperatura(double T)
    QString QryFecha;
 
 
-   if (!Desconectado){
+   if (!Desconectado && TMaximizado){
 
    ishabilitado = true;
    Desconectado = true;
