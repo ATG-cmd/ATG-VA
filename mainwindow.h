@@ -310,6 +310,14 @@ private slots:
 
    void on_checkBox_8_stateChanged(int arg1);
 
+   void on_Combo_StationCode_activated(int index);
+
+   void on_Combo_StationName_activated(int index);
+
+   void on_Combo_User_activated(int index);
+
+   void on_Combo_Memo_activated(int index);
+
 private:
     Ui::MainWindow *ui;
 };

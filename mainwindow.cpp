@@ -2522,3 +2522,51 @@ void MainWindow::IncremtMin()
 
 }
 
+
+void MainWindow::on_Combo_StationCode_activated(int index)
+{
+    if(index == 1){
+    ui->Line_StationCode->clear();
+    ui->Line_StationCode->setEnabled(false);
+    ui->Line_StationCode->setStyleSheet("QLineEdit{border-radius: 10px;background-color: rgb(235, 235, 235);border: 2px solid  gray ;}");
+    }else{
+    ui->Line_StationCode->setEnabled(true);
+    ui->Line_StationCode->setStyleSheet("QLineEdit{border-radius: 10px;border: 2px solid  gray ;}");
+    }
+}
+
+void MainWindow::on_Combo_StationName_activated(int index)
+{
+    if(index == 1){
+    ui->Line_StationName->clear();
+    ui->Line_StationName->setEnabled(false);
+    ui->Line_StationName->setStyleSheet("QLineEdit{border-radius: 10px;background-color: rgb(235, 235, 235);border: 2px solid  gray ;}");
+    }else{
+     ui->Line_StationName->setEnabled(true);
+     ui->Line_StationName->setStyleSheet("QLineEdit{border-radius: 10px;border: 2px solid  gray ;}");
+    }
+}
+
+void MainWindow::on_Combo_User_activated(int index)
+{
+    if(index == 1){
+    ui->Line_User->clear();
+    ui->Line_User->setEnabled(false);
+    ui->Line_User->setStyleSheet("QLineEdit{border-radius: 10px;background-color: rgb(235, 235, 235);border: 2px solid  gray ;}");
+    }else{
+     ui->Line_User->setEnabled(true);
+     ui->Line_User->setStyleSheet("QLineEdit{border-radius: 10px;border: 2px solid  gray ;}");
+    }
+}
+
+void MainWindow::on_Combo_Memo_activated(int index)
+{
+    if(index == 1){
+    ui->Line_Memo->clear();
+    ui->Line_Memo->setEnabled(false);
+    ui->Line_Memo->setStyleSheet("QLineEdit{border-radius: 10px;background-color: rgb(235, 235, 235);border: 2px solid  gray ;}");
+    }else{
+    ui->Line_Memo->setEnabled(true);
+    ui->Line_Memo->setStyleSheet("QLineEdit{border-radius: 10px;border: 2px solid  gray ;}");
+    }
+}
