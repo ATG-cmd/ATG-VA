@@ -133,6 +133,7 @@ public:
     void InVentoryHistory(int IDTank, int ComboInventory);
     void estado_sistema(QPushButton *btn,QString estado);
     void guardar_station();
+    void Botones_Turnos(QPushButton *BotonMenosH, QPushButton *BotonMasH, QPushButton *BotomMenosM, QPushButton *BotonMasM, QLineEdit *LineMin, QLineEdit *LineH, int args );
 
 private slots:
 
@@ -284,12 +285,15 @@ private slots:
 
    void InventoryTank();
 
-
    void on_pushButton_5_clicked();
 
    void on_Btn_Impresora_clicked();
 
    void on_Btn_Station_clicked();
+
+   void on_Btn_Turnos_clicked();
+
+   void on_checkBox_stateChanged(int arg1);
 
 private:
     Ui::MainWindow *ui;

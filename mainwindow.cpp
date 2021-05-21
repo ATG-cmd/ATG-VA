@@ -28,6 +28,7 @@
 #define SInventoryConfig 16
 #define SPrinter 17
 #define SStation 18
+#define STurnos 19
 
 
 #define INPUT_1 4
@@ -1855,7 +1856,7 @@ void MainWindow::on_Btn_Inventario_clicked()
     ui->ComboSeleccion->addItem("Actual");
     ui->ComboSeleccion->addItem("Historico");
     ui->ComboSeleccion->addItem("Cortes de Energía");
-    ui->ComboSeleccion->addItem("Turnos");
+  //  ui->ComboSeleccion->addItem("Turnos");
 
 
 
@@ -2424,6 +2425,7 @@ void MainWindow::guardar_station()
     ui->Lab_Titulo->setText("Menu Principal");
 }
 
+
 void MainWindow::on_pushButton_5_clicked()
 {
    close();
@@ -2445,7 +2447,42 @@ void MainWindow::on_Btn_Impresora_clicked()
 
 void MainWindow::on_Btn_Station_clicked()
 {
-    frame = SStation;
+    frame = STurnos;
     ui->stackedWidget->setCurrentIndex(SStation);
 }
 
+
+void MainWindow::on_Btn_Turnos_clicked()
+{
+    frame = STurnos;
+    ui->stackedWidget->setCurrentIndex(STurnos);
+}
+
+void MainWindow::on_checkBox_stateChanged(int arg1)
+{
+    Botones_Turnos(ui->Btn_H_menosM_T1,ui->Btn_D_masH_T1,ui->Btn_M_menosM_T1,ui->Btn_H_masM_T1,ui->Line_HoraLog_T1,ui->Line_H_minutos_T1,arg1);
+}
+
+
+void MainWindow::Botones_Turnos(QPushButton *BotonMenosH, QPushButton *BotonMasH, QPushButton *BotomMenosM, QPushButton *BotonMasM, QLineEdit *LineMin, QLineEdit *LineH, int args)
+{
+    if (args== 0)
+    {
+        btn_Habilitado(BotonMenosH,false);
+        LineMin->setEnabled(false);
+        btn_Habilitado(BotonMasH,false);
+        btn_Habilitado(BotomMenosM,false);
+        LineH->setEnabled(false);
+         btn_Habilitado(BotonMasM,false);
+    }
+    else {
+
+        btn_Habilitado(BotonMenosH,true);
+        LineMin->setEnabled(true);
+        btn_Habilitado(BotonMasH,true);
+        btn_Habilitado(BotomMenosM,true);
+        LineH->setEnabled(true);
+         btn_Habilitado(BotonMasM,true);
+
+    }
+}
