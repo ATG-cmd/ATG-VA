@@ -164,7 +164,7 @@ QHeaderView::section:vertical
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>19</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -433,7 +433,7 @@ QHeaderView::section:vertical
          <property name="styleSheet">
           <string notr="true">QPushButton {
 	color: white;
-	background-color: rgba(250,45,14,100);
+	background-color: rgba(115,11,114,100);
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
@@ -444,7 +444,7 @@ QHeaderView::section:vertical
          </property>
          <property name="icon">
           <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Alarmas.png</normaloff>:/Alarmas.png</iconset>
+           <normaloff>:/Turnos.png</normaloff>:/Turnos.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -778,7 +778,7 @@ padding: 2px;</string>
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1107</width>
+         <width>1139</width>
          <height>1471</height>
         </rect>
        </property>
@@ -4182,8 +4182,8 @@ border-radius: 16;
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>941</width>
-         <height>831</height>
+         <width>939</width>
+         <height>829</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_9">
