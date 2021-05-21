@@ -19,5 +19,6 @@
         <file>Inventario.png</file>
         <file>Reportes.png</file>
         <file>station.png</file>
+        <file>Turnos.png</file>
     </qresource>
 </RCC>

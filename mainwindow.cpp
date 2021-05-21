@@ -2424,13 +2424,10 @@ void MainWindow::guardar_station()
     ui->stackedWidget->setCurrentIndex(SMenu);
     ui->Lab_Titulo->setText("Menu Principal");
 }
-
-
 void MainWindow::on_pushButton_5_clicked()
 {
    close();
 }
-
 
 void MainWindow::on_Btn_Impresora_clicked()
 {
@@ -2451,18 +2448,11 @@ void MainWindow::on_Btn_Station_clicked()
     ui->stackedWidget->setCurrentIndex(SStation);
 }
 
-
 void MainWindow::on_Btn_Turnos_clicked()
 {
     frame = STurnos;
     ui->stackedWidget->setCurrentIndex(STurnos);
 }
-
-void MainWindow::on_checkBox_stateChanged(int arg1)
-{
-    Botones_Turnos(ui->Btn_H_menosM_T1,ui->Btn_D_masH_T1,ui->Btn_M_menosM_T1,ui->Btn_H_masM_T1,ui->Line_HoraLog_T1,ui->Line_H_minutos_T1,arg1);
-}
-
 
 void MainWindow::Botones_Turnos(QPushButton *BotonMenosH, QPushButton *BotonMasH, QPushButton *BotomMenosM, QPushButton *BotonMasM, QLineEdit *LineMin, QLineEdit *LineH, int args)
 {
@@ -2486,3 +2476,49 @@ void MainWindow::Botones_Turnos(QPushButton *BotonMenosH, QPushButton *BotonMasH
 
     }
 }
+
+void MainWindow::on_checkBox_stateChanged(int arg1)
+{
+    Botones_Turnos(ui->Btn_H_menosM_T1,ui->Btn_D_masH_T1,ui->Btn_M_menosM_T1,ui->Btn_H_masM_T1,ui->Line_HoraLog_T1,ui->Line_H_minutos_T1,arg1);
+}
+
+void MainWindow::on_checkBox_2_stateChanged(int arg1)
+{
+    Botones_Turnos(ui->Btn_H_menosM_T2,ui->Btn_D_masH_T2,ui->Btn_M_menosM_T2,ui->Btn_H_masM_T2,ui->Line_HoraLog_T2,ui->Line_H_minutos_T2,arg1);
+}
+
+void MainWindow::on_checkBox_3_stateChanged(int arg1)
+{
+   Botones_Turnos(ui->Btn_H_menosM_T3,ui->Btn_D_masH_T3,ui->Btn_M_menosM_T3,ui->Btn_H_masM_T3,ui->Line_HoraLog_T3,ui->Line_H_minutos_T3,arg1);
+}
+
+void MainWindow::on_checkBox_4_stateChanged(int arg1)
+{
+    Botones_Turnos(ui->Btn_H_menosM_T4,ui->Btn_D_masH_T4,ui->Btn_M_menosM_T4,ui->Btn_H_masM_T4,ui->Line_HoraLog_T4,ui->Line_H_minutos_T4,arg1);
+}
+
+void MainWindow::on_checkBox_5_stateChanged(int arg1)
+{
+    Botones_Turnos(ui->Btn_H_menosM_T5,ui->Btn_D_masH_T5,ui->Btn_M_menosM_T5,ui->Btn_H_masM_T5,ui->Line_HoraLog_T5,ui->Line_H_minutos_T5,arg1);
+}
+
+void MainWindow::on_checkBox_6_stateChanged(int arg1)
+{
+    Botones_Turnos(ui->Btn_H_menosM_T6,ui->Btn_D_masH_T6,ui->Btn_M_menosM_T6,ui->Btn_H_masM_T6,ui->Line_HoraLog_T6,ui->Line_H_minutos_T6,arg1);
+}
+
+void MainWindow::on_checkBox_7_stateChanged(int arg1)
+{
+    Botones_Turnos(ui->Btn_H_menosM_T7,ui->Btn_D_masH_T7,ui->Btn_M_menosM_T7,ui->Btn_H_masM_T7,ui->Line_HoraLog_T7,ui->Line_H_minutos_T7,arg1);
+}
+
+void MainWindow::on_checkBox_8_stateChanged(int arg1)
+{
+    Botones_Turnos(ui->Btn_H_menosM_T8,ui->Btn_D_masH_T8,ui->Btn_M_menosM_T8,ui->Btn_H_masM_T8,ui->Line_HoraLog_T8,ui->Line_H_minutos_T8,arg1);
+}
+
+void MainWindow::IncremtMin()
+{
+
+}
+

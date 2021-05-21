@@ -124,7 +124,6 @@ QHeaderView::section:vertical
 {
     border-left: 1px solid #fffff8;
 }
-
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -6662,12 +6661,15 @@ border-radius: 16;
      </widget>
     </widget>
     <widget class="QWidget" name="Turnos">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <widget class="QScrollArea" name="scrollArea_4">
       <property name="geometry">
        <rect>
         <x>440</x>
         <y>30</y>
-        <width>1251</width>
+        <width>1341</width>
         <height>741</height>
        </rect>
       </property>
@@ -6692,13 +6694,16 @@ border-radius: 16;
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-106</y>
-         <width>1201</width>
+         <y>0</y>
+         <width>1291</width>
          <height>1367</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true"/>
+        <string notr="true">QCheckBox::indicator {
+    width: 80px;
+    height: 80px;
+}</string>
        </property>
        <layout class="QGridLayout" name="gridLayout_16">
         <item row="0" column="0">
@@ -6721,98 +6726,8 @@ border-radius: 16;
           <property name="horizontalSpacing">
            <number>6</number>
           </property>
-          <item row="16" column="2">
-           <widget class="QLineEdit" name="Line_HoraLog_11">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>100</width>
-              <height>100</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>120</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>36</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="text">
-             <string>00</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="12" column="2">
-           <widget class="QLineEdit" name="Line_HoraLog_9">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>100</width>
-              <height>100</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>120</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>36</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="text">
-             <string>00</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="14" column="1">
-           <widget class="QPushButton" name="Btn_H_menosM_12">
+          <item row="18" column="1">
+           <widget class="QPushButton" name="Btn_H_menosM_T6">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -6851,8 +6766,8 @@ border-radius: 16;
             </property>
            </widget>
           </item>
-          <item row="16" column="3">
-           <widget class="QPushButton" name="Btn_D_masH_11">
+          <item row="14" column="7">
+           <widget class="QPushButton" name="Btn_H_masM_T4">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -6891,21 +6806,26 @@ border-radius: 16;
             </property>
            </widget>
           </item>
-          <item row="10" column="8">
-           <widget class="QCheckBox" name="checkBox_2">
-            <property name="styleSheet">
-             <string notr="true">QCheckBox::indicator {
-    width: 50px;
-    height: 50px;
-}</string>
+          <item row="4" column="3" colspan="5">
+           <widget class="QLineEdit" name="lineEdit_2">
+            <property name="maximumSize">
+             <size>
+              <width>550</width>
+              <height>71</height>
+             </size>
             </property>
-            <property name="text">
-             <string/>
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
             </property>
            </widget>
           </item>
-          <item row="16" column="1">
-           <widget class="QPushButton" name="Btn_H_menosM_13">
+          <item row="12" column="1">
+           <widget class="QPushButton" name="Btn_H_menosM_T3">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -6944,8 +6864,36 @@ border-radius: 16;
             </property>
            </widget>
           </item>
-          <item row="14" column="0">
-           <widget class="QLabel" name="label_64">
+          <item row="8" column="4">
+           <spacer name="horizontalSpacer_55">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="16" column="6">
+           <widget class="QLineEdit" name="Line_H_minutos_T5">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>170</width>
+              <height>16777215</height>
+             </size>
+            </property>
             <property name="font">
              <font>
               <pointsize>36</pointsize>
@@ -6955,15 +6903,469 @@ border-radius: 16;
              </font>
             </property>
             <property name="text">
-             <string>Turno: 4</string>
+             <string>00</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="1">
+           <widget class="QPushButton" name="Btn_H_menosM_T4">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Noto Sans Mahajani</family>
+              <pointsize>30</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: gray;
+	margin: 0px 0 0px 0;   
+}</string>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QLabel" name="label_61">
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Turno : 1</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
            </widget>
           </item>
-          <item row="8" column="2">
-           <widget class="QLineEdit" name="Line_HoraLog_T1">
+          <item row="3" column="0" colspan="10">
+           <widget class="Line" name="line_114">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="16" column="9">
+           <widget class="QCheckBox" name="checkBox_5">
+            <property name="styleSheet">
+             <string notr="true">QCheckBox::indicator {
+    width: 80px;
+    height: 80px;
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="18" column="0">
+           <widget class="QLabel" name="label_66">
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Turno: 6</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="5">
+           <widget class="QPushButton" name="Btn_M_menosM_T1">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Noto Sans Mahajani</family>
+              <pointsize>30</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: gray;
+	margin: 0px 0 0px 0;   
+}</string>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+           </widget>
+          </item>
+          <item row="18" column="7">
+           <widget class="QPushButton" name="Btn_H_masM_T6">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Noto Sans Mahajani</family>
+              <pointsize>30</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: gray;
+	margin: 0px 0 0px 0;   
+}</string>
+            </property>
+            <property name="text">
+             <string>+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1">
+           <widget class="QPushButton" name="Btn_H_menosM_T1">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Noto Sans Mahajani</family>
+              <pointsize>30</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: gray;
+	margin: 0px 0 0px 0;   
+}</string>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="3">
+           <widget class="QLabel" name="label_59">
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Tiem muerto Cier Tur</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="3">
+           <widget class="QPushButton" name="Btn_D_masH_T1">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Noto Sans Mahajani</family>
+              <pointsize>30</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: gray;
+	margin: 0px 0 0px 0;   
+}</string>
+            </property>
+            <property name="text">
+             <string>+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="9">
+           <widget class="QCheckBox" name="checkBox_2">
+            <property name="styleSheet">
+             <string notr="true">QCheckBox::indicator {
+    width: 80px;
+    height: 80px;
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="7">
+           <widget class="QPushButton" name="Btn_H_masM_T2">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Noto Sans Mahajani</family>
+              <pointsize>30</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: gray;
+	margin: 0px 0 0px 0;   
+}</string>
+            </property>
+            <property name="text">
+             <string>+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="16" column="7">
+           <widget class="QPushButton" name="Btn_H_masM_T5">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Noto Sans Mahajani</family>
+              <pointsize>30</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: gray;
+	margin: 0px 0 0px 0;   
+}</string>
+            </property>
+            <property name="text">
+             <string>+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="18" column="5">
+           <widget class="QPushButton" name="Btn_M_menosM_T6">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Noto Sans Mahajani</family>
+              <pointsize>30</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: gray;
+	margin: 0px 0 0px 0;   
+}</string>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+           </widget>
+          </item>
+          <item row="20" column="1">
+           <widget class="QPushButton" name="Btn_H_menosM_T7">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Noto Sans Mahajani</family>
+              <pointsize>30</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: gray;
+	margin: 0px 0 0px 0;   
+}</string>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+           </widget>
+          </item>
+          <item row="13" column="0" colspan="10">
+           <widget class="Line" name="line_41">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="2">
+           <widget class="QLineEdit" name="Line_HoraLog_T4">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -7007,8 +7409,119 @@ border-radius: 16;
             </property>
            </widget>
           </item>
-          <item row="8" column="3">
-           <widget class="QPushButton" name="Btn_D_masH_T1">
+          <item row="16" column="3">
+           <widget class="QPushButton" name="Btn_D_masH_T5">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Noto Sans Mahajani</family>
+              <pointsize>30</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: gray;
+	margin: 0px 0 0px 0;   
+}</string>
+            </property>
+            <property name="text">
+             <string>+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="20" column="0">
+           <widget class="QLabel" name="label_67">
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Turno: 7</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="5">
+           <widget class="QPushButton" name="Btn_M_menosM_T2">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Noto Sans Mahajani</family>
+              <pointsize>30</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: gray;
+	margin: 0px 0 0px 0;   
+}</string>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="9">
+           <widget class="QCheckBox" name="checkBox_4">
+            <property name="styleSheet">
+             <string notr="true">QCheckBox::indicator {
+    width: 80px;
+    height: 80px;
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="20" column="7">
+           <widget class="QPushButton" name="Btn_H_masM_T7">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -7087,44 +7600,8 @@ border-radius: 16;
             </property>
            </widget>
           </item>
-          <item row="8" column="6">
-           <widget class="QLineEdit" name="Line_H_minutos_T1">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>100</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>170</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>36</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>00</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="5">
-           <widget class="QPushButton" name="Btn_M_menosM_T1">
+          <item row="22" column="1">
+           <widget class="QPushButton" name="Btn_H_menosM_T8">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -7163,130 +7640,33 @@ border-radius: 16;
             </property>
            </widget>
           </item>
-          <item row="8" column="4">
-           <spacer name="horizontalSpacer_55">
+          <item row="12" column="0">
+           <widget class="QLabel" name="label_63">
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Turno: 3</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="17" column="0" colspan="10">
+           <widget class="Line" name="line_43">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="6" column="2">
-           <widget class="QLabel" name="Lab_Horas_7">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>36</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Horas</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
            </widget>
           </item>
-          <item row="6" column="6">
-           <widget class="QLabel" name="Lab_Minutos_7">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>36</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Minutos</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3" colspan="5">
-           <widget class="QComboBox" name="comboBox_5">
-            <property name="maximumSize">
-             <size>
-              <width>550</width>
-              <height>71</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>36</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <item>
-             <property name="text">
-              <string>Programado</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Manual</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="2" column="3" colspan="5">
-           <widget class="QLineEdit" name="lineEdit">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>550</width>
-              <height>71</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>36</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="3" colspan="5">
-           <widget class="QLineEdit" name="lineEdit_2">
-            <property name="maximumSize">
-             <size>
-              <width>550</width>
-              <height>71</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>36</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-           </widget>
-          </item>
-          <item row="10" column="7">
-           <widget class="QPushButton" name="Btn_H_masM_8">
+          <item row="20" column="3">
+           <widget class="QPushButton" name="Btn_D_masH_T7">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -7325,132 +7705,12 @@ border-radius: 16;
             </property>
            </widget>
           </item>
-          <item row="12" column="1">
-           <widget class="QPushButton" name="Btn_H_menosM_11">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Noto Sans Mahajani</family>
-              <pointsize>30</pointsize>
-              <weight>75</weight>
-              <italic>false</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 53px;
-	border: 2px solid  gray ;
-	background: gray;
-	margin: 0px 0 0px 0;   
-}</string>
-            </property>
-            <property name="text">
-             <string>-</string>
-            </property>
-           </widget>
-          </item>
-          <item row="20" column="7">
-           <widget class="QPushButton" name="Btn_H_masM_13">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Noto Sans Mahajani</family>
-              <pointsize>30</pointsize>
-              <weight>75</weight>
-              <italic>false</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 53px;
-	border: 2px solid  gray ;
-	background: gray;
-	margin: 0px 0 0px 0;   
-}</string>
-            </property>
-            <property name="text">
-             <string>+</string>
-            </property>
-           </widget>
-          </item>
-          <item row="18" column="5">
-           <widget class="QPushButton" name="Btn_H_menosM_20">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Noto Sans Mahajani</family>
-              <pointsize>30</pointsize>
-              <weight>75</weight>
-              <italic>false</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 53px;
-	border: 2px solid  gray ;
-	background: gray;
-	margin: 0px 0 0px 0;   
-}</string>
-            </property>
-            <property name="text">
-             <string>-</string>
-            </property>
-           </widget>
-          </item>
-          <item row="22" column="8">
-           <widget class="QCheckBox" name="checkBox_8">
+          <item row="18" column="9">
+           <widget class="QCheckBox" name="checkBox_6">
             <property name="styleSheet">
              <string notr="true">QCheckBox::indicator {
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
 }</string>
             </property>
             <property name="text">
@@ -7458,23 +7718,8 @@ border-radius: 16;
             </property>
            </widget>
           </item>
-          <item row="10" column="6">
-           <widget class="QLineEdit" name="Line_H_minutos_8">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>100</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>170</width>
-              <height>16777215</height>
-             </size>
-            </property>
+          <item row="4" column="0" colspan="3">
+           <widget class="QLabel" name="label_60">
             <property name="font">
              <font>
               <pointsize>36</pointsize>
@@ -7484,18 +7729,19 @@ border-radius: 16;
              </font>
             </property>
             <property name="text">
-             <string>00</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
+             <string>N. máx de Turnos/Días</string>
             </property>
            </widget>
           </item>
-          <item row="20" column="3">
-           <widget class="QPushButton" name="Btn_D_masH_13">
+          <item row="21" column="0" colspan="10">
+           <widget class="Line" name="line_45">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="5">
+           <widget class="QPushButton" name="Btn_M_menosM_T3">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -7530,12 +7776,26 @@ border-radius: 16;
 }</string>
             </property>
             <property name="text">
-             <string>+</string>
+             <string>-</string>
             </property>
            </widget>
           </item>
-          <item row="20" column="2">
-           <widget class="QLineEdit" name="Line_HoraLog_13">
+          <item row="9" column="0" colspan="10">
+           <widget class="Line" name="line_39">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="0" colspan="10">
+           <widget class="Line" name="line_40">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="16" column="2">
+           <widget class="QLineEdit" name="Line_HoraLog_T5">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -7579,21 +7839,29 @@ border-radius: 16;
             </property>
            </widget>
           </item>
-          <item row="16" column="8">
-           <widget class="QCheckBox" name="checkBox_5">
-            <property name="styleSheet">
-             <string notr="true">QCheckBox::indicator {
-    width: 50px;
-    height: 50px;
-}</string>
+          <item row="6" column="2">
+           <widget class="QLabel" name="Lab_Horas_7">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
             </property>
             <property name="text">
-             <string/>
+             <string>Horas</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
-          <item row="10" column="5">
-           <widget class="QPushButton" name="Btn_H_menosM_10">
+          <item row="22" column="5">
+           <widget class="QPushButton" name="Btn_M_menosM_T8">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -7632,8 +7900,21 @@ border-radius: 16;
             </property>
            </widget>
           </item>
+          <item row="20" column="9">
+           <widget class="QCheckBox" name="checkBox_7">
+            <property name="styleSheet">
+             <string notr="true">QCheckBox::indicator {
+    width: 80px;
+    height: 80px;
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
           <item row="14" column="3">
-           <widget class="QPushButton" name="Btn_D_masH_10">
+           <widget class="QPushButton" name="Btn_D_masH_T4">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -7672,15 +7953,23 @@ border-radius: 16;
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="9">
-           <widget class="Line" name="line_112">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+          <item row="12" column="6">
+           <widget class="QLineEdit" name="Line_H_minutos_T3">
+            <property name="enabled">
+             <bool>false</bool>
             </property>
-           </widget>
-          </item>
-          <item row="12" column="0">
-           <widget class="QLabel" name="label_63">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>170</width>
+              <height>16777215</height>
+             </size>
+            </property>
             <property name="font">
              <font>
               <pointsize>36</pointsize>
@@ -7690,19 +7979,74 @@ border-radius: 16;
              </font>
             </property>
             <property name="text">
-             <string>Turno: 3</string>
+             <string>00</string>
             </property>
             <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="14" column="8">
-           <widget class="QCheckBox" name="checkBox_4">
+          <item row="15" column="0" colspan="10">
+           <widget class="Line" name="line_42">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="18" column="2">
+           <widget class="QLineEdit" name="Line_HoraLog_T6">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>00</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="9">
+           <widget class="QCheckBox" name="checkBox">
             <property name="styleSheet">
              <string notr="true">QCheckBox::indicator {
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
 }</string>
             </property>
             <property name="text">
@@ -7710,96 +8054,35 @@ border-radius: 16;
             </property>
            </widget>
           </item>
-          <item row="3" column="0" colspan="9">
-           <widget class="Line" name="line_114">
+          <item row="1" column="0" colspan="10">
+           <widget class="Line" name="line_112">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="12" column="8">
-           <widget class="QCheckBox" name="checkBox_3">
-            <property name="styleSheet">
-             <string notr="true">QCheckBox::indicator {
-    width: 50px;
-    height: 50px;
-}</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0" colspan="9">
-           <widget class="Line" name="line_37">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="13" column="0" colspan="9">
-           <widget class="Line" name="line_41">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="0" colspan="9">
-           <widget class="Line" name="line_39">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="19" column="0" colspan="9">
+          <item row="19" column="0" colspan="10">
            <widget class="Line" name="line_44">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="12" column="5">
-           <widget class="QPushButton" name="Btn_H_menosM_17">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Noto Sans Mahajani</family>
-              <pointsize>30</pointsize>
-              <weight>75</weight>
-              <italic>false</italic>
-              <bold>true</bold>
-             </font>
-            </property>
+          <item row="12" column="9">
+           <widget class="QCheckBox" name="checkBox_3">
             <property name="styleSheet">
-             <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 53px;
-	border: 2px solid  gray ;
-	background: gray;
-	margin: 0px 0 0px 0;   
+             <string notr="true">QCheckBox::indicator {
+    width: 80px;
+    height: 80px;
 }</string>
             </property>
             <property name="text">
-             <string>-</string>
+             <string/>
             </property>
            </widget>
           </item>
-          <item row="14" column="7">
-           <widget class="QPushButton" name="Btn_H_masM_10">
+          <item row="12" column="7">
+           <widget class="QPushButton" name="Btn_H_masM_T3">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -7839,7 +8122,7 @@ border-radius: 16;
            </widget>
           </item>
           <item row="20" column="5">
-           <widget class="QPushButton" name="Btn_H_menosM_21">
+           <widget class="QPushButton" name="Btn_M_menosM_T7">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -7875,63 +8158,11 @@ border-radius: 16;
             </property>
             <property name="text">
              <string>-</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0" colspan="9">
-           <widget class="Line" name="line_113">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="10" column="2">
-           <widget class="QLineEdit" name="Line_HoraLog_8">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>100</width>
-              <height>100</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>120</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>36</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="text">
-             <string>00</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
             </property>
            </widget>
           </item>
           <item row="10" column="1">
-           <widget class="QPushButton" name="Btn_H_menosM_9">
+           <widget class="QPushButton" name="Btn_H_menosM_T2">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -7970,8 +8201,8 @@ border-radius: 16;
             </property>
            </widget>
           </item>
-          <item row="18" column="3">
-           <widget class="QPushButton" name="Btn_D_masH_12">
+          <item row="10" column="3">
+           <widget class="QPushButton" name="Btn_D_masH_T2">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -8010,229 +8241,17 @@ border-radius: 16;
             </property>
            </widget>
           </item>
-          <item row="15" column="0" colspan="9">
-           <widget class="Line" name="line_42">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="0">
-           <widget class="QLabel" name="label_61">
-            <property name="font">
-             <font>
-              <pointsize>36</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Turno : 1</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="22" column="3">
-           <widget class="QPushButton" name="Btn_D_masH_14">
+          <item row="2" column="3" colspan="5">
+           <widget class="QLineEdit" name="lineEdit">
             <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Noto Sans Mahajani</family>
-              <pointsize>30</pointsize>
-              <weight>75</weight>
-              <italic>false</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 53px;
-	border: 2px solid  gray ;
-	background: gray;
-	margin: 0px 0 0px 0;   
-}</string>
-            </property>
-            <property name="text">
-             <string>+</string>
-            </property>
-           </widget>
-          </item>
-          <item row="12" column="7">
-           <widget class="QPushButton" name="Btn_H_masM_9">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Noto Sans Mahajani</family>
-              <pointsize>30</pointsize>
-              <weight>75</weight>
-              <italic>false</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 53px;
-	border: 2px solid  gray ;
-	background: gray;
-	margin: 0px 0 0px 0;   
-}</string>
-            </property>
-            <property name="text">
-             <string>+</string>
-            </property>
-           </widget>
-          </item>
-          <item row="20" column="1">
-           <widget class="QPushButton" name="Btn_H_menosM_15">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Noto Sans Mahajani</family>
-              <pointsize>30</pointsize>
-              <weight>75</weight>
-              <italic>false</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 53px;
-	border: 2px solid  gray ;
-	background: gray;
-	margin: 0px 0 0px 0;   
-}</string>
-            </property>
-            <property name="text">
-             <string>-</string>
-            </property>
-           </widget>
-          </item>
-          <item row="16" column="7">
-           <widget class="QPushButton" name="Btn_H_masM_11">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Noto Sans Mahajani</family>
-              <pointsize>30</pointsize>
-              <weight>75</weight>
-              <italic>false</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 53px;
-	border: 2px solid  gray ;
-	background: gray;
-	margin: 0px 0 0px 0;   
-}</string>
-            </property>
-            <property name="text">
-             <string>+</string>
-            </property>
-           </widget>
-          </item>
-          <item row="20" column="6">
-           <widget class="QLineEdit" name="Line_H_minutos_13">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>100</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>170</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>36</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>00</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="readOnly">
              <bool>true</bool>
             </property>
-           </widget>
-          </item>
-          <item row="10" column="0">
-           <widget class="QLabel" name="label_62">
+            <property name="maximumSize">
+             <size>
+              <width>550</width>
+              <height>71</height>
+             </size>
+            </property>
             <property name="font">
              <font>
               <pointsize>36</pointsize>
@@ -8240,91 +8259,6 @@ border-radius: 16;
               <italic>true</italic>
               <bold>true</bold>
              </font>
-            </property>
-            <property name="text">
-             <string>Turno: 2</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="1">
-           <widget class="QPushButton" name="Btn_H_menosM_T1">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Noto Sans Mahajani</family>
-              <pointsize>30</pointsize>
-              <weight>75</weight>
-              <italic>false</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 53px;
-	border: 2px solid  gray ;
-	background: gray;
-	margin: 0px 0 0px 0;   
-}</string>
-            </property>
-            <property name="text">
-             <string>-</string>
-            </property>
-           </widget>
-          </item>
-          <item row="20" column="8">
-           <widget class="QCheckBox" name="checkBox_7">
-            <property name="styleSheet">
-             <string notr="true">QCheckBox::indicator {
-    width: 50px;
-    height: 50px;
-}</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="18" column="8">
-           <widget class="QCheckBox" name="checkBox_6">
-            <property name="styleSheet">
-             <string notr="true">QCheckBox::indicator {
-    width: 50px;
-    height: 50px;
-}</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="8">
-           <widget class="QCheckBox" name="checkBox">
-            <property name="styleSheet">
-             <string notr="true">QCheckBox::indicator {
-    width: 50px;
-    height: 50px;
-}</string>
-            </property>
-            <property name="text">
-             <string/>
             </property>
            </widget>
           </item>
@@ -8346,22 +8280,17 @@ border-radius: 16;
             </property>
            </widget>
           </item>
-          <item row="16" column="6">
-           <widget class="QLineEdit" name="Line_H_minutos_11">
+          <item row="5" column="0" colspan="10">
+           <widget class="Line" name="line_113">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="6">
+           <widget class="QLabel" name="Lab_Minutos_7">
             <property name="enabled">
              <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>100</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>170</width>
-              <height>16777215</height>
-             </size>
             </property>
             <property name="font">
              <font>
@@ -8372,252 +8301,15 @@ border-radius: 16;
              </font>
             </property>
             <property name="text">
-             <string>00</string>
+             <string>Minutos</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="18" column="2">
-           <widget class="QLineEdit" name="Line_HoraLog_12">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>100</width>
-              <height>100</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>120</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>36</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="text">
-             <string>00</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0" colspan="3">
-           <widget class="QLabel" name="label_59">
-            <property name="font">
-             <font>
-              <pointsize>36</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Tiem muerto Cier Tur</string>
-            </property>
-           </widget>
-          </item>
-          <item row="10" column="3">
-           <widget class="QPushButton" name="Btn_D_masH_8">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Noto Sans Mahajani</family>
-              <pointsize>30</pointsize>
-              <weight>75</weight>
-              <italic>false</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 53px;
-	border: 2px solid  gray ;
-	background: gray;
-	margin: 0px 0 0px 0;   
-}</string>
-            </property>
-            <property name="text">
-             <string>+</string>
-            </property>
-           </widget>
-          </item>
-          <item row="22" column="1">
-           <widget class="QPushButton" name="Btn_H_menosM_16">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Noto Sans Mahajani</family>
-              <pointsize>30</pointsize>
-              <weight>75</weight>
-              <italic>false</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 53px;
-	border: 2px solid  gray ;
-	background: gray;
-	margin: 0px 0 0px 0;   
-}</string>
-            </property>
-            <property name="text">
-             <string>-</string>
-            </property>
-           </widget>
-          </item>
-          <item row="14" column="6">
-           <widget class="QLineEdit" name="Line_H_minutos_10">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>100</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>170</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>36</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>00</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="16" column="5">
-           <widget class="QPushButton" name="Btn_H_menosM_19">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Noto Sans Mahajani</family>
-              <pointsize>30</pointsize>
-              <weight>75</weight>
-              <italic>false</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 53px;
-	border: 2px solid  gray ;
-	background: gray;
-	margin: 0px 0 0px 0;   
-}</string>
-            </property>
-            <property name="text">
-             <string>-</string>
-            </property>
-           </widget>
-          </item>
-          <item row="20" column="0">
-           <widget class="QLabel" name="label_67">
-            <property name="font">
-             <font>
-              <pointsize>36</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Turno: 7</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
            </widget>
           </item>
           <item row="14" column="5">
-           <widget class="QPushButton" name="Btn_H_menosM_18">
+           <widget class="QPushButton" name="Btn_M_menosM_T4">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -8653,87 +8345,6 @@ border-radius: 16;
             </property>
             <property name="text">
              <string>-</string>
-            </property>
-           </widget>
-          </item>
-          <item row="12" column="6">
-           <widget class="QLineEdit" name="Line_H_minutos_9">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>100</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>170</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>36</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>00</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="14" column="2">
-           <widget class="QLineEdit" name="Line_HoraLog_10">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>100</width>
-              <height>100</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>120</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>36</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="text">
-             <string>00</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -8749,129 +8360,6 @@ border-radius: 16;
             </property>
             <property name="text">
              <string>Metodo de cierre de turno </string>
-            </property>
-           </widget>
-          </item>
-          <item row="17" column="0" colspan="9">
-           <widget class="Line" name="line_43">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="12" column="3">
-           <widget class="QPushButton" name="Btn_D_masH_9">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Noto Sans Mahajani</family>
-              <pointsize>30</pointsize>
-              <weight>75</weight>
-              <italic>false</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 53px;
-	border: 2px solid  gray ;
-	background: gray;
-	margin: 0px 0 0px 0;   
-}</string>
-            </property>
-            <property name="text">
-             <string>+</string>
-            </property>
-           </widget>
-          </item>
-          <item row="22" column="6">
-           <widget class="QLineEdit" name="Line_H_minutos_14">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>100</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>170</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>36</pointsize>
-              <weight>75</weight>
-              <italic>true</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>00</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="22" column="5">
-           <widget class="QPushButton" name="Btn_H_menosM_22">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>109</width>
-              <height>111</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Noto Sans Mahajani</family>
-              <pointsize>30</pointsize>
-              <weight>75</weight>
-              <italic>false</italic>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 53px;
-	border: 2px solid  gray ;
-	background: gray;
-	margin: 0px 0 0px 0;   
-}</string>
-            </property>
-            <property name="text">
-             <string>-</string>
             </property>
            </widget>
           </item>
@@ -8893,8 +8381,496 @@ border-radius: 16;
             </property>
            </widget>
           </item>
-          <item row="18" column="7">
-           <widget class="QPushButton" name="Btn_H_masM_12">
+          <item row="16" column="5">
+           <widget class="QPushButton" name="Btn_M_menosM_T5">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Noto Sans Mahajani</family>
+              <pointsize>30</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: gray;
+	margin: 0px 0 0px 0;   
+}</string>
+            </property>
+            <property name="text">
+             <string>-</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0" colspan="10">
+           <widget class="Line" name="line_37">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="22" column="2">
+           <widget class="QLineEdit" name="Line_HoraLog_T8">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>00</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="20" column="2">
+           <widget class="QLineEdit" name="Line_HoraLog_T7">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>00</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="2">
+           <widget class="QLineEdit" name="Line_HoraLog_T1">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
+            <property name="text">
+             <string>00</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="18" column="3">
+           <widget class="QPushButton" name="Btn_D_masH_T6">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Noto Sans Mahajani</family>
+              <pointsize>30</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: gray;
+	margin: 0px 0 0px 0;   
+}</string>
+            </property>
+            <property name="text">
+             <string>+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="6">
+           <widget class="QLineEdit" name="Line_H_minutos_T2">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>170</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>00</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="6">
+           <widget class="QLineEdit" name="Line_H_minutos_T1">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>170</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>00</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="6">
+           <widget class="QLineEdit" name="Line_H_minutos_T4">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>170</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>00</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="22" column="6">
+           <widget class="QLineEdit" name="Line_H_minutos_T8">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>170</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>00</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="18" column="6">
+           <widget class="QLineEdit" name="Line_H_minutos_T6">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>170</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>00</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3" colspan="5">
+           <widget class="QComboBox" name="comboBox_5">
+            <property name="maximumSize">
+             <size>
+              <width>550</width>
+              <height>71</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <item>
+             <property name="text">
+              <string>Programado</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Manual</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="10" column="0">
+           <widget class="QLabel" name="label_62">
+            <property name="font">
+             <font>
+              <pointsize>36</pointsize>
+              <weight>75</weight>
+              <italic>true</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Turno: 2</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="22" column="3">
+           <widget class="QPushButton" name="Btn_D_masH_T8">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>109</width>
+              <height>111</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Noto Sans Mahajani</family>
+              <pointsize>30</pointsize>
+              <weight>75</weight>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: gray;
+	margin: 0px 0 0px 0;   
+}</string>
+            </property>
+            <property name="text">
+             <string>+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="3">
+           <widget class="QPushButton" name="Btn_D_masH_T3">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -8934,7 +8910,7 @@ border-radius: 16;
            </widget>
           </item>
           <item row="22" column="7">
-           <widget class="QPushButton" name="Btn_H_masM_14">
+           <widget class="QPushButton" name="Btn_H_masM_T8">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -8973,8 +8949,21 @@ border-radius: 16;
             </property>
            </widget>
           </item>
-          <item row="18" column="1">
-           <widget class="QPushButton" name="Btn_H_menosM_14">
+          <item row="22" column="9">
+           <widget class="QCheckBox" name="checkBox_8">
+            <property name="styleSheet">
+             <string notr="true">QCheckBox::indicator {
+    width: 80px;
+    height: 80px;
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="16" column="1">
+           <widget class="QPushButton" name="Btn_H_menosM_T5">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -9013,8 +9002,8 @@ border-radius: 16;
             </property>
            </widget>
           </item>
-          <item row="22" column="2">
-           <widget class="QLineEdit" name="Line_HoraLog_14">
+          <item row="10" column="2">
+           <widget class="QLineEdit" name="Line_HoraLog_T2">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -9058,8 +9047,8 @@ border-radius: 16;
             </property>
            </widget>
           </item>
-          <item row="18" column="6">
-           <widget class="QLineEdit" name="Line_H_minutos_12">
+          <item row="20" column="6">
+           <widget class="QLineEdit" name="Line_H_minutos_T7">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -9094,8 +9083,8 @@ border-radius: 16;
             </property>
            </widget>
           </item>
-          <item row="18" column="0">
-           <widget class="QLabel" name="label_66">
+          <item row="14" column="0">
+           <widget class="QLabel" name="label_64">
             <property name="font">
              <font>
               <pointsize>36</pointsize>
@@ -9105,15 +9094,36 @@ border-radius: 16;
              </font>
             </property>
             <property name="text">
-             <string>Turno: 6</string>
+             <string>Turno: 4</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
            </widget>
           </item>
-          <item row="4" column="0" colspan="3">
-           <widget class="QLabel" name="label_60">
+          <item row="12" column="2">
+           <widget class="QLineEdit" name="Line_HoraLog_T3">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>16777215</height>
+             </size>
+            </property>
             <property name="font">
              <font>
               <pointsize>36</pointsize>
@@ -9122,24 +9132,32 @@ border-radius: 16;
               <bold>true</bold>
              </font>
             </property>
+            <property name="layoutDirection">
+             <enum>Qt::RightToLeft</enum>
+            </property>
             <property name="text">
-             <string>N. máx de Turnos/Días</string>
+             <string>00</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="11" column="0" colspan="9">
-           <widget class="Line" name="line_40">
+          <item row="8" column="8">
+           <spacer name="horizontalSpacer_10">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-           </widget>
-          </item>
-          <item row="21" column="0" colspan="9">
-           <widget class="Line" name="line_45">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
             </property>
-           </widget>
+           </spacer>
           </item>
          </layout>
         </item>

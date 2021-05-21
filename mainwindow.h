@@ -134,6 +134,7 @@ public:
     void estado_sistema(QPushButton *btn,QString estado);
     void guardar_station();
     void Botones_Turnos(QPushButton *BotonMenosH, QPushButton *BotonMasH, QPushButton *BotomMenosM, QPushButton *BotonMasM, QLineEdit *LineMin, QLineEdit *LineH, int args );
+    void IncremtMin();
 
 private slots:
 
@@ -294,6 +295,20 @@ private slots:
    void on_Btn_Turnos_clicked();
 
    void on_checkBox_stateChanged(int arg1);
+
+   void on_checkBox_2_stateChanged(int arg1);
+
+   void on_checkBox_3_stateChanged(int arg1);
+
+   void on_checkBox_4_stateChanged(int arg1);
+
+   void on_checkBox_5_stateChanged(int arg1);
+
+   void on_checkBox_6_stateChanged(int arg1);
+
+   void on_checkBox_7_stateChanged(int arg1);
+
+   void on_checkBox_8_stateChanged(int arg1);
 
 private:
     Ui::MainWindow *ui;
