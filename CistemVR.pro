@@ -14,19 +14,22 @@ SOURCES += \
     mainwindow.cpp \
     sonda.cpp \
     tanque.cpp \
-    select_fechas.cpp
+    select_fechas.cpp \
+    butons.cpp
 
 HEADERS += \
     dialog.h \
     mainwindow.h \
     sonda.h \
     tanque.h \
-    select_fechas.h
+    select_fechas.h \
+    butons.h
 
 FORMS += \
     dialog.ui \
     mainwindow.ui \
-    select_fechas.ui
+    select_fechas.ui \
+    butons.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

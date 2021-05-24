@@ -144,6 +144,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(Btn_select_rango,&QPushButton::clicked,this,&MainWindow::btn_clicked);
     Maximizado = new Tanque(ui->Tanque_Maximizado,false);
 
+
     ConCombocol(ui->Combo_Color);
 
     //connect(Time2,SIGNAL(timeout()),this,SLOT(Actualizar_Time()));
@@ -401,13 +402,13 @@ QString MainWindow::ColorTank(QString Color)
  * se toma el texto del textedit Nombre para asignalo al tanque mediante el metodo setnameTank
  * -------------------------------------------------------------------------------------------------------*/
 
-// Inicio de Modificacion de texto de Tanque Configuracion
+//// Inicio de Modificacion de texto de Tanque Configuracion
 
-void MainWindow::Modificar_TextoTank()
-{
-    Tconf->SetnameTank(ui->Line_Nombre->text());
+//void MainWindow::Modificar_TextoTank()
+//{
+//    Tconf->SetnameTank(ui->Line_Nombre->text());
 
-}// FIN de Modificacion de texto de Tanque Configuraci
+//}// FIN de Modificacion de texto de Tanque Configuraci
 
 /*-------------------------------------------------------------------------------------------------------------
  * Cada stalcked tiene su bonton de guardar y volver al momento de de entrar a un stalcked mediante el munu dentro del
@@ -425,6 +426,7 @@ void MainWindow::on_Btn_Guardar_clicked()
     case Slimites : guardar_limites(); break;
     case SInventoryConfig: GuardarConfigInv(); break;
     case SStation: guardar_station(); break;
+    case STurnos:  guardar_Turnos(); break;
     }
     insertar_incidente("Warning","System Setup Modified","user","0","1",false);
 }
@@ -1858,8 +1860,6 @@ void MainWindow::on_Btn_Inventario_clicked()
     ui->ComboSeleccion->addItem("Cortes de Energía");
   //  ui->ComboSeleccion->addItem("Turnos");
 
-
-
     QObject::disconnect( combo_connect5 );
 
    combo_connect5 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
@@ -1867,8 +1867,6 @@ void MainWindow::on_Btn_Inventario_clicked()
 
           ui->SelecTank->setCurrentIndex(0); ui->SelecTank->activated(0);
         });
-
-
 
     QObject::disconnect( combo_connect6 );
    combo_connect6 = QObject::connect(ui->SelecTank, QOverload<int>::of(&QComboBox::activated),
@@ -2424,6 +2422,30 @@ void MainWindow::guardar_station()
     ui->stackedWidget->setCurrentIndex(SMenu);
     ui->Lab_Titulo->setText("Menu Principal");
 }
+
+void MainWindow::guardar_Turnos()
+{
+     QSqlQuery qry;
+
+   if(ui->Turno1->getIsHabilitado()) qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='"+ui->Turno1->getLineHorText()+"', `Minutos`='"+ui->Turno1->getLineMinText()+"', `Habilitado`=b'1' WHERE  `ID`=1;");
+   else qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='00', `Minutos`='00', `Habilitado`=b'0' WHERE  `ID`=1;");
+   if(ui->Turno2->getIsHabilitado()) qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='"+ui->Turno2->getLineHorText()+"', `Minutos`='"+ui->Turno2->getLineMinText()+"', `Habilitado`=b'1' WHERE  `ID`=2;");
+   else qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='00', `Minutos`='00', `Habilitado`=b'0' WHERE  `ID`=2;");
+   if(ui->Turno3->getIsHabilitado()) qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='"+ui->Turno3->getLineHorText()+"', `Minutos`='"+ui->Turno3->getLineMinText()+"', `Habilitado`=b'1' WHERE  `ID`=3;");
+   else qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='00', `Minutos`='00', `Habilitado`=b'0' WHERE  `ID`=3;");
+   if(ui->Turno4->getIsHabilitado()) qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='"+ui->Turno4->getLineHorText()+"', `Minutos`='"+ui->Turno4->getLineMinText()+"', `Habilitado`=b'1' WHERE  `ID`=4;");
+   else qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='00', `Minutos`='00', `Habilitado`=b'0' WHERE  `ID`=4;");
+   if(ui->Turno5->getIsHabilitado()) qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='"+ui->Turno5->getLineHorText()+"', `Minutos`='"+ui->Turno5->getLineMinText()+"', `Habilitado`=b'1' WHERE  `ID`=5;");
+   else qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='00', `Minutos`='00', `Habilitado`=b'0' WHERE  `ID`=5;");
+   if(ui->Turno6->getIsHabilitado()) qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='"+ui->Turno6->getLineHorText()+"', `Minutos`='"+ui->Turno6->getLineMinText()+"', `Habilitado`=b'1' WHERE  `ID`=6;");
+   else qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='00', `Minutos`='00', `Habilitado`=b'0' WHERE  `ID`=6;");
+   if(ui->Turno7->getIsHabilitado()) qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='"+ui->Turno7->getLineHorText()+"', `Minutos`='"+ui->Turno7->getLineMinText()+"', `Habilitado`=b'1' WHERE  `ID`=7;");
+   else qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='00', `Minutos`='00', `Habilitado`=b'0' WHERE  `ID`=7;");
+   if(ui->Turno8->getIsHabilitado()) qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='"+ui->Turno8->getLineHorText()+"', `Minutos`='"+ui->Turno8->getLineMinText()+"', `Habilitado`=b'1' WHERE  `ID`=8;");
+   else qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='00', `Minutos`='00', `Habilitado`=b'0' WHERE  `ID`=8;");
+
+
+}
 void MainWindow::on_pushButton_5_clicked()
 {
    close();
@@ -2453,76 +2475,6 @@ void MainWindow::on_Btn_Turnos_clicked()
     frame = STurnos;
     ui->stackedWidget->setCurrentIndex(STurnos);
 }
-
-void MainWindow::Botones_Turnos(QPushButton *BotonMenosH, QPushButton *BotonMasH, QPushButton *BotomMenosM, QPushButton *BotonMasM, QLineEdit *LineMin, QLineEdit *LineH, int args)
-{
-    if (args== 0)
-    {
-        btn_Habilitado(BotonMenosH,false);
-        LineMin->setEnabled(false);
-        btn_Habilitado(BotonMasH,false);
-        btn_Habilitado(BotomMenosM,false);
-        LineH->setEnabled(false);
-         btn_Habilitado(BotonMasM,false);
-    }
-    else {
-
-        btn_Habilitado(BotonMenosH,true);
-        LineMin->setEnabled(true);
-        btn_Habilitado(BotonMasH,true);
-        btn_Habilitado(BotomMenosM,true);
-        LineH->setEnabled(true);
-         btn_Habilitado(BotonMasM,true);
-
-    }
-}
-
-void MainWindow::on_checkBox_stateChanged(int arg1)
-{
-    Botones_Turnos(ui->Btn_H_menosM_T1,ui->Btn_D_masH_T1,ui->Btn_M_menosM_T1,ui->Btn_H_masM_T1,ui->Line_HoraLog_T1,ui->Line_H_minutos_T1,arg1);
-}
-
-void MainWindow::on_checkBox_2_stateChanged(int arg1)
-{
-    Botones_Turnos(ui->Btn_H_menosM_T2,ui->Btn_D_masH_T2,ui->Btn_M_menosM_T2,ui->Btn_H_masM_T2,ui->Line_HoraLog_T2,ui->Line_H_minutos_T2,arg1);
-}
-
-void MainWindow::on_checkBox_3_stateChanged(int arg1)
-{
-   Botones_Turnos(ui->Btn_H_menosM_T3,ui->Btn_D_masH_T3,ui->Btn_M_menosM_T3,ui->Btn_H_masM_T3,ui->Line_HoraLog_T3,ui->Line_H_minutos_T3,arg1);
-}
-
-void MainWindow::on_checkBox_4_stateChanged(int arg1)
-{
-    Botones_Turnos(ui->Btn_H_menosM_T4,ui->Btn_D_masH_T4,ui->Btn_M_menosM_T4,ui->Btn_H_masM_T4,ui->Line_HoraLog_T4,ui->Line_H_minutos_T4,arg1);
-}
-
-void MainWindow::on_checkBox_5_stateChanged(int arg1)
-{
-    Botones_Turnos(ui->Btn_H_menosM_T5,ui->Btn_D_masH_T5,ui->Btn_M_menosM_T5,ui->Btn_H_masM_T5,ui->Line_HoraLog_T5,ui->Line_H_minutos_T5,arg1);
-}
-
-void MainWindow::on_checkBox_6_stateChanged(int arg1)
-{
-    Botones_Turnos(ui->Btn_H_menosM_T6,ui->Btn_D_masH_T6,ui->Btn_M_menosM_T6,ui->Btn_H_masM_T6,ui->Line_HoraLog_T6,ui->Line_H_minutos_T6,arg1);
-}
-
-void MainWindow::on_checkBox_7_stateChanged(int arg1)
-{
-    Botones_Turnos(ui->Btn_H_menosM_T7,ui->Btn_D_masH_T7,ui->Btn_M_menosM_T7,ui->Btn_H_masM_T7,ui->Line_HoraLog_T7,ui->Line_H_minutos_T7,arg1);
-}
-
-void MainWindow::on_checkBox_8_stateChanged(int arg1)
-{
-    Botones_Turnos(ui->Btn_H_menosM_T8,ui->Btn_D_masH_T8,ui->Btn_M_menosM_T8,ui->Btn_H_masM_T8,ui->Line_HoraLog_T8,ui->Line_H_minutos_T8,arg1);
-}
-
-void MainWindow::IncremtMin()
-{
-
-}
-
-
 void MainWindow::on_Combo_StationCode_activated(int index)
 {
     if(index == 1){

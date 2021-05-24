@@ -1,3 +1,4 @@
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -103,6 +104,7 @@ public:
      QString Bitso [13]= {"Deshabilitado","5 Minutos","10 Minutos","15 Minutos","20 Minutos","30 Minutos",
                     "1 Hora","2 Horas","4 Horas","6 Horas","8 Horas", "12 Horas", "24 Horas"};
      QStringList SelecionInventario = {"InventarioMin","inventario","InventarioCortes"};
+     int minutos[8] = {0,0,0,0,0,0,0,0};
 
 
     void Buscar_Tanques();  // Es funcion busca los tanques dados de alta en BD
@@ -133,8 +135,13 @@ public:
     void InVentoryHistory(int IDTank, int ComboInventory);
     void estado_sistema(QPushButton *btn,QString estado);
     void guardar_station();
-    void Botones_Turnos(QPushButton *BotonMenosH, QPushButton *BotonMasH, QPushButton *BotomMenosM, QPushButton *BotonMasM, QLineEdit *LineMin, QLineEdit *LineH, int args );
-    void IncremtMin();
+    void guardar_Turnos();
+
+
+    signals:
+
+    void BotonMas(int Turno);
+
 
 private slots:
 
@@ -148,7 +155,7 @@ private slots:
 
    QString ColorTank(QString Color);
 
-   void Modificar_TextoTank();
+  // void Modificar_TextoTank();
 
    void on_Btn_Guardar_clicked();
 
@@ -293,22 +300,6 @@ private slots:
    void on_Btn_Station_clicked();
 
    void on_Btn_Turnos_clicked();
-
-   void on_checkBox_stateChanged(int arg1);
-
-   void on_checkBox_2_stateChanged(int arg1);
-
-   void on_checkBox_3_stateChanged(int arg1);
-
-   void on_checkBox_4_stateChanged(int arg1);
-
-   void on_checkBox_5_stateChanged(int arg1);
-
-   void on_checkBox_6_stateChanged(int arg1);
-
-   void on_checkBox_7_stateChanged(int arg1);
-
-   void on_checkBox_8_stateChanged(int arg1);
 
    void on_Combo_StationCode_activated(int index);
 
