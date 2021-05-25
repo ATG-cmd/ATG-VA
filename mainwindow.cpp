@@ -2459,14 +2459,14 @@ void MainWindow::on_Btn_Impresora_clicked()
     foreach (const QSerialPortInfo &puertos, QSerialPortInfo::availablePorts()) {
         ui->Combo_impresora->addItem(puertos.systemLocation());
         ui->Combo_device->addItem(puertos.description());
-        ui->Combo_rango->addItem(puertos.serialNumber());
+        ui->Combo_rango->addItem(puertos.portName());
     }
 
 }
 
 void MainWindow::on_Btn_Station_clicked()
 {
-    frame = STurnos;
+    frame = SStation;
     ui->stackedWidget->setCurrentIndex(SStation);
 }
 
