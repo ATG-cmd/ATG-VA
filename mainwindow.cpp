@@ -185,7 +185,7 @@ MainWindow::MainWindow(QWidget *parent)
     Impresora->setStopBits(QSerialPort::OneStop);
     Impresora->open(QIODevice::ReadWrite);
 
-    //puertoserie->setPortName("Com3");
+    //puertoserie->setPortName("ttyUSB0");
     puertoserie->setPortName("ttyAMA3");
     puertoserie->setBaudRate(QSerialPort::Baud9600);
     puertoserie->setDataBits(QSerialPort::Data8);
@@ -1149,7 +1149,7 @@ void MainWindow::SendCMD()
     switch(ProGaugeCountCMD){
     case 0:
        // puertoserie->setDataTerminalReady(false);
-        digitalWrite(CTRL,HIGH);
+       digitalWrite(CTRL,HIGH);
         ProGaugeCountCMD++;
         break;
     case 1:
@@ -1159,7 +1159,7 @@ void MainWindow::SendCMD()
         break;
 
     case 2:
-      //  puertoserie->setDataTerminalReady(true);
+       // puertoserie->setDataTerminalReady(true);
         digitalWrite(CTRL,LOW);
         ProGaugeCountCMD = 0;
         ProGaugeCount++;
