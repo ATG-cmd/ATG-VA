@@ -99,70 +99,31 @@ int Tanque::getIdTanque() const { return IdTanque;}
 
 void Tanque::setIdTanque(int value){IdTanque = value;}
 
-int Tanque::getDeliveryTimeOut() const
-{
-    return deliveryTimeOut;
-}
+int Tanque::getDeliveryTimeOut() const { return deliveryTimeOut; }
 
-void Tanque::setDeliveryTimeOut(int value)
-{
-    deliveryTimeOut = value;
-}
+void Tanque::setDeliveryTimeOut(int value) { deliveryTimeOut = value; }
 
-double Tanque::getDeliveryMinimunVolume() const
-{
-    return deliveryMinimunVolume;
-}
+double Tanque::getDeliveryMinimunVolume() const { return deliveryMinimunVolume; }
 
-void Tanque::setDeliveryMinimunVolume(double value)
-{
-    deliveryMinimunVolume = value;
-}
+void Tanque::setDeliveryMinimunVolume(double value) { deliveryMinimunVolume = value; }
 
-double Tanque::getDeliveryMaxVolumeRead() const
-{
-    return deliveryMaxVolumeRead;
-}
+double Tanque::getDeliveryMaxVolumeRead() const { return deliveryMaxVolumeRead; }
 
-void Tanque::setDeliveryMaxVolumeRead(double value)
-{
-    deliveryMaxVolumeRead = value;
-}
+void Tanque::setDeliveryMaxVolumeRead(double value) { deliveryMaxVolumeRead = value; }
 
-int Tanque::getDeliveryInProcess() const
-{
-    return deliveryInProcess;
-}
+int Tanque::getDeliveryInProcess() const { return deliveryInProcess; }
 
-void Tanque::setDeliveryInProcess(int value)
-{
-    deliveryInProcess = value;
-}
+void Tanque::setDeliveryInProcess(int value) {deliveryInProcess = value; }
 
-double Tanque::getDeliveryLastInventoryRead() const
-{
-    return deliveryLastInventoryRead;
-}
+double Tanque::getDeliveryLastInventoryRead() const { return deliveryLastInventoryRead;}
 
-void Tanque::setDeliveryLastInventoryRead(double value)
-{
-    deliveryLastInventoryRead = value;
-}
+void Tanque::setDeliveryLastInventoryRead(double value) { deliveryLastInventoryRead = value; }
 
-double Tanque::getDeliveryCountIncrement() const
-{
-    return deliveryCountIncrement;
-}
+double Tanque::getDeliveryCountIncrement() const { return deliveryCountIncrement; }
 
-void Tanque::setDeliveryCountIncrement(double value)
-{
-    deliveryCountIncrement = value;
-}
+void Tanque::setDeliveryCountIncrement(double value) { deliveryCountIncrement = value; }
 
-double Tanque::getDeliveryCountDecrement() const
-{
-    return deliveryCountDecrement;
-}
+double Tanque::getDeliveryCountDecrement() const {  return deliveryCountDecrement; }
 
 void Tanque::setDeliveryCountDecrement(double value)
 {
@@ -642,12 +603,6 @@ void Tanque::SetVolumen(double c ,double a)
 
     latanq->setText(QString::number(niv)+ "%");
 
-
-
-
-
-
-
 }
 
 int Tanque::Niv() { return niv; }
@@ -1016,6 +971,15 @@ QString Tanque::ActualInventory(bool Inv)
         return "hola";
     }
 }
+
+
+QString Tanque::InventoryTurnos(int Turno)
+{
+    //INSERT INTO `cistem`.`InventarioTurnos` (`Turno`, `IDTank`, `NombreTank`, `VolumenCo`, `Temperatura`, `AlturaC`, `AlturaA`, `Fecha`) VALUES ('1', '1', 'Tank1', '2265', '25', '1265', '200', '0000-00-00 00:01:20');
+    //SELECT LAST_INSERT_ID();
+    return  "INSERT INTO `cistem`.`InventarioTurnos` (`Turno`,`IDTank`, `NombreTank`, `VolumenCo`, `Temperatura`, `AlturaC`, `AlturaA`, `Fecha`) VALUES ('"+QString::number(Turno)+"','"+QString::number(IdTanque)+"','"+NomTank+"','"+QString::number(VolumenCon)+"','"+QString::number(Temperatura)+"', '"+QString::number(AlturaTank)+"', '"+QString::number(NivelAgua)+"','"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');";
+}
+
 
 
 

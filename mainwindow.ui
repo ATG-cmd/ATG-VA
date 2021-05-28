@@ -164,7 +164,7 @@ QHeaderView::section:vertical
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>8</number>
+     <number>14</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -5291,6 +5291,9 @@ border-radius: 16;
     </widget>
     <widget class="QWidget" name="Inventario">
      <widget class="QTableWidget" name="Tabla_Inventario">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -5299,16 +5302,46 @@ border-radius: 16;
         <height>781</height>
        </rect>
       </property>
+      <property name="minimumSize">
+       <size>
+        <width>1881</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="font">
        <font>
-        <pointsize>36</pointsize>
+        <pointsize>26</pointsize>
         <weight>75</weight>
         <italic>true</italic>
         <bold>true</bold>
        </font>
       </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="tabKeyNavigation">
+       <bool>true</bool>
+      </property>
+      <property name="showDropIndicator" stdset="0">
+       <bool>true</bool>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::NoSelection</enum>
+      </property>
+      <property name="cornerButtonEnabled">
+       <bool>false</bool>
+      </property>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
        <number>280</number>
+      </attribute>
+      <attribute name="horizontalHeaderHighlightSections">
+       <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -5316,9 +5349,12 @@ border-radius: 16;
       <attribute name="horizontalHeaderStretchLastSection">
        <bool>true</bool>
       </attribute>
+      <attribute name="verticalHeaderHighlightSections">
+       <bool>true</bool>
+      </attribute>
       <column>
        <property name="text">
-        <string>Nombre</string>
+        <string>Fecha/Hora</string>
        </property>
        <property name="font">
         <font>
@@ -6694,7 +6730,7 @@ border-radius: 16;
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-240</y>
+         <y>0</y>
          <width>1121</width>
          <height>981</height>
         </rect>
@@ -7323,7 +7359,7 @@ color: white;
      <rect>
       <x>200</x>
       <y>970</y>
-      <width>271</width>
+      <width>411</width>
       <height>91</height>
      </rect>
     </property>
@@ -7347,7 +7383,7 @@ color: white;
     </property>
     <property name="geometry">
      <rect>
-      <x>1350</x>
+      <x>1430</x>
       <y>950</y>
       <width>131</width>
       <height>131</height>
@@ -7355,7 +7391,7 @@ color: white;
     </property>
     <property name="font">
      <font>
-      <pointsize>36</pointsize>
+      <pointsize>39</pointsize>
       <weight>75</weight>
       <italic>true</italic>
       <bold>true</bold>
@@ -7383,10 +7419,11 @@ color: white;
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-radius: 65px;
+     <string notr="true">QComboBox{
+border-radius: 65px;
 border: 4px solid  gray ;
 background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 white, stop:0.33 white, stop:0.34 white, stop:0.66 white, stop:0.67 rgba(255, 255, 0, 255), stop:1 rgba(255, 255, 0, 255));
-
+}
 QComboBox::down-arrow {
 margin: 5px 0px 0px 0px;  
   width: 0;
@@ -7400,7 +7437,8 @@ margin: 5px 0px 0px 0px;
 QComboBox::drop-down {
     width: 40px
 	background-color: transparent;
-}</string>
+}
+</string>
     </property>
     <property name="editable">
      <bool>false</bool>
@@ -7420,7 +7458,16 @@ QComboBox::drop-down {
     </item>
     <item>
      <property name="text">
-      <string>1</string>
+      <string>1  </string>
+     </property>
+     <property name="icon">
+      <iconset resource="Imagenes/Resourse.qrc">
+       <normaloff>:/Tanque.png</normaloff>:/Tanque.png</iconset>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>2  </string>
      </property>
      <property name="icon">
       <iconset>
@@ -7430,7 +7477,7 @@ QComboBox::drop-down {
     </item>
     <item>
      <property name="text">
-      <string>2</string>
+      <string>3  </string>
      </property>
      <property name="icon">
       <iconset>
@@ -7440,7 +7487,7 @@ QComboBox::drop-down {
     </item>
     <item>
      <property name="text">
-      <string>3</string>
+      <string>4  </string>
      </property>
      <property name="icon">
       <iconset>
@@ -7450,7 +7497,7 @@ QComboBox::drop-down {
     </item>
     <item>
      <property name="text">
-      <string>4</string>
+      <string>5  </string>
      </property>
      <property name="icon">
       <iconset>
@@ -7460,7 +7507,7 @@ QComboBox::drop-down {
     </item>
     <item>
      <property name="text">
-      <string>5</string>
+      <string>6  </string>
      </property>
      <property name="icon">
       <iconset>
@@ -7470,7 +7517,7 @@ QComboBox::drop-down {
     </item>
     <item>
      <property name="text">
-      <string>6</string>
+      <string>7  </string>
      </property>
      <property name="icon">
       <iconset>
@@ -7480,17 +7527,7 @@ QComboBox::drop-down {
     </item>
     <item>
      <property name="text">
-      <string>7</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <activeon>:/Tanque.png</activeon>
-      </iconset>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>8</string>
+      <string>8  </string>
      </property>
      <property name="icon">
       <iconset>

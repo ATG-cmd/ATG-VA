@@ -21,6 +21,8 @@
 #include "select_fechas.h"
 #include <QTableWidget>
 
+
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -40,6 +42,7 @@ public:
     int ProGaugeCount= 0;
     Tanque *Tconf;
     Tanque *tanques[8];
+
     Tanque *Maximizado;
     Sonda  *Sondas[8];
     QTimer *Time1;
@@ -83,10 +86,14 @@ public:
      double Volumen_Final;
      double Temperatura_Final;
      bool S_input[16];
+      int TCon = 0;
 
 
      int numerodetanques=0;
      int TanqueActual= 0;
+     int TurnoActual =-1;
+     int TurnoEncontrado;
+     int MinutoSec =0;
 
 
      QMetaObject::Connection combo_connect1;
@@ -103,8 +110,9 @@ public:
 
      QString Bitso [13]= {"Deshabilitado","5 Minutos","10 Minutos","15 Minutos","20 Minutos","30 Minutos",
                     "1 Hora","2 Horas","4 Horas","6 Horas","8 Horas", "12 Horas", "24 Horas"};
-     QStringList SelecionInventario = {"InventarioMin","inventario","InventarioCortes"};
+     QStringList SelecionInventario = {"InventarioMin","inventario","InventarioCortes", "InventarioTurnos"};
      int minutos[8] = {0,0,0,0,0,0,0,0};
+    // QTime Turnos[8];
 
 
     void Buscar_Tanques();  // Es funcion busca los tanques dados de alta en BD
@@ -136,6 +144,7 @@ public:
     void estado_sistema(QPushButton *btn,QString estado);
     void guardar_station();
     void guardar_Turnos();
+    void Qry_Turnos(int Turno);
 
 
     signals:
@@ -313,3 +322,4 @@ private:
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H
+

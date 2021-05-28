@@ -408,6 +408,7 @@ public:
    void setIsConnected(bool value);
    bool getDesconectado() const;
    void setDesconectado(bool value);
+   QString InventoryTurnos(int Turno);
 };
 
 #endif // TANQUE_H

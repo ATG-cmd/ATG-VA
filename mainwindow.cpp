@@ -64,6 +64,16 @@ char cbuff1[lenbuff1];                  // Buffer
 char rcvchar1 = 0x00;                   // último carácter recibido
 double ProGaugeCapacidad = 40001.0;
 
+//typedef  struct Turnos Turnos;
+
+struct Turnos
+{
+   int Turno;
+   int Horas;
+   int minutos;
+}turnos[8];
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -221,6 +231,10 @@ MainWindow::MainWindow(QWidget *parent)
    ui->Tab_entregas->horizontalHeader()->setVisible(true);
    ui->tableWidget->horizontalHeader()->setVisible(true);
    ui->tabla_incidentes->horizontalHeader()->setVisible(true);
+   ui->Tabla_Inventario->verticalHeader()->setVisible(false);
+  //ui->Tabla_Inventario->setColumnWidth(0,100);
+  // ui->Tabla_Inventario->horizontalHeaderItem(0)->setText("Turno");
+   ui->Tabla_Inventario->setColumnWidth(0,380);
    ui->stackedWidget->setCurrentIndex(SHome);
    ui->Btn_Guardar->setVisible(false);
    ui->Regresar->setVisible(false);
@@ -914,6 +928,31 @@ void MainWindow::Descargar()
       }
     }
   }
+
+
+         TCon = 0;
+
+          if(qry.exec(" SELECT * FROM cistem.Turnos WHERE Habilitado = 1;"))
+          {
+              while (qry.next())
+              {
+
+                 turnos[TCon].Turno = qry.value(1).toInt();
+                 turnos[TCon].Horas = qry.value(2).toInt();
+                 turnos[TCon].minutos = qry.value(3).toInt();
+
+
+                    qDebug() << "TURNO"<<  qry.value(2).toInt() << "Horas" << qry.value(3).toInt() << "Munitos" << qry.value(4).toInt();
+                    qDebug() << "ID" << TCon;
+                    TCon ++;
+
+              }
+          }
+
+
+
+
+
  }
 
 void MainWindow::Geometrytank()
@@ -1858,14 +1897,21 @@ void MainWindow::on_Btn_Inventario_clicked()
     ui->ComboSeleccion->addItem("Actual");
     ui->ComboSeleccion->addItem("Historico");
     ui->ComboSeleccion->addItem("Cortes de Energía");
-  //  ui->ComboSeleccion->addItem("Turnos");
+    ui->ComboSeleccion->addItem("Turnos");
 
     QObject::disconnect( combo_connect5 );
 
    combo_connect5 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
-            [=](){
+           [=](int index){
 
-          ui->SelecTank->setCurrentIndex(0); ui->SelecTank->activated(0);
+
+        if (index !=0)
+        {
+            ui->SelecTank->setCurrentIndex(1);ui->SelecTank->activated(1);
+        }
+        else{
+            ui->SelecTank->setCurrentIndex(0); ui->SelecTank->activated(0);
+        }
         });
 
     QObject::disconnect( combo_connect6 );
@@ -1890,6 +1936,8 @@ void MainWindow::on_Btn_Reports_clicked()
     ui->ComboSeleccion->addItem("Prioritarios");
     ui->ComboSeleccion->addItem("No Prioritarios");
     ui->ComboSeleccion->addItem("Historico");
+
+     QObject::disconnect( combo_connect1 );
 
     combo_connect1 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
             [=](int index){
@@ -2118,6 +2166,56 @@ void MainWindow::Leer_GPIO()
 void MainWindow::everysecond()
 {
     Actualizar_Time();
+
+    if (MinutoSec == 60){
+            double a;
+            int  menor;
+             menor  = 10000000;
+
+            for (int i = 0; i < TCon; ++i)
+            {
+                qDebug () << "Indice Actual" << i;
+                qDebug () << "Horas" << turnos[i].Horas;
+                qDebug () << "Minutos" << turnos[i].minutos;
+
+                QTime t1(turnos[i].Horas,turnos[i].minutos, 0, 0);
+            QTime t2 =QTime::currentTime();
+
+            qDebug () << "Tiempo 1" << t1 ;
+            qDebug() << "Tiempo  Actual" << t2;
+
+            int secs = t2.secsTo(t1); // secs should be equal to 15.
+            secs = t1.secsTo(t2);     // secs should be equal to -15.
+
+             a = secs;
+
+            qDebug() << a;
+
+                if (a < menor && a > 0 )
+                { menor = a; qDebug() << "Turno Encontrado"  << turnos[i].Turno <<  "Hora" << turnos[i].Horas;
+                TurnoEncontrado = turnos[i].Turno;
+                }
+            }
+
+            if (TurnoActual == -1 )
+            {
+               Qry_Turnos(TurnoEncontrado);
+               TurnoActual = TurnoEncontrado;
+            }
+            else if (TurnoActual !=TurnoEncontrado){
+               Qry_Turnos(TurnoActual);
+               Qry_Turnos(TurnoEncontrado);
+               TurnoActual = TurnoEncontrado;
+
+
+            }
+            MinutoSec = 0;
+    }
+    else  MinutoSec ++;
+
+      //      printf(" el menor es %d\n", menor);
+
+
 
 }
 
@@ -2348,36 +2446,179 @@ void MainWindow::InVentoryHistory(int IDTank, int ComboInventory)
           else
         cadena = ("SELECT * FROM `cistem`.`"+SelecionInventario[ComboInventory]+"`  WHERE IDTank ='"+QString::number(IDTank)+"';");
 int cada2= 2;
+int uno= 0;
+int cada1=1;
+int merma[]= {0,0};
+int Cmerma=0;
+
+
+
         qry.exec(cadena);
        // qDebug() << cadena;
         while(qry.next())
         {
-             if (SelecionInventario[ComboInventory]== "InventarioCortes" )
+            if (IDTank == 0 || SelecionInventario[ComboInventory]== "InventarioMin" )
+            {
+                if(cada1== 1)
+                {
+                    ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
+                    ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(2).toString()));
+                    cada1 =0;
+                }
+                 ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
+
+            }
+
+           if (SelecionInventario[ComboInventory]== "InventarioCortes" )
              {
+                  ui->Tabla_Inventario->setColumnWidth(0,650);
+
                  if (cada2 == 2){
+                     if(Cmerma != 0 )
+                     {
+                     ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
+                     ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem("Cambio De Volumen Bruto"));
+
+                     ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 1, new QTableWidgetItem(QString::number(merma[1]-merma[0])));
+                     ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
+                    }
             ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
             ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(2).toString()));
             cada2 =0;
+            Cmerma =0;
+
                  }
                  ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
-                 ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(8).toString()));
+                 ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(8).toString()+ "  :  "+ qry.value(7).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
 
-             }else{
-            ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
-            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(2).toString()));
+                 merma[Cmerma]= qry.value(3).toInt();
+                 Cmerma++;
              }
-            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 1, new QTableWidgetItem(qry.value(3).toString()));
-            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 2, new QTableWidgetItem(qry.value(4).toString()));
-            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 3, new QTableWidgetItem(qry.value(5).toString()));
-            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 4, new QTableWidgetItem(qry.value(6).toString()));
-            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 5, new QTableWidgetItem(qry.value(7).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
-            ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
-            ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
-            ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
-            ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
-            ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
-            ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
-cada2++;
+             else if (SelecionInventario[ComboInventory]== "inventario" && IDTank !=0)
+             {
+                ui->Tabla_Inventario->setColumnWidth(0,380);
+                ui->Tabla_Inventario->horizontalHeaderItem(0)->setText("Fecha/Hora");
+                 if( uno == 0){
+                 ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
+                 ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(2).toString()));
+                          }
+                 ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
+                 ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(7).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
+
+
+             }
+//             else{
+//            ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
+//            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(7).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
+//             }
+            else if(SelecionInventario[ComboInventory] == "InventarioTurnos")
+             {
+
+                 ui->Tabla_Inventario->setColumnWidth(0,100);
+                 ui->Tabla_Inventario->horizontalHeaderItem(0)->setText("Turno");
+                 ui->Tabla_Inventario->setColumnWidth(1,500);
+                 ui->Tabla_Inventario->horizontalHeaderItem(1)->setText("Fecha de Turno");
+                 ui->Tabla_Inventario->setColumnWidth(2,280);
+                 ui->Tabla_Inventario->horizontalHeaderItem(2)->setText("Volumen");
+                 ui->Tabla_Inventario->setColumnWidth(3,280);
+                 ui->Tabla_Inventario->horizontalHeaderItem(3)->setText("Temperatura");
+                 ui->Tabla_Inventario->setColumnWidth(4,280);
+                 ui->Tabla_Inventario->horizontalHeaderItem(4)->setText("Altura de Combustible");
+                 ui->Tabla_Inventario->setColumnWidth(5,280);
+                 ui->Tabla_Inventario->horizontalHeaderItem(5)->setText("Altura de Agua");
+
+                 ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(8).toString()));
+                 ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 1, new QTableWidgetItem(qry.value(7).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
+                 ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 2, new QTableWidgetItem(qry.value(3).toString()));
+                 ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 3, new QTableWidgetItem(qry.value(4).toString()));
+                 ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 4, new QTableWidgetItem(qry.value(5).toString()));
+                 ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 5, new QTableWidgetItem(qry.value(6).toString()));
+
+
+           }
+
+             if (SelecionInventario[ComboInventory] != "InventarioTurnos")
+             {
+                 if (SelecionInventario[ComboInventory] == "InventarioCortes")
+                 ui->Tabla_Inventario->setColumnWidth(0,650);
+                 else {
+                      ui->Tabla_Inventario->setColumnWidth(0,400);
+                 }
+                 if (SelecionInventario[ComboInventory] == "InventarioMin")
+                 {
+                     ui->Tabla_Inventario->horizontalHeaderItem(0)->setText("Volumen");
+                     ui->Tabla_Inventario->setColumnWidth(1,280);
+                     ui->Tabla_Inventario->horizontalHeaderItem(1)->setText("Temperatura");
+                     ui->Tabla_Inventario->setColumnWidth(2,280);
+                     ui->Tabla_Inventario->horizontalHeaderItem(2)->setText("Altura de combustible");
+                     ui->Tabla_Inventario->setColumnWidth(3,280);
+                     ui->Tabla_Inventario->horizontalHeaderItem(3)->setText("Alturaq de agua");
+
+                     ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(3).toString()));
+                     ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 1, new QTableWidgetItem(qry.value(4).toString()));
+                     ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 2, new QTableWidgetItem(qry.value(5).toString()));
+                     ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 3, new QTableWidgetItem(qry.value(6).toString()));
+
+                 }
+                 else{
+                 ui->Tabla_Inventario->horizontalHeaderItem(0)->setText("Fecha/Hora");
+                 ui->Tabla_Inventario->setColumnWidth(1,280);
+                 ui->Tabla_Inventario->horizontalHeaderItem(1)->setText("Volumen");
+                 ui->Tabla_Inventario->setColumnWidth(2,280);
+                 ui->Tabla_Inventario->horizontalHeaderItem(2)->setText("Temperatura");
+                 ui->Tabla_Inventario->setColumnWidth(3,280);
+                 ui->Tabla_Inventario->horizontalHeaderItem(3)->setText("Altura de Combustible");
+                 ui->Tabla_Inventario->setColumnWidth(4,280);
+                 ui->Tabla_Inventario->horizontalHeaderItem(4)->setText("Altura de Agua");
+                 ui->Tabla_Inventario->setColumnWidth(5,280);
+                 ui->Tabla_Inventario->horizontalHeaderItem(5)->setText("Altura de Agua");
+
+
+                 ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 1, new QTableWidgetItem(qry.value(3).toString()));
+                 ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 2, new QTableWidgetItem(qry.value(4).toString()));
+                 ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 3, new QTableWidgetItem(qry.value(5).toString()));
+                 ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 4, new QTableWidgetItem(qry.value(6).toString()));
+                  ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
+                 }
+                 ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
+                 ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
+                 ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
+                 ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
+
+                // ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
+
+             }
+             else
+             {
+                 ui->Tabla_Inventario->setColumnWidth(0,100);
+
+                 if (cada2 == 2){
+                     if(Cmerma != 0 )
+                     {
+                         ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
+                     }
+                     else{
+                     ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
+                     ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 1, new QTableWidgetItem(qry.value(2).toString()));
+
+                     }
+                     cada2 =0;
+                     Cmerma =0;
+
+
+                 }
+                 ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
+                 ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(8).toString()+ "  :  "+ qry.value(7).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
+
+
+                 merma[Cmerma]= qry.value(3).toInt();
+                 Cmerma++;
+             }
+
+
+               uno++;
+            cada2++;
+            cada1++;
         }
 
 }
@@ -2444,6 +2685,17 @@ void MainWindow::guardar_Turnos()
    if(ui->Turno8->getIsHabilitado()) qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='"+ui->Turno8->getLineHorText()+"', `Minutos`='"+ui->Turno8->getLineMinText()+"', `Habilitado`=b'1' WHERE  `ID`=8;");
    else qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='00', `Minutos`='00', `Habilitado`=b'0' WHERE  `ID`=8;");
 
+
+}
+
+void MainWindow::Qry_Turnos(int Turno)
+{
+    for (int i= 0;i<=numerodetanques-1;i++) {
+        QSqlQuery qry;
+        qry.exec(tanques[i]->InventoryTurnos(Turno));
+        qDebug() << tanques[i]->InventoryTurnos(Turno);
+        qDebug() << "-----------------------------------------------------------------------";
+    }
 
 }
 void MainWindow::on_pushButton_5_clicked()
@@ -2522,3 +2774,7 @@ void MainWindow::on_Combo_Memo_activated(int index)
     ui->Line_Memo->setStyleSheet("QLineEdit{border-radius: 10px;border: 2px solid  gray ;}");
     }
 }
+
+
+
+
