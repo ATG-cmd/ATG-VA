@@ -164,7 +164,7 @@ QHeaderView::section:vertical
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>14</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -2774,8 +2774,8 @@ QScrollBar::add-line:vertical {
      <widget class="QTabWidget" name="tabWidget_2">
       <property name="geometry">
        <rect>
-        <x>1080</x>
-        <y>60</y>
+        <x>1060</x>
+        <y>20</y>
         <width>751</width>
         <height>741</height>
        </rect>
@@ -2789,7 +2789,19 @@ QScrollBar::add-line:vertical {
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">QTabBar::tab {
+  background: gray;
+  color: white;
+  padding: 10px;
+ }
+
+ QTabBar::tab:selected {
+  background: lightgray;
+ }
+
+QTabWidget::pane { 
+   border: none;
+}</string>
       </property>
       <property name="currentIndex">
        <number>1</number>
@@ -2798,31 +2810,16 @@ QScrollBar::add-line:vertical {
        <attribute name="title">
         <string>General</string>
        </attribute>
-       <widget class="QWidget" name="formLayoutWidget">
+       <widget class="QWidget" name="gridLayoutWidget_9">
         <property name="geometry">
          <rect>
           <x>10</x>
           <y>10</y>
-          <width>691</width>
-          <height>641</height>
+          <width>724</width>
+          <height>635</height>
          </rect>
         </property>
-        <layout class="QFormLayout" name="formLayout">
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_8">
-           <property name="font">
-            <font>
-             <pointsize>36</pointsize>
-             <weight>75</weight>
-             <italic>true</italic>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Volumen</string>
-           </property>
-          </widget>
-         </item>
+        <layout class="QGridLayout" name="gridLayout_17">
          <item row="0" column="1">
           <widget class="QLabel" name="Lab_VolMaxi">
            <property name="font">
@@ -2833,11 +2830,68 @@ QScrollBar::add-line:vertical {
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(230, 230, 230);}</string>
+           </property>
            <property name="text">
             <string>00000</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_8">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(230, 230, 230);}</string>
+           </property>
+           <property name="text">
+            <string>Volumen</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="label_29">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(230, 230, 230);}</string>
+           </property>
+           <property name="text">
+            <string>Temperatura</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_27">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(210, 210, 210); }</string>
+           </property>
+           <property name="text">
+            <string>Altura de Agua</string>
            </property>
           </widget>
          </item>
@@ -2851,8 +2905,35 @@ QScrollBar::add-line:vertical {
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(210, 210, 210); }</string>
+           </property>
            <property name="text">
             <string>100% </string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <widget class="QLabel" name="label_33">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(210, 210, 210); }</string>
+           </property>
+           <property name="text">
+            <string>0000</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
            </property>
           </widget>
          </item>
@@ -2866,74 +2947,11 @@ QScrollBar::add-line:vertical {
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(210, 210, 210); }</string>
+           </property>
            <property name="text">
             <string>000000</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_21">
-           <property name="font">
-            <font>
-             <pointsize>36</pointsize>
-             <weight>75</weight>
-             <italic>true</italic>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>TC Volumen</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLabel" name="Lab_TcVolumen">
-           <property name="font">
-            <font>
-             <pointsize>36</pointsize>
-             <weight>75</weight>
-             <italic>true</italic>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>0000000</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_23">
-           <property name="font">
-            <font>
-             <pointsize>36</pointsize>
-             <weight>75</weight>
-             <italic>true</italic>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Altura</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QLabel" name="Lab_AlturaMaxi">
-           <property name="font">
-            <font>
-             <pointsize>36</pointsize>
-             <weight>75</weight>
-             <italic>true</italic>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>0000</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -2950,13 +2968,16 @@ QScrollBar::add-line:vertical {
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(230, 230, 230);}</string>
+           </property>
            <property name="text">
             <string>Volumen de Agua</string>
            </property>
           </widget>
          </item>
-         <item row="4" column="1">
-          <widget class="QLabel" name="Lab_VolAgua">
+         <item row="2" column="1">
+          <widget class="QLabel" name="Lab_TcVolumen">
            <property name="font">
             <font>
              <pointsize>36</pointsize>
@@ -2965,26 +2986,14 @@ QScrollBar::add-line:vertical {
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(230, 230, 230);}</string>
+           </property>
            <property name="text">
-            <string>0000</string>
+            <string>0000000</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="0">
-          <widget class="QLabel" name="label_27">
-           <property name="font">
-            <font>
-             <pointsize>36</pointsize>
-             <weight>75</weight>
-             <italic>true</italic>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Altura de Agua</string>
            </property>
           </widget>
          </item>
@@ -2998,26 +3007,14 @@ QScrollBar::add-line:vertical {
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(210, 210, 210); }</string>
+           </property>
            <property name="text">
             <string>0000</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="label_29">
-           <property name="font">
-            <font>
-             <pointsize>36</pointsize>
-             <weight>75</weight>
-             <italic>true</italic>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Temperatura</string>
            </property>
           </widget>
          </item>
@@ -3033,6 +3030,48 @@ QScrollBar::add-line:vertical {
            </property>
            <property name="layoutDirection">
             <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(230, 230, 230);}</string>
+           </property>
+           <property name="text">
+            <string>0000</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_21">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(230, 230, 230);}</string>
+           </property>
+           <property name="text">
+            <string>TC Volumen</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLabel" name="Lab_VolAgua">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(230, 230, 230);}</string>
            </property>
            <property name="text">
             <string>0000</string>
@@ -3052,8 +3091,50 @@ QScrollBar::add-line:vertical {
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(210, 210, 210); }</string>
+           </property>
            <property name="text">
             <string>Capacidad</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLabel" name="Lab_AlturaMaxi">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(210, 210, 210); }</string>
+           </property>
+           <property name="text">
+            <string>0000</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_23">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(210, 210, 210); }</string>
+           </property>
+           <property name="text">
+            <string>Altura</string>
            </property>
           </widget>
          </item>
@@ -3067,29 +3148,11 @@ QScrollBar::add-line:vertical {
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(230, 230, 230);}</string>
+           </property>
            <property name="text">
             <string>Diametro</string>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="1">
-          <widget class="QLabel" name="label_33">
-           <property name="font">
-            <font>
-             <pointsize>36</pointsize>
-             <weight>75</weight>
-             <italic>true</italic>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="layoutDirection">
-            <enum>Qt::LeftToRight</enum>
-           </property>
-           <property name="text">
-            <string>0000</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
            </property>
           </widget>
          </item>
@@ -3105,6 +3168,9 @@ QScrollBar::add-line:vertical {
            </property>
            <property name="layoutDirection">
             <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(230, 230, 230);}</string>
            </property>
            <property name="text">
             <string>0000</string>
@@ -3127,7 +3193,7 @@ QScrollBar::add-line:vertical {
           <x>20</x>
           <y>10</y>
           <width>721</width>
-          <height>621</height>
+          <height>493</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_7">
@@ -3140,6 +3206,9 @@ QScrollBar::add-line:vertical {
              <italic>true</italic>
              <bold>true</bold>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(210, 210, 210); }</string>
            </property>
            <property name="text">
             <string>0000</string>
@@ -3201,6 +3270,9 @@ border-radius: 16;
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(210, 210, 210); }</string>
+           </property>
            <property name="text">
             <string>0000</string>
            </property>
@@ -3219,6 +3291,9 @@ border-radius: 16;
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(230, 230, 230);}</string>
+           </property>
            <property name="text">
             <string>Desbordamiento</string>
            </property>
@@ -3233,6 +3308,9 @@ border-radius: 16;
              <italic>true</italic>
              <bold>true</bold>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(230, 230, 230);}</string>
            </property>
            <property name="text">
             <string>0000</string>
@@ -3294,6 +3372,9 @@ border-radius: 16;
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(210, 210, 210); }</string>
+           </property>
            <property name="text">
             <string>0000</string>
            </property>
@@ -3312,6 +3393,9 @@ border-radius: 16;
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(230, 230, 230);}</string>
+           </property>
            <property name="text">
             <string>Producto Bajo</string>
            </property>
@@ -3326,6 +3410,9 @@ border-radius: 16;
              <italic>true</italic>
              <bold>true</bold>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(230, 230, 230);}</string>
            </property>
            <property name="text">
             <string>Advertencia de Agua Alta</string>
@@ -3342,6 +3429,9 @@ border-radius: 16;
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(210, 210, 210); }</string>
+           </property>
            <property name="text">
             <string>Necesita Entrega</string>
            </property>
@@ -3356,6 +3446,9 @@ border-radius: 16;
              <italic>true</italic>
              <bold>true</bold>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(230, 230, 230);}</string>
            </property>
            <property name="text">
             <string>0000</string>
@@ -3396,6 +3489,9 @@ border-radius: 16;
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(210, 210, 210); }</string>
+           </property>
            <property name="text">
             <string>Producto Alto</string>
            </property>
@@ -3432,6 +3528,9 @@ border-radius: 16;
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(230, 230, 230);}</string>
+           </property>
            <property name="text">
             <string>Maximo Volumen</string>
            </property>
@@ -3446,6 +3545,9 @@ border-radius: 16;
              <italic>true</italic>
              <bold>true</bold>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(230, 230, 230);}</string>
            </property>
            <property name="text">
             <string>0000</string>
@@ -3486,6 +3588,9 @@ border-radius: 16;
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(230, 230, 230);}</string>
+           </property>
            <property name="text">
             <string>0000</string>
            </property>
@@ -3504,6 +3609,9 @@ border-radius: 16;
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{ background-color: rgb(210, 210, 210); }</string>
+           </property>
            <property name="text">
             <string>Alarma de Agua Alta</string>
            </property>
@@ -3517,7 +3625,7 @@ border-radius: 16;
       <property name="geometry">
        <rect>
         <x>1480</x>
-        <y>30</y>
+        <y>10</y>
         <width>221</width>
         <height>91</height>
        </rect>

@@ -69,7 +69,7 @@ class Tanque :public QWidget
     double deliveryCountIncrement = 0;
     double deliveryCountDecrement = 0;
     double deliveryInventoryStart = 0;
-    double deliverySensivilityVolume = ProGaugeCapacidad * 0.0001;
+    double deliverySensivilityVolume = ProGaugeCapacidad * 0.0002;
     double Volumen_inicial;
     double Temperatura_inicial;
     double Volumen_Final;
@@ -95,8 +95,11 @@ class Tanque :public QWidget
     QString U ="0.254";
     QString R="100";
     QString RT="200";
+    QString FontTank= "18";
+    QString BorderTank="2";
     bool ishabilitado= false;
     bool Desconectado= false;
+
 
 private slots:
 
@@ -194,6 +197,7 @@ public:
        QLabel *label_24;
        QLabel *label_20;
        QLabel *label_33;
+       QLabel *lbl_ProGaugeDeliveryInProccess;
 
    /*
        Max_volumen  Volumen Maximo
@@ -234,6 +238,7 @@ public:
     double ProGaugeDiametro = 3200;
     int    ProGaugeTankPorcent = 0;
     int Protocolo;
+
 
     QRect *Q;
     double Xp= 1366;

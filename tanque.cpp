@@ -186,6 +186,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
      groupBox_4 = new QGroupBox(Boton);
      Ltemp = new QLabel(groupBox_4);
      latanq = new QLabel(groupBox_4);
+     lbl_ProGaugeDeliveryInProccess = new QLabel(T1);
 
       QFont font3;
       font3.setPointSize(30);
@@ -202,7 +203,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
       T1->setFlat(true);
 
       Boton->setGeometry(0,50,560,299);
-      Boton->setStyleSheet("QPushButton{background-color: rgb(240, 240, 240);border: 3px solid white; border-radius: 15px; padding: 5px;  }" );
+      Boton->setStyleSheet("QPushButton{background-color: rgb(240, 240, 240);border: 0px solid white; border-radius: 15px; padding: 5px;  }" );
 
       connect(Boton, SIGNAL (clicked()),this, SLOT(clickbuton()));
 
@@ -294,6 +295,17 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
      NivAVal->setText("000");
      NivAVal->setStyleSheet("QLabel{ background-color: rgb(230, 230, 230); }");
 
+
+     lbl_ProGaugeDeliveryInProccess->setObjectName(QString::fromUtf8("Entrega"));
+     lbl_ProGaugeDeliveryInProccess->setGeometry(375,0,370,50);
+     lbl_ProGaugeDeliveryInProccess->setFont(font2);
+     lbl_ProGaugeDeliveryInProccess->setText("Entrega en Proceso");
+     lbl_ProGaugeDeliveryInProccess->setStyleSheet("QLabel{ color: white;"
+                                                   "background-color: red;"
+                                                  "border: 3px solid red;"
+                                                   "border-radius: 10px;"
+                                                   "padding: 2px; }");
+     lbl_ProGaugeDeliveryInProccess->hide();
      verticalLayout->addWidget(NivAVal);
      horizontalLayout_3->addLayout(verticalLayout);
 
@@ -336,31 +348,11 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
      latanq->setEnabled(true);
      latanq->setGeometry(QRect(40, 30, 201, 201));
 
-    styleSheetTank =
-            "font: 16pt \"Broadway\";"
-            "color: black;"
-            // " border-width: 5px;"
-            "border: 8px solid;"
-            "border-color: rgb(165, 165, 165);"
-            "border-style: solid;"
-            "border-radius: 130px;"
-            "background-color:"
-            "qlineargradient(spread:pad,"
-            "x1:0, y1:0, x2:0, y2:1,"
-            "stop:0 "+ Color1 +" ,"
-            "stop:"+C +" "+ Color1 + " ,"
-            "stop:"+D+" "+ Color2 + " ,"
-            "stop: "+E+" "+ Color2 + " ,"
-            "stop: "+F+" "+ Color3 + " ,"
-            "stop:1 "+" "+ Color3 +" );";
-
      latanq->setStyleSheet(styleSheetTank);
 
      latanq->setAlignment(Qt::AlignCenter);
      latanq->setText("Sin Conexion");
-     QFont A;
-     A.setPointSize(35);
-     latanq->setFont(A);
+
 
      latanq->raise();
 
@@ -579,10 +571,10 @@ void Tanque::SetVolumen(double c ,double a)
      F= F.number(b);
 
     styleSheetTank =
-            "font: 30pt \"Bold\";"
+            "font: "+FontTank+"pt \"Bold\";"
             "color: black;"
             // " border-width: 5px;"
-            "border: 8px solid;"
+            "border: "+BorderTank+"px solid;"
             "border-color: rgb(165, 165, 165);"
             "border-style: solid;"
             "border-radius: "+R+"px;"
@@ -803,51 +795,20 @@ void Tanque::Setgeometry(int x, int y,int XTG,int YTG)
      NivAVal->setFont(font5);
      latanq->setFont(font5);
 
-    latanq->setStyleSheet(
-            // "font: 40pt \"Broadway\";"
-             "color: black;"
-             // " border-width: 5px;"
-             "border-style: solid;"
-             "border: 8px solid;"
-             "border-color: rgb(165, 165, 165);"
-             "border-radius: "+R+"px;"
-             "background-color:"
-             "qlineargradient(spread:pad,"
-             "x1:0, y1:0, x2:0, y2:1,"
-             "stop:0 rgba(255, 255, 255, 255),"
-             "stop:"+C+" rgba(255, 255, 255, 255),"
-             "stop:"+D+" rgb(255, 255, 0),"
-             "stop: "+E+" rgb(255, 255, 0),"
-             "stop: "+F+" rgb(0, 0, 255),"
-             "stop:1 rgb(0, 0, 255))");
+    FontTank =QString::number(int(XTG*.07));
+
     groupBox_4->setGeometry(QRect(10, 2, x2+x2,x2+x2));
 
     }
     else
     {
 
-    latanq->setGeometry(QRect(5, 5, x1, x1));
-
-   latanq->setStyleSheet(
-           // "font: 40pt \"Broadway\";"
-            "color: black;"
-            // " border-width: 5px;"
-            "border-style: solid;"
-            "border: 8px solid;"
-            "border-color: rgb(165, 165, 165);"
-            "border-radius: "+ R +"px;"
-            "background-color:"
-            "qlineargradient(spread:pad,"
-            "x1:0, y1:0, x2:0, y2:1,"
-            "stop:0 rgba(255, 255, 255, 255),"
-            "stop:"+C+" rgba(255, 255, 255, 255),"
-            "stop:"+D+" rgb(255, 255, 0),"
-            "stop: "+E+" rgb(255, 255, 0),"
-            "stop: "+F+" rgb(0, 0, 255),"
-            "stop:1 rgb(0, 0, 255))");
+   latanq->setGeometry(QRect(5, 5, x1, x1));
+   FontTank =QString::number(int(XTG*.1));
    groupBox_4->setGeometry(QRect(10, 20, x2+x2,x2+x2));
 
     }
+     BorderTank = QString::number(int(XTG* .014));
 }
 
 void Tanque::color(QString Ct1,bool A)
@@ -882,12 +843,12 @@ void Tanque::SetnameTank(const QString &SNT) {T1->setTitle(SNT); NomTank = SNT; 
 QString Tanque::GetNameTank(){ return NomTank; }
 
 void Tanque::deliveryProGaugeCountIncrement(){
-     qDebug () << "Cargando...." << NomTank;
-     qDebug () << "Temperatura: " << Temperatura;
-     qDebug () << "Volumen:" << VolumenCon;
+//     qDebug () << "Cargando...." << NomTank;
+//     qDebug () << "Temperatura: " << Temperatura;
+//     qDebug () << "Volumen:" << VolumenCon;
 
       if(deliveryInProcess == 0){
-        if(VolumenCon <= deliveryLastInventoryRead){
+        if(VolumenCon <= (deliveryLastInventoryRead+ deliverySensivilityVolume)){
             deliveryCountDecrement++;
             if(deliveryCountDecrement >= 10){
                 deliveryCountDecrement = 0;
@@ -903,7 +864,7 @@ void Tanque::deliveryProGaugeCountIncrement(){
                 deliveryCountIncrement = 0;
                 deliveryInProcess = 1;
 
-               // ui->lbl_ProGaugeDeliveryInProccess->show();
+               lbl_ProGaugeDeliveryInProccess->show();
             }
         } else{
             deliveryCountIncrement++;
@@ -926,31 +887,29 @@ void Tanque::deliveryProGaugeCountIncrement(){
             deliveryInProcess = 0;
             double VolumenEntregado=  VolumenCon -deliveryInventoryStart;
            QString SeRealizoEntrega;
-            //QSqlQuery qry;
-           SeRealizoEntrega =  "INSERT INTO `cistem`.`entregas` (`Tanque_Nombre`, `Volumen Inicial`, `Temperatura Inicial`, `Volumen Final`, `Temperatrura Final`, `Volumen Entregado`, `Fecha`) VALUES ('"+NomTank+"', '"+QString::number(deliveryInventoryStart)+"', '"+QString::number(Temperatura_inicial)+"', '"+QString::number(VolumenCon)+"', '"+QString::number(Temperatura)+"', '"+QString::number(VolumenEntregado)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');";
+           QSqlQuery qry;
+            qry.exec("INSERT INTO `cistem`.`entregas` (`Tanque_Nombre`, `Volumen Inicial`, `Temperatura Inicial`, `Volumen Final`, `Temperatrura Final`, `Volumen Entregado`, `Fecha`) VALUES ('"+NomTank+"', '"+QString::number(deliveryInventoryStart)+"', '"+QString::number(Temperatura_inicial)+"', '"+QString::number(VolumenCon)+"', '"+QString::number(Temperatura)+"', '"+QString::number(VolumenEntregado)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');");
            //SeRealizoEntrega  ="INSERT INTO `cistem`.`entregas` (`Tanque_Nombre`, `Volumen Inicial`, `Temperatura Inicial`, `Volumen Final`, `Temperatrura Final`, `Volumen Entregado`, `Fecha`) VALUES ( '"+NomTank+"', '"+QString::number(deliveryInventoryStart)+"', '"+QString::number(Temperatura_inicial)+"', '"+QString::number(Volumen_Final)+"', '"+QString::number(Temperatura_Final)+"', '"+QString::number(VolumenEntregado)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');";
            // SeRealizoEntrega  = "INSERT INTO `cistem`.`entregas` (`Tanque_Nombre`, `Volumen Inicial`, `Temperatura Inicial`, `Volumen Final`, `Temperatrura Final`, `Volumen Entregado`, `Fecha`) VALUES ('"+NomTank+"', '"+QString::number(deliveryInventoryStart)+"', '"+QString::number(Temperatura_inicial)+"', '"+QString::number(Volumen_Final)+"', '"+QString::number(Temperatura_Final)+"', '"+QString::number(VolumenEntregado)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');";
             //SeRealizoEntrega = "Hola Mundo";
             qDebug() << "Trono";
-             qDebug()<< SeRealizoEntrega;
+           //  qDebug()<< SeRealizoEntrega;
 
             // emit Camino();
 
-            emit Entrega(SeRealizoEntrega);
+           // emit Entrega(SeRealizoEntrega);
              qDebug() << " Ya Camino";
 
             Volumen_inicial =0;
-           // ui->lbl_ProGaugeDeliveryInProccess->hide();
+           lbl_ProGaugeDeliveryInProccess->hide();
             deliveryInventoryStart = 0;
             // ui->lbl_deliveryInventoryStart->setText(QString::number(deliveryInventoryStart));
         }
     }
     qDebug() << VolumenCon << deliveryLastInventoryRead << deliveryCountDecrement << deliveryCountIncrement;
     deliveryLastInventoryRead = VolumenCon;
-  //  evaluar_limites(tanques[indice]);
-//    ui->lbl_deliveryCountIncrement->setText(QString::number(deliveryCountIncrement));
- //   ui->lbl_deliveryCountDecrement->setText(QString::number(deliveryCountDecrement));
-    //   ui->lbl_deliveryLastInventoryRead->setText(QString::number(deliveryLastInventoryRead));
+    deliverySensivilityVolume = ProGaugeCapacidad * 0.0002;
+
 }
 
 QString Tanque::ActualInventory(bool Inv)
