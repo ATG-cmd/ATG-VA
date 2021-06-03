@@ -164,7 +164,7 @@ QHeaderView::section:vertical
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>7</number>
+     <number>11</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -2804,7 +2804,7 @@ QTabWidget::pane {
 }</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -4738,6 +4738,14 @@ border-radius: 16;
         <height>711</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>22</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="styleSheet">
        <string notr="true"/>
       </property>
@@ -4766,13 +4774,13 @@ border-radius: 16;
        <bool>true</bool>
       </property>
       <attribute name="horizontalHeaderVisible">
-       <bool>false</bool>
+       <bool>true</bool>
       </attribute>
       <attribute name="horizontalHeaderCascadingSectionResizes">
        <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>150</number>
+       <number>380</number>
       </attribute>
       <attribute name="horizontalHeaderHighlightSections">
        <bool>false</bool>
@@ -4806,31 +4814,11 @@ border-radius: 16;
       </attribute>
       <column>
        <property name="text">
-        <string>Nombre</string>
+        <string>Inicio/Fin Fecha&amp;Hora</string>
        </property>
        <property name="font">
         <font>
-         <weight>75</weight>
-         <italic>true</italic>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="foreground">
-        <brush brushstyle="SolidPattern">
-         <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
-         </color>
-        </brush>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Volumen Inical</string>
-       </property>
-       <property name="font">
-        <font>
+         <pointsize>22</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -4839,10 +4827,11 @@ border-radius: 16;
       </column>
       <column>
        <property name="text">
-        <string>Temperatura Inicial</string>
+        <string>Volumen de Combustible</string>
        </property>
        <property name="font">
         <font>
+         <pointsize>22</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -4851,10 +4840,11 @@ border-radius: 16;
       </column>
       <column>
        <property name="text">
-        <string>Volumen Final</string>
+        <string>Temperatura</string>
        </property>
        <property name="font">
         <font>
+         <pointsize>22</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -4863,10 +4853,11 @@ border-radius: 16;
       </column>
       <column>
        <property name="text">
-        <string>Temperatura Final</string>
+        <string>Altura de Combustible</string>
        </property>
        <property name="font">
         <font>
+         <pointsize>22</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -4875,22 +4866,11 @@ border-radius: 16;
       </column>
       <column>
        <property name="text">
-        <string>Volumen Entregado</string>
+        <string>Altura de Agua</string>
        </property>
        <property name="font">
         <font>
-         <weight>75</weight>
-         <italic>true</italic>
-         <bold>true</bold>
-        </font>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Fecha</string>
-       </property>
-       <property name="font">
-        <font>
+         <pointsize>22</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -7546,6 +7526,13 @@ QComboBox::drop-down {
     width: 40px
 	background-color: transparent;
 }
+
+  QListView {
+	border-radius: 65px;
+border: 4px solid  gray ;
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 white, stop:0.33 white, stop:0.34 white, stop:0.66 white, stop:0.67 rgba(255, 255, 0, 255), stop:1 rgba(255, 255, 0, 255));
+}
+
 </string>
     </property>
     <property name="editable">

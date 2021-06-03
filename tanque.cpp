@@ -864,6 +864,12 @@ void Tanque::deliveryProGaugeCountIncrement(){
                 deliveryCountIncrement = 0;
                 deliveryInProcess = 1;
 
+                double VolumenEntregado=  VolumenCon -deliveryInventoryStart;
+               QString SeRealizoEntrega;
+               QSqlQuery qry;
+                qry.exec("INSERT INTO `cistem`.`entregas` (`IDTank`,`Tanque_Nombre`, `Volumen`, `Temperatrura`, `Volumen Entregado`, `Fecha`,`Estado`) VALUES ('"+QString::number(IdTanque)+"','"+NomTank+"', '"+QString::number(deliveryInventoryStart)+"', '"+QString::number(Temperatura_inicial)+"', '"+QString::number(VolumenEntregado)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', 'Inicio');");
+               //S
+
                lbl_ProGaugeDeliveryInProccess->show();
             }
         } else{
@@ -888,22 +894,13 @@ void Tanque::deliveryProGaugeCountIncrement(){
             double VolumenEntregado=  VolumenCon -deliveryInventoryStart;
            QString SeRealizoEntrega;
            QSqlQuery qry;
-            qry.exec("INSERT INTO `cistem`.`entregas` (`Tanque_Nombre`, `Volumen Inicial`, `Temperatura Inicial`, `Volumen Final`, `Temperatrura Final`, `Volumen Entregado`, `Fecha`) VALUES ('"+NomTank+"', '"+QString::number(deliveryInventoryStart)+"', '"+QString::number(Temperatura_inicial)+"', '"+QString::number(VolumenCon)+"', '"+QString::number(Temperatura)+"', '"+QString::number(VolumenEntregado)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');");
-           //SeRealizoEntrega  ="INSERT INTO `cistem`.`entregas` (`Tanque_Nombre`, `Volumen Inicial`, `Temperatura Inicial`, `Volumen Final`, `Temperatrura Final`, `Volumen Entregado`, `Fecha`) VALUES ( '"+NomTank+"', '"+QString::number(deliveryInventoryStart)+"', '"+QString::number(Temperatura_inicial)+"', '"+QString::number(Volumen_Final)+"', '"+QString::number(Temperatura_Final)+"', '"+QString::number(VolumenEntregado)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');";
-           // SeRealizoEntrega  = "INSERT INTO `cistem`.`entregas` (`Tanque_Nombre`, `Volumen Inicial`, `Temperatura Inicial`, `Volumen Final`, `Temperatrura Final`, `Volumen Entregado`, `Fecha`) VALUES ('"+NomTank+"', '"+QString::number(deliveryInventoryStart)+"', '"+QString::number(Temperatura_inicial)+"', '"+QString::number(Volumen_Final)+"', '"+QString::number(Temperatura_Final)+"', '"+QString::number(VolumenEntregado)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');";
-            //SeRealizoEntrega = "Hola Mundo";
-            qDebug() << "Trono";
-           //  qDebug()<< SeRealizoEntrega;
+            qry.exec("INSERT INTO `cistem`.`entregas` (`IDTank`,`Tanque_Nombre`, `Volumen`, `Temperatrura`, `Volumen Entregado`, `Fecha`,`Estado`) VALUES ('"+QString::number(IdTanque)+"','"+NomTank+"', '"+QString::number(VolumenCon)+"', '"+QString::number(Temperatura)+"', '"+QString::number(VolumenEntregado)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', 'Fin');");
 
-            // emit Camino();
-
-           // emit Entrega(SeRealizoEntrega);
-             qDebug() << " Ya Camino";
 
             Volumen_inicial =0;
            lbl_ProGaugeDeliveryInProccess->hide();
             deliveryInventoryStart = 0;
-            // ui->lbl_deliveryInventoryStart->setText(QString::number(deliveryInventoryStart));
+
         }
     }
     qDebug() << VolumenCon << deliveryLastInventoryRead << deliveryCountDecrement << deliveryCountIncrement;
