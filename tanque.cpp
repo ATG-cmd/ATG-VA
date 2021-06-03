@@ -44,7 +44,7 @@ void Tanque::offline()
      Desconectado= false;
 
      QSqlQuery qry;
-           qry.exec("DELETE FROM `cistem`.`InventarioMin` WHERE ID ='"+QString::number(IdTanque)+"';");
+         //  qry.exec("DELETE FROM `cistem`.`InventarioMin` WHERE ID ='"+QString::number(IdTanque)+"';");
 }
 
 double Tanque::getAngle() const { return angle; }
@@ -169,7 +169,37 @@ void Tanque::setDesconectado(bool value)
     Desconectado = value;
 }
 
-void Tanque::clickbuton(){ setTMaximizado(false); emit Camino(); }
+int Tanque::getPosTank() const
+{
+    return posTank;
+}
+
+void Tanque::setPosTank(int value)
+{
+    posTank = value;
+}
+
+int Tanque::getVacio100() const
+{
+    return Vacio100;
+}
+
+void Tanque::setVacio100(int value)
+{
+    Vacio100 = value;
+}
+
+int Tanque::getVacio90() const
+{
+    return Vacio90;
+}
+
+void Tanque::setVacio90(int value)
+{
+    Vacio90 = value;
+}
+
+void Tanque::clickbuton(){ setTMaximizado(false); emit Camino(posTank); }
 
 Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 {
@@ -512,6 +542,8 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
               NivAVal->setText(QString::number(water, 'f', 2)+ " MM");
               VolVal->setText(QString::number(res,'f',2)+" Lts");
               LsVal->setText(QString::number(Capacidad-res));
+              Vacio100 = int(Capacidad - res) ;
+              Vacio90 = int((Capacidad* 0.9) - res);
      }
 
               SetVolumen(res,reswater);
@@ -674,8 +706,8 @@ void Tanque::SetTemperatura(double T)
 
        if(TMaximizado){
             QSqlQuery qry;
-            qry.exec("UPDATE `cistem`.`InventarioMin` SET `ID`='"+QString::number(IdTanque)+"', `NombreTank`='"+NomTank+"', `VolumenCo`='"+QString::number(VolumenCon)+"', `Temperatura`='"+QString::number(Temperatura)+"', `AlturaC`='"+QString::number(AlturaTank)+"', `AlturaA`='"+QString::number(NivelAgua)+"', `Fecha`='"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"' WHERE  `ID`="+QString::number(IdTanque)+";");
-            qry.exec( "INSERT INTO `cistem`.`InventarioMin` (`ID`, `IDTank`, `NombreTank`, `VolumenCo`, `Temperatura`, `AlturaC`, `AlturaA`, `Fecha`) VALUES ('"+QString::number(IdTanque)+"', '"+QString::number(IdTanque)+"','"+NomTank+"','"+QString::number(VolumenCon)+"','"+QString::number(Temperatura)+"', '"+QString::number(AlturaTank)+"', '"+QString::number(NivelAgua)+"','"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');");
+            qry.exec("UPDATE `cistem`.`InventarioMin` SET `ID`='"+QString::number(IdTanque)+"', `NombreTank`='"+NomTank+"', `VolumenCo`='"+QString::number(VolumenCon)+"', `Temperatura`='"+QString::number(Temperatura)+"', `AlturaC`='"+QString::number(AlturaTank)+"', `AlturaA`='"+QString::number(NivelAgua)+"',`100%Vacio`='"+QString::number(Vacio100)+"', `90% Vacio`='"+QString::number(Vacio90)+"', `Fecha`='"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"' WHERE  `ID`="+QString::number(IdTanque)+";");
+            qry.exec( "INSERT INTO `cistem`.`InventarioMin` (`ID`, `IDTank`, `NombreTank`, `VolumenCo`, `Temperatura`, `AlturaC`, `AlturaA`,`100%Vacio`, `90% Vacio`, `Fecha`) VALUES ('"+QString::number(IdTanque)+"', '"+QString::number(IdTanque)+"','"+NomTank+"','"+QString::number(VolumenCon)+"','"+QString::number(Temperatura)+"', '"+QString::number(AlturaTank)+"', '"+QString::number(NivelAgua)+"','"+QString::number(Vacio100)+"', '"+QString::number(Vacio90)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');");
              }
 
 

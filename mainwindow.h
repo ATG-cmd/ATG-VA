@@ -318,6 +318,8 @@ private slots:
 
    void on_Combo_Memo_activated(int index);
 
+
+
 private:
     Ui::MainWindow *ui;
 };

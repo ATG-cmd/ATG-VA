@@ -788,6 +788,7 @@ void MainWindow::Protocolo(QString cad)
             break;
         }
     }
+    connect(tanques[indice],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
     qDebug() << "Indice:" << indice;
     qDebug()<< qry.exec("SELECT Protocolo FROM `cistem`.`sonda` WHERE Serie = '"+ProGaugeId[indice]+"' ;");
     while(qry.next())
@@ -795,8 +796,8 @@ void MainWindow::Protocolo(QString cad)
         N= qry.value(0).toInt();
         qDebug() << "Protocolo:"<< N;
     }
-    if(tanques[indice]->getDesconectado())
-    connect(tanques[indice],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
+//    if(tanques[indice]->getDesconectado())
+//    connect(tanques[indice],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
     switch (N) {
 
     case 1:
@@ -835,6 +836,9 @@ void MainWindow::Protocolo(QString cad)
         break;
     }
 
+
+
+
     if(Maxi)
         Tanque_Maximisado();
 }
@@ -858,7 +862,7 @@ void MainWindow::Descargar()
         while (qry.next())
         {
             Geometrytank();
-            connect(tanques[S],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
+           // connect(tanques[S],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
             connect(tanques[S],&Tanque::Entrega,this,&MainWindow::Qry_Entrega);
             ui->stackedWidget->setCurrentIndex(3);
            // ProGaugeId[S]=qry.value(1).toString();
@@ -867,6 +871,7 @@ void MainWindow::Descargar()
             tanques[S]->setIshabilitado(qry.value(2).toBool());
             tanques[S]->SetnameTank(qry.value(3).toString());
             tanques[S]->setCodigoProducto(qry.value(4).toInt());
+            tanques[S]->setPosTank(S);
 
             switch (qry.value(5).toInt())
             {
@@ -929,7 +934,6 @@ void MainWindow::Descargar()
     }
   }
 
-
          TCon = 0;
 
           if(qry.exec(" SELECT * FROM cistem.Turnos WHERE Habilitado = 1;"))
@@ -948,11 +952,6 @@ void MainWindow::Descargar()
 
               }
           }
-
-
-
-
-
  }
 
 void MainWindow::Geometrytank()
@@ -966,8 +965,8 @@ void MainWindow::Geometrytank()
     switch(S){
     case 0:case 4: tanques[S]->Setgeometry(80,3,750,380);   break;
     case 1:case 5: tanques[S]->Setgeometry(920,3,750,380);  break;
-    case 2:case 6: tanques[S]->Setgeometry(80,240,480,380); break;
-    case 3:case 7: tanques[S]->Setgeometry(920,240,480,380);break;
+    case 2:case 6: tanques[S]->Setgeometry(80,380,750,380); break;
+    case 3:case 7: tanques[S]->Setgeometry(920,380,750,380);break;
     }
 }
 
@@ -2820,6 +2819,8 @@ void MainWindow::on_Combo_Memo_activated(int index)
     ui->Line_Memo->setStyleSheet("QLineEdit{border-radius: 10px;border: 2px solid  gray ;}");
     }
 }
+
+
 
 
 

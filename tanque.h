@@ -99,6 +99,10 @@ class Tanque :public QWidget
     QString BorderTank="2";
     bool ishabilitado= false;
     bool Desconectado= false;
+    int posTank;
+    int Vacio100;
+    int Vacio90;
+
 
 
 private slots:
@@ -107,7 +111,7 @@ private slots:
 
 signals:
 
-    void Camino();
+    void Camino(int pos);
     void Entrega(QString SeRealizoEntrega);
 
 
@@ -414,6 +418,15 @@ public:
    bool getDesconectado() const;
    void setDesconectado(bool value);
    QString InventoryTurnos(int Turno);
+
+   int getPosTank() const;
+   void setPosTank(int value);
+
+   int getVacio100() const;
+   void setVacio100(int value);
+
+   int getVacio90() const;
+   void setVacio90(int value);
 };
 
 #endif // TANQUE_H
