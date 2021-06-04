@@ -1964,31 +1964,27 @@ void MainWindow::on_Btn_Entregas_or_clicked()
     ui->Lab_Titulo->setText("Entregas");
     ui->stackedWidget->setCurrentIndex(SEntregas);
 
+    ui->SelecTank->setVisible(true);
     ui->ComboSeleccion->setVisible(true);
     ui->ComboSeleccion->clear();
     ui->ComboSeleccion->addItem("Historial de Entragas");
     ui->ComboSeleccion->addItem("Ultima Entrega");
 
+    QObject::disconnect( combo_connect5 );
 
-    combo_connect3 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
-            [=](int index){
+   combo_connect5 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
+           [=](int index){
+                if ( index == 0)
+                {
+            ui->SelecTank->setCurrentIndex(1);ui->SelecTank->activated(1);
+            ui->SelecTank->setItemText(0, " ");
+                }
+                else {
+                    ui->SelecTank->setCurrentIndex(1);ui->SelecTank->activated(1);
+                    ui->SelecTank->setItemText(0, " ");
+                }
 
-        switch (index)
-         {
-
-        } });
-
-    QString cadena;
-     ui->SelecTank->clear();
-     ui->SelecTank->setVisible(true);
-     ui->SelecTank->addItem("ALL");
-    cadena.append("SELECT DISTINCT IDTank FROM `cistem`.`entregas`;");
-    QSqlQuery qry;
-    qDebug() << "QRY:" << qry.exec(cadena);
-    while (qry.next()) {
-       ui->SelecTank->addItem(qry.value(0).toString());
-
-    }
+        });
 
     connect(ui->SelecTank, QOverload<int>::of(&QComboBox::activated),
             [=](int index){
@@ -1996,14 +1992,11 @@ void MainWindow::on_Btn_Entregas_or_clicked()
         ui->Tab_entregas->clearContents();
         ui->Tab_entregas->setRowCount(0);
 
-        switch (index)
-         {
-         case 0: cadena.append("SELECT * FROM `cistem`.`entregas` LIMIT 1000;");break;
-         default: qDebug() << "Texto del index:" << ui->SelecTank->itemText(index);
-cadena.append("SELECT * FROM `cistem`.`entregas` where IDTank = '"+ui->SelecTank->itemText(index)+"';"); break;
-
-        }
-
+        if(ui->ComboSeleccion->currentIndex() == 0)
+        cadena.append("SELECT * FROM `cistem`.`entregas` where IDTank = '"+ui->SelecTank->itemText(index)+"';");
+        else
+        cadena.append("SELECT * FROM cistem.entregas  WHERE IDTank='"+ui->SelecTank->itemText(index)+"' ORDER BY Fecha DESC LIMIT 2;");
+                    //  "SELECT * FROM `cistem`.`entregas` where IDTank = '"+ui->SelecTank->itemText(index)+"';");
 
          QSqlQuery qry;
          qDebug() << "QRY:" << qry.exec(cadena);
@@ -2063,6 +2056,7 @@ cadena.append("SELECT * FROM `cistem`.`entregas` where IDTank = '"+ui->SelecTank
          }
 
     });
+    ui->ComboSeleccion->activated(0);
 }
 
 void MainWindow::Botones()
@@ -2505,9 +2499,6 @@ int uno= 0;
 int cada1=1;
 int merma[]= {0,0};
 int Cmerma=0;
-
-
-
 
        // qDebug() << cadena;
         while(qry.next())
