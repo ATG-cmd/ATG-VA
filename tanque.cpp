@@ -44,7 +44,7 @@ void Tanque::offline()
      Desconectado= false;
 
      QSqlQuery qry;
-         //  qry.exec("DELETE FROM `cistem`.`InventarioMin` WHERE ID ='"+QString::number(IdTanque)+"';");
+           qry.exec("DELETE FROM `cistem`.`InventarioMin` WHERE ID ='"+QString::number(IdTanque)+"';");
 }
 
 double Tanque::getAngle() const { return angle; }
@@ -690,23 +690,23 @@ void Tanque::SetTemperatura(double T)
      qDebug()<< qry.value(6).toInt();
       qDebug()<< qry.value(7).toString();
        qry.exec("INSERT INTO `cistem`.`InventarioCortes` (`IDTank`, `NombreTank`, `VolumenCo`, `Temperatura`, `AlturaC`, `AlturaA`, `Fecha`, `Estado`) "
-                "VALUES ('"+qry.value(1).toString()+"', '"+qry.value(2).toString()+"', '"+qry.value(3).toString()+"', '"+qry.value(4).toString()+"', '"+qry.value(5).toString()+"', '"+qry.value(6).toString()+"', '"+qry.value(7).toString()+"','Desconexion');");
+               "VALUES ('"+qry.value(1).toString()+"', '"+qry.value(2).toString()+"', '"+qry.value(3).toString()+"', '"+qry.value(4).toString()+"', '"+qry.value(5).toString()+"', '"+qry.value(6).toString()+"', '"+qry.value(9).toString()+"','Desconexion');");
 
    }
 
-//   qry.exec("INSERT INTO `cistem`.`InventarioCortes` (`IDTank`, `NombreTank`, `VolumenCo`, `Temperatura`, `AlturaC`, `AlturaA`, `Fecha`, `Estado`) "
-//            "VALUES ('"+QryIDTank+"', '"+QryNombreTank+"', '"+QryVolumenCo+"', '"+QryTemperatura+"', '"+QryAlturaC+"', '"+QryAlturaA+"', '"+QryFecha+"','Desconexion');");
+  // qry.exec("INSERT INTO `cistem`.`InventarioCortes` (`IDTank`, `NombreTank`, `VolumenCo`, `Temperatura`, `AlturaC`, `AlturaA`, `Fecha`, `Estado`) "
+   //        "VALUES ('"+QryIDTank+"', '"+QryNombreTank+"', '"+QryVolumenCo+"', '"+QryTemperatura+"', '"+QryAlturaC+"', '"+QryAlturaA+"', '"+QryFecha+"','Desconexion');");
 
    qry.exec("INSERT INTO `cistem`.`InventarioCortes` (`IDTank`, `NombreTank`, `VolumenCo`, `Temperatura`, `AlturaC`, `AlturaA`, `Fecha`, `Estado`) "
                 "VALUES ('"+QString::number(IdTanque)+"', '"+NomTank+"', '"+QString::number(VolumenCon)+"', '"+QString::number(Temperatura)+"', '"+QString::number(AlturaTank)+"', '"+QString::number(NivelAgua)+"' , '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"','Conexion');");
    }
    else {
-//       QSqlQuery qry;
-//       qry.exec("UPDATE `cistem`.`InventarioMin` SET `ID`='"+QString::number(IdTanque)+"', `NombreTank`='"+NomTank+"', `VolumenCo`='"+QString::number(VolumenCon)+"', `Temperatura`='"+QString::number(Temperatura)+"', `AlturaC`='"+QString::number(AlturaTank)+"', `AlturaA`='"+QString::number(NivelAgua)+"', `Fecha`='"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"' WHERE  `ID`="+QString::number(IdTanque)+";");
+       QSqlQuery qry;
+     qry.exec("UPDATE `cistem`.`InventarioMin` SET `ID`='"+QString::number(IdTanque)+"', `NombreTank`='"+NomTank+"', `VolumenCo`='"+QString::number(VolumenCon)+"', `Temperatura`='"+QString::number(Temperatura)+"', `AlturaC`='"+QString::number(AlturaTank)+"', `AlturaA`='"+QString::number(NivelAgua)+"',`100%Vacio`='"+QString::number(Vacio100)+"', `90% Vacio`='"+QString::number(Vacio90)+"', `Fecha`='"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"' WHERE  `ID`="+QString::number(IdTanque)+";");
 
        if(TMaximizado){
             QSqlQuery qry;
-            qry.exec("UPDATE `cistem`.`InventarioMin` SET `ID`='"+QString::number(IdTanque)+"', `NombreTank`='"+NomTank+"', `VolumenCo`='"+QString::number(VolumenCon)+"', `Temperatura`='"+QString::number(Temperatura)+"', `AlturaC`='"+QString::number(AlturaTank)+"', `AlturaA`='"+QString::number(NivelAgua)+"',`100%Vacio`='"+QString::number(Vacio100)+"', `90% Vacio`='"+QString::number(Vacio90)+"', `Fecha`='"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"' WHERE  `ID`="+QString::number(IdTanque)+";");
+            qry.exec("UPDATE `cistem`.`InventarioMin` SET `ID`='"+QString::number(IdTanque)+"', `NombreTank`='"+NomTank+"', `VolumenCo`='"+QString::number(VolumenCon)+"', `Temperatura`='"+QString::number(Temperatura)+"', `AlturaC`='"+QString::number(AlturaTank)+"', `AlturaA`='"+QString::number(NivelAgua)+"',`100%Vacio`='"+QString::number(Vacio100)+"', `90% Vacio`='"+QString::number(Vacio90)+"', `Fecha`='"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"',`ID`=  WHERE  `ID`="+QString::number(IdTanque)+";");
             qry.exec( "INSERT INTO `cistem`.`InventarioMin` (`ID`, `IDTank`, `NombreTank`, `VolumenCo`, `Temperatura`, `AlturaC`, `AlturaA`,`100%Vacio`, `90% Vacio`, `Fecha`) VALUES ('"+QString::number(IdTanque)+"', '"+QString::number(IdTanque)+"','"+NomTank+"','"+QString::number(VolumenCon)+"','"+QString::number(Temperatura)+"', '"+QString::number(AlturaTank)+"', '"+QString::number(NivelAgua)+"','"+QString::number(Vacio100)+"', '"+QString::number(Vacio90)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');");
              }
 

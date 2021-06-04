@@ -1907,17 +1907,19 @@ void MainWindow::on_Btn_Inventario_clicked()
         if (index !=0)
         {
             ui->SelecTank->setCurrentIndex(1);ui->SelecTank->activated(1);
+            ui->SelecTank->setItemText(0, " ");
         }
         else{
             ui->SelecTank->setCurrentIndex(0); ui->SelecTank->activated(0);
+            ui->SelecTank->setItemText(0, "ALL");
         }
         });
 
     QObject::disconnect( combo_connect6 );
    combo_connect6 = QObject::connect(ui->SelecTank, QOverload<int>::of(&QComboBox::activated),
             [=](int index){
-    InVentoryHistory(index,ui->ComboSeleccion->currentIndex());
-
+       if (index != 0 || ui->ComboSeleccion->currentIndex() == 0)
+    InVentoryHistory(index,ui->ComboSeleccion->currentIndex(),false," ");
 
          });
     frame = sInventario; ui->stackedWidget->setCurrentIndex(sInventario);
@@ -2479,18 +2481,26 @@ void MainWindow::TimerConfigInventoryDB()
 }
 
 
-void MainWindow::InVentoryHistory(int IDTank, int ComboInventory)
+void MainWindow::InVentoryHistory(int IDTank, int ComboInventory, bool Porfecha, QString QryFecha)
 {
+    limpiar_tabla(ui->Tabla_Inventario,ui->Tabla_Inventario->rowCount());
+    QSqlQuery qry;
+      if (!Porfecha){
         QString cadena;
-        QSqlQuery qry;
-
 
         limpiar_tabla(ui->Tabla_Inventario,ui->Tabla_Inventario->rowCount());
       if(IDTank==0)
            cadena = ("SELECT * FROM `cistem`.`"+SelecionInventario[ComboInventory]+"`;");
           else
         cadena = ("SELECT * FROM `cistem`.`"+SelecionInventario[ComboInventory]+"`  WHERE IDTank ='"+QString::number(IDTank)+"';");
-int cada2= 2;
+
+      qry.exec(cadena);
+      }
+      else {
+           qry.exec(QryFecha);
+      }
+
+      int cada2= 2;
 int uno= 0;
 int cada1=1;
 int merma[]= {0,0};
@@ -2498,7 +2508,7 @@ int Cmerma=0;
 
 
 
-        qry.exec(cadena);
+
        // qDebug() << cadena;
         while(qry.next())
         {
@@ -2563,8 +2573,8 @@ int Cmerma=0;
                  ui->Tabla_Inventario->horizontalHeaderItem(0)->setText("Turno");
                  ui->Tabla_Inventario->setColumnWidth(1,500);
                  ui->Tabla_Inventario->horizontalHeaderItem(1)->setText("Fecha de Turno");
-                 ui->Tabla_Inventario->setColumnWidth(2,280);
-                 ui->Tabla_Inventario->horizontalHeaderItem(2)->setText("Volumen");
+                 ui->Tabla_Inventario->setColumnWidth(2,380);
+                 ui->Tabla_Inventario->horizontalHeaderItem(2)->setText("Volumen de Combustible");
                  ui->Tabla_Inventario->setColumnWidth(3,280);
                  ui->Tabla_Inventario->horizontalHeaderItem(3)->setText("Temperatura");
                  ui->Tabla_Inventario->setColumnWidth(4,280);
@@ -2597,12 +2607,21 @@ int Cmerma=0;
                      ui->Tabla_Inventario->setColumnWidth(2,280);
                      ui->Tabla_Inventario->horizontalHeaderItem(2)->setText("Altura de combustible");
                      ui->Tabla_Inventario->setColumnWidth(3,280);
-                     ui->Tabla_Inventario->horizontalHeaderItem(3)->setText("Alturaq de agua");
+                     ui->Tabla_Inventario->horizontalHeaderItem(3)->setText("Altura de Agua");
+                     ui->Tabla_Inventario->setColumnWidth(4,280);
+                     ui->Tabla_Inventario->horizontalHeaderItem(4)->setText("100% Vacio");
+                     ui->Tabla_Inventario->setColumnWidth(5,280);
+                     ui->Tabla_Inventario->horizontalHeaderItem(5)->setText("90% Vacio");
 
                      ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(3).toString()));
                      ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 1, new QTableWidgetItem(qry.value(4).toString()));
                      ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 2, new QTableWidgetItem(qry.value(5).toString()));
                      ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 3, new QTableWidgetItem(qry.value(6).toString()));
+                     ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 4, new QTableWidgetItem(qry.value(7).toString()));
+                     ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 5, new QTableWidgetItem(qry.value(8).toString()));
+
+                     ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
+                     ui->Tabla_Inventario->item(ui->Tabla_Inventario->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
 
                  }
                  else{
@@ -2743,6 +2762,8 @@ void MainWindow::Qry_Turnos(int Turno)
     }
 
 }
+
+
 void MainWindow::on_pushButton_5_clicked()
 {
    close();
@@ -2819,9 +2840,49 @@ void MainWindow::on_Combo_Memo_activated(int index)
     ui->Line_Memo->setStyleSheet("QLineEdit{border-radius: 10px;border: 2px solid  gray ;}");
     }
 }
+void MainWindow::on_Btn_SelecRange_clicked()
+{
+
+    QString cadena;
+    Select_fechas *dlg_rango  = new Select_fechas(this);
+    int res = dlg_rango->exec();
+    if(res == QDialog::Accepted)
+    {
+        cadena.append("Desde: ");
+        cadena.append(dlg_rango->getFecha_desde());
+        cadena.append("  Hasta: ");
+        cadena.append(dlg_rango->getFecha_hasta() + "      ");
+        ui->Lab_Rango_Fecha->setText(cadena);
+      //  rellenar_incidentes(dlg_rango->getFecha_desde(),dlg_rango->getFecha_hasta(),ui->ComboSeleccion->currentIndex());
+       RellenarInventario(dlg_rango->getFecha_desde(), dlg_rango->getFecha_hasta(),ui->ComboSeleccion->currentIndex());
+    }
+
+    delete dlg_rango;
+}
+
+void MainWindow::RellenarInventario(QString FechaInicio, QString FechaFin, int index)
+{
+    QString cadena1;
+    QSqlQuery qry;
+    limpiar_tabla(ui->tabla_incidentes,ui->tabla_incidentes->rowCount());
+
+    switch (index) {
+
+    case 1:    cadena1 = (//"SELECT * FROM cistem.inventario WHERE (Fecha BETWEEN ('2021-05-18 02:28:03') AND ('2021-05-19 23:18:53')) AND IDTank='1';");break;//
+                          "SELECT * FROM cistem.inventario WHERE (Fecha BETWEEN "
+                          "('"+FechaInicio+"') AND ('"+FechaFin+"')) AND IDTank='"+QString::number(ui->SelecTank->currentIndex())+"';"); break;
+
+    case 2:    cadena1 = ( "SELECT * FROM cistem.InventarioCortes WHERE (Fecha BETWEEN "
+                           "('"+FechaInicio+"') AND ('"+FechaFin+"')) AND IDTank='"+QString::number(ui->SelecTank->currentIndex())+"';"); break;
 
 
+    case 3:    cadena1 = ("SELECT * FROM cistem.InventarioTurnos WHERE (Fecha BETWEEN "
+                          "('"+FechaInicio+"') AND ('"+FechaFin+"')) AND IDTank='"+QString::number(ui->SelecTank->currentIndex())+"';"); break;
+    default:break;
+    }
+
+    InVentoryHistory(ui->SelecTank->currentIndex(), ui->ComboSeleccion->currentIndex(),true,cadena1);
+    qDebug() << cadena1;
 
 
-
-
+}

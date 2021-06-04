@@ -164,7 +164,7 @@ QHeaderView::section:vertical
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>13</number>
+     <number>14</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -5341,9 +5341,9 @@ border-radius: 16;
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>20</y>
+        <y>70</y>
         <width>1881</width>
-        <height>781</height>
+        <height>731</height>
        </rect>
       </property>
       <property name="minimumSize">
@@ -5474,6 +5474,62 @@ border-radius: 16;
         </font>
        </property>
       </column>
+     </widget>
+     <widget class="QLabel" name="Lab_Rango_Fecha_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>1881</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>36</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+	color: white;
+	background: royalblue;
+}</string>
+      </property>
+      <property name="text">
+       <string>Desde: 2021/29/4 00:00  HASTA: 2021/04/29 12:00             </string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Btn_SelecRange">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>10</y>
+        <width>311</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>22</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Selccionar Rango</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="Reportes">

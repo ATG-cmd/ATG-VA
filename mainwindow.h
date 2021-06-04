@@ -140,11 +140,12 @@ public:
     void btn_Habilitado(QPushButton *Boton,bool hab);
     void GuardarConfigInv();
     void TimerConfigInventoryDB();
-    void InVentoryHistory(int IDTank, int ComboInventory);
+    void InVentoryHistory(int IDTank, int ComboInventory, bool Porfecha, QString QryFecha);
     void estado_sistema(QPushButton *btn,QString estado);
     void guardar_station();
     void guardar_Turnos();
     void Qry_Turnos(int Turno);
+    void RellenarInventario(QString FechaInicio, QString FechaFin, int index);
 
 
     signals:
@@ -319,6 +320,8 @@ private slots:
    void on_Combo_Memo_activated(int index);
 
 
+
+   void on_Btn_SelecRange_clicked();
 
 private:
     Ui::MainWindow *ui;
