@@ -2484,9 +2484,9 @@ void MainWindow::InVentoryHistory(int IDTank, int ComboInventory, bool Porfecha,
 
         limpiar_tabla(ui->Tabla_Inventario,ui->Tabla_Inventario->rowCount());
       if(IDTank==0)
-           cadena = ("SELECT * FROM `cistem`.`"+SelecionInventario[ComboInventory]+"`;");
+           cadena = ("SELECT * FROM `cistem`.`"+SelecionInventario[ComboInventory]+"` ORDER  BY  Fecha DESC;");
           else
-        cadena = ("SELECT * FROM `cistem`.`"+SelecionInventario[ComboInventory]+"`  WHERE IDTank ='"+QString::number(IDTank)+"';");
+        cadena = ("SELECT * FROM `cistem`.`"+SelecionInventario[ComboInventory]+"`  WHERE IDTank ='"+QString::number(IDTank)+"'ORDER  BY  Fecha DESC;");
 
       qry.exec(cadena);
       }

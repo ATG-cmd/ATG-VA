@@ -69,6 +69,9 @@ class Tanque :public QWidget
     double deliveryCountIncrement = 0;
     double deliveryCountDecrement = 0;
     double deliveryInventoryStart = 0;
+    double deliveryInventoryStartfuelheight =0 ;
+    double deliveryInventoryStartwaterheight = 0;
+    double deliveryInventoryStartTemp = 0;
     double deliverySensivilityVolume = ProGaugeCapacidad * 0.0002;
     double Volumen_inicial;
     double Temperatura_inicial;
