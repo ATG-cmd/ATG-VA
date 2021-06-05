@@ -65,8 +65,8 @@ public:
      QSqlDatabase DB;
      QSerialPort *puertoserie;
      QSerialPort *Impresora;
-     QString impresora_name;
-     QString portname;
+     QString impresora_name = "CSN-A5";
+     QString portname = "";
      int Alarmas = 0;
      int warnings = 0;
      QString ProGaugeId[8];
@@ -83,6 +83,7 @@ public:
      double Volumen_Final;
      double Temperatura_Final;
      bool S_input[16];
+     bool sensor_papel;
 
 
      int numerodetanques=0;
@@ -136,8 +137,10 @@ public:
     void estado_sistema(QPushButton *btn,QString estado);
     void guardar_station();
     void guardar_Turnos();
-
-
+    void buscar_impresora();
+    void consultar_impresora();
+    void guardar_impresora();
+    bool papel_out();
     signals:
 
     void BotonMas(int Turno);
@@ -168,6 +171,8 @@ private slots:
    void on_Btn_user_clicked();
 
    void Leer_datos();
+
+   void leer_impresora();
 
    void inicbuff1();
 
@@ -308,6 +313,16 @@ private slots:
    void on_Combo_User_activated(int index);
 
    void on_Combo_Memo_activated(int index);
+
+   void on_Btn_sensor_conf_clicked();
+
+   void on_Btn_sensor_rep_clicked();
+
+   void on_Combo_impresora_activated(int index);
+
+   void handleError(QSerialPort::SerialPortError error);
+
+   void on_Btn_impresion_prueba_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -29,6 +29,8 @@
 #define SPrinter 17
 #define SStation 18
 #define STurnos 19
+#define SSensor_confi 20
+#define SSensor_rep 21
 
 
 #define INPUT_1 4
@@ -176,14 +178,15 @@ MainWindow::MainWindow(QWidget *parent)
     Impresora = new QSerialPort();
     Time1 = new QTimer();
 
-    ui->stackedWidget->setCurrentIndex(3);
-    // puerto serie para impresora
     Impresora->setBaudRate(QSerialPort::Baud9600);
     Impresora->setDataBits(QSerialPort::Data8);
     Impresora->setFlowControl(QSerialPort::NoFlowControl);
     Impresora->setParity(QSerialPort::NoParity);
     Impresora->setStopBits(QSerialPort::OneStop);
-    Impresora->open(QIODevice::ReadWrite);
+    connect(Impresora, &QSerialPort::errorOccurred, this, &MainWindow::handleError);
+    connect(Impresora, &QSerialPort::readyRead, this, &MainWindow::leer_impresora);
+    ui->stackedWidget->setCurrentIndex(3);
+
 
     //puertoserie->setPortName("ttyUSB0");
     puertoserie->setPortName("ttyAMA3");
@@ -402,7 +405,7 @@ QString MainWindow::ColorTank(QString Color)
  * se toma el texto del textedit Nombre para asignalo al tanque mediante el metodo setnameTank
  * -------------------------------------------------------------------------------------------------------*/
 
-//// Inicio de Modificacion de texto de Tanque Configuracion
+// Inicio de Modificacion de texto de Tanque Configuracion
 
 //void MainWindow::Modificar_TextoTank()
 //{
@@ -427,6 +430,7 @@ void MainWindow::on_Btn_Guardar_clicked()
     case SInventoryConfig: GuardarConfigInv(); break;
     case SStation: guardar_station(); break;
     case STurnos:  guardar_Turnos(); break;
+    case SPrinter:  guardar_impresora(); break;
     }
     insertar_incidente("Warning","System Setup Modified","user","0","1",false);
 }
@@ -2278,8 +2282,8 @@ void MainWindow::InventoryTank()
 }
 
 void MainWindow::btn_Habilitado(QPushButton *Boton,bool hab )
-{   if(hab) Boton->setStyleSheet("QPushButton{color:white;border-radius: 53px;border: 2px solid  gray ; background: royalblue; margin: 0px 0 0px 0;}");
-    else    Boton->setStyleSheet("QPushButton{color:white; border-radius: 53px;border: 2px solid  gray ;background: gray; margin: 0px 0 0px 0; }");
+{   if(hab) Boton->setStyleSheet("QPushButton{color:white;border-radius: 53px;border: 2px solid  gray ; background: royalblue; margin: 0px 0 0px 0; border-radius: 10px; }");
+    else    Boton->setStyleSheet("QPushButton{color:white; border-radius: 53px;border: 2px solid  gray ;background: gray; margin: 0px 0 0px 0;  border-radius: 10px; }");
     Boton->setEnabled(hab);
 }
 
@@ -2446,23 +2450,13 @@ void MainWindow::guardar_Turnos()
 
 
 }
+
 void MainWindow::on_pushButton_5_clicked()
 {
    close();
 }
 
-void MainWindow::on_Btn_Impresora_clicked()
-{
-    frame = SPrinter;
-    ui->stackedWidget->setCurrentIndex(SPrinter);
 
-    foreach (const QSerialPortInfo &puertos, QSerialPortInfo::availablePorts()) {
-        ui->Combo_impresora->addItem(puertos.systemLocation());
-        ui->Combo_device->addItem(puertos.description());
-        ui->Combo_rango->addItem(puertos.portName());
-    }
-
-}
 
 void MainWindow::on_Btn_Station_clicked()
 {
@@ -2520,5 +2514,205 @@ void MainWindow::on_Combo_Memo_activated(int index)
     }else{
     ui->Line_Memo->setEnabled(true);
     ui->Line_Memo->setStyleSheet("QLineEdit{border-radius: 10px;border: 2px solid  gray ;}");
+    }
+}
+
+void MainWindow::on_Btn_sensor_conf_clicked()
+{
+    frame = SSensor_confi;
+    ui->stackedWidget->setCurrentIndex(SSensor_confi);
+}
+
+void MainWindow::on_Btn_sensor_rep_clicked()
+{
+    frame = SSensor_rep;
+    ui->stackedWidget->setCurrentIndex(SSensor_rep);
+}
+
+void MainWindow::on_Combo_impresora_activated(int index)
+{
+    buscar_impresora();
+}
+
+void MainWindow::handleError(QSerialPort::SerialPortError error)
+{   QSqlQuery qry;
+    if (error == QSerialPort::ResourceError) {
+        QMessageBox::critical(this, tr("Critical Error"), Impresora->errorString());
+        Impresora->close();
+        ui->Rb_deshabilitado->setChecked(true);
+        btn_Habilitado(ui->Btn_impresion_prueba,false);
+        qry.exec("UPDATE cistem.Impresoras SET impresora_config = 0 , impresora_status = 0 WHERE Id = 1;");
+        insertar_incidente("Warning","Impresora sin papel","user","0","1",false);
+
+    }
+}
+
+void MainWindow::on_Btn_impresion_prueba_clicked()
+{   qDebug() << "imprimiendo prueba";
+    QByteArray prueba;
+    prueba.append(0x1b);
+    prueba.append(0x40);
+
+    prueba.append(0x12);
+    prueba.append(0x54);
+    if(Impresora->isOpen())
+    {   if(papel_out() == false) Impresora->write(prueba);
+    }
+}
+
+void MainWindow::on_Btn_Impresora_clicked()
+{
+    frame = SPrinter;
+    ui->stackedWidget->setCurrentIndex(SPrinter);
+    ui->Line_controlador->setStyleSheet("QLineEdit{border-radius: 10px;background-color: rgb(235, 235, 235);border: 2px solid  gray;}");
+    ui->Line_ubicacion->setStyleSheet("QLineEdit{border-radius: 10px;background-color: rgb(235, 235, 235);border: 2px solid  gray;}");
+    buscar_impresora();
+    consultar_impresora();
+}
+
+bool MainWindow::papel_out()
+{
+    bool papel_out = true;
+    QByteArray cmd2;
+
+    cmd2.append(0x1D);
+    cmd2.append(0x72);
+    cmd2.append(0x01);
+    if(Impresora->isOpen())
+    {   qDebug() << " mandando primer dato************************************************";
+
+       Impresora->write(cmd2);
+      while(Impresora->waitForReadyRead(250))
+       {
+          if(sensor_papel){
+              papel_out = false;
+              qDebug() << "si hay papel";
+          }else{
+              papel_out = true;
+              QMessageBox::critical(this, tr("Critical Error"),"No hay papel");
+              qDebug() << "sin papel";
+          }
+       }
+    }
+    return papel_out;
+}
+void MainWindow::guardar_impresora()
+{
+    QString cadena;
+    QString config;
+    QString status;
+    QSqlQuery qry;
+    if(ui->Rb_habilitado->isChecked()){
+        config = "1";
+        if(Impresora->open(QIODevice::ReadWrite)){
+            status = "1";
+            qDebug() << "impresora conectada";
+        }else status = "0";
+    }
+    else if(ui->Rb_deshabilitado->isChecked()){
+        if(Impresora->isOpen()){
+           Impresora->close();
+           status = "0";
+           qDebug() << status;
+        }
+        config = "0";
+    }
+    cadena.append("UPDATE cistem.Impresoras SET Impresora_label = '"+ ui->Line_Etiqueta->text() +"', "
+                                               "impresora_config = '"+config+"', "
+                                               "impresora_status = '"+status+"' "
+                                               "WHERE ID = 1;");
+    qDebug() << cadena;
+    qry.exec(cadena);
+    frame = SMenu;
+    ui->stackedWidget->setCurrentIndex(SMenu);
+    ui->Lab_Titulo->setText("Menu Principal");
+}
+
+void MainWindow::buscar_impresora()
+{
+
+    QStringList puertos;
+    QStringList controlador;
+    QStringList descripcion;
+    QStringList ubicacion;
+
+    foreach (const QSerialPortInfo &puerto_info, QSerialPortInfo::availablePorts()) {
+       puertos << puerto_info.portName();
+       descripcion << puerto_info.description();
+       controlador << puerto_info.manufacturer();
+       ubicacion << puerto_info.systemLocation();
+    }
+
+    QString program = "/bin/sh";
+    QStringList cadenas;
+    QStringList arguments;
+    arguments << "-c"<< "sudo dmesg | grep -i tty";
+    QProcess *myProcess = new QProcess();
+    myProcess->start(program, arguments);
+    myProcess->waitForFinished();
+    QByteArray output = myProcess->readAll();
+    int j = 0;
+    while ((j = output.indexOf("usb 1-1.1", j)) != -1) {
+        cadenas << output.mid(j,output.indexOf('\n',j)-j);
+        ++j;
+    }
+    if(cadenas.last().contains("pl2303") && puertos.contains(cadenas.last().mid(cadenas.last().indexOf("ttyUSB"),7))){
+       portname = cadenas.last().mid(cadenas.last().indexOf("ttyUSB"),7);
+       for (int i=0 ; i < puertos.size();i++) {
+           if(portname == puertos[i]) {
+               ui->Line_ubicacion->setText(ubicacion[i]);
+               ui->Line_controlador->setText(descripcion[i]);
+               break;
+           }
+       }
+       ui->Combo_impresora->clear();
+       ui->Combo_impresora->addItem("Impresora " + impresora_name);
+       qDebug() << portname;
+       Impresora->setPortName(portname);
+       ui->Rb_habilitado->setEnabled(true);
+    }else{
+       qDebug() << " impresora no encontrada";
+       ui->Combo_impresora->clear();
+       ui->Combo_impresora->addItem("Impresora no encontrada");
+       ui->Line_ubicacion->clear();
+       ui->Line_controlador->clear();
+       ui->Rb_habilitado->setEnabled(false);
+       ui->Rb_deshabilitado->setChecked(true);
+    }
+}
+
+void MainWindow::consultar_impresora()
+{
+    QString cadena;
+    QSqlQuery qry;
+    cadena.append("SELECT * FROM cistem.Impresoras;");
+    qDebug() << cadena;
+    qDebug() << qry.exec(cadena);
+    while(qry.next()){
+        ui->Line_Etiqueta->setText(qry.value(1).toString());
+        if(qry.value(2).toInt() == 1){
+            ui->Rb_habilitado->setChecked(true);
+            btn_Habilitado(ui->Btn_impresion_prueba,true);
+            if(!Impresora->isOpen()) Impresora->open(QIODevice::ReadWrite);
+        }
+        else {
+            ui->Rb_deshabilitado->setChecked(true);
+            btn_Habilitado(ui->Btn_impresion_prueba,false);
+            if(Impresora->isOpen()) Impresora->close();
+        }
+    }
+}
+
+void MainWindow::leer_impresora()
+{    qDebug() << "leyendo impresora******************************************************";
+
+    QByteArray papel;
+    papel[0] = 0x60;
+    QByteArray data;
+     data = Impresora->readAll();
+         qDebug() << "data from leer impresosa" << data << "//////////////////////////////////////////////////////////////";
+    if(data == papel) sensor_papel = true;
+    else {
+        sensor_papel = false;
     }
 }
