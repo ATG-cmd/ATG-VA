@@ -2542,7 +2542,8 @@ void MainWindow::handleError(QSerialPort::SerialPortError error)
         ui->Rb_deshabilitado->setChecked(true);
         btn_Habilitado(ui->Btn_impresion_prueba,false);
         qry.exec("UPDATE cistem.Impresoras SET impresora_config = 0 , impresora_status = 0 WHERE Id = 1;");
-        insertar_incidente("Warning","Impresora sin papel","user","0","1",false);
+        buscar_impresora();
+        insertar_incidente("Warning","Impresora desconectada","user","0","1",false);
 
     }
 }
@@ -2586,11 +2587,10 @@ bool MainWindow::papel_out()
        {
           if(sensor_papel){
               papel_out = false;
-              qDebug() << "si hay papel";
           }else{
               papel_out = true;
               QMessageBox::critical(this, tr("Critical Error"),"No hay papel");
-              qDebug() << "sin papel";
+              insertar_incidente("Warning","Impresora sin papel","user","0","1",false);
           }
        }
     }
@@ -2642,7 +2642,6 @@ void MainWindow::buscar_impresora()
        controlador << puerto_info.manufacturer();
        ubicacion << puerto_info.systemLocation();
     }
-
     QString program = "/bin/sh";
     QStringList cadenas;
     QStringList arguments;
