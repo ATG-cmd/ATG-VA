@@ -20,5 +20,6 @@
         <file>Reportes.png</file>
         <file>station.png</file>
         <file>Turnos.png</file>
+        <file>sensor.png</file>
     </qresource>
 </RCC>

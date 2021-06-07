@@ -164,7 +164,7 @@ QHeaderView::section:vertical
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>13</number>
+     <number>17</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -172,11 +172,63 @@ QHeaderView::section:vertical
        <rect>
         <x>61</x>
         <y>40</y>
-        <width>1821</width>
+        <width>2172</width>
         <height>751</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="4">
+        <widget class="QPushButton" name="Btn_Comunicacion">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(150,80,120,100);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/Comunicacion.png</normaloff>:/Comunicacion.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>350</width>
+           <height>350</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QPushButton" name="Btn_Impresora">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(60,50,70,100);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/Impresora.png</normaloff>:/Impresora.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>350</width>
+           <height>350</height>
+          </size>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="1">
         <widget class="QPushButton" name="Btn_Tanque">
          <property name="styleSheet">
@@ -229,12 +281,12 @@ QHeaderView::section:vertical
          </property>
         </widget>
        </item>
-       <item row="0" column="3">
-        <widget class="QPushButton" name="Btn_Impresora">
+       <item row="1" column="3">
+        <widget class="QPushButton" name="Btn_inventarioConfig">
          <property name="styleSheet">
           <string notr="true">QPushButton {
 	color: white;
-	background-color: rgba(60,50,70,100);
+	background-color: rgba(110,145,141,100);
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
@@ -245,33 +297,7 @@ QHeaderView::section:vertical
          </property>
          <property name="icon">
           <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Impresora.png</normaloff>:/Impresora.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>350</width>
-           <height>350</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="4">
-        <widget class="QPushButton" name="Btn_Comunicacion">
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(150,80,120,100);
-	border-width: 3px;
-	border-radius: 10px;
-	padding: 2px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Comunicacion.png</normaloff>:/Comunicacion.png</iconset>
+           <normaloff>:/Inventario.png</normaloff>:/Inventario.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -333,12 +359,12 @@ QHeaderView::section:vertical
          </property>
         </widget>
        </item>
-       <item row="1" column="3">
-        <widget class="QPushButton" name="Btn_inventarioConfig">
+       <item row="1" column="2">
+        <widget class="QPushButton" name="Btn_Station">
          <property name="styleSheet">
           <string notr="true">QPushButton {
 	color: white;
-	background-color: rgba(110,145,141,100);
+	background-color: rgba(250,45,114,150);
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
@@ -349,7 +375,7 @@ QHeaderView::section:vertical
          </property>
          <property name="icon">
           <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Inventario.png</normaloff>:/Inventario.png</iconset>
+           <normaloff>:/station.png</normaloff>:/station.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -402,32 +428,6 @@ QHeaderView::section:vertical
          </property>
         </widget>
        </item>
-       <item row="1" column="2">
-        <widget class="QPushButton" name="Btn_Station">
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(250,45,114,150);
-	border-width: 3px;
-	border-radius: 10px;
-	padding: 2px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/station.png</normaloff>:/station.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>350</width>
-           <height>350</height>
-          </size>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="4">
         <widget class="QPushButton" name="Btn_Turnos">
          <property name="styleSheet">
@@ -445,6 +445,38 @@ QHeaderView::section:vertical
          <property name="icon">
           <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Turnos.png</normaloff>:/Turnos.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>350</width>
+           <height>350</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5">
+        <widget class="QPushButton" name="Btn_sensor_conf">
+         <property name="maximumSize">
+          <size>
+           <width>350</width>
+           <height>350</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(50,200,100,100);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/sensor.png</normaloff>:/sensor.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -2145,7 +2177,7 @@ QScrollBar::add-line:vertical {
        <enum>Qt::NoFocus</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="Tab_editar">
        <property name="font">
@@ -5212,7 +5244,7 @@ border-radius: 16;
        <rect>
         <x>60</x>
         <y>40</y>
-        <width>1111</width>
+        <width>1420</width>
         <height>391</height>
        </rect>
       </property>
@@ -5223,38 +5255,6 @@ border-radius: 16;
        <property name="topMargin">
         <number>0</number>
        </property>
-       <item row="0" column="1">
-        <widget class="QPushButton" name="Btn_Reports">
-         <property name="maximumSize">
-          <size>
-           <width>350</width>
-           <height>350</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(20,40,200,100);
-	border-width: 3px;
-	border-radius: 10px;
-	padding: 2px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Reportes.png</normaloff>:/Reportes.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>350</width>
-           <height>350</height>
-          </size>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="0">
         <widget class="QPushButton" name="Btn_Inventario">
          <property name="maximumSize">
@@ -5298,6 +5298,38 @@ border-radius: 16;
          </property>
         </widget>
        </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="Btn_Reports">
+         <property name="maximumSize">
+          <size>
+           <width>350</width>
+           <height>350</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(20,40,200,100);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/Reportes.png</normaloff>:/Reportes.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>350</width>
+           <height>350</height>
+          </size>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="2">
         <widget class="QPushButton" name="Btn_Entregas_or">
          <property name="maximumSize">
@@ -5321,6 +5353,38 @@ border-radius: 16;
          <property name="icon">
           <iconset resource="Imagenes/Resourse.qrc">
            <normaloff>:/Entregas.png</normaloff>:/Entregas.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>350</width>
+           <height>350</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QPushButton" name="Btn_sensor_rep">
+         <property name="maximumSize">
+          <size>
+           <width>350</width>
+           <height>350</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(50,200,100,100);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/sensor.png</normaloff>:/sensor.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -6294,180 +6358,305 @@ border-radius: 16;
      </widget>
     </widget>
     <widget class="QWidget" name="Printer">
-     <widget class="QLabel" name="label_37">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>440</x>
-        <y>80</y>
-        <width>200</width>
-        <height>45</height>
+        <x>420</x>
+        <y>120</y>
+        <width>1001</width>
+        <height>451</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>22</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="text">
-       <string>impresora</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_40">
-      <property name="geometry">
-       <rect>
-        <x>480</x>
-        <y>180</y>
-        <width>200</width>
-        <height>45</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>22</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="text">
-       <string>tipo de reporte</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_43">
-      <property name="geometry">
-       <rect>
-        <x>440</x>
-        <y>430</y>
-        <width>200</width>
-        <height>45</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>22</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="text">
-       <string>dispositivo</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_47">
-      <property name="geometry">
-       <rect>
-        <x>470</x>
-        <y>520</y>
-        <width>200</width>
-        <height>45</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>22</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="text">
-       <string>rango de fecha</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="Combo_impresora">
-      <property name="geometry">
-       <rect>
-        <x>810</x>
-        <y>80</y>
-        <width>350</width>
-        <height>50</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QListWidget" name="listWidget">
-      <property name="geometry">
-       <rect>
-        <x>810</x>
-        <y>140</y>
-        <width>350</width>
-        <height>250</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>22</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOn</enum>
-      </property>
-      <property name="alternatingRowColors">
-       <bool>true</bool>
-      </property>
-      <property name="selectionMode">
-       <enum>QAbstractItemView::MultiSelection</enum>
-      </property>
-      <item>
-       <property name="text">
-        <string>s</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>d</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>f</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QComboBox" name="Combo_device">
-      <property name="geometry">
-       <rect>
-        <x>810</x>
-        <y>430</y>
-        <width>350</width>
-        <height>50</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="Combo_rango">
-      <property name="geometry">
-       <rect>
-        <x>810</x>
-        <y>520</y>
-        <width>350</width>
-        <height>50</height>
-       </rect>
-      </property>
+      <layout class="QGridLayout" name="gridLayout_17">
+       <item row="0" column="0" colspan="3">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="label_69">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>Configurado</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_11">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="Rb_habilitado">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QRadioButton::indicator::unchecked{ width: 50px; height: 50px; }
+QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
+           </property>
+           <property name="text">
+            <string>Habilitado</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="Rb_deshabilitado">
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QRadioButton::indicator::unchecked{ width: 50px; height: 50px; }
+QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
+           </property>
+           <property name="text">
+            <string>Deshabilitado</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_72">
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>Ubicacion</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QLineEdit" name="Line_ubicacion">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_70">
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>Controlador</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLineEdit" name="Line_controlador">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="dragEnabled">
+          <bool>false</bool>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_71">
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>Etiqueta</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QLineEdit" name="Line_Etiqueta">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_37">
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>impresora</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="2">
+        <widget class="QPushButton" name="Btn_impresion_prueba">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>80</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: white;
+	background-color: royalblue;
+	border-width: 3px;
+	border-radius: 10px;</string>
+         </property>
+         <property name="text">
+          <string>Impresion de prueba</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QComboBox" name="Combo_impresora">
+         <property name="minimumSize">
+          <size>
+           <width>650</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <spacer name="horizontalSpacer_10">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>5</width>
+           <height>5</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="3">
+        <spacer name="horizontalSpacer_12">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="Station">
@@ -7251,6 +7440,107 @@ border-radius: 16;
         </item>
        </layout>
       </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Sensores_config"/>
+    <widget class="QWidget" name="Sensores_report">
+     <widget class="QTableWidget" name="tableWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>40</y>
+        <width>1881</width>
+        <height>781</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>36</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOn</enum>
+      </property>
+      <property name="tabKeyNavigation">
+       <bool>false</bool>
+      </property>
+      <property name="showDropIndicator" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="dragDropOverwriteMode">
+       <bool>false</bool>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::NoSelection</enum>
+      </property>
+      <property name="rowCount">
+       <number>0</number>
+      </property>
+      <property name="columnCount">
+       <number>3</number>
+      </property>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>600</number>
+      </attribute>
+      <attribute name="horizontalHeaderHighlightSections">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderMinimumSectionSize">
+       <number>50</number>
+      </attribute>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string># Sensor</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Sensor description</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Status</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+      </column>
      </widget>
     </widget>
    </widget>
