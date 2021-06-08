@@ -1279,6 +1279,8 @@ void MainWindow::on_Btn_Barra_Estados_clicked()
 
 void MainWindow::Guardar_Comunicacion()
 {
+    closeSerialPort();
+
     QSqlQuery qry;
    QString A = "UPDATE `cistem`.`config_sonda` SET "
                " `Baudios`='"+ui->baudRateBox->currentText()+"',"
@@ -1289,6 +1291,9 @@ void MainWindow::Guardar_Comunicacion()
                "WHERE  `ID`=0;";
    qDebug() << "Hola desde  Guardar Comunicacion" << A;
    qry.exec(A);
+
+   updateSettings();
+   openSerialPort();
 
 }
 void MainWindow::on_Btn_tabla_cubicacion_clicked()
