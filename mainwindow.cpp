@@ -587,6 +587,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         Dialog *dlg = new Dialog(this);
         dlg->set_etiqueta("Ingrese su nombre de usuario");
         dlg->maskarator(0,"");
+        dlg->setGeometry(340,578,1240,502);
         int res;
         res = dlg->exec();
         if(res == QDialog::Accepted)

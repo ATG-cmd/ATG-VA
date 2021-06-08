@@ -12,10 +12,15 @@
 #include <QMessageBox>
 #include <QDebug>
 
-#define btnX 50
-#define btnY 35
-#define btnXesp 5
-#define btnYesp 5
+//#define btnX 50
+//#define btnY 35
+//#define btnXesp 5
+//#define btnYesp 5
+
+#define btnX 100
+#define btnY 70
+#define btnXesp 10
+#define btnYesp 10
 
 namespace Ui {
 class Dialog;
