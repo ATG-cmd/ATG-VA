@@ -6364,7 +6364,7 @@ border-radius: 16;
         <x>420</x>
         <y>120</y>
         <width>1001</width>
-        <height>451</height>
+        <height>464</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_17">
@@ -6405,6 +6405,12 @@ border-radius: 16;
          </item>
          <item>
           <widget class="QRadioButton" name="Rb_habilitado">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>70</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>36</pointsize>
@@ -6423,6 +6429,12 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </item>
          <item>
           <widget class="QRadioButton" name="Rb_deshabilitado">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>70</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>36</pointsize>
@@ -6469,12 +6481,12 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>50</height>
+           <height>70</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -6512,12 +6524,12 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>50</height>
+           <height>70</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -6555,12 +6567,12 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>50</height>
+           <height>70</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -6580,7 +6592,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
           <enum>Qt::LeftToRight</enum>
          </property>
          <property name="text">
-          <string>impresora</string>
+          <string>Impresora</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -6597,7 +6609,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -6618,12 +6630,12 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          <property name="minimumSize">
           <size>
            <width>650</width>
-           <height>50</height>
+           <height>70</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>

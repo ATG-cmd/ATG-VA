@@ -9,12 +9,12 @@ Dialog::Dialog(QWidget *parent) :
 
 
     grupo =new QGroupBox(this);
-    grupo->setGeometry(10,90,600,165);
+    grupo->setGeometry(20,160,1200,330);  // grupo->setGeometry(10,90,600,165);
     label = new QLabel(this);
-    label->setGeometry(180,10,300,20);
+    label->setGeometry(400,20,600,50);   //label->setGeometry(180,10,300,20);
    // label->setText("Ingrese un numero en el rango de");
     line = new QLineEdit(this);
-    line->setGeometry(180,40,220,25);
+    line->setGeometry(400,80,440,60);   //line->setGeometry(180,40,220,25);
     line->setFocus();
 
   //  line->installEventFilter(this);
@@ -53,6 +53,15 @@ Dialog::Dialog(QWidget *parent) :
     btn[37]->setGeometry(30+(9 *(btnX+btnXesp)),(3*(btnY+btnYesp)),btnX+25,btnY);
     btn_setText();
 
+    QFont Fontstyle;
+    Fontstyle.setPointSize(22);
+    Fontstyle.setBold(true);
+    label->setFont(Fontstyle);
+    line->setFont(Fontstyle);
+    for (int i= 0;i <= 38; i++) {
+        btn[i]->setFont(Fontstyle);
+
+    }
 
     connect(btn[0],&QPushButton::clicked,this,&Dialog::btn_char);
     connect(btn[1],&QPushButton::clicked,this,&Dialog::btn_char);
