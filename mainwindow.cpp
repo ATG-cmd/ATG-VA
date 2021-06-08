@@ -196,17 +196,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(Impresora, &QSerialPort::errorOccurred, this, &MainWindow::handleError);
     connect(Impresora, &QSerialPort::readyRead, this, &MainWindow::leer_impresora);
     ui->stackedWidget->setCurrentIndex(3);
-
-
-    //puertoserie->setPortName("ttyUSB0");
-    puertoserie->setPortName("ttyAMA3");
-    puertoserie->setBaudRate(QSerialPort::Baud9600);
-    puertoserie->setDataBits(QSerialPort::Data8);
-    puertoserie->setFlowControl(QSerialPort::NoFlowControl);
-    puertoserie->setParity(QSerialPort::NoParity);
-    puertoserie->setStopBits(QSerialPort::OneStop);
-    puertoserie->open(QIODevice::ReadWrite);
-    connect(puertoserie, &QSerialPort::readyRead, this, &MainWindow::Leer_datos);
+    fillPortsParameters();
 
     DB = QSqlDatabase::addDatabase("QMYSQL");
 
@@ -223,6 +213,10 @@ MainWindow::MainWindow(QWidget *parent)
         QMessageBox::critical(this, "Error", DB.lastError().text());
         return;
     }
+
+    updateSettings();
+    openSerialPort();
+
 
     consultaBD();
     Buscar_Tanques();
@@ -1237,6 +1231,7 @@ void MainWindow::on_Btn_Comunicacion_clicked()
          case 0:ui->stackedWidget->setCurrentIndex(SComunicacion); break;
          case 1: ui->stackedWidget->setCurrentIndex(SComunicador); frame = SComunicador;break;
         } });
+
 }
 
 void MainWindow::on_Btn_Barra_Estados_clicked()
@@ -1286,11 +1281,11 @@ void MainWindow::Guardar_Comunicacion()
 {
     QSqlQuery qry;
    QString A = "UPDATE `cistem`.`config_sonda` SET "
-               "`Baudios`='"+ui->SCombo_Baudios->currentText()+"',"
-               " `Datos`='"+ui->SCombo_Datos->currentText()+"',"
-               " `Stop`='"+ui->SCombo_Stop->currentText()+"', "
-               "`Paridad`='"+ui->SCombo_Paridad->currentText()+"', "
-               "`Unidades Sistema`='"+ui->SUnidadesSistema->currentText()+"' "
+               " `Baudios`='"+ui->baudRateBox->currentText()+"',"
+               " `Datos`='"+ui->dataBitsBox->currentText()+"',"
+               " `Stop`='"+ui->parityBox->currentText()+"',"
+               "  `Paridad`='"+ui->parityBox->currentText()+"',"
+               " `FlowControl`='"+ui->flowControlBox->currentText()+"' "
                "WHERE  `ID`=0;";
    qDebug() << "Hola desde  Guardar Comunicacion" << A;
    qry.exec(A);
@@ -2016,18 +2011,18 @@ void MainWindow::on_Btn_Entregas_or_clicked()
                    ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
                    ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1,0, new QTableWidgetItem(qry.value(2).toString()));
                     ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
-                    ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(7).toString()+ " : "+ qry.value(6).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
+                    ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(9).toString()+ " : "+ qry.value(8).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
                    TituloTank = false;
                    cada2 = 1;
 
                 }else {
                         ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
-                        ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(7).toString()+ " : "+ qry.value(6).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
+                        ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(9).toString()+ " : "+ qry.value(8).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
                     }
 
 
             }else {ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
-                    ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(7).toString()+ " : "+ qry.value(6).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
+                    ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(9).toString()+ " : "+ qry.value(8).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
                  }
 
 
@@ -2036,8 +2031,8 @@ void MainWindow::on_Btn_Entregas_or_clicked()
             // ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(7).toString()+ " : "+ qry.value(6).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
              ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 1, new QTableWidgetItem(QString::number(qry.value(3).toInt())));
              ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 2, new QTableWidgetItem(QString::number(qry.value(4).toInt())));
-             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 3, new QTableWidgetItem(QString::number(qry.value(5).toInt())));
-             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1,4 , new QTableWidgetItem(QString::number(qry.value(5).toInt())));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 3, new QTableWidgetItem(QString::number(qry.value(6).toInt())));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1,4 , new QTableWidgetItem(QString::number(qry.value(7).toInt())));
              ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
              ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
              ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
@@ -2504,6 +2499,7 @@ int cada1=1;
 int merma[]= {0,0};
 int Cmerma=0;
 
+
        // qDebug() << cadena;
         while(qry.next())
         {
@@ -2585,6 +2581,7 @@ int Cmerma=0;
                  ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 5, new QTableWidgetItem(qry.value(6).toString()));
 
 
+
            }
 
              if (SelecionInventario[ComboInventory] != "InventarioTurnos")
@@ -2596,10 +2593,11 @@ int Cmerma=0;
                  }
                  if (SelecionInventario[ComboInventory] == "InventarioMin")
                  {
-                     ui->Tabla_Inventario->horizontalHeaderItem(0)->setText("Volumen");
+
+                     ui->Tabla_Inventario->horizontalHeaderItem(0)->setText("Volumen de Combustible");
                      ui->Tabla_Inventario->setColumnWidth(1,280);
                      ui->Tabla_Inventario->horizontalHeaderItem(1)->setText("Temperatura");
-                     ui->Tabla_Inventario->setColumnWidth(2,280);
+                     ui->Tabla_Inventario->setColumnWidth(2,380);
                      ui->Tabla_Inventario->horizontalHeaderItem(2)->setText("Altura de combustible");
                      ui->Tabla_Inventario->setColumnWidth(3,280);
                      ui->Tabla_Inventario->horizontalHeaderItem(3)->setText("Altura de Agua");
@@ -2620,17 +2618,20 @@ int Cmerma=0;
 
                  }
                  else{
+//                     if(ui->Tabla_Inventario->columnCount() == 6)
+//                         ui->Tabla_Inventario->removeColumn(5);
                  ui->Tabla_Inventario->horizontalHeaderItem(0)->setText("Fecha/Hora");
-                 ui->Tabla_Inventario->setColumnWidth(1,280);
-                 ui->Tabla_Inventario->horizontalHeaderItem(1)->setText("Volumen");
+                 ui->Tabla_Inventario->setColumnWidth(1,380);
+                 ui->Tabla_Inventario->horizontalHeaderItem(1)->setText("Volumen de Combustible");
                  ui->Tabla_Inventario->setColumnWidth(2,280);
                  ui->Tabla_Inventario->horizontalHeaderItem(2)->setText("Temperatura");
-                 ui->Tabla_Inventario->setColumnWidth(3,280);
+                 ui->Tabla_Inventario->setColumnWidth(3,380);
                  ui->Tabla_Inventario->horizontalHeaderItem(3)->setText("Altura de Combustible");
                  ui->Tabla_Inventario->setColumnWidth(4,280);
                  ui->Tabla_Inventario->horizontalHeaderItem(4)->setText("Altura de Agua");
-                 ui->Tabla_Inventario->setColumnWidth(5,280);
-                 ui->Tabla_Inventario->horizontalHeaderItem(5)->setText("Altura de Agua");
+                  ui->Tabla_Inventario->setColumnWidth(5,0);
+                    ui->Tabla_Inventario->horizontalHeaderItem(5)->setText("");
+
 
 
                  ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 1, new QTableWidgetItem(qry.value(3).toString()));
@@ -3066,6 +3067,103 @@ void MainWindow::leer_impresora()
     if(data == papel) sensor_papel = true;
     else {
         sensor_papel = false;
+    }
+
+}
+
+void MainWindow::fillPortsParameters()
+{
+    ui->baudRateBox->addItem(QStringLiteral("9600"), QSerialPort::Baud9600);
+    ui->baudRateBox->addItem(QStringLiteral("19200"), QSerialPort::Baud19200);
+    ui->baudRateBox->addItem(QStringLiteral("38400"), QSerialPort::Baud38400);
+    ui->baudRateBox->addItem(QStringLiteral("115200"), QSerialPort::Baud115200);
+    ui->baudRateBox->addItem(tr("Custom"));
+
+    ui->dataBitsBox->addItem(QStringLiteral("5"), QSerialPort::Data5);
+    ui->dataBitsBox->addItem(QStringLiteral("6"), QSerialPort::Data6);
+    ui->dataBitsBox->addItem(QStringLiteral("7"), QSerialPort::Data7);
+    ui->dataBitsBox->addItem(QStringLiteral("8"), QSerialPort::Data8);
+    ui->dataBitsBox->setCurrentIndex(3);
+
+    ui->parityBox->addItem(tr("None"), QSerialPort::NoParity);
+    ui->parityBox->addItem(tr("Even"), QSerialPort::EvenParity);
+    ui->parityBox->addItem(tr("Odd"), QSerialPort::OddParity);
+    ui->parityBox->addItem(tr("Mark"), QSerialPort::MarkParity);
+    ui->parityBox->addItem(tr("Space"), QSerialPort::SpaceParity);
+
+    ui->stopBitsBox->addItem(QStringLiteral("1"), QSerialPort::OneStop);
+#ifdef Q_OS_WIN
+    ui->stopBitsBox->addItem(tr("1.5"), QSerialPort::OneAndHalfStop);
+#endif
+    ui->stopBitsBox->addItem(QStringLiteral("2"), QSerialPort::TwoStop);
+
+    ui->flowControlBox->addItem(tr("None"), QSerialPort::NoFlowControl);
+    ui->flowControlBox->addItem(tr("RTS/CTS"), QSerialPort::HardwareControl);
+    ui->flowControlBox->addItem(tr("XON/XOFF"), QSerialPort::SoftwareControl);
+}
+
+void MainWindow::updateSettings()
+{
+      QSqlQuery qry;
+      qry.exec("SELECT * FROM cistem.config_sonda;");
+
+//    m_currentSettings.name = ui->serialPortInfoListBox->currentText();
+
+      while (qry.next())
+
+      {
+          qDebug() << qry.value(1)<< "Baudios888888888";
+    if (ui->baudRateBox->currentIndex() == 4) {
+        m_currentSettings.baudRate = ui->baudRateBox->currentText().toInt();
+    } else {
+        qDebug() << "Baudios3333300" << ui->baudRateBox->findText("9600",Qt::MatchWrap);
+        m_currentSettings.baudRate = static_cast<QSerialPort::BaudRate>(
+       ui->baudRateBox->itemData(ui->baudRateBox->findText(qry.value(1).toString(),Qt::MatchWrap)).toInt());
+    }
+    m_currentSettings.stringBaudRate = QString::number(m_currentSettings.baudRate);
+
+    m_currentSettings.dataBits = static_cast<QSerialPort::DataBits>(
+    ui->dataBitsBox->itemData(ui->dataBitsBox->findText(qry.value(1).toString(),Qt::MatchWrap)).toInt());
+
+    m_currentSettings.stringDataBits = ui->dataBitsBox->currentText();
+
+    m_currentSettings.parity = static_cast<QSerialPort::Parity>(
+    ui->dataBitsBox->itemData(ui->dataBitsBox->findText(qry.value(4).toString(),Qt::MatchWrap)).toInt());
+    m_currentSettings.stringParity = ui->parityBox->currentText();
+
+    m_currentSettings.stopBits = static_cast<QSerialPort::StopBits>(
+    ui->dataBitsBox->itemData(ui->dataBitsBox->findText(qry.value(3).toString(),Qt::MatchWrap)).toInt());
+
+    m_currentSettings.stringStopBits = ui->stopBitsBox->currentText();
+      }
+
+    m_currentSettings.flowControl = static_cast<QSerialPort::FlowControl>(
+          ui->flowControlBox->itemData(ui->flowControlBox->findText(qry.value(5).toString(),Qt::MatchWrap)).toInt());
+
+    m_currentSettings.stringFlowControl = ui->flowControlBox->currentText();
+
+      //    m_currentSettings.localEchoEnabled = m_ui->localEchoCheckBox->isChecked();
+}
+
+void MainWindow::openSerialPort()
+{
+    //puertoserie->setPortName("ttyUSB0");
+    puertoserie->setPortName("ttyAMA3");
+    puertoserie->setBaudRate(m_currentSettings.baudRate);
+    puertoserie->setDataBits(m_currentSettings.dataBits);
+    puertoserie->setFlowControl(m_currentSettings.flowControl);
+    puertoserie->setParity(m_currentSettings.parity);
+    puertoserie->setStopBits(m_currentSettings.stopBits);
+    puertoserie->open(QIODevice::ReadWrite);
+    connect(puertoserie, &QSerialPort::readyRead, this, &MainWindow::Leer_datos);
+}
+
+void MainWindow::closeSerialPort()
+{
+    if (puertoserie->isOpen())
+    {
+           puertoserie->close();
+           disconnect(puertoserie, &QSerialPort::readyRead, this, &MainWindow::Leer_datos);
     }
 
 }

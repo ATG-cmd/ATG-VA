@@ -36,8 +36,28 @@ protected:
    bool eventFilter(QObject *obj, QEvent *event) override;
 
 public:
+
+   struct Settings {
+          QString name;
+          qint32 baudRate;
+          QString stringBaudRate;
+          QSerialPort::DataBits dataBits;
+          QString stringDataBits;
+          QSerialPort::Parity parity;
+          QString stringParity;
+          QSerialPort::StopBits stopBits;
+          QString stringStopBits;
+          QSerialPort::FlowControl flowControl;
+          QString stringFlowControl;
+          bool localEchoEnabled;
+      };
+
+
+
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+     Settings settings() const;
 
     int ProGaugeCount= 0;
     Tanque *Tconf;
@@ -338,9 +358,18 @@ private slots:
 
    void on_Btn_impresion_prueba_clicked();
 
+  void  fillPortsParameters();
+
+  void updateSettings();
+
+  void openSerialPort();
+
+  void closeSerialPort();
+
 
 private:
     Ui::MainWindow *ui;
+    Settings m_currentSettings;
 };
 #endif // MAINWINDOW_H
 

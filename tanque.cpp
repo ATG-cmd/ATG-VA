@@ -237,6 +237,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 
       connect(Boton, SIGNAL (clicked()),this, SLOT(clickbuton()));
 
+
       layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
       layoutWidget1->setGeometry(QRect(310, 20, 231, 253));
 
@@ -899,7 +900,7 @@ void Tanque::deliveryProGaugeCountIncrement(){
                 double VolumenEntregado=  VolumenCon -deliveryInventoryStart;
                QString SeRealizoEntrega;
                QSqlQuery qry;
-                qry.exec("INSERT INTO `cistem`.`entregas` (`IDTank`,`Tanque_Nombre`, `Volumen`, `Temperatrura`, `Volumen Entregado`, `Fecha`,`Estado`) VALUES ('"+QString::number(IdTanque)+"','"+NomTank+"', '"+QString::number(deliveryInventoryStart)+"', '"+QString::number(Temperatura_inicial)+"', '"+QString::number(VolumenEntregado)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', 'Inicio');");
+                qry.exec("INSERT INTO `cistem`.`entregas` (`IDTank`,`Tanque_Nombre`, `Volumen`, `Temperatrura`, `Volumen Entregado`,`Altura_de_Combustible`,`Altura_de_Agua`, `Fecha`,`Estado`) VALUES ('"+QString::number(IdTanque)+"','"+NomTank+"', '"+QString::number(deliveryInventoryStart)+"', '"+QString::number(Temperatura_inicial)+"', '"+QString::number(VolumenEntregado)+"','"+QString::number(deliveryInventoryStartfuelheight)+"','"+QString::number(deliveryInventoryStartwaterheight)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', 'Inicio');");
                //S
 
                lbl_ProGaugeDeliveryInProccess->show();
@@ -909,6 +910,8 @@ void Tanque::deliveryProGaugeCountIncrement(){
             if(deliveryCountIncrement == 1.00){
                 qDebug () << "Hola El volumen :" << VolumenCon;
                 deliveryInventoryStart = VolumenCon;
+                deliveryInventoryStartfuelheight = AlturaTank;
+                deliveryInventoryStartwaterheight= NivelAgua;
                 Temperatura_inicial = Temperatura;
                 //  ui->lbl_deliveryInventoryStart->setText(QString::number(deliveryInventoryStart));
             }
@@ -926,8 +929,7 @@ void Tanque::deliveryProGaugeCountIncrement(){
             double VolumenEntregado=  VolumenCon -deliveryInventoryStart;
            QString SeRealizoEntrega;
            QSqlQuery qry;
-            qry.exec("INSERT INTO `cistem`.`entregas` (`IDTank`,`Tanque_Nombre`, `Volumen`, `Temperatrura`, `Volumen Entregado`, `Fecha`,`Estado`) VALUES ('"+QString::number(IdTanque)+"','"+NomTank+"', '"+QString::number(VolumenCon)+"', '"+QString::number(Temperatura)+"', '"+QString::number(VolumenEntregado)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', 'Fin');");
-
+            qry.exec("INSERT INTO `cistem`.`entregas` (`IDTank`,`Tanque_Nombre`, `Volumen`, `Temperatrura`, `Volumen Entregado`, `Altura_de_Combustible`, `Altura_de_Agua`, `Fecha`,`Estado`) VALUES ('"+QString::number(IdTanque)+"','"+NomTank+"', '"+QString::number(VolumenCon)+"', '"+QString::number(Temperatura)+"', '"+QString::number(VolumenEntregado)+"', '"+QString::number(AlturaTank)+"', '"+QString::number(NivelAgua)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', 'Fin');");
 
             Volumen_inicial =0;
            lbl_ProGaugeDeliveryInProccess->hide();
@@ -937,7 +939,7 @@ void Tanque::deliveryProGaugeCountIncrement(){
     }
     qDebug() << VolumenCon << deliveryLastInventoryRead << deliveryCountDecrement << deliveryCountIncrement;
     deliveryLastInventoryRead = VolumenCon;
-    deliverySensivilityVolume = ProGaugeCapacidad * 0.0002;
+    deliverySensivilityVolume = ProGaugeCapacidad * 0.0003;
 
 }
 
