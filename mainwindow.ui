@@ -164,73 +164,27 @@ QHeaderView::section:vertical
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>17</number>
+     <number>8</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>61</x>
-        <y>40</y>
-        <width>2172</width>
-        <height>751</height>
+        <x>60</x>
+        <y>20</y>
+        <width>1751</width>
+        <height>821</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="4">
-        <widget class="QPushButton" name="Btn_Comunicacion">
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(150,80,120,100);
-	border-width: 3px;
-	border-radius: 10px;
-	padding: 2px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Comunicacion.png</normaloff>:/Comunicacion.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>350</width>
-           <height>350</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QPushButton" name="Btn_Impresora">
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(60,50,70,100);
-	border-width: 3px;
-	border-radius: 10px;
-	padding: 2px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Impresora.png</normaloff>:/Impresora.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>350</width>
-           <height>350</height>
-          </size>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="1">
         <widget class="QPushButton" name="Btn_Tanque">
+         <property name="maximumSize">
+          <size>
+           <width>250</width>
+           <height>250</height>
+          </size>
+         </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
 	color: white;
@@ -249,18 +203,24 @@ QHeaderView::section:vertical
          </property>
          <property name="iconSize">
           <size>
-           <width>350</width>
-           <height>350</height>
+           <width>250</width>
+           <height>250</height>
           </size>
          </property>
         </widget>
        </item>
-       <item row="0" column="2">
-        <widget class="QPushButton" name="Btn_Entregas">
+       <item row="0" column="4">
+        <widget class="QPushButton" name="Btn_Comunicacion">
+         <property name="maximumSize">
+          <size>
+           <width>250</width>
+           <height>250</height>
+          </size>
+         </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
 	color: white;
-	background-color: rgba(230,145,50,100);
+	background-color: rgba(150,80,120,100);
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
@@ -271,12 +231,76 @@ QHeaderView::section:vertical
          </property>
          <property name="icon">
           <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Entregas.png</normaloff>:/Entregas.png</iconset>
+           <normaloff>:/Comunicacion.png</normaloff>:/Comunicacion.png</iconset>
          </property>
          <property name="iconSize">
           <size>
-           <width>350</width>
-           <height>350</height>
+           <width>250</width>
+           <height>250</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QPushButton" name="Btn_Impresora">
+         <property name="maximumSize">
+          <size>
+           <width>250</width>
+           <height>250</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(60,50,70,100);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/Impresora.png</normaloff>:/Impresora.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>250</width>
+           <height>250</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="Btn_Alarmas">
+         <property name="maximumSize">
+          <size>
+           <width>250</width>
+           <height>250</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(250,45,14,100);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/Alarmas.png</normaloff>:/Alarmas.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>250</width>
+           <height>250</height>
           </size>
          </property>
         </widget>
@@ -301,14 +325,52 @@ QHeaderView::section:vertical
          </property>
          <property name="iconSize">
           <size>
-           <width>350</width>
-           <height>350</height>
+           <width>250</width>
+           <height>250</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="Btn_Entregas">
+         <property name="maximumSize">
+          <size>
+           <width>250</width>
+           <height>250</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(230,145,50,100);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/Entregas.png</normaloff>:/Entregas.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>250</width>
+           <height>250</height>
           </size>
          </property>
         </widget>
        </item>
        <item row="1" column="0">
         <widget class="QPushButton" name="Btn_tabla_cubicacion">
+         <property name="maximumSize">
+          <size>
+           <width>250</width>
+           <height>250</height>
+          </size>
+         </property>
          <property name="styleSheet">
           <string notr="true">QPushButton {
 	color: white;
@@ -327,60 +389,8 @@ QHeaderView::section:vertical
          </property>
          <property name="iconSize">
           <size>
-           <width>350</width>
-           <height>350</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="Btn_Alarmas">
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(250,45,14,100);
-	border-width: 3px;
-	border-radius: 10px;
-	padding: 2px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Alarmas.png</normaloff>:/Alarmas.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>350</width>
-           <height>350</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QPushButton" name="Btn_Station">
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(250,45,114,150);
-	border-width: 3px;
-	border-radius: 10px;
-	padding: 2px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/station.png</normaloff>:/station.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>350</width>
-           <height>350</height>
+           <width>250</width>
+           <height>250</height>
           </size>
          </property>
         </widget>
@@ -389,8 +399,8 @@ QHeaderView::section:vertical
         <widget class="QPushButton" name="Btb_Sonda">
          <property name="maximumSize">
           <size>
-           <width>600</width>
-           <height>600</height>
+           <width>250</width>
+           <height>250</height>
           </size>
          </property>
          <property name="font">
@@ -422,8 +432,34 @@ QHeaderView::section:vertical
          </property>
          <property name="iconSize">
           <size>
-           <width>350</width>
-           <height>350</height>
+           <width>250</width>
+           <height>250</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="Btn_Station">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgba(250,45,114,150);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Imagenes/Resourse.qrc">
+           <normaloff>:/station.png</normaloff>:/station.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>250</width>
+           <height>250</height>
           </size>
          </property>
         </widget>
@@ -448,18 +484,18 @@ QHeaderView::section:vertical
          </property>
          <property name="iconSize">
           <size>
-           <width>350</width>
-           <height>350</height>
+           <width>250</width>
+           <height>250</height>
           </size>
          </property>
         </widget>
        </item>
-       <item row="0" column="5">
+       <item row="2" column="0">
         <widget class="QPushButton" name="Btn_sensor_conf">
          <property name="maximumSize">
           <size>
-           <width>350</width>
-           <height>350</height>
+           <width>250</width>
+           <height>250</height>
           </size>
          </property>
          <property name="styleSheet">
@@ -480,8 +516,8 @@ QHeaderView::section:vertical
          </property>
          <property name="iconSize">
           <size>
-           <width>350</width>
-           <height>350</height>
+           <width>250</width>
+           <height>250</height>
           </size>
          </property>
         </widget>
@@ -3907,6 +3943,24 @@ border-radius: 16;
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
+       <item row="8" column="1">
+        <widget class="QComboBox" name="flowControlBox">
+         <property name="maximumSize">
+          <size>
+           <width>441</width>
+           <height>71</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="0">
         <widget class="QLabel" name="SLab_Baudios">
          <property name="font">
@@ -3925,46 +3979,10 @@ border-radius: 16;
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="SLab_Stop">
-         <property name="font">
-          <font>
-           <pointsize>36</pointsize>
-           <weight>75</weight>
-           <italic>true</italic>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Stop</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
        <item row="7" column="0" colspan="2">
         <widget class="Line" name="line_4">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0">
-        <widget class="QLabel" name="SLab_Paridad">
-         <property name="font">
-          <font>
-           <pointsize>36</pointsize>
-           <weight>75</weight>
-           <italic>true</italic>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Paridad</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
         </widget>
        </item>
@@ -3975,42 +3993,6 @@ border-radius: 16;
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
-        <widget class="QComboBox" name="SCombo_Stop">
-         <property name="maximumSize">
-          <size>
-           <width>441</width>
-           <height>71</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>36</pointsize>
-           <weight>75</weight>
-           <italic>true</italic>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <item>
-          <property name="text">
-           <string/>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>2</string>
-          </property>
-         </item>
-        </widget>
-       </item>
        <item row="3" column="0" colspan="2">
         <widget class="Line" name="line_2">
          <property name="orientation">
@@ -4019,7 +4001,7 @@ border-radius: 16;
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QComboBox" name="SCombo_Baudios">
+        <widget class="QComboBox" name="baudRateBox">
          <property name="maximumSize">
           <size>
            <width>441</width>
@@ -4037,56 +4019,6 @@ border-radius: 16;
          <property name="styleSheet">
           <string notr="true"/>
          </property>
-         <item>
-          <property name="text">
-           <string/>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>300</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>600</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1200</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>2400</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>4800</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>9600</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>38400</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>57600</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>115200</string>
-          </property>
-         </item>
         </widget>
        </item>
        <item row="2" column="0">
@@ -4115,7 +4047,7 @@ border-radius: 16;
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QComboBox" name="SCombo_Datos">
+        <widget class="QComboBox" name="dataBitsBox">
          <property name="maximumSize">
           <size>
            <width>441</width>
@@ -4133,65 +4065,9 @@ border-radius: 16;
          <property name="styleSheet">
           <string notr="true"/>
          </property>
-         <item>
-          <property name="text">
-           <string/>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>7</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>8</string>
-          </property>
-         </item>
         </widget>
        </item>
-       <item row="6" column="1">
-        <widget class="QComboBox" name="SCombo_Paridad">
-         <property name="maximumSize">
-          <size>
-           <width>441</width>
-           <height>71</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>36</pointsize>
-           <weight>75</weight>
-           <italic>true</italic>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
-         </property>
-         <item>
-          <property name="text">
-           <string/>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Igual</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Desigual</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Ninguna</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="8" column="1">
+       <item row="10" column="1">
         <widget class="QComboBox" name="SUnidadesSistema">
          <property name="maximumSize">
           <size>
@@ -4224,7 +4100,7 @@ border-radius: 16;
          </item>
         </widget>
        </item>
-       <item row="8" column="0">
+       <item row="10" column="0">
         <widget class="QLabel" name="label_18">
          <property name="font">
           <font>
@@ -4239,6 +4115,109 @@ border-radius: 16;
          </property>
          <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QComboBox" name="stopBitsBox">
+         <property name="maximumSize">
+          <size>
+           <width>441</width>
+           <height>71</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QComboBox" name="parityBox">
+         <property name="maximumSize">
+          <size>
+           <width>441</width>
+           <height>71</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="SLab_Paridad">
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Paridad</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="SLab_Stop">
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Stop</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QLabel" name="Lab_FlowControl">
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Flow Control</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0" colspan="2">
+        <widget class="Line" name="line_42">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
