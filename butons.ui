@@ -164,6 +164,10 @@ border: 2px solid  gray ;
          <pointsize>36</pointsize>
         </font>
        </property>
+       <property name="styleSheet">
+        <string notr="true">
+</string>
+       </property>
        <property name="text">
         <string>00</string>
        </property>

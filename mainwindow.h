@@ -224,7 +224,7 @@ private slots:
 
    void on_pushButton_2_clicked();
 
-   void Tanque_Maximisado();
+   void Tanque_Maximisado(int index);
 
    void on_Regresar_clicked();
 
@@ -366,6 +366,10 @@ private slots:
 
   void closeSerialPort();
 
+
+
+
+  void on_Combo_MetodoCierre_currentIndexChanged(int index);
 
 private:
     Ui::MainWindow *ui;

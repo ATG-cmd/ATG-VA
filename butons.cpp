@@ -128,6 +128,17 @@ void Butons::on_checkBox_stateChanged(int arg1)
 
 }
 
+bool Butons::getChekBoxishabilitado() const
+{
+    return ChekBoxishabilitado;
+}
+
+void Butons::setChekBoxishabilitado(bool value)
+{
+    ChekBoxishabilitado = value;
+    ui->checkBox->setEnabled(value);
+}
+
 void Butons::btn_Habilitado(QPushButton *Boton,bool hab )
 {   if(hab) Boton->setStyleSheet("QPushButton{color:white;border-radius: 53px;border: 2px solid  gray ; background: royalblue; margin: 0px 0 0px 0;}");
     else    Boton->setStyleSheet("QPushButton{color:white; border-radius: 53px;border: 2px solid  gray ;background: gray; margin: 0px 0 0px 0; }");

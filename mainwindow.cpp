@@ -386,6 +386,8 @@ void MainWindow::ConCombocol(QComboBox *combo)
         default: break; }
     });
 
+
+
 }
 QString MainWindow::ColorTank(QString Color)
 {
@@ -787,7 +789,7 @@ void MainWindow::Protocolo(QString cad)
             break;
         }
     }
-    connect(tanques[indice],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
+  //  connect(tanques[indice],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
     qDebug() << "Indice:" << indice;
     qDebug()<< qry.exec("SELECT Protocolo FROM `cistem`.`sonda` WHERE Serie = '"+ProGaugeId[indice]+"' ;");
     while(qry.next())
@@ -795,8 +797,14 @@ void MainWindow::Protocolo(QString cad)
         N= qry.value(0).toInt();
         qDebug() << "Protocolo:"<< N;
     }
-//    if(tanques[indice]->getDesconectado())
-//    connect(tanques[indice],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
+  //  if(tanques[indice]->getDesconectado())
+
+//        connect(tanques[indice], QOverload<int>::of(&Tanque::Camino), [=](int index){
+//            Tanque_Maximisado(index);
+//            qDebug() << "Hola +--------------------------+++++++++++++-";
+//        });
+   disconnect(tanques[indice],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
+    connect(tanques[indice],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
     switch (N) {
 
     case 1:
@@ -835,11 +843,8 @@ void MainWindow::Protocolo(QString cad)
         break;
     }
 
-
-
-
     if(Maxi)
-        Tanque_Maximisado();
+        Tanque_Maximisado(indice);
 }
 
 void MainWindow::Descargar()
@@ -1013,26 +1018,26 @@ void MainWindow::on_pushButton_2_clicked()
     ui->stackedWidget->setCurrentIndex(SHome2);
 }
 
-void MainWindow::Tanque_Maximisado()
+void MainWindow::Tanque_Maximisado(int index)
 {
     if(!Maxi)
     {
-        indiceM =0;
+        indiceM =index;
         ui->stackedWidget->setCurrentIndex(0);
-        qDebug() << "Hola desde tanque maximizado";
+//        qDebug() << "Hola desde tanque maximizado";
 
-        for(int i=0; i <= 8; i++)
-        {
-            qDebug() << i;
-            if (tanques[i]->getTMaximizado() == false)
-            {
-                qDebug() << "hola desde este if :)" << i;
-                indiceM = i;
-                Maxi = true;
-                break;
-            }
-        }
-
+//        for(int i=0; i <= 8; i++)
+//        {
+//            qDebug() << i;
+//            if (tanques[i]->getTMaximizado() == false)
+//            {
+//                qDebug() << "hola desde este if :)" << i;
+//                indiceM = i;
+//                Maxi = true;
+//                break;
+//            }
+//        }
+          Maxi = true;
         qDebug()<< "indiceM"<< indiceM;
 
         Maximizado->Setgeometry(15,5,1000,1000);
@@ -1129,11 +1134,12 @@ void MainWindow::on_Regresar_clicked()
 
     switch (frame) {
     // MENU DE CONFIGURACION
-case SMenu :case SHome :case SSonda :case STanque :case STablaCub:
-case SLogin :case SHome2 :case STMaxi :case SComunicacion: case SVialarmas :
-case Slimites :case SComunicador :case SInventoryConfig: case SPrinter: case SStation: frame= SMenu;break;
+case SMenu : case SHome : case SSonda : case STanque : case STablaCub: case SLogin :
+case SHome2 : case STMaxi : case SComunicacion: case SVialarmas : case Slimites :
+case SComunicador :case SInventoryConfig: case SPrinter: case SStation:
+case STurnos:  frame= SMenu;break;
         //MENU PUBLICO
-case  sInventario: case SReportes: case SEntregas : frame= SMenuPub; break;
+case  sInventario: case SReportes: case SEntregas : frame= SMenuPub;  break;
 
 
   }
@@ -2780,6 +2786,10 @@ void MainWindow::on_Btn_Station_clicked()
 
 void MainWindow::on_Btn_Turnos_clicked()
 {
+    ui->LineTMuerto->setStyleSheet("QLineEdit{border-radius: 10px;background-color: rgb(235, 235, 235);border: 2px solid  gray;}");
+    ui->LineNMT->setStyleSheet("QLineEdit{border-radius: 10px;background-color: rgb(235, 235, 235);border: 2px solid  gray;}");
+    ui->LineTMuerto->setEnabled(false);
+    ui->LineNMT->setEnabled(false);
     frame = STurnos;
     ui->stackedWidget->setCurrentIndex(STurnos);
 }
@@ -3172,4 +3182,42 @@ void MainWindow::closeSerialPort()
            disconnect(puertoserie, &QSerialPort::readyRead, this, &MainWindow::Leer_datos);
     }
 
+}
+
+
+void MainWindow::on_Combo_MetodoCierre_currentIndexChanged(int index)
+{
+    switch (index) {
+
+    case 0:
+        ui->LineTMuerto->setStyleSheet("QLineEdit{border-radius: 10px;background-color: rgb(235, 235, 235);border: 2px solid  gray;}");
+        ui->LineNMT->setStyleSheet("QLineEdit{border-radius: 10px;background-color: rgb(235, 235, 235);border: 2px solid  gray;}");
+        ui->LineTMuerto->setEnabled(false);
+        ui->LineNMT->setEnabled(false);
+        ui->Turno1->setChekBoxishabilitado(true);
+        ui->Turno2->setChekBoxishabilitado(true);
+        ui->Turno3->setChekBoxishabilitado(true);
+        ui->Turno4->setChekBoxishabilitado(true);
+        ui->Turno5->setChekBoxishabilitado(true);
+        ui->Turno6->setChekBoxishabilitado(true);
+        ui->Turno7->setChekBoxishabilitado(true);
+        ui->Turno8->setChekBoxishabilitado(true);
+        break;
+    case 1:
+        ui->LineTMuerto->setStyleSheet("background-color: rgb(255,255,255);");
+        ui->LineNMT->setStyleSheet("background-color: rgb(255,255,255);");
+        ui->LineTMuerto->setEnabled(true);
+        ui->LineNMT->setEnabled(true);
+        ui->Turno1->setChekBoxishabilitado(false);
+        ui->Turno2->setChekBoxishabilitado(false);
+        ui->Turno3->setChekBoxishabilitado(false);
+        ui->Turno4->setChekBoxishabilitado(false);
+        ui->Turno5->setChekBoxishabilitado(false);
+        ui->Turno6->setChekBoxishabilitado(false);
+        ui->Turno7->setChekBoxishabilitado(false);
+        ui->Turno8->setChekBoxishabilitado(false);
+
+        break;
+
+    }
 }
