@@ -164,7 +164,7 @@ QHeaderView::section:vertical
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>19</number>
+     <number>16</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -846,7 +846,7 @@ padding: 2px;</string>
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1139</width>
+         <width>1107</width>
          <height>1471</height>
         </rect>
        </property>
@@ -4301,8 +4301,8 @@ border-radius: 16;
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>939</width>
-         <height>829</height>
+         <width>941</width>
+         <height>831</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_9">
