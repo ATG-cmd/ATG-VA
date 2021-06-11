@@ -128,6 +128,40 @@ void Butons::on_checkBox_stateChanged(int arg1)
 
 }
 
+bool Butons::getIsSelect() const
+{
+    return isSelect;
+}
+
+void Butons::setIsSelect(bool value)
+{
+    isSelect = value;
+    if (value)
+       {
+           btn_Habilitado(ui->btn_menosmin,false);
+           ui->LineMin->setEnabled(false);
+           btn_Habilitado(ui->btn_masmin,false);
+           btn_Habilitado(ui->btn_menosHor,false);
+           ui->LineEditHor->setEnabled(false);
+            btn_Habilitado(ui->btn_masHor,false);
+            isHabilitado = false;
+             ui->checkBox->show();
+       }
+       else {
+
+        btn_Habilitado(ui->btn_menosmin,true);
+        ui->LineMin->setEnabled(true);
+        btn_Habilitado(ui->btn_masmin,true);
+        btn_Habilitado(ui->btn_menosHor,true);
+        ui->LineEditHor->setEnabled(true);
+         btn_Habilitado(ui->btn_masHor,true);
+         isHabilitado= true;
+
+         ui->checkBox->hide();
+       }
+
+}
+
 bool Butons::getChekBoxishabilitado() const
 {
     return ChekBoxishabilitado;

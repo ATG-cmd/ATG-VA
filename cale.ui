@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Cale</class>
+ <widget class="QDialog" name="Cale">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1168</width>
+    <height>863</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: transparent;</string>
+  </property>
+  <widget class="QCalendarWidget" name="calendarWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1181</width>
+     <height>681</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>46</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="statusTip">
+    <string/>
+   </property>
+   <property name="whatsThis">
+    <string/>
+   </property>
+   <property name="accessibleDescription">
+    <string/>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCalendarWidget QWidget#qt_calendar_navigationbar { background-color: royalblue;  
+ height: 60px;
+}
+QCalendarWidget QToolButton {
+    height: 60px;
+    width: 250px;
+    color: white;
+    font-size: 46px;
+    icon-size: 56px, 56px;
+    background-color: royalblue;
+}
+/* header row */
+QCalendarWidget QWidget { alternate-background-color: rgb(128, 128, 128); height: 150px;}
+
+QCalendarWidget QMenu {
+    width: 250px;
+    height: 800px;
+ 
+    left: 20px;
+    color: white;
+    font-size: 46px;
+    background-color: rgb(100, 100, 100);
+}
+QCalendarWidget QSpinBox { 
+    width: 210px; 
+    font-size:50px; 
+    color: white; 
+    background-color: royalblue; 
+   text-align:center;
+    selection-background-color: rgb(136, 136, 136);
+    selection-color: blue;
+}
+QCalendarWidget QSpinBox::up-button { subcontrol-origin: border;  subcontrol-position: center right;  width:60px; height:60;border-radius: 30px; background-color: rgb(255,215,0);border: 2px solid  gray ; 
+margin: 8px  0px 7px 20px;  
+  width: 0;
+  height: 0;
+  border: 2px solid #000;
+  border-top: 50px  solid royalblue;
+  border-right: 20px solid royalblue;
+  border-bottom: 50px  solid royalblue ;
+  border-left: 33px  solid white ;
+
+
+
+}
+QCalendarWidget QSpinBox::down-button {subcontrol-origin: border; subcontrol-position: center left;  width:60px; height: 60;border-radius: 30px; background-color: rgb(255,215,0);border: 2px solid  gray ;
+margin: 0px 25px 7px 10px;  
+  width: 0;
+  height: 0;
+  border: 2px solid #000;
+  border-top: 50px  solid royalblue;
+  border-right: 30px solid white;
+  border-bottom: 50px  solid royalblue ;
+  border-left: 10px  solid royalblue ;
+
+
+
+
+}
+QCalendarWidget QSpinBox::up-arrow { width:100px;  }
+QCalendarWidget QSpinBox::down-arrow { width:100px; }
+ 
+
+ 
+/* normal days */
+QCalendarWidget QAbstractItemView:enabled 
+{
+
+    font-size:46px;  
+    color: rgb(180, 180, 180);  
+    background-color: black;  
+    selection-background-color: rgb(64, 64, 64); 
+    selection-color: rgb(0, 255, 0); 
+}
+ 
+/* days in other months */
+QCalendarWidget QAbstractItemView:disabled { color: rgb(64, 64, 64); height:800px; }
+
+</string>
+   </property>
+   <property name="inputMethodHints">
+    <set>Qt::ImhNone</set>
+   </property>
+   <property name="firstDayOfWeek">
+    <enum>Qt::Monday</enum>
+   </property>
+   <property name="gridVisible">
+    <bool>false</bool>
+   </property>
+   <property name="horizontalHeaderFormat">
+    <enum>QCalendarWidget::SingleLetterDayNames</enum>
+   </property>
+   <property name="verticalHeaderFormat">
+    <enum>QCalendarWidget::NoVerticalHeader</enum>
+   </property>
+   <property name="navigationBarVisible">
+    <bool>true</bool>
+   </property>
+   <property name="dateEditEnabled">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>720</y>
+     <width>1181</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>56</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+text-align:center;
+background-color: rgb(255, 255, 0);</string>
+   </property>
+   <property name="text">
+    <string>06/11/2021</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>840</x>
+     <y>720</y>
+     <width>121</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(106, 151, 255,50);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="Imagenes/Resourse.qrc">
+     <normaloff>:/Cancel.png</normaloff>:/Cancel.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>100</width>
+     <height>100</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>990</x>
+     <y>720</y>
+     <width>121</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(106, 151, 255,50);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="Imagenes/Resourse.qrc">
+     <normaloff>:/check.png</normaloff>:/check.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>100</width>
+     <height>100</height>
+    </size>
+   </property>
+  </widget>
+  <zorder>label</zorder>
+  <zorder>calendarWidget</zorder>
+  <zorder>pushButton</zorder>
+  <zorder>pushButton_2</zorder>
+ </widget>
+ <resources>
+  <include location="Imagenes/Resourse.qrc"/>
+ </resources>
+ <connections/>
+</ui>

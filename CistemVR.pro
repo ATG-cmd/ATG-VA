@@ -15,7 +15,8 @@ SOURCES += \
     sonda.cpp \
     tanque.cpp \
     select_fechas.cpp \
-    butons.cpp
+    butons.cpp \
+    cale.cpp
 
 HEADERS += \
     dialog.h \
@@ -23,13 +24,15 @@ HEADERS += \
     sonda.h \
     tanque.h \
     select_fechas.h \
-    butons.h
+    butons.h \
+    cale.h
 
 FORMS += \
     dialog.ui \
     mainwindow.ui \
     select_fechas.ui \
-    butons.ui
+    butons.ui \
+    cale.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -39,6 +42,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     Imagenes/Resourse.qrc \
 
-DISTFILES +=
+DISTFILES += \
+    Imagenes/Fecha y hora.png
 
 LIBS +=-L/usr/local/lib -lwiringPi

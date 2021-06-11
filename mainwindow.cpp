@@ -8,6 +8,7 @@
 #include <qmath.h>
 #include "wiringPi.h"
 #include <QProcess>
+#include <calendario.h>
 
 #define SMenu 0
 #define SHome 1
@@ -31,6 +32,7 @@
 #define STurnos 19
 #define SSensor_confi 20
 #define SSensor_rep 21
+#define SFecha_Hora 22
 
 
 #define INPUT_1 4
@@ -178,6 +180,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Line_Diametro->installEventFilter(this);
     ui->Line_Capacidad->installEventFilter(this);
     ui->Line_Nombre->installEventFilter(this);
+   ui->dateEdit->installEventFilter(this);
 
     //ui->lineEdit->installEventFilter(this);
     //ui->stackedWidget->setCurrentIndex(1);
@@ -676,6 +679,19 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         delete dlg;
         return true;
     }
+     if(obj == ui->dateEdit && event->type() == QEvent::FocusIn)
+     {
+         MainWindow::setFocus();
+
+           Cale *Cal = new Cale(this);
+           int res;
+           Cal->setGeometry(350,100,1180,900);
+          Cal->exec();
+          ui->dateEdit->setDate(Cal->Fecha);
+
+           // delete Cal;
+         return  true;
+     }
     //    if(obj == ui->lineEdit && event->type() == QEvent::FocusIn)
     //    {
     //        MainWindow::setFocus();
@@ -1131,7 +1147,7 @@ void MainWindow::Tanque_Maximisado(int index)
 
 void MainWindow::on_Regresar_clicked()
 {
-
+    MainWindow::setFocus();
     switch (frame) {
     // MENU DE CONFIGURACION
 case SMenu : case SHome : case SSonda : case STanque : case STablaCub: case SLogin :
@@ -1140,6 +1156,8 @@ case SComunicador :case SInventoryConfig: case SPrinter: case SStation:
 case STurnos:  frame= SMenu;break;
         //MENU PUBLICO
 case  sInventario: case SReportes: case SEntregas : frame= SMenuPub;  break;
+
+
 
 
   }
@@ -3220,4 +3238,14 @@ void MainWindow::on_Combo_MetodoCierre_currentIndexChanged(int index)
         break;
 
     }
+}
+
+
+void MainWindow::on_Btn_Fechayhora_clicked()
+{
+    frame = SFecha_Hora;
+     MainWindow::setFocus();
+     ui->stackedWidget->setCurrentIndex(SFecha_Hora);
+     ui->Btns_Fechayhora->setIsSelect(false);
+     ui->Lab_Titulo->setText("Fecha & hora");
 }

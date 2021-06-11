@@ -20,6 +20,7 @@
 #include <QSerialPortInfo>
 #include "select_fechas.h"
 #include <QTableWidget>
+#include <cale.h>
 
 
 
@@ -370,6 +371,9 @@ private slots:
 
 
   void on_Combo_MetodoCierre_currentIndexChanged(int index);
+
+
+  void on_Btn_Fechayhora_clicked();
 
 private:
     Ui::MainWindow *ui;

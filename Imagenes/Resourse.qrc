@@ -21,5 +21,6 @@
         <file>station.png</file>
         <file>Turnos.png</file>
         <file>sensor.png</file>
+        <file>Fecha y hora.png</file>
     </qresource>
 </RCC>

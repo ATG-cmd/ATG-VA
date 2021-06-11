@@ -31,6 +31,9 @@ public:
     bool getChekBoxishabilitado() const;
     void setChekBoxishabilitado(bool value);
 
+    bool getIsSelect() const;
+    void setIsSelect(bool value);
+
 private slots:
 
     void on_btn_menosmin_clicked();
@@ -67,6 +70,7 @@ private:
     QString LineHorText;
     bool isHabilitado =false;
     bool ChekBoxishabilitado;
+    bool isSelect;
 };
 
 #endif // BUTONS_H
