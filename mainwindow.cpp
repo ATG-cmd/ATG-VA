@@ -2305,16 +2305,17 @@ void MainWindow::on_Btn_inventarioConfig_clicked()
 { frame = SInventoryConfig; ui->stackedWidget->setCurrentIndex(SInventoryConfig);
     QSqlQuery qry;
     qry.exec("SELECT * FROM `cistem`.`configuracioninv` LIMIT 1000");
-
+    int Inter=0;
     while(qry.next())
     {
         ui->Line_Intervalo->setText(qry.value(1).toString());
 
-        int Inter=0;
         for (int i = 0; i <= 13; i++) { if(Bitso[i] == qry.value(1).toString()){ Inter = i;break;} }
         SelecIntervalo = Inter;
+        on_Line_Intervalo_textChanged(qry.value(1).toString());
 
       }
+
 }
 
 void MainWindow::on_BtnMasIntervalo_clicked()
@@ -2345,86 +2346,21 @@ void MainWindow::on_Btn_IntervaloMenos_pressed()
 void MainWindow::on_Btn_IntervaloMenos_released()
 {disconnect(Time1,&QTimer::timeout,this,&MainWindow::on_Btn_IntervaloMenos_clicked);}
 
-void MainWindow::on_Btn_D_masH_clicked()
-{
-    ui->Line_HoraLog->clear();
-    if(SelecHora == 23) SelecHora = 0;
-    else SelecHora ++;
-    ui->Line_HoraLog->setText(QString::number(SelecHora));
-}
-
-void MainWindow::on_Btn_D_menosH_clicked()
-{
-    ui->Line_HoraLog->clear();
-    if(SelecHora == 0) SelecHora = 23;
-    else SelecHora --;
-    ui->Line_HoraLog->setText(QString::number(SelecHora));
-}
-
-void MainWindow::on_Btn_D_masH_pressed()
-{connect(Time1,&QTimer::timeout,this,&MainWindow::on_Btn_D_masH_clicked);}
-
-void MainWindow::on_Btn_D_menosH_released()
-{disconnect(Time1,&QTimer::timeout,this,&MainWindow::on_Btn_D_menosH_clicked);}
-
-void MainWindow::on_Btn_D_masH_released()
-{disconnect(Time1,&QTimer::timeout,this,&MainWindow::on_Btn_D_masH_clicked);}
-
-void MainWindow::on_Btn_D_menosH_pressed()
-{connect(Time1,&QTimer::timeout,this,&MainWindow::on_Btn_D_menosH_clicked);}
-
-void MainWindow::on_Btn_H_masM_clicked()
-{
-    ui->Line_H_minutos->clear();
-    if(SelecMinutos == 59) SelecMinutos = 00;
-    else SelecMinutos ++;
-    ui->Line_H_minutos->setText(QString::number(SelecMinutos));
-}
-
-void MainWindow::on_Btn_H_masM_pressed()
-{connect(Time1,&QTimer::timeout,this,&MainWindow::on_Btn_H_masM_clicked);}
-
-void MainWindow::on_Btn_H_masM_released()
-{disconnect(Time1,&QTimer::timeout,this,&MainWindow::on_Btn_H_masM_clicked);}
-
-void MainWindow::on_Btn_H_menosM_clicked()
-{
-    ui->Line_H_minutos->clear();
-    if(SelecMinutos == 0) SelecMinutos = 59;
-    else SelecMinutos --;
-    ui->Line_H_minutos->setText(QString::number(SelecMinutos));
-}
-
-void MainWindow::on_Btn_H_menosM_released()
-{disconnect(Time1,&QTimer::timeout,this,&MainWindow::on_Btn_H_menosM_clicked);}
-
-void MainWindow::on_Btn_H_menosM_pressed()
-{ connect(Time1,&QTimer::timeout,this,&MainWindow::on_Btn_H_menosM_clicked);}
-
 void MainWindow::on_Line_Intervalo_textChanged(const QString &arg1)
 {
     if (SelecIntervalo >6)
-    {   btn_Habilitado(ui->Btn_D_masH,true);
-        btn_Habilitado(ui->Btn_D_menosH,true);
-        btn_Habilitado(ui->Btn_H_masM,true);
-        btn_Habilitado(ui->Btn_H_menosM,true);
-        ui->Line_HoraLog->setEnabled(true);
-        ui->Line_H_minutos->setEnabled(true);
+    {
         ui->Lab_HoraInicio->setEnabled(true);
         ui->Lab_Horas->setEnabled(true);
         ui->Lab_Minutos->setEnabled(true);
-
+        ui->WidgetHora->setIsSelect(false);
 
     }else{
-         btn_Habilitado(ui->Btn_D_masH,false);
-         btn_Habilitado(ui->Btn_D_menosH,false);
-         btn_Habilitado(ui->Btn_H_masM,false);
-         btn_Habilitado(ui->Btn_H_menosM,false);
-         ui->Line_HoraLog->setEnabled(false);
-         ui->Line_H_minutos->setEnabled(false);
          ui->Lab_HoraInicio->setEnabled(false);
          ui->Lab_Horas->setEnabled(false);
          ui->Lab_Minutos->setEnabled(false);
+         ui->WidgetHora->setIsSelect(true);
+
     }
 }
 

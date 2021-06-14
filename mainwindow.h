@@ -303,30 +303,6 @@ private slots:
 
    void on_Btn_IntervaloMenos_released();
 
-   void on_Btn_D_masH_clicked();
-
-   void on_Btn_D_menosH_clicked();
-
-   void on_Btn_D_masH_pressed();
-
-   void on_Btn_D_menosH_released();
-
-   void on_Btn_D_masH_released();
-
-   void on_Btn_D_menosH_pressed();
-
-   void on_Btn_H_masM_clicked();
-
-   void on_Btn_H_masM_pressed();
-
-   void on_Btn_H_masM_released();
-
-   void on_Btn_H_menosM_clicked();
-
-   void on_Btn_H_menosM_released();
-
-   void on_Btn_H_menosM_pressed();
-
    void on_Line_Intervalo_textChanged(const QString &arg1);
 
    void InventoryTank();

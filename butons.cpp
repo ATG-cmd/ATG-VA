@@ -145,7 +145,7 @@ void Butons::setIsSelect(bool value)
            ui->LineEditHor->setEnabled(false);
             btn_Habilitado(ui->btn_masHor,false);
             isHabilitado = false;
-             ui->checkBox->show();
+             ui->checkBox->hide();
        }
        else {
 

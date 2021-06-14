@@ -14,7 +14,7 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: transparent;</string>
+   <string notr="true">background-color: white;</string>
   </property>
   <widget class="QCalendarWidget" name="calendarWidget">
    <property name="geometry">
@@ -71,7 +71,7 @@ QCalendarWidget QSpinBox {
     color: white; 
     background-color: royalblue; 
    text-align:center;
-    selection-background-color: rgb(136, 136, 136);
+    selection-background-color: white;
     selection-color: blue;
 }
 QCalendarWidget QSpinBox::up-button { subcontrol-origin: border;  subcontrol-position: center right;  width:60px; height:60;border-radius: 30px; background-color: rgb(255,215,0);border: 2px solid  gray ; 
@@ -97,14 +97,9 @@ margin: 0px 25px 7px 10px;
   border-bottom: 50px  solid royalblue ;
   border-left: 10px  solid royalblue ;
 
-
-
-
 }
 QCalendarWidget QSpinBox::up-arrow { width:100px;  }
 QCalendarWidget QSpinBox::down-arrow { width:100px; }
- 
-
  
 /* normal days */
 QCalendarWidget QAbstractItemView:enabled 
@@ -112,13 +107,23 @@ QCalendarWidget QAbstractItemView:enabled
 
     font-size:46px;  
     color: rgb(180, 180, 180);  
-    background-color: black;  
+    background-color: white;  
     selection-background-color: rgb(64, 64, 64); 
     selection-color: rgb(0, 255, 0); 
 }
  
 /* days in other months */
 QCalendarWidget QAbstractItemView:disabled { color: rgb(64, 64, 64); height:800px; }
+
+
+
+QDateEdit::up-button{
+width: 0px;
+}
+QDateEdit::down-button{
+width: 0px;
+}
+
 
 </string>
    </property>
