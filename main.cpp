@@ -5,11 +5,14 @@
 #include <QProgressBar>
 #include <QThread>
 #include <QApplication>
-
+#include <QStyleFactory>
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
+//    QApplication::setStyle(QStyleFactory::create("fusion"));
+//    qDebug() << QStyleFactory::keys();
+
   /*  QSplashScreen *splash = new QSplashScreen;
     splash->setPixmap(QPixmap("C:/Users/dark_/Desktop/CistemVR abdiel/logo 800x400.png"));
     QProgressBar *pb = new QProgressBar(splash);
@@ -27,5 +30,4 @@ int main(int argc, char *argv[])
    // w.show();
     return a.exec();
 }
-
 

@@ -173,7 +173,9 @@ public:
     void consultar_impresora();
     void guardar_impresora();
     bool papel_out();
-
+    void guardar_sensores();
+    void consultar_sensores(int index);
+    void conectar_signals();
     signals:
 
     void BotonMas(int Turno);
