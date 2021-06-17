@@ -9,6 +9,10 @@
 #include "wiringPi.h"
 #include <QProcess>
 #include <calendario.h>
+#include <QListView>
+#include <QAbstractItemView>
+#include <QListWidget>
+#include <QScroller>
 
 #define SMenu 0
 #define SHome 1
@@ -243,6 +247,48 @@ MainWindow::MainWindow(QWidget *parent)
    ui->SelecTank->setVisible(false);
 
    qDebug () << "Aqui ando";
+
+   QListView * view = new QListView(ui->SelecTank);
+
+   view->setWindowTitle(QString::fromLocal8Bit("demo"));
+       view->resize(QSize(50, 350));
+
+       view->setViewMode(QListView::ListMode);
+       view->setFlow(QListView::TopToBottom);
+       view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+       view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+       view->setVerticalScrollMode(QListWidget::ScrollPerPixel);
+       QScroller::grabGesture(view,QScroller::LeftMouseButtonGesture);
+       //ui->scrollArea->setFlow(QListView::TopToBottom);
+       ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+       ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+       QScroller::grabGesture(ui->scrollArea,QScroller::LeftMouseButtonGesture);
+
+//       ui->scrollArea_2->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+//       ui->scrollArea_2->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+//       QScroller::grabGesture(ui->scrollArea_2,QScroller::LeftMouseButtonGesture);
+
+
+       view->setStyleSheet(
+                               "QListView::item { "
+                                "text-align:center;"
+                               "font-size:46px; "
+                                "width:400px;"
+                               "height:200px;"
+                               " border-radius: 100px;"
+                               "border: 6px solid  gray ;"
+                               "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 white, stop:0.33 white, stop:0.34 white, stop:0.66 white, stop:0.67 rgba(255, 255, 0, 255), stop:1 rgba(255, 255, 0, 255));}"
+                                );
+  view->setFont(Fonttitle);
+  ui->SelecTank->setView(view);
+  //ui->SelecTank->view()->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+  for (int i = 0 ; i < ui->SelecTank->count() ; ++i) {
+  ui->SelecTank->setItemData(i, Qt::AlignCenter, Qt::TextAlignmentRole);
+  };
+
+
+
+
 }
 
 MainWindow::~MainWindow()
