@@ -9,6 +9,7 @@
 #include "wiringPi.h"
 #include <QProcess>
 #include <calendario.h>
+#include <QAbstractItemView>
 
 #define SMenu 0
 #define SHome 1
@@ -225,6 +226,7 @@ MainWindow::MainWindow(QWidget *parent)
     Buscar_Tanques();
     Descargar();
     buscar_alarmas();
+    conectar_signals();
     TimerConfigInventoryDB();
 
    qDebug () << "Sali de descargar";
@@ -328,24 +330,7 @@ void MainWindow::on_Btn_Tanque_clicked()
             ui->Combo_Sonda->addItem(qry.value(0).toString());
             qDebug() << qry.value(0);
         }
-     connect(ui->Combo_Tipo, QOverload<int>::of(&QComboBox::activated),
-             [=](int index){
 
-    ui->Lab_Titulo->setText("Tanque");
-    ui->Combo_Sonda->addItem(" ");
-
-    QSqlQuery qry;
-    qry.exec("SELECT Serie FROM `cistem`.`sonda` LIMIT 100 ;");
-    while(qry.next())
-    {
-        ui->Combo_Sonda->addItem(qry.value(0).toString());
-        qDebug() << qry.value(0);
-    }  });
-
-    connect(ui->Combo_IdTanque, QOverload<int>:: of(&QComboBox::activated),[=](int index){
-
-
-     } );
 
 }
 //Fin del StackedTanque
@@ -444,6 +429,7 @@ void MainWindow::on_Btn_Guardar_clicked()
     case SStation: guardar_station(); break;
     case STurnos:  guardar_Turnos(); break;
     case SPrinter:  guardar_impresora(); break;
+    case SSensor_confi: guardar_sensores(); break;
     }
     insertar_incidente("Warning","System Setup Modified","user","0","1",false);
 }
@@ -1153,9 +1139,9 @@ void MainWindow::on_Regresar_clicked()
 case SMenu : case SHome : case SSonda : case STanque : case STablaCub: case SLogin :
 case SHome2 : case STMaxi : case SComunicacion: case SVialarmas : case Slimites :
 case SComunicador :case SInventoryConfig: case SPrinter: case SStation:
-case STurnos:  frame= SMenu;break;
+case STurnos: case SSensor_confi: frame= SMenu;break;
         //MENU PUBLICO
-case  sInventario: case SReportes: case SEntregas : frame= SMenuPub;  break;
+case  sInventario: case SReportes: case SEntregas : case SSensor_rep: frame= SMenuPub;  break;
 
 
 
@@ -1523,9 +1509,6 @@ void MainWindow::guardar_limites()
     tanques[tank_id]->SetAlarma_de_Agua(ui->Line_alarma_agua->text().toDouble());
     tanques[tank_id]->SetAdvertencua_de_Agua(ui->Line_advertencia_agua->text().toDouble());
 
-    frame = SMenu;
-    ui->stackedWidget->setCurrentIndex(SMenu);
-    ui->Lab_Titulo->setText("Menu Principal");
 
 }
 
@@ -2580,8 +2563,6 @@ int Cmerma=0;
                           }
                  ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
                  ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(7).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
-
-
              }
 //             else{
 //            ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
@@ -2609,9 +2590,6 @@ int Cmerma=0;
                  ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 3, new QTableWidgetItem(qry.value(4).toString()));
                  ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 4, new QTableWidgetItem(qry.value(5).toString()));
                  ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 5, new QTableWidgetItem(qry.value(6).toString()));
-
-
-
            }
 
              if (SelecionInventario[ComboInventory] != "InventarioTurnos")
@@ -2661,9 +2639,6 @@ int Cmerma=0;
                  ui->Tabla_Inventario->horizontalHeaderItem(4)->setText("Altura de Agua");
                   ui->Tabla_Inventario->setColumnWidth(5,0);
                     ui->Tabla_Inventario->horizontalHeaderItem(5)->setText("");
-
-
-
                  ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 1, new QTableWidgetItem(qry.value(3).toString()));
                  ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 2, new QTableWidgetItem(qry.value(4).toString()));
                  ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 3, new QTableWidgetItem(qry.value(5).toString()));
@@ -2704,8 +2679,6 @@ int Cmerma=0;
                  merma[Cmerma]= qry.value(3).toInt();
                  Cmerma++;
              }
-
-
                uno++;
             cada2++;
             cada1++;
@@ -2727,7 +2700,6 @@ void MainWindow::estado_sistema(QPushButton *btn, QString estado)
     }else if(estado == "normal")
     {
         btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(0, 250, 0, 250), stop:0.691897 rgba(0,180,0, 160), stop:0.691964  gray , stop:1 gray); color:white");
-
     }
 }
 
@@ -2909,6 +2881,9 @@ void MainWindow::on_Btn_sensor_conf_clicked()
 {
     frame = SSensor_confi;
     ui->stackedWidget->setCurrentIndex(SSensor_confi);
+
+    ui->Combo_sensor_dir->view()->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    ui->Combo_sensor_dir->view()->setAlternatingRowColors(true);
 }
 
 void MainWindow::on_Btn_sensor_rep_clicked()
@@ -2984,6 +2959,43 @@ bool MainWindow::papel_out()
     }
     return papel_out;
 }
+
+void MainWindow::guardar_sensores()
+{
+    QSqlQuery qry;
+    QString cadena;
+    cadena.append("SELECT * FROM cistem.Sensores WHERE Sensor_num = '"+ QString::number(1) +"';");
+    qDebug() << cadena;
+}
+
+void MainWindow::consultar_sensores(int index)
+{
+    QSqlQuery qry;
+    QString cadena;
+    cadena.append("SELECT * FROM cistem.Sensores WHERE Sensor_num = '"+ QString::number(index) +"';");
+    qry.exec(cadena);
+    while(qry.next())
+    {
+        if(qry.value(6).toInt() == 0){
+            ui->Rb_sensor_deshabilitado->setChecked(true);
+        }else {
+            ui->Rb_sensor_habilitado->setChecked(true);
+        }
+        ui->Line_Sensor_conf->setText(qry.value(2).toString());
+        ui->Combo_sensor_model->setCurrentIndex(qry.value(7).toInt());
+        ui->Combo_sensor_cat->setCurrentIndex(qry.value(8).toInt());
+
+    }
+}
+
+void MainWindow::conectar_signals()
+{
+    connect(ui->Combo_sensor_dir, QOverload<int>::of(&QComboBox::activated),
+        [=](int index){
+        consultar_sensores(index);
+    });
+
+}
 void MainWindow::guardar_impresora()
 {
     QString cadena;
@@ -3011,9 +3023,7 @@ void MainWindow::guardar_impresora()
                                                "WHERE ID = 1;");
     qDebug() << cadena;
     qry.exec(cadena);
-    frame = SMenu;
-    ui->stackedWidget->setCurrentIndex(SMenu);
-    ui->Lab_Titulo->setText("Menu Principal");
+
 }
 
 void MainWindow::buscar_impresora()
@@ -3206,7 +3216,6 @@ void MainWindow::closeSerialPort()
 void MainWindow::on_Combo_MetodoCierre_currentIndexChanged(int index)
 {
     switch (index) {
-
     case 0:
         ui->LineTMuerto->setStyleSheet("QLineEdit{border-radius: 10px;background-color: rgb(235, 235, 235);border: 2px solid  gray;}");
         ui->LineNMT->setStyleSheet("QLineEdit{border-radius: 10px;background-color: rgb(235, 235, 235);border: 2px solid  gray;}");
@@ -3234,9 +3243,7 @@ void MainWindow::on_Combo_MetodoCierre_currentIndexChanged(int index)
         ui->Turno6->setChekBoxishabilitado(false);
         ui->Turno7->setChekBoxishabilitado(false);
         ui->Turno8->setChekBoxishabilitado(false);
-
         break;
-
     }
 }
 
