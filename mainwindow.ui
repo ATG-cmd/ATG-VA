@@ -153,6 +153,7 @@ width: 0px;
     </property>
     <property name="currentIndex">
      <number>23</number>
+
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -2104,7 +2105,9 @@ QScrollBar::add-line:vertical {
        <enum>Qt::NoFocus</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+
+       <number>2</number>
+
       </property>
       <widget class="QWidget" name="Tab_editar">
        <property name="font">
@@ -7729,7 +7732,7 @@ QScrollBar::add-line:vertical {
      </widget>
     </widget>
     <widget class="QWidget" name="Sensores_report">
-     <widget class="QTableWidget" name="tableWidget_3">
+     <widget class="QTableWidget" name="Tabla_Sensores">
       <property name="geometry">
        <rect>
         <x>30</x>
