@@ -40,23 +40,6 @@
 #define SSensor_rep 21
 #define SFecha_Hora 22
 
-
-#define INPUT_1 4
-#define INPUT_2 2
-#define INPUT_3 1
-#define INPUT_4 0
-#define INPUT_5 14
-#define INPUT_6 6
-#define INPUT_7 5
-#define INPUT_8 3
-#define INPUT_9 21
-#define INPUT_10 31
-#define INPUT_11 30
-#define INPUT_12 11
-#define INPUT_13 23
-#define INPUT_14 27
-#define INPUT_15 22
-#define INPUT_16 26
 #define CTRL 12
 #define Buzzer 29
 #define RX4 13
@@ -99,22 +82,22 @@ MainWindow::MainWindow(QWidget *parent)
     pinMode(CTRL,OUTPUT);
     pinMode(Buzzer,OUTPUT);
     pinMode(LD,OUTPUT);
-    pinMode(INPUT_1,INPUT);
-    pinMode(INPUT_2,INPUT);
-    pinMode(INPUT_3,INPUT);
-    pinMode(INPUT_4,INPUT);
-    pinMode(INPUT_5,INPUT);
-    pinMode(INPUT_6,INPUT);
-    pinMode(INPUT_7,INPUT);
-    pinMode(INPUT_8,INPUT);
-    pinMode(INPUT_9,INPUT);
-    pinMode(INPUT_10,INPUT);
-    pinMode(INPUT_11,INPUT);
-    pinMode(INPUT_12,INPUT);
-    pinMode(INPUT_13,INPUT);
-    pinMode(INPUT_14,INPUT);
-    pinMode(INPUT_15,INPUT);
-    pinMode(INPUT_16,INPUT);
+    pinMode(Input[0],INPUT);
+    pinMode(Input[1],INPUT);
+    pinMode(Input[2],INPUT);
+    pinMode(Input[3],INPUT);
+    pinMode(Input[4],INPUT);
+    pinMode(Input[5],INPUT);
+    pinMode(Input[6],INPUT);
+    pinMode(Input[7],INPUT);
+    pinMode(Input[8],INPUT);
+    pinMode(Input[9],INPUT);
+    pinMode(Input[10],INPUT);
+    pinMode(Input[11],INPUT);
+    pinMode(Input[12],INPUT);
+    pinMode(Input[13],INPUT);
+    pinMode(Input[14],INPUT);
+    pinMode(Input[15],INPUT);
 
     QFont Fonttitle;
     Fonttitle.setPointSize(48);
@@ -233,6 +216,7 @@ MainWindow::MainWindow(QWidget *parent)
     buscar_alarmas();
     conectar_signals();
     TimerConfigInventoryDB();
+    consultar_sensores();
 
    qDebug () << "Sali de descargar";
    ui->Tab_entregas->horizontalHeader()->setVisible(true);
@@ -1381,7 +1365,6 @@ void MainWindow::Buscar_Tanques()
     {
         Rellenar_combo_taques(qry.value(0).toString());
     }
-
 }
 
 void MainWindow::Rellenar_combo_taques(QString tanque_index)
@@ -2135,7 +2118,6 @@ void MainWindow::Botones()
    if(frame != STanque && frame != Slimites)  QObject::disconnect( combo_connect3 ); // tanque
    if(frame != SComunicacion && frame != SComunicador) QObject::disconnect( combo_connect4 ); // comunicador
 
-
    switch (frame) {
   // case 1: ui->Regresar->setVisible(true); ui->btn_menu->setVisible(true); break;
    case SHome: case SHome2: ui->btn_menu->setVisible(true); ui->Btn_user->setVisible(true); break;
@@ -2145,7 +2127,7 @@ void MainWindow::Botones()
     case sInventario:ui->ComboSeleccion->setVisible(true);ui->SelecTank->setVisible(true);ui->Regresar->setVisible(true);break;
    case SComunicador:  case SComunicacion : case Slimites : case STanque: ui->ComboSeleccion->setVisible(true); ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
    default: ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
-   case SReportes: ui->Regresar->setVisible(true); ui->ComboSeleccion->setVisible(true); break;
+   case SReportes: case SSensor_rep:  ui->Regresar->setVisible(true); ui->ComboSeleccion->setVisible(true); break;
    }
 }
 
@@ -2200,7 +2182,6 @@ void MainWindow::btn_clicked()
         ui->Lab_Rango_Fecha->setText(cadena);
         rellenar_incidentes(dlg_rango->getFecha_desde(),dlg_rango->getFecha_hasta(),ui->ComboSeleccion->currentIndex());
       }
-
     delete dlg_rango;
     }//   Desde: 2021/29/4 00:00  HASTA: 2021/04/29 12:00
     else if(Btn_select_rango->text() == "Limpiar Activos"){
@@ -2211,56 +2192,35 @@ void MainWindow::btn_clicked()
 void MainWindow::Leer_GPIO()
 {
     QString Gpio_status;
+    QSqlQuery qry;
+    QString cadena;
 
-    // aqui se leen los sensores
-    S_input[0] = true; // **
-    S_input[1] = true; // **
-    S_input[2] = true; // **
-    S_input[3] = true; // **
-    S_input[4] = digitalRead(INPUT_5);
-    S_input[5] = digitalRead(INPUT_6);
-    S_input[6] = digitalRead(INPUT_7);
-    S_input[7] = digitalRead(INPUT_8);
-    S_input[8] = digitalRead(INPUT_9);
-    S_input[9] = digitalRead(INPUT_10);
-    S_input[10] = digitalRead(INPUT_11);
-    S_input[11] = digitalRead(INPUT_12);
-    S_input[12] = digitalRead(INPUT_13);
-    S_input[13] = digitalRead(INPUT_14);
-    S_input[14] = digitalRead(INPUT_15);
-    S_input[15] = digitalRead(INPUT_16);
+    for (int i = 0; i <= 15; i++) {
 
-   for(int i = 0; i <= 3; i++)
-   {
-       // herramientas para debugear las alarmas // **
-      if(i == 0) S_input[0] = digitalRead(INPUT_1); // **
-      if(i == 1) S_input[1] = digitalRead(INPUT_2); // **
-      if(i == 2) S_input[2] = digitalRead(INPUT_3); // **
-      if(i == 3) S_input[3] = digitalRead(INPUT_4); // **
+        if(S_config[i] == true ){
+            S_input[i] = digitalRead(Input[i]);
+            if(S_input[i] == false) // se activan en false
+            {   Gpio_status.append( "Sensor_");
+                Gpio_status.append(QString::number(i+1));
+                Gpio_status.append(": Activado");
+               // qDebug() << "El sensor" << i+1 << " se Activo";
 
-      //  qDebug() << "Valor de senor " << i+1 <<  " :" << S_input[i];
-       if(S_input[i] == false) // se activan en false
-       {   Gpio_status.append( "Sensor_");
-           Gpio_status.append(QString::number(i+1));
-           Gpio_status.append(": Activado");
-           qDebug() << "El sensor" << i+1 << " se Activo";
-
-           if(S_input[2] == false || S_input[3] == false){ // **
-               insertar_incidente("Alarma",Gpio_status,"user","1","1",true);  //**
-               Indicadores[0]->setText("Alarmas:   "+QString::number(Alarmas)+"");  //**
-           }else {
-               insertar_incidente("Warning",Gpio_status,"user","0","1",true);
-               Indicadores[1]->setText("Warnings: "+QString::number(warnings)+"");
-           }
-            // expresion usada solo para debugiar alarmas y warnings
-
-          // insertar_incidente("incidente",Gpio_status,"user","0");
-
-           Gpio_status.clear();
-       }
-       S_input[i] = true; // **
-   }
-
+                    insertar_incidente("Alarma",Gpio_status,"user","1","1",true);
+                    Indicadores[0]->setText("Alarmas:   "+QString::number(Alarmas)+"");
+                    cadena.append("UPDATE cistem.Sensores SET Sensor_status = 'Activo' WHERE Sensor_num = '"+ QString::number(i) +"' ");
+                    qry.exec(cadena);
+            }else{
+                cadena.append("UPDATE cistem.Sensores SET Sensor_status = 'Normal' WHERE Sensor_num = '"+ QString::number(i) +"' ");
+                qry.exec(cadena);
+            }
+        }
+        else {
+            cadena.append("UPDATE cistem.Sensores SET Sensor_status = 'Deshabilitado' WHERE Sensor_num = '"+ QString::number(i) +"' ");
+            qry.exec(cadena);
+        }
+        Gpio_status.clear();
+        cadena.clear();
+    }
 }
 
 void MainWindow::everysecond()
@@ -2271,26 +2231,19 @@ void MainWindow::everysecond()
             double a;
             int  menor;
              menor  = 10000000;
-
             for (int i = 0; i < TCon; ++i)
             {
                 qDebug () << "Indice Actual" << i;
                 qDebug () << "Horas" << turnos[i].Horas;
                 qDebug () << "Minutos" << turnos[i].minutos;
-
                 QTime t1(turnos[i].Horas,turnos[i].minutos, 0, 0);
             QTime t2 =QTime::currentTime();
-
             qDebug () << "Tiempo 1" << t1 ;
             qDebug() << "Tiempo  Actual" << t2;
-
             int secs = t2.secsTo(t1); // secs should be equal to 15.
             secs = t1.secsTo(t2);     // secs should be equal to -15.
-
              a = secs;
-
             qDebug() << a;
-
                 if (a < menor && a > 0 )
                 { menor = a; qDebug() << "Turno Encontrado"  << turnos[i].Turno <<  "Hora" << turnos[i].Horas;
                 TurnoEncontrado = turnos[i].Turno;
@@ -2864,7 +2817,8 @@ void MainWindow::on_Btn_sensor_conf_clicked()
 {
     frame = SSensor_confi;
     ui->stackedWidget->setCurrentIndex(SSensor_confi);
-
+    ui->Combo_sensor_dir->activated(0);
+    ui->Combo_sensor_dir->setCurrentIndex(0);
     ui->Combo_sensor_dir->view()->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     ui->Combo_sensor_dir->view()->setAlternatingRowColors(true);
 }
@@ -2873,6 +2827,9 @@ void MainWindow::on_Btn_sensor_rep_clicked()
 {
     frame = SSensor_rep;
     ui->stackedWidget->setCurrentIndex(SSensor_rep);
+    ui->ComboSeleccion->clear();
+    rellenar_tabla_sensores(1);
+
 }
 
 void MainWindow::on_Combo_impresora_activated(int index)
@@ -2947,7 +2904,27 @@ void MainWindow::guardar_sensores()
 {
     QSqlQuery qry;
     QString cadena;
-    cadena.append("SELECT * FROM cistem.Sensores WHERE Sensor_num = '"+ QString::number(1) +"';");
+    QString config;
+    QString status;
+    if(ui->Rb_sensor_habilitado->isChecked()){
+        config = "1";
+        S_config[ui->Combo_sensor_dir->currentIndex()] = true;
+    }
+    else if (ui->Rb_sensor_deshabilitado->isChecked()){
+        config = "0";
+        status =  "Deshabilitado";
+        S_config[ui->Combo_sensor_dir->currentIndex()] = false;
+    }
+    cadena.append("UPDATE cistem.Sensores SET "
+                  "Sensor_label = '"+ ui->Line_Sensor_conf->text() +"', "
+                  "Sensor_model = '"+ui->Combo_sensor_model->currentText()+"', "
+                  "Sensor_cat = '"+ui->Combo_sensor_cat->currentText()+"', "
+                  "Sensor_confi = '"+config+"', "
+                  "Sensor_model_index = '"+QString::number(ui->Combo_sensor_model->currentIndex())+"', "
+                  "Sensor_cat_index = '"+QString::number(ui->Combo_sensor_cat->currentIndex())+"', "
+                  "Sensor_status = '"+status+"' "
+                  "WHERE Sensor_num = '"+ ui->Combo_sensor_dir->currentText() +"';");
+    qry.exec(cadena);
     qDebug() << cadena;
 }
 
@@ -2959,7 +2936,7 @@ void MainWindow::consultar_sensores(int index)
     qry.exec(cadena);
     while(qry.next())
     {
-        if(qry.value(6).toInt() == 0){
+        if(qry.value(5).toInt() == 0){
             ui->Rb_sensor_deshabilitado->setChecked(true);
         }else {
             ui->Rb_sensor_habilitado->setChecked(true);
@@ -2967,7 +2944,44 @@ void MainWindow::consultar_sensores(int index)
         ui->Line_Sensor_conf->setText(qry.value(2).toString());
         ui->Combo_sensor_model->setCurrentIndex(qry.value(7).toInt());
         ui->Combo_sensor_cat->setCurrentIndex(qry.value(8).toInt());
+    }
+}
 
+void MainWindow::consultar_sensores()
+{
+    QSqlQuery qry;
+    QString cadena;
+    cadena.append("SELECT * FROM cistem.Sensores;");
+    qry.exec(cadena);
+    while(qry.next())
+    {
+        if(qry.value(5).toInt() == 1) S_config[qry.value(1).toInt()] = true;
+        else S_config[qry.value(1).toInt()] = false;
+    }
+}
+
+void MainWindow::rellenar_tabla_sensores(int caso)
+{
+    QSqlQuery qry;
+    QString cadena;
+    limpiar_tabla(ui->Tabla_Sensores,ui->Tabla_Sensores->rowCount());
+    cadena.append("SELECT * FROM cistem.Sensores;");
+    qry.exec(cadena);
+    while(qry.next())
+    {
+        switch (caso) {
+        case 1:
+            ui->Tabla_Sensores->insertRow(ui->Tabla_Sensores->rowCount());
+            ui->Tabla_Sensores->setItem(ui->Tabla_Sensores->rowCount() - 1, 0, new QTableWidgetItem(qry.value(1).toString()));
+            ui->Tabla_Sensores->setItem(ui->Tabla_Sensores->rowCount() - 1, 1, new QTableWidgetItem(qry.value(2).toString()));
+            ui->Tabla_Sensores->setItem(ui->Tabla_Sensores->rowCount() - 1, 2, new QTableWidgetItem(qry.value(6).toString()));
+            ui->Tabla_Sensores->item(ui->Tabla_Sensores->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
+            ui->Tabla_Sensores->item(ui->Tabla_Sensores->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
+            ui->Tabla_Sensores->item(ui->Tabla_Sensores->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
+            break;
+        case 2: break;
+        case 3: break;
+        }
     }
 }
 
@@ -2989,16 +3003,19 @@ void MainWindow::guardar_impresora()
         config = "1";
         if(Impresora->open(QIODevice::ReadWrite)){
             status = "1";
+            btn_Habilitado(ui->Btn_impresion_prueba,true);
             qDebug() << "impresora conectada";
-        }else status = "0";
+        }else status = "0";        
     }
     else if(ui->Rb_deshabilitado->isChecked()){
         if(Impresora->isOpen()){
            Impresora->close();
            status = "0";
+           btn_Habilitado(ui->Btn_impresion_prueba,false);
            qDebug() << status;
         }
         config = "0";
+        ui->Btn_impresion_prueba->setEnabled(false);
     }
     cadena.append("UPDATE cistem.Impresoras SET Impresora_label = '"+ ui->Line_Etiqueta->text() +"', "
                                                "impresora_config = '"+config+"', "

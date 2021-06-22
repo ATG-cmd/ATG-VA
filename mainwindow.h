@@ -107,6 +107,8 @@ public:
      double Volumen_Final;
      double Temperatura_Final;
      bool S_input[16];
+     bool S_config[16];
+     int Input[16] = {4,2,1,0,14,6,5,3,21,31,30,11,23,27,22,26};
       int TCon = 0;
      bool sensor_papel;
 
@@ -175,6 +177,8 @@ public:
     bool papel_out();
     void guardar_sensores();
     void consultar_sensores(int index);
+    void consultar_sensores();
+    void rellenar_tabla_sensores(int caso);
     void conectar_signals();
     signals:
 
