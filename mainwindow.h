@@ -21,6 +21,7 @@
 #include "select_fechas.h"
 #include <QTableWidget>
 #include <cale.h>
+#include <butons.h>
 
 
 
@@ -38,6 +39,12 @@ protected:
 
 public:
 
+   QString Formato_Fecha = "MM_dd_yyyy";
+   QString Separador_Fecha = "/";
+   QString Formato_Hora = "hh:mm AP";
+   QString Formato_FH ="dd-MM-yyyy HH:mm:ss AP";
+   bool  IProg = false;
+
    struct Settings {
           QString name;
           qint32 baudRate;
@@ -51,6 +58,7 @@ public:
           QSerialPort::FlowControl flowControl;
           QString stringFlowControl;
           bool localEchoEnabled;
+
       };
 
 
@@ -86,6 +94,7 @@ public:
     QString Series[8];
     int frame = 0;
     int frameant= 0;
+    int ComboSelect;
      QSqlDatabase DB;
      QSerialPort *puertoserie;
      QSerialPort *Impresora;
@@ -125,6 +134,7 @@ public:
      QMetaObject::Connection combo_connect4;
      QMetaObject::Connection combo_connect5;
      QMetaObject::Connection combo_connect6;
+     QMetaObject::Connection combo_connect7;
 
      int SelecIntervalo= 0;
      int SelecHora =0;
@@ -167,6 +177,8 @@ public:
     void estado_sistema(QPushButton *btn,QString estado);
     void guardar_station();
     void guardar_Turnos();
+    void Turnohabilitado(Butons * T,QString TID);
+    void guardar_FormatoFecha();
     void Qry_Turnos(int Turno);
     void RellenarInventario(QString FechaInicio, QString FechaFin, int index);
     void buscar_impresora();
@@ -342,9 +354,8 @@ private slots:
   void updateSettings();
 
   void openSerialPort();
-
   void closeSerialPort();
-
+  void DescargarFormatoFecha() ;
 
 
 
@@ -352,6 +363,10 @@ private slots:
 
 
   void on_Btn_Fechayhora_clicked();
+
+  void on_tabWidget_2_currentChanged(int index);
+
+  void on_Btn_Display_clicked();
 
 private:
     Ui::MainWindow *ui;

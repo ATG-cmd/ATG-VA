@@ -234,11 +234,12 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 
       Boton->setGeometry(0,50,560,299);
       Boton->setStyleSheet("QPushButton{background-color: rgb(240, 240, 240);border: 0px solid white; border-radius: 15px; padding: 5px;  }" );
+      Boton-> setFocusPolicy(Qt :: NoFocus);
 
       connect(Boton, SIGNAL (clicked()),this, SLOT(clickbuton()));
 
 
-      layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
+     // layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
       layoutWidget1->setGeometry(QRect(310, 20, 231, 253));
 
      horizontalLayout_3 = new QHBoxLayout(layoutWidget1);
@@ -920,6 +921,7 @@ void Tanque::deliveryProGaugeCountIncrement(){
     }
     else{
         deliveryCountIncrement++;
+
         if(VolumenCon > (deliveryLastInventoryRead + deliverySensivilityVolume)){
             deliveryCountIncrement = 0;
         }
@@ -930,12 +932,21 @@ void Tanque::deliveryProGaugeCountIncrement(){
            QString SeRealizoEntrega;
            QSqlQuery qry;
             qry.exec("INSERT INTO `cistem`.`entregas` (`IDTank`,`Tanque_Nombre`, `Volumen`, `Temperatrura`, `Volumen Entregado`, `Altura_de_Combustible`, `Altura_de_Agua`, `Fecha`,`Estado`) VALUES ('"+QString::number(IdTanque)+"','"+NomTank+"', '"+QString::number(VolumenCon)+"', '"+QString::number(Temperatura)+"', '"+QString::number(VolumenEntregado)+"', '"+QString::number(AlturaTank)+"', '"+QString::number(NivelAgua)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', 'Fin');");
+            qry.exec("UPDATE `cistem`.`Entregando` SET  `Tanque_Nombre`='"+NomTank+"', `Volumen`='"+QString::number(VolumenCon)+"', `Temperatura`='"+QString::number(Temperatura)+"', `Altura_de_Combustible`='"+QString::number(AlturaTank)+"', `Altura_de_Agua`='"+QString::number(NivelAgua)+"', `Fecha`='"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', `Status`='Entregado' WHERE `IDTank`='"+QString::number(IdTanque)+"';");
 
             Volumen_inicial =0;
            lbl_ProGaugeDeliveryInProccess->hide();
             deliveryInventoryStart = 0;
 
         }
+        else {
+            QSqlQuery qry;
+            // qry.exec("INSERT INTO `cistem`.`Entregando` (`IDTank`,`Tanque_Nombre`, `Volumen`, `Temperatrura`, `Altura_de_Combustible`, `Altura_de_Agua`, `Fecha`) VALUES ('"+QString::number(IdTanque)+"','"+NomTank+"', '"+QString::number(VolumenCon)+"', '"+QString::number(Temperatura)+"', '"+QString::number(AlturaTank)+"', '"+QString::number(NivelAgua)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');");
+    //qry.exec("INSERT INTO `cistem`.`Entregando` (`IDTank`, `Tanque_Nombre`, `Volumen`, `Temperatura`, `Altura_de_Combustible`, `Altura_de_Agua`, `Fecha`) VALUES ('1', 'Tanque 1', '21565', '323', '23', '5255', '2021-06-21 17:07:00');");
+    qry.exec("UPDATE `cistem`.`Entregando` SET  `Tanque_Nombre`='"+NomTank+"', `Volumen`='"+QString::number(VolumenCon)+"', `Temperatura`='"+QString::number(Temperatura)+"', `Altura_de_Combustible`='"+QString::number(AlturaTank)+"', `Altura_de_Agua`='"+QString::number(NivelAgua)+"', `Fecha`='"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', `Status`='Entregando' WHERE `IDTank`='"+QString::number(IdTanque)+"';");
+
+        }
+
     }
     qDebug() << VolumenCon << deliveryLastInventoryRead << deliveryCountDecrement << deliveryCountIncrement;
     deliveryLastInventoryRead = VolumenCon;

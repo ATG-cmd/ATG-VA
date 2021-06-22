@@ -39,6 +39,7 @@
 #define SSensor_confi 20
 #define SSensor_rep 21
 #define SFecha_Hora 22
+#define SFormato_FechaHora 23
 
 
 #define INPUT_1 4
@@ -67,16 +68,29 @@
 #define SDA1 8
 #define SCL1 9
 
+#define IActual 0
+#define IHistorico 1
+#define ICortesEnergia 2
+#define ITurnos 3
+
+#define EActual 0
+#define EHistorial 1
+#define Eultima 2
+
+
+
+
+
 #define SOH 0x01
-const int lenbuff1 = 1024;              // Longitud de buffer, Ajustar
-int xbuff1 = 0x00;                      // Índice: siguiente CHAR en cbuff
+ const int lenbuff1 = 1024;              // Longitud de buffer, Ajustar
+ int xbuff1 = 0x00;                      // Índice: siguiente CHAR en cbuff
 char cbuff1[lenbuff1];                  // Buffer
-char rcvchar1 = 0x00;                   // último carácter recibido
-double ProGaugeCapacidad = 40001.0;
+ char rcvchar1 = 0x00;                   // último carácter recibido
+ double ProGaugeCapacidad = 40001.0;
 
 //typedef  struct Turnos Turnos;
 
-struct Turnos
+static struct Turnos
 {
    int Turno;
    int Horas;
@@ -89,6 +103,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
     Time2 = new QTimer();
     Time3 = new QTimer();
     Gpio_timer = new QTimer();
@@ -115,6 +130,8 @@ MainWindow::MainWindow(QWidget *parent)
     pinMode(INPUT_14,INPUT);
     pinMode(INPUT_15,INPUT);
     pinMode(INPUT_16,INPUT);
+
+
 
     QFont Fonttitle;
     Fonttitle.setPointSize(48);
@@ -186,6 +203,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Line_Diametro->installEventFilter(this);
     ui->Line_Capacidad->installEventFilter(this);
     ui->Line_Nombre->installEventFilter(this);
+    ui->Line_CodigoCombustible->installEventFilter(this);
    ui->dateEdit->installEventFilter(this);
 
     //ui->lineEdit->installEventFilter(this);
@@ -233,6 +251,7 @@ MainWindow::MainWindow(QWidget *parent)
     buscar_alarmas();
     conectar_signals();
     TimerConfigInventoryDB();
+    DescargarFormatoFecha();
 
    qDebug () << "Sali de descargar";
    ui->Tab_entregas->horizontalHeader()->setVisible(true);
@@ -262,15 +281,6 @@ MainWindow::MainWindow(QWidget *parent)
        view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
        view->setVerticalScrollMode(QListWidget::ScrollPerPixel);
        QScroller::grabGesture(view,QScroller::LeftMouseButtonGesture);
-       //ui->scrollArea->setFlow(QListView::TopToBottom);
-       ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-       ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-       QScroller::grabGesture(ui->scrollArea,QScroller::LeftMouseButtonGesture);
-
-//       ui->scrollArea_2->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-//       ui->scrollArea_2->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-//       QScroller::grabGesture(ui->scrollArea_2,QScroller::LeftMouseButtonGesture);
-
 
        view->setStyleSheet(
                                "QListView::item { "
@@ -290,7 +300,7 @@ MainWindow::MainWindow(QWidget *parent)
   };
 
 
-
+qDebug() << "Iniciando --------------------------------";
 
 }
 
@@ -298,7 +308,6 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
 
 void MainWindow::on_Btn_Home_clicked()
 {
@@ -421,8 +430,6 @@ void MainWindow::ConCombocol(QComboBox *combo)
         default: break; }
     });
 
-
-
 }
 QString MainWindow::ColorTank(QString Color)
 {
@@ -444,20 +451,6 @@ QString MainWindow::ColorTank(QString Color)
 
 }// Final  Del Combo Color
 
-/*----------------------------------------------------------------------------------------------------------
- * En esta parte se modifica el tecto del tanque que aparece en el stalck de configuracion del tanque,
- * este slot es activado con la señal texchanged, que se activa al modificar el texedit de nombre, en este slot
- * se toma el texto del textedit Nombre para asignalo al tanque mediante el metodo setnameTank
- * -------------------------------------------------------------------------------------------------------*/
-
-// Inicio de Modificacion de texto de Tanque Configuracion
-
-//void MainWindow::Modificar_TextoTank()
-//{
-//    Tconf->SetnameTank(ui->Line_Nombre->text());
-
-//}// FIN de Modificacion de texto de Tanque Configuraci
-
 /*-------------------------------------------------------------------------------------------------------------
  * Cada stalcked tiene su bonton de guardar y volver al momento de de entrar a un stalcked mediante el munu dentro del
  * slot del boton se asigna un  numero de frame para a la hora de guardar o regresar este entre al casecon el numero de frame
@@ -466,7 +459,7 @@ QString MainWindow::ColorTank(QString Color)
 //Inicio de boton de Guardar
 void MainWindow::on_Btn_Guardar_clicked()
 {
-    qDebug() << frame;
+    qDebug() << frame <<"--------------------------------------";
     switch(frame){
     case SSonda : Guardar_Sonda(); break;
     case STanque: on_Btn_SaveTank_clicked(); break;
@@ -477,6 +470,7 @@ void MainWindow::on_Btn_Guardar_clicked()
     case STurnos:  guardar_Turnos(); break;
     case SPrinter:  guardar_impresora(); break;
     case SSensor_confi: guardar_sensores(); break;
+    case SFormato_FechaHora: guardar_FormatoFecha(); break;
     }
     insertar_incidente("Warning","System Setup Modified","user","0","1",false);
 }
@@ -485,9 +479,9 @@ void MainWindow::on_Btn_Guardar_clicked()
  * Este Timer es activado Cada Segundo para actualizar el reloj de la parte superior derecha de la pantalla
  * -----------------------------------------------------------------------------------------------------------------*/
 //Inicio de timer que actualiza reloj
-void MainWindow::Actualizar_Time()
+void MainWindow::Actualizar_Time()   //"dd-MM-yyyy HH:mm:ss AP"
 {
-    Reloj->setText(QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss ap"));
+    Reloj->setText(QDateTime::currentDateTime().toString(Formato_FH));
 }//Fin del Timer que actualiza el reloj
 
 /*--------------------------------------------------------------------------------------------------------------------
@@ -585,6 +579,10 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     {
         MainWindow::setFocus();
         qDebug() << "Hola desde el filtro serie";
+        QLabel *Label;
+        Label = new QLabel(this );
+        Label->setGeometry(500,500,1000,800);
+
         Dialog *dlg = new Dialog(this);
         dlg->set_etiqueta("Ingrese un numero en el numero de serie");
         //dlg->use_validator(val_1);
@@ -623,6 +621,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 //        MainWindow::setFocus();
         qDebug() << "Hola desde el filtro usuario";
         Dialog *dlg = new Dialog(this);
+
         dlg->set_etiqueta("Ingrese su nombre de usuario");
         dlg->maskarator(0,"");
         dlg->setGeometry(340,578,1240,502);
@@ -712,12 +711,32 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         delete dlg;
         return true;
     }
+    if(obj == ui->Line_CodigoCombustible && event->type() == QEvent::FocusIn)
+    {
+        MainWindow::setFocus();
+        qDebug() << "Hola desde medida 2";
+        Dialog *dlg = new Dialog(this);
+        dlg->set_etiqueta("Ingrese Codigo de Combuestible");
+        //dlg->use_validator(val_1);
+        //QValidator *val_1 = new QIntValidator(100,2000,this);
+        dlg->validador(2,0,50000,2);
+        int res;
+        res = dlg->exec();
+        if(res == QDialog::Accepted)
+        {
+            ui->Line_CodigoCombustible->clear();
+            ui->Line_CodigoCombustible->setText(dlg->getDatos());
+        }
+
+        delete dlg;
+        return true;
+    }
      if(obj == ui->dateEdit && event->type() == QEvent::FocusIn)
      {
          MainWindow::setFocus();
 
            Cale *Cal = new Cale(this);
-           int res;
+
            Cal->setGeometry(350,100,1180,900);
           Cal->exec();
           ui->dateEdit->setDate(Cal->Fecha);
@@ -791,26 +810,18 @@ void MainWindow::Guardar_Sonda()
 
     QSqlQuery qry;
 
-    qry.exec("INSERT INTO `cistem`.`sonda` (`Serie`, `Protocolo`, `Flotadores`, `Licencia`, `fecha`) VALUES ('"+ui->line_Serie->text()+"', '"+ui->Combo_protocolo->currentText()+"', '"+ui->Combo_protocolo->currentText()+"', '"+ui->Line_Licencia->text()+"', '2020-01-14 00:03:00' );");
-
-//    QString A("INSERT INTO `cistem`.`sonda` (`Serie`, `Protocolo`, `Flotadores`, `Licencia`, `Ajuste Altura`, `fecha`)"
-//    " VALUES ('"+ui->line_Serie->text()+"'"
-//           ", '"+ui->Combo_protocolo->currentText()+"'"
-//           ", '"+ui->Line_Licencia->text()+"'"
-//           ", '"+ui->Line_Licencia->text()+"'"
-//           ", "+ui->Line_AjusteAltura->text()+""
-//           ", '2020-01-14 00:03:00');");
-
-//    qry.exec(A);
-//    qDebug () << A;
+    qry.exec("INSERT INTO `cistem`.`sonda` "
+             "(`Serie`, `Protocolo`, `Flotadores`, `Licencia`, `fecha`) "
+             "VALUES ('"+ui->line_Serie->text()+"', "
+             "'"+ui->Combo_protocolo->currentText()+"', "
+             "'"+ui->Combo_protocolo->currentText()+"', "
+             "'"+ui->Line_Licencia->text()+"', "
+             "'2020-01-14 00:03:00' );");
 
     ui->line_Serie->clear();
     ui->Combo_protocolo->setCurrentIndex(0);
     ui->ComboFlotadores->setCurrentIndex(0);
     ui->Line_Licencia->clear();
-    ui->ComboUDistancia->setCurrentIndex(0);
-    ui->Combo_UTemperatura->setCurrentIndex(0);
-    ui->Combo_UVolumen->setCurrentIndex(0);
     ui->Line_AjusteAltura->clear();
 
     ui->stackedWidget->setCurrentIndex(SMenu);
@@ -859,6 +870,7 @@ void MainWindow::Protocolo(QString cad)
     case 1:
         if (cad[7]== "=" && cad[12]== "=" && cad[18] =="=")
         {
+            tanques[indice]->setFocusPolicy(Qt::NoFocus);
             tanques[indice]->SetAltura(cad.mid(13,5).toDouble(), cad.mid(19,4).toDouble());
             tanques[indice]->SetTemperatura(cad.mid(9,3).toDouble());
         }
@@ -868,6 +880,7 @@ void MainWindow::Protocolo(QString cad)
     case 2:
         if (cad[7]== "=" && cad[12]== "=" && cad[21] =="=" && cad.length() == 36)
         {
+
             tanques[indice]->SetAltura(cad.mid(13,8).toDouble(),cad.mid(22,8).toDouble());
             tanques[indice]->SetTemperatura(cad.mid(9,3).toDouble()/10);
             if(tanques[indice]->getIsConnected() == false){
@@ -920,6 +933,7 @@ void MainWindow::Descargar()
             ui->stackedWidget->setCurrentIndex(3);
            // ProGaugeId[S]=qry.value(1).toString();
             qDebug() <<   "ID del tanque dw:" <<  qry.value(1).toInt();
+            tanques[S]->setFocusPolicy(Qt::NoFocus);
             tanques[S]->setIdTanque(qry.value(1).toInt());
             tanques[S]->setIshabilitado(qry.value(2).toBool());
             tanques[S]->SetnameTank(qry.value(3).toString());
@@ -991,6 +1005,9 @@ void MainWindow::Descargar()
 
           if(qry.exec(" SELECT * FROM cistem.Turnos WHERE Habilitado = 1;"))
           {
+              if  ( qry.next())
+              {
+                  IProg = true ;
               while (qry.next())
               {
 
@@ -1003,6 +1020,11 @@ void MainWindow::Descargar()
                     qDebug() << "ID" << TCon;
                     TCon ++;
 
+              }
+
+              }
+              else {
+                  IProg= false;
               }
           }
  }
@@ -1073,19 +1095,7 @@ void MainWindow::Tanque_Maximisado(int index)
     {
         indiceM =index;
         ui->stackedWidget->setCurrentIndex(0);
-//        qDebug() << "Hola desde tanque maximizado";
 
-//        for(int i=0; i <= 8; i++)
-//        {
-//            qDebug() << i;
-//            if (tanques[i]->getTMaximizado() == false)
-//            {
-//                qDebug() << "hola desde este if :)" << i;
-//                indiceM = i;
-//                Maxi = true;
-//                break;
-//            }
-//        }
           Maxi = true;
         qDebug()<< "indiceM"<< indiceM;
 
@@ -1112,46 +1122,7 @@ void MainWindow::Tanque_Maximisado(int index)
 
 
     }
-       int por1 = (100 * tanques[indiceM]->GetVolMax())/38439.85;
-       int y = 430 * por1/38439.85;
-       int y1 = calcY(tanques[indiceM]->GetProducto_Alto());
-       int y2 = calcY(tanques[indiceM]->GetDesbordamiento());
-       int y3 = calcY(tanques[indiceM]->GetNecesitaProducto());
-       int por = (100 * tanques[indiceM]->GetProductoBajo()/38439.85);
-       int y4 = ((430 * por) /38439.85);
 
-    connect(ui->tabWidget_2, QOverload<int>::of(&QTabWidget::currentChanged),
-            [=](int index){
-        switch (index) {
-
-        case 0:
-            ui->PuntoVolMax->setGeometry(200,200,50,50);
-            ui->Bola_ProductoAlto->setGeometry(200,200,50,50);
-            ui->Bola_Desbordamiento->setGeometry(200,200,50,50);
-            ui->Bola_NecesitaEntrega->setGeometry(200,300,50,50);
-            ui->Bola_ProductoBajo->setGeometry(200,350,50,50);
-            ui->Bola_AlarmaAgua->setGeometry(200,380,50,50);
-            ui->Bola_Advertencia_Agua->setGeometry(200,400,50,50);
-
-
-            qDebug()<< "Index Cambio 0"; break;
-         case 1:
-
-            ui->PuntoVolMax->setGeometry(X(y),y,50,50);
-            ui->Bola_ProductoAlto->setGeometry(X(y1),y1,50,50);
-            ui->Bola_Desbordamiento->setGeometry(X(y2),y2,50,50);
-            ui->Bola_NecesitaEntrega->setGeometry(X(y3),y3,50,50);
-            ui->Bola_ProductoBajo->setGeometry(X(430-y4),430-y4,50,50);
-            ui->Bola_AlarmaAgua->setGeometry(X(380),380,50,50);
-            ui->Bola_Advertencia_Agua->setGeometry(X(400),400,50,50);
-
-            qDebug() << "Index Cambio 1"; break;
-        default:
-            qDebug() << "Entre en el default"; break;
-
-        }
-
-    });
 //Aqui me Quede
     Maximizado->setTMaximizado(false);
     tanques[indiceM]->setTMaximizado(false);
@@ -1189,9 +1160,6 @@ case SComunicador :case SInventoryConfig: case SPrinter: case SStation:
 case STurnos: case SSensor_confi: frame= SMenu;break;
         //MENU PUBLICO
 case  sInventario: case SReportes: case SEntregas : case SSensor_rep: frame= SMenuPub;  break;
-
-
-
 
   }
 ui->stackedWidget->setCurrentIndex(frame);
@@ -1556,7 +1524,6 @@ void MainWindow::guardar_limites()
     tanques[tank_id]->SetAlarma_de_Agua(ui->Line_alarma_agua->text().toDouble());
     tanques[tank_id]->SetAdvertencua_de_Agua(ui->Line_advertencia_agua->text().toDouble());
 
-
 }
 
 void MainWindow::rellenar_limites()
@@ -1588,7 +1555,7 @@ void MainWindow::evaluar_limites(Tanque *tanque)
     //  tanque->getVolumenA()    // volumen agua
 
     qDebug() << "Aqui se evalua el valumen: "  << tanque->getVolumenCon();
-    int porcentaje = ((tanque->getVolumenCon() * 100) / tanque->getCapacidad());
+    int porcentaje = (static_cast<int>((tanque->getVolumenCon() * 100) / tanque->getCapacidad()));
     qDebug() << "porcentaje de volumen de tanque: " << porcentaje;
 
     if(porcentaje >= tanque->GetDesbordamiento()) insertar_incidente("Alarma",tanque->GetNameTank() + " Desbordado","user","1","1",true);
@@ -1820,7 +1787,7 @@ bool MainWindow::validar_activos(QString tipo, QString Descripcion, QString usua
 
 int MainWindow::X(int Y)
 {
-    return  qSqrt(144400 - qPow(Y-380,2))+430;
+    return static_cast<int>(qSqrt(144400 - qPow(Y-380,2))+430);
 }
 
 int MainWindow::calcY(int y)
@@ -1873,23 +1840,6 @@ void MainWindow::on_Btn_CubGenerar_clicked()
 
 /* Termina la configuracion de la tabla de cubicacion*/
 
-//void MainWindow::guardar_limites()
-//{
-//    QSqlQuery qry;
-//    QString cadena;
-//    cadena.append("UPDATE cistem.limites SET Volumen_total = '" + ui->Line_volumen_total->text() + "',"
-//                  " Volumen_maximo = '" + ui->Line_volumen_maximo->text() + "',"
-//                  " Producto_alto = '" + ui->Line_producto_alto->text() + "',"
-//                  " Desbordamiento = '" + ui->Line_desbordamiento->text() + "',"
-//                  " Entrega_necesaria = '" + ui->Line_limite_entrega->text() + "',"
-//                  " Producto_bajo = '" + ui->Line_producto_bajo->text() + "',"
-//                  " Alarma_agua_alta = '" + ui->Line_alarma_agua->text() + "',"
-//                  " Advertencia_agua_alta = '" + ui->Line_advertencia_agua->text() + "'"
-//                  " WHERE Id_Taque = '" + ui->Combo_taque_limites->currentText() + "';");
-
-//    qDebug() << cadena;
-//    qDebug() << qry.exec(cadena);
-//}
 void MainWindow::on_Btn_Entregas_clicked()
 {
 }
@@ -2026,95 +1976,9 @@ void MainWindow::on_Btn_Entregas_or_clicked()
     ui->SelecTank->setVisible(true);
     ui->ComboSeleccion->setVisible(true);
     ui->ComboSeleccion->clear();
+    ui->ComboSeleccion->addItem("Entrga Actual");
     ui->ComboSeleccion->addItem("Historial de Entragas");
     ui->ComboSeleccion->addItem("Ultima Entrega");
-
-    QObject::disconnect( combo_connect5 );
-
-   combo_connect5 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
-           [=](int index){
-                if ( index == 0)
-                {
-            ui->SelecTank->setCurrentIndex(1);ui->SelecTank->activated(1);
-            ui->SelecTank->setItemText(0, " ");
-                }
-                else {
-                    ui->SelecTank->setCurrentIndex(1);ui->SelecTank->activated(1);
-                    ui->SelecTank->setItemText(0, " ");
-                }
-
-        });
-
-    connect(ui->SelecTank, QOverload<int>::of(&QComboBox::activated),
-            [=](int index){
-        QString cadena;
-        ui->Tab_entregas->clearContents();
-        ui->Tab_entregas->setRowCount(0);
-
-        if(ui->ComboSeleccion->currentIndex() == 0)
-        cadena.append("SELECT * FROM `cistem`.`entregas` where IDTank = '"+ui->SelecTank->itemText(index)+"';");
-        else
-        cadena.append("SELECT * FROM cistem.entregas  WHERE IDTank='"+ui->SelecTank->itemText(index)+"' ORDER BY Fecha DESC LIMIT 2;");
-                    //  "SELECT * FROM `cistem`.`entregas` where IDTank = '"+ui->SelecTank->itemText(index)+"';");
-
-         QSqlQuery qry;
-         qDebug() << "QRY:" << qry.exec(cadena);
-         int cada2= 2;
-         bool TituloTank= true;
-         while (qry.next())
-         {
-             //ui->Tab_entregas->removeRow(0);
-            if (cada2 == 2)
-            {
-                if (TituloTank)
-                {
-                   ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
-                   ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1,0, new QTableWidgetItem(qry.value(2).toString()));
-                    ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
-                    ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(9).toString()+ " : "+ qry.value(8).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
-                   TituloTank = false;
-                   cada2 = 1;
-
-                }else {
-                        ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
-                        ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(9).toString()+ " : "+ qry.value(8).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
-                    }
-
-
-            }else {ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
-                    ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(9).toString()+ " : "+ qry.value(8).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
-                 }
-
-
-           //  ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
-             //ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(QString::number(qry.value(0).toInt())));
-            // ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(7).toString()+ " : "+ qry.value(6).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
-             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 1, new QTableWidgetItem(QString::number(qry.value(3).toInt())));
-             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 2, new QTableWidgetItem(QString::number(qry.value(4).toInt())));
-             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 3, new QTableWidgetItem(QString::number(qry.value(6).toInt())));
-             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1,4 , new QTableWidgetItem(QString::number(qry.value(7).toInt())));
-             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
-             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
-             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
-             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
-             //ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
-
-             if(cada2==2 && !TituloTank)
-            {
-                ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
-                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem("Volumen Entregado : "));
-                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 1 , new QTableWidgetItem(QString::number(qry.value(5).toInt())));
-                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
-                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
-                ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
-                cada2 = 0;
-            }
-
-             qDebug() << qry.value(0).toInt() << qry.value(1).toString() << qry.value(2).toInt() << qry.value(4).toInt();
-          cada2++;
-         }
-
-    });
     ui->ComboSeleccion->activated(0);
 }
 
@@ -2180,7 +2044,6 @@ while (qry.next())
   ui->Line_coeficiente->setText(qry.value(14).toString());
   ui->Combo_Producto->setCurrentText(qry.value(15).toString());
 }
-
 
 }
 
@@ -2268,7 +2131,12 @@ void MainWindow::everysecond()
     Actualizar_Time();
 
     if (MinutoSec == 60){
-            double a;
+
+        if (frame == SEntregas)
+        {ui->ComboSeleccion->activated(ComboSelect);}
+
+           if( IProg == true ){
+            int a;
             int  menor;
              menor  = 10000000;
 
@@ -2305,18 +2173,11 @@ void MainWindow::everysecond()
             else if (TurnoActual !=TurnoEncontrado){
                Qry_Turnos(TurnoActual);
                Qry_Turnos(TurnoEncontrado);
-               TurnoActual = TurnoEncontrado;
+               TurnoActual = TurnoEncontrado;  }
+           }
+            MinutoSec = 0;}
 
-
-            }
-            MinutoSec = 0;
-    }
     else  MinutoSec ++;
-
-      //      printf(" el menor es %d\n", menor);
-
-
-
 }
 
 void MainWindow::on_Combo_tanque_limites_currentIndexChanged(const QString &arg1)
@@ -2396,19 +2257,7 @@ void MainWindow::on_Line_Intervalo_textChanged(const QString &arg1)
 
 void MainWindow::InventoryTank()
 {
-    for (int i= 0;i<=numerodetanques-1;i++) {
-        QSqlQuery qry;
-        qry.exec(tanques[i]->ActualInventory(false));
-        qDebug() << tanques[i]->ActualInventory(false);
-        qDebug() << "-----------------------------------------------------------------------";
-
-}
-//    if (TanqueActual == numerodetanques) { TanqueActual = 0;}
-//    else { TanqueActual++;qDebug() << TanqueActual;
-//  }
-//    qDebug() << "Tanque Actual"<< TanqueActual;
-//    qDebug() << "Online" << tanques[TanqueActual]->getIshabilitado();
-
+    for (int i= 0;i<=numerodetanques-1;i++) {QSqlQuery qry; qry.exec(tanques[i]->ActualInventory(false)); }
 }
 
 void MainWindow::btn_Habilitado(QPushButton *Boton,bool hab )
@@ -2711,26 +2560,34 @@ void MainWindow::guardar_station()
 
 void MainWindow::guardar_Turnos()
 {
+   Turnohabilitado(ui->Turno1,"1");
+   Turnohabilitado(ui->Turno2,"2");
+   Turnohabilitado(ui->Turno3,"3");
+   Turnohabilitado(ui->Turno4,"4");
+   Turnohabilitado(ui->Turno5,"5");
+   Turnohabilitado(ui->Turno6,"6");
+   Turnohabilitado(ui->Turno7,"7");
+   Turnohabilitado(ui->Turno8,"8");
+}
+
+void MainWindow::Turnohabilitado(Butons *T,QString TID)
+{     QSqlQuery qry;
+    if(T->getIsHabilitado()) qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='"+T->getLineHorText()+"', `Minutos`='"+T->getLineMinText()+"', `Habilitado`=b'1' WHERE  `ID`="+TID+";");
+    else qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='00', `Minutos`='00', `Habilitado`=b'0' WHERE  `ID`="+TID+";");
+}
+
+void MainWindow::guardar_FormatoFecha()
+{
+qDebug() << "Modificando Formato fecha";
+
      QSqlQuery qry;
+  //   qry.exec("UPDATE `cistem`.`FormatoFH` SET `Formato_Fecha`='sd', `Separador`='sd', `Formato_Hora`='sd' WHERE  `ID`=1;");
+     qry.exec("UPDATE cistem.FormatoFH SET `Formato_Fecha`= '"+ui->Combo_FormatoFecha->currentText()+"',"
+                                          " `Separador` ='"+ui->Combo_FormatoSeparador->currentText()+"',"
+                                          " `Formato_Hora`='"+ui->Combo_FormatoHora->currentText()+"'"
+                                          " WHERE ID='1';");
 
-   if(ui->Turno1->getIsHabilitado()) qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='"+ui->Turno1->getLineHorText()+"', `Minutos`='"+ui->Turno1->getLineMinText()+"', `Habilitado`=b'1' WHERE  `ID`=1;");
-   else qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='00', `Minutos`='00', `Habilitado`=b'0' WHERE  `ID`=1;");
-   if(ui->Turno2->getIsHabilitado()) qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='"+ui->Turno2->getLineHorText()+"', `Minutos`='"+ui->Turno2->getLineMinText()+"', `Habilitado`=b'1' WHERE  `ID`=2;");
-   else qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='00', `Minutos`='00', `Habilitado`=b'0' WHERE  `ID`=2;");
-   if(ui->Turno3->getIsHabilitado()) qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='"+ui->Turno3->getLineHorText()+"', `Minutos`='"+ui->Turno3->getLineMinText()+"', `Habilitado`=b'1' WHERE  `ID`=3;");
-   else qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='00', `Minutos`='00', `Habilitado`=b'0' WHERE  `ID`=3;");
-   if(ui->Turno4->getIsHabilitado()) qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='"+ui->Turno4->getLineHorText()+"', `Minutos`='"+ui->Turno4->getLineMinText()+"', `Habilitado`=b'1' WHERE  `ID`=4;");
-   else qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='00', `Minutos`='00', `Habilitado`=b'0' WHERE  `ID`=4;");
-   if(ui->Turno5->getIsHabilitado()) qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='"+ui->Turno5->getLineHorText()+"', `Minutos`='"+ui->Turno5->getLineMinText()+"', `Habilitado`=b'1' WHERE  `ID`=5;");
-   else qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='00', `Minutos`='00', `Habilitado`=b'0' WHERE  `ID`=5;");
-   if(ui->Turno6->getIsHabilitado()) qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='"+ui->Turno6->getLineHorText()+"', `Minutos`='"+ui->Turno6->getLineMinText()+"', `Habilitado`=b'1' WHERE  `ID`=6;");
-   else qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='00', `Minutos`='00', `Habilitado`=b'0' WHERE  `ID`=6;");
-   if(ui->Turno7->getIsHabilitado()) qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='"+ui->Turno7->getLineHorText()+"', `Minutos`='"+ui->Turno7->getLineMinText()+"', `Habilitado`=b'1' WHERE  `ID`=7;");
-   else qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='00', `Minutos`='00', `Habilitado`=b'0' WHERE  `ID`=7;");
-   if(ui->Turno8->getIsHabilitado()) qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='"+ui->Turno8->getLineHorText()+"', `Minutos`='"+ui->Turno8->getLineMinText()+"', `Habilitado`=b'1' WHERE  `ID`=8;");
-   else qry.exec("UPDATE `cistem`.`Turnos` SET `Hora`='00', `Minutos`='00', `Habilitado`=b'0' WHERE  `ID`=8;");
-
-
+     DescargarFormatoFecha();
 }
 
 void MainWindow::Qry_Turnos(int Turno)
@@ -2978,6 +2835,145 @@ void MainWindow::conectar_signals()
         consultar_sensores(index);
     });
 
+
+    QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
+           [=](int index){
+                if ( index == 0)
+                {
+            ui->SelecTank->setCurrentIndex(1);ui->SelecTank->activated(1);
+            ui->SelecTank->setItemText(0, " ");
+                }
+                else {
+                    ui->SelecTank->setCurrentIndex(1);ui->SelecTank->activated(1);
+                    ui->SelecTank->setItemText(0, " ");
+                }
+
+        });
+ connect(ui->SelecTank, QOverload<int>::of(&QComboBox::activated),
+            [=](int index){
+        QString cadena;
+        ui->Tab_entregas->clearContents();
+        ui->Tab_entregas->setRowCount(0);
+        switch (ui->ComboSeleccion->currentIndex()) {
+
+        case 0: cadena.append("SELECT * FROM cistem.Entregando WHERE STATUS='Entregando';"); ComboSelect= EActual; break;
+        case 1:cadena.append("SELECT * FROM `cistem`.`entregas` where IDTank = '"+ui->SelecTank->itemText(index)+"';"); ComboSelect= EHistorial; break;
+        case 2: cadena.append("SELECT * FROM cistem.entregas  WHERE IDTank='"+ui->SelecTank->itemText(index)+"' ORDER BY Fecha DESC LIMIT 2;"); ComboSelect=Eultima; break;
+        default: break;
+
+        }
+
+
+         QSqlQuery qry;
+         qDebug() << "QRY:" << qry.exec(cadena);
+         int cada2= 2;
+         bool TituloTank= true;
+         while (qry.next())
+         {
+            if (cada2 == 2)
+            {
+                if (TituloTank && ui->ComboSeleccion->currentIndex() != EActual)
+                {
+                   ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
+                   ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1,0, new QTableWidgetItem(qry.value(2).toString()));
+                    ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
+                    ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(9).toString()+ " : "+ qry.value(8).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
+                   TituloTank = false;
+                   cada2 = 1;
+
+                }else {
+                        ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
+                        ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(9).toString()+ " : "+ qry.value(8).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
+                    }
+
+
+            }else {ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
+                    ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(9).toString()+ " : "+ qry.value(8).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
+                 }
+            if(ui->ComboSeleccion->currentIndex() != 0){
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 1, new QTableWidgetItem(QString::number(qry.value(3).toInt())));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 2, new QTableWidgetItem(QString::number(qry.value(4).toInt())));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 3, new QTableWidgetItem(QString::number(qry.value(6).toInt())));
+             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1,4 , new QTableWidgetItem(QString::number(qry.value(7).toInt())));
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
+             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
+             //ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
+              }
+            else {
+                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(2).toString()));
+                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 1, new QTableWidgetItem(QString::number(qry.value(3).toInt())));
+                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 2, new QTableWidgetItem(QString::number(qry.value(4).toInt())));
+                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 3, new QTableWidgetItem(QString::number(qry.value(5).toInt())));
+                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1,4 , new QTableWidgetItem(QString::number(qry.value(6).toInt())));
+                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
+                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
+                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
+                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
+                //ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
+
+
+            }
+             if(cada2==2 && !TituloTank && ui->ComboSeleccion->currentIndex() !=0)
+            {
+                ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
+                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem("Volumen Entregado : "));
+                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 1 , new QTableWidgetItem(QString::number(qry.value(5).toInt())));
+                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
+                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
+                ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
+                cada2 = 0;
+            }
+
+             qDebug() << qry.value(0).toInt() << qry.value(1).toString() << qry.value(2).toInt() << qry.value(4).toInt();
+          cada2++;
+         }
+
+    });
+
+ int por1 = static_cast<int>((100 * tanques[indiceM]->GetVolMax())/38439.85);
+ int y = static_cast<int>(430 * por1/38439.85);
+ int y1 = calcY(static_cast<int>(tanques[indiceM]->GetProducto_Alto()));
+ int y2 = calcY(static_cast<int>(tanques[indiceM]->GetDesbordamiento()));
+ int y3 = calcY(static_cast<int>(tanques[indiceM]->GetNecesitaProducto()));
+ int por = static_cast<int>(100 * tanques[indiceM]->GetProductoBajo()/38439.85);
+ int y4 = static_cast<int>((430 * por) /38439.85);
+
+connect(ui->tabWidget_2, QOverload<int>::of(&QTabWidget::currentChanged),
+      [=](int index){
+  switch (index) {
+
+  case 0:
+      ui->PuntoVolMax->setGeometry(200,200,50,50);
+      ui->Bola_ProductoAlto->setGeometry(200,200,50,50);
+      ui->Bola_Desbordamiento->setGeometry(200,200,50,50);
+      ui->Bola_NecesitaEntrega->setGeometry(200,300,50,50);
+      ui->Bola_ProductoBajo->setGeometry(200,350,50,50);
+      ui->Bola_AlarmaAgua->setGeometry(200,380,50,50);
+      ui->Bola_Advertencia_Agua->setGeometry(200,400,50,50);
+
+
+      qDebug()<< "Index Cambio 0"; break;
+   case 1:
+
+      ui->PuntoVolMax->setGeometry(X(y),y,50,50);
+      ui->Bola_ProductoAlto->setGeometry(X(y1),y1,50,50);
+      ui->Bola_Desbordamiento->setGeometry(X(y2),y2,50,50);
+      ui->Bola_NecesitaEntrega->setGeometry(X(y3),y3,50,50);
+      ui->Bola_ProductoBajo->setGeometry(X(430-y4),430-y4,50,50);
+      ui->Bola_AlarmaAgua->setGeometry(X(380),380,50,50);
+      ui->Bola_Advertencia_Agua->setGeometry(X(400),400,50,50);
+
+      qDebug() << "Index Cambio 1"; break;
+  default:
+      qDebug() << "Entre en el default"; break;
+
+  }
+
+});
+
+
 }
 void MainWindow::guardar_impresora()
 {
@@ -3134,8 +3130,6 @@ void MainWindow::updateSettings()
       QSqlQuery qry;
       qry.exec("SELECT * FROM cistem.config_sonda;");
 
-//    m_currentSettings.name = ui->serialPortInfoListBox->currentText();
-
       while (qry.next())
 
       {
@@ -3169,8 +3163,7 @@ void MainWindow::updateSettings()
 
     m_currentSettings.stringFlowControl = ui->flowControlBox->currentText();
 
-      //    m_currentSettings.localEchoEnabled = m_ui->localEchoCheckBox->isChecked();
-}
+      }
 
 void MainWindow::openSerialPort()
 {
@@ -3193,6 +3186,26 @@ void MainWindow::closeSerialPort()
            disconnect(puertoserie, &QSerialPort::readyRead, this, &MainWindow::Leer_datos);
     }
 
+}
+
+void MainWindow::DescargarFormatoFecha()
+{
+    QSqlQuery qry;
+    qry.exec("SELECT *From cistem.FormatoFH  WHERE ID='1';");
+
+    while (qry.next())
+    {
+        Formato_Fecha = qry.value(1).toString();
+        Separador_Fecha = qry.value(2).toString();
+        Formato_Hora = qry.value(3).toString();
+
+        Formato_FH = Formato_Fecha + " " +  Formato_Hora ;
+        Formato_FH.replace("_",Separador_Fecha);
+
+       ui->Combo_FormatoFecha->setCurrentIndex(ui->Combo_FormatoFecha->findText(qry.value(1).toString(),Qt::MatchWrap));
+       ui->Combo_FormatoSeparador->setCurrentIndex(ui->Combo_FormatoSeparador->findText(qry.value(2).toString(),Qt::MatchWrap));
+       ui->Combo_FormatoHora->setCurrentIndex(ui->Combo_FormatoHora->findText(qry.value(3).toString(),Qt::MatchWrap));
+    }
 }
 
 
@@ -3238,4 +3251,16 @@ void MainWindow::on_Btn_Fechayhora_clicked()
      ui->stackedWidget->setCurrentIndex(SFecha_Hora);
      ui->Btns_Fechayhora->setIsSelect(false);
      ui->Lab_Titulo->setText("Fecha & hora");
+}
+
+void MainWindow::on_tabWidget_2_currentChanged(int index)
+{
+
+}
+
+void MainWindow::on_Btn_Display_clicked()
+{
+    frame = SFormato_FechaHora;
+    ui->stackedWidget->setCurrentIndex(SFormato_FechaHora);
+
 }

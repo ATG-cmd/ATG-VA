@@ -10,6 +10,8 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
+
+  //  a.setStyle("fusion");
 //    QApplication::setStyle(QStyleFactory::create("fusion"));
 //    qDebug() << QStyleFactory::keys();
 

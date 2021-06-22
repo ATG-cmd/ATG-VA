@@ -7,7 +7,16 @@ Dialog::Dialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
+  // setWindowFlags(Qt::FramelessWindowHint);
+//    setWindowFlags(
+//                              Qt::WindowStaysOnTopHint
+//                             | Qt::CustomizeWindowHint
+//                             | Qt::WindowCloseButtonHint);
+    setMaximumWidth(1200);
+    setMaximumHeight(600);
 
+
+    //setWindowFlags( Qt::WindowCloseButtonHint);
     grupo =new QGroupBox(this);
     grupo->setGeometry(20,160,1200,330);  // grupo->setGeometry(10,90,600,165);
     label = new QLabel(this);

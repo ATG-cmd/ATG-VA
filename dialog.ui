@@ -13,6 +13,9 @@
     <height>502</height>
    </rect>
   </property>
+  <property name="tabletTracking">
+   <bool>false</bool>
+  </property>
   <property name="windowTitle">
    <string/>
   </property>
