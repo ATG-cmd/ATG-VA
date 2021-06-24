@@ -16,7 +16,8 @@ SOURCES += \
     tanque.cpp \
     select_fechas.cpp \
     butons.cpp \
-    cale.cpp
+    cale.cpp \
+    frame.cpp
 
 HEADERS += \
     dialog.h \
@@ -25,14 +26,16 @@ HEADERS += \
     tanque.h \
     select_fechas.h \
     butons.h \
-    cale.h
+    cale.h \
+    frame.h
 
 FORMS += \
     dialog.ui \
     mainwindow.ui \
     select_fechas.ui \
     butons.ui \
-    cale.ui
+    cale.ui \
+    frame.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

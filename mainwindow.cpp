@@ -13,6 +13,7 @@
 #include <QAbstractItemView>
 #include <QListWidget>
 #include <QScroller>
+#include <frame.h>
 
 
 
@@ -59,12 +60,8 @@
 #define EActual 0
 #define EHistorial 1
 #define Eultima 2
-
-
-
-
-
 #define SOH 0x01
+
  const int lenbuff1 = 1024;              // Longitud de buffer, Ajustar
  int xbuff1 = 0x00;                      // Índice: siguiente CHAR en cbuff
 char cbuff1[lenbuff1];                  // Buffer
@@ -1016,6 +1013,7 @@ void MainWindow::Descargar()
 
 void MainWindow::Geometrytank()
 {
+
     ui->stackedWidget->setCurrentIndex(0);
     if(S<4)
         tanques[S]= new Tanque(ui->Home,true);
@@ -1060,10 +1058,20 @@ void MainWindow::Enviar_qry(QString qry)
     if (!Qqry.exec(qry))
     {
         QMessageBox::critical(this, "Error",tr(Qqry.lastError().text().toUtf8()));
+
+
         return;
     }
     else {
-        QMessageBox::information(this,"EXITO", "Los datos se guardaron correctamente");
+
+        //QMessageBox::information(this,"EXITO", "Los datos se guardaron correctamente");
+        frame1 = new Frame(this);
+        frame1->setGeometry(0,0,1920,1080);
+        frame1->mensaje("Los Datos se guardaron \ncorrectamente", "Exito ","Informacion");
+        frame1->show();
+
+
+
         return;
     }
 }
@@ -2015,9 +2023,9 @@ while (qry.next())
     else  ui->RDeshabilitado->setChecked(true);
   ui->Line_Nombre->setText( qry.value(3).toString());
   ui->Line_Codigo_producto->setText(qry.value(4).toString());
-  ui->Combo_Color->setCurrentIndex(qry.value(5).toInt());
+  ui->Combo_Color->activated(qry.value(5).toInt());
   ui->Line_CodigoCombustible->setText(qry.value(6).toString());
-  ui->Combo_Sonda->setCurrentText(qry.value(7).toString());
+  ui->Combo_Sonda->setCurrentIndex(ui->Combo_Sonda->findText(qry.value(7).toString(),Qt::MatchWrap));
   ui->Line_AjusteAltura->setText(qry.value(8).toString());
   ui->Line_Diametro->setText(qry.value(9).toString());
   ui->Line_Capacidad->setText(qry.value(10).toString());
@@ -2889,12 +2897,15 @@ void MainWindow::conectar_signals()
             {
                 if (TituloTank && ui->ComboSeleccion->currentIndex() != EActual)
                 {
+                    ui->Tab_entregas->horizontalHeaderItem(0)->setText("Inicio/Fin Fecha&Hora");
+
                    ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
                    ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1,0, new QTableWidgetItem(qry.value(2).toString()));
                     ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
                     ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(9).toString()+ " : "+ qry.value(8).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
                    TituloTank = false;
                    cada2 = 1;
+                   ui->SelecTank->show();
 
                 }else {
                         ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
@@ -2917,6 +2928,7 @@ void MainWindow::conectar_signals()
              //ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
               }
             else {
+                ui->Tab_entregas->horizontalHeaderItem(0)->setText("Nombre del Tanque");
                 ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(2).toString()));
                 ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 1, new QTableWidgetItem(QString::number(qry.value(3).toInt())));
                 ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 2, new QTableWidgetItem(QString::number(qry.value(4).toInt())));
@@ -2927,7 +2939,7 @@ void MainWindow::conectar_signals()
                 ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
                 ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
                 //ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
-
+                ui->SelecTank->hide();
 
             }
              if(cada2==2 && !TituloTank && ui->ComboSeleccion->currentIndex() !=0)
@@ -2988,6 +3000,18 @@ connect(ui->tabWidget_2, QOverload<int>::of(&QTabWidget::currentChanged),
 
 });
 
+
+}
+
+void MainWindow::Descargar_Entregaenproceso()
+{
+     QSqlQuery qry;
+      qry.exec("SELECT * FROM cistem.Entregando WHERE STATUS='Entregando';");
+
+    while(qry.next())
+    {
+
+    }
 
 }
 void MainWindow::guardar_impresora()

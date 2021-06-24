@@ -8,6 +8,8 @@ Dialog::Dialog(QWidget *parent) :
     ui->setupUi(this);
 
   // setWindowFlags(Qt::FramelessWindowHint);
+//   setWindowFlag( Qt::MSWindowsFixedSizeDialogHint,true);
+//   setWindowFlag( Qt::FramelessWindowHint);
 //    setWindowFlags(
 //                              Qt::WindowStaysOnTopHint
 //                             | Qt::CustomizeWindowHint

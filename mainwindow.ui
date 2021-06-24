@@ -152,8 +152,7 @@ width: 0px;
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>23</number>
-
+     <number>3</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -2105,9 +2104,7 @@ QScrollBar::add-line:vertical {
        <enum>Qt::NoFocus</enum>
       </property>
       <property name="currentIndex">
-
        <number>2</number>
-
       </property>
       <widget class="QWidget" name="Tab_editar">
        <property name="font">

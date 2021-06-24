@@ -22,6 +22,7 @@
 #include <QTableWidget>
 #include <cale.h>
 #include <butons.h>
+#include <frame.h>
 
 
 
@@ -123,6 +124,7 @@ public:
 
 
 
+
      int numerodetanques=0;
      int TanqueActual= 0;
      int TurnoActual =-1;
@@ -192,6 +194,7 @@ public:
     void consultar_sensores();
     void rellenar_tabla_sensores(int caso);
     void conectar_signals();
+    void Descargar_Entregaenproceso();
     signals:
 
     void BotonMas(int Turno);
@@ -375,6 +378,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Settings m_currentSettings;
+    Frame * frame1;
 };
 #endif // MAINWINDOW_H
 
