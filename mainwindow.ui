@@ -152,15 +152,15 @@ width: 0px;
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>13</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>60</x>
+        <x>180</x>
         <y>20</y>
-        <width>1751</width>
+        <width>1561</width>
         <height>821</height>
        </rect>
       </property>
@@ -169,57 +169,41 @@ width: 0px;
         <widget class="QPushButton" name="Btn_Tanque">
          <property name="maximumSize">
           <size>
-           <width>250</width>
+           <width>258</width>
            <height>250</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <family>consolas</family>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(20,40,200,100);
+          <string notr="true">
+QPushButton{
+  color: white;
+font-weight: bold;
+	background-color: rgba(89,111,209,150);
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
-}</string>
+   font-size:46px;     
+  display: inline-block;
+  background-image: url(:/Tanque.png);
+  background-repeat: no-repeat;
+  background-size: 45px;
+  text-align : bottom ;         
+  line-height: 200px;
+  font-family: consolas;
+  background-position: center ;
+}
+</string>
          </property>
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Tanque.png</normaloff>:/Tanque.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>250</width>
-           <height>250</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="4">
-        <widget class="QPushButton" name="Btn_Comunicacion">
-         <property name="maximumSize">
-          <size>
-           <width>250</width>
-           <height>250</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(150,80,120,100);
-	border-width: 3px;
-	border-radius: 10px;
-	padding: 2px;
-}</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Comunicacion.png</normaloff>:/Comunicacion.png</iconset>
+          <string>Tanques</string>
          </property>
          <property name="iconSize">
           <size>
@@ -233,31 +217,41 @@ width: 0px;
         <widget class="QPushButton" name="Btn_Impresora">
          <property name="maximumSize">
           <size>
-           <width>250</width>
+           <width>280</width>
            <height>250</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <family>consolas</family>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(60,50,70,100);
+          <string notr="true">
+QPushButton{
+  color: white;
+background-color: rgba(60,50,70,100);
+font-weight: bold;
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
-}</string>
+   font-size:46px;     
+  display: inline-block;
+  background-image: url(:/Impresora.png);
+  background-repeat: no-repeat;
+  background-size: 45px;
+  text-align : bottom ;         
+  line-height: 200px;
+  font-family: consolas;
+  background-position: center ;
+}
+</string>
          </property>
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Impresora.png</normaloff>:/Impresora.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>250</width>
-           <height>250</height>
-          </size>
+          <string>Impresora</string>
          </property>
         </widget>
        </item>
@@ -265,25 +259,42 @@ width: 0px;
         <widget class="QPushButton" name="Btn_Alarmas">
          <property name="maximumSize">
           <size>
-           <width>250</width>
+           <width>258</width>
            <height>250</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <family>consolas</family>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(250,45,14,100);
+          <string notr="true">
+QPushButton{
+  color: white;
+font-weight: bold;
+	background-color: rgba(250,45,114,150);
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
-}</string>
+   font-size:46px;     
+  display: inline-block;
+  background-image: url(:/Alarmas.png);
+  background-repeat: no-repeat;
+  background-size: 45px;
+  text-align : bottom ;         
+  line-height: 200px;
+  font-family: consolas;
+  background-position: center ;
+}
+
+</string>
          </property>
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Alarmas.png</normaloff>:/Alarmas.png</iconset>
+          <string>Alarmas</string>
          </property>
          <property name="iconSize">
           <size>
@@ -295,21 +306,43 @@ width: 0px;
        </item>
        <item row="1" column="3">
         <widget class="QPushButton" name="Btn_inventarioConfig">
+         <property name="minimumSize">
+          <size>
+           <width>258</width>
+           <height>250</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>consolas</family>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(110,145,141,100);
+          <string notr="true">
+QPushButton{
+  color: white;
+font-weight: bold;
+background-color: rgba(110,145,141,100);
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
-}</string>
+   font-size:46px;     
+  display: inline-block;
+  background-image: url(:/Inventario.png);
+  background-repeat: no-repeat;
+  background-size: 45px;
+  text-align : bottom ;         
+  line-height: 200px;
+  font-family: consolas;
+  background-position: center ;
+}
+</string>
          </property>
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Inventario.png</normaloff>:/Inventario.png</iconset>
+          <string>Inventario</string>
          </property>
          <property name="iconSize">
           <size>
@@ -323,25 +356,41 @@ width: 0px;
         <widget class="QPushButton" name="Btn_Entregas">
          <property name="maximumSize">
           <size>
-           <width>250</width>
+           <width>280</width>
            <height>250</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <family>consolas</family>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(230,145,50,100);
+          <string notr="true">
+QPushButton{
+  color: white;
+background-color: rgba(230,145,50,100);
+font-weight: bold;
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
-}</string>
+   font-size:46px;     
+  display: inline-block;
+  background-image: url(:/Entregas.png);
+  background-repeat: no-repeat;
+  background-size: 45px;
+  text-align : bottom ;         
+  line-height: 200px;
+  font-family: consolas;
+  background-position: center ;
+}
+</string>
          </property>
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Entregas.png</normaloff>:/Entregas.png</iconset>
+          <string>Entregas</string>
          </property>
          <property name="iconSize">
           <size>
@@ -359,21 +408,37 @@ width: 0px;
            <height>250</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <family>consolas</family>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(150,80,120,100);
+          <string notr="true">
+QPushButton{
+  color: white;
+background-color: rgba(150,80,120,100);
+font-weight: bold;
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
-}</string>
+   font-size:40px;     
+  display: inline-block;
+  background-image: url(:/Tabla C.png);
+  background-repeat: no-repeat;
+  background-size: 32px;
+  text-align : bottom ;         
+  line-height: 200px;
+  font-family: consolas;
+  background-position: center ;
+}
+</string>
          </property>
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Tabla C.png</normaloff>:/Tabla C.png</iconset>
+          <string>Cubicacion</string>
          </property>
          <property name="iconSize">
           <size>
@@ -393,30 +458,39 @@ width: 0px;
          </property>
          <property name="font">
           <font>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <italic>false</italic>
-           <bold>false</bold>
+           <family>consolas</family>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
          <property name="focusPolicy">
           <enum>Qt::StrongFocus</enum>
          </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
+          <string notr="true">
+
+QPushButton{
+  color: white;
+font-weight: bold;
 	background-color: rgba(89,161,199,150);
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
-}</string>
+   font-size:46px;     
+  display: inline-block;
+  background-image: url(:/Probeta.png);
+  background-repeat: no-repeat;
+  background-size: 45px;
+  text-align : bottom ;         
+  line-height: 200px;
+  font-family: consolas;
+  background-position: center ;
+}
+</string>
          </property>
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Probeta.png</normaloff>:/Probeta.png</iconset>
+          <string>  Sondas</string>
          </property>
          <property name="iconSize">
           <size>
@@ -428,21 +502,44 @@ width: 0px;
        </item>
        <item row="1" column="2">
         <widget class="QPushButton" name="Btn_Station">
+         <property name="minimumSize">
+          <size>
+           <width>258</width>
+           <height>250</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>consolas</family>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
+          <string notr="true">
+
+QPushButton{
+  color: white;
+font-weight: bold;
 	background-color: rgba(250,45,114,150);
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
-}</string>
+   font-size:46px;     
+  display: inline-block;
+  background-image: url(:/station.png);
+  background-repeat: no-repeat;
+  background-size: 45px;
+  text-align : bottom ;         
+  line-height: 200px;
+  font-family: consolas;
+  background-position: center ;
+}
+</string>
          </property>
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/station.png</normaloff>:/station.png</iconset>
+          <string>Estacion</string>
          </property>
          <property name="iconSize">
           <size>
@@ -454,21 +551,37 @@ width: 0px;
        </item>
        <item row="1" column="4">
         <widget class="QPushButton" name="Btn_Turnos">
+         <property name="minimumSize">
+          <size>
+           <width>250</width>
+           <height>250</height>
+          </size>
+         </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
+          <string notr="true">
+
+QPushButton{
+  color: white;
+font-weight: bold;
+	
 	background-color: rgba(115,11,114,100);
 	border-width: 3px;
 	border-radius: 10px;
-	padding: 2px;
-}</string>
+	padding: 5px;
+   font-size:46px;     
+  display: inline-block;
+  background-image: url(:/Turnos.png);
+  background-repeat: no-repeat;
+  background-size: 45px;
+  text-align : bottom ;         
+  line-height: 200px;
+  font-family: consolas;
+  background-position: center ;
+}
+</string>
          </property>
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Turnos.png</normaloff>:/Turnos.png</iconset>
+          <string>Turnos</string>
          </property>
          <property name="iconSize">
           <size>
@@ -487,20 +600,30 @@ width: 0px;
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
+          <string notr="true">
+
+QPushButton{
+  color: white;
+
 	background-color: rgba(50,200,100,100);
+font-weight: bold;
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
-}</string>
+   font-size:46px;     
+  display: inline-block;
+  background-image: url(:/sensor.png);
+  background-repeat: no-repeat;
+  background-size: 32px;
+  text-align : bottom ;         
+  line-height: 200px;
+  font-family: consolas;
+  background-position: center ;
+}
+</string>
          </property>
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/sensor.png</normaloff>:/sensor.png</iconset>
+          <string>Sensores</string>
          </property>
          <property name="iconSize">
           <size>
@@ -519,20 +642,31 @@ width: 0px;
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
+          <string notr="true">
+
+QPushButton{
+  color: white;
+font-weight: bold;
+
 	background-color: rgba(18,20,200,50);
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
-}</string>
+   font-size:32px;     
+  display: inline-block;
+  background-image: url(:/Fecha y hora.png);
+  background-repeat: no-repeat;
+  background-size: 45px;
+  text-align : bottom ;         
+  line-height: 200px;
+  font-family: consolas;
+  background-position: center ;
+}
+
+</string>
          </property>
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Fecha y hora.png</normaloff>:/Fecha y hora.png</iconset>
+          <string>Fecha y Hora</string>
          </property>
          <property name="iconSize">
           <size>
@@ -552,38 +686,40 @@ width: 0px;
          </property>
          <property name="font">
           <font>
+           <family>consolas</family>
            <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton{
- 
-                     border: 1px solid #00d2ff; 
- 
-                     min-height: 20px;          
- 
-                       color:red;                 
- 
-                       font-size:14px;            
- 
-                      text-align : bottom;         
- 
-                       background-image: url(:/Alarmas.png);
-				
-					    background-image-size: 20px 20px;
- 
-                       background-repeat: repeat-no-repeat;
+          <string notr="true">
+
+QPushButton{
 
  
-             
- 
-                      
-						
-background-color:red;
- 
-                      padding: 10px;
- 
-                       }</string>
+  color: white;
+	background-color: rgba(20,45,14,150);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+font-weight: bold;
+   font-size:46px;     
+  display: inline-block;
+  background-image: url(:/Dispay.png);
+  background-repeat: no-repeat;
+  background-size: 45px;
+  text-align : bottom ;         
+  line-height: 200px;
+  font-family: consolas;
+  background-position: center ;
+
+
+
+
+}
+
+</string>
          </property>
          <property name="text">
           <string>Display</string>
@@ -596,7 +732,62 @@ background-color:red;
          </property>
         </widget>
        </item>
+       <item row="0" column="4">
+        <widget class="QPushButton" name="Btn_Comunicacion">
+         <property name="maximumSize">
+          <size>
+           <width>280</width>
+           <height>250</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>consolas</family>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+QPushButton{
+  color: white;
+font-weight: bold;
+	background-color: rgba(150,80,120,100);
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 5px;
+   font-size:36px;     
+  display: inline-block;
+  background-image: url(:/Comunicacion.png);
+  background-repeat: no-repeat;
+  background-size: 45px;
+  text-align : bottom ;         
+  line-height: 200px;
+  font-family: consolas;
+  background-position: center ;
+}
+</string>
+         </property>
+         <property name="text">
+          <string>Comunicación</string>
+         </property>
+        </widget>
+       </item>
       </layout>
+      <zorder>Btn_Comunicacion</zorder>
+      <zorder>Btn_Tanque</zorder>
+      <zorder>Btn_Impresora</zorder>
+      <zorder>Btn_Alarmas</zorder>
+      <zorder>Btn_inventarioConfig</zorder>
+      <zorder>Btn_Entregas</zorder>
+      <zorder>Btn_tabla_cubicacion</zorder>
+      <zorder>Btb_Sonda</zorder>
+      <zorder>Btn_Station</zorder>
+      <zorder>Btn_Turnos</zorder>
+      <zorder>Btn_sensor_conf</zorder>
+      <zorder>Btn_Fechayhora</zorder>
+      <zorder>Btn_Display</zorder>
      </widget>
     </widget>
     <widget class="QWidget" name="Home">
@@ -5112,7 +5303,7 @@ border-radius: 16;
        <rect>
         <x>60</x>
         <y>40</y>
-        <width>1420</width>
+        <width>1171</width>
         <height>391</height>
        </rect>
       </property>
@@ -5127,36 +5318,44 @@ border-radius: 16;
         <widget class="QPushButton" name="Btn_Inventario">
          <property name="maximumSize">
           <size>
-           <width>350</width>
-           <height>350</height>
+           <width>250</width>
+           <height>250</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>8</pointsize>
-           <weight>50</weight>
-           <italic>false</italic>
-           <bold>false</bold>
+           <family>consolas</family>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
          <property name="focusPolicy">
           <enum>Qt::StrongFocus</enum>
          </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(89,161,199,150);
+          <string notr="true">
+QPushButton{
+  color: white;
+font-weight: bold;
+background-color: rgba(89,161,199,150);
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
-}</string>
+   font-size:36px;     
+  display: inline-block;
+  background-image: url(:/Inventario.png);
+  background-repeat: no-repeat;
+  background-size: 45px;
+  text-align : bottom ;         
+  line-height: 200px;
+  font-family: consolas;
+  background-position: center ;
+}
+</string>
          </property>
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Inventario.png</normaloff>:/Inventario.png</iconset>
+          <string>Inventario</string>
          </property>
          <property name="iconSize">
           <size>
@@ -5170,25 +5369,35 @@ border-radius: 16;
         <widget class="QPushButton" name="Btn_Reports">
          <property name="maximumSize">
           <size>
-           <width>350</width>
-           <height>350</height>
+           <width>250</width>
+           <height>250</height>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
+          <string notr="true">
+
+QPushButton{
+  color: white;
+font-weight: bold;
 	background-color: rgba(20,40,200,100);
+
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
-}</string>
+   font-size:46px;     
+  display: inline-block;
+  background-image: url(:/Reportes.png);
+  background-repeat: no-repeat;
+  background-size: 45px;
+  text-align : bottom ;         
+  line-height: 200px;
+  font-family: consolas;
+  background-position: center ;
+}
+</string>
          </property>
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Reportes.png</normaloff>:/Reportes.png</iconset>
+          <string>Reportes</string>
          </property>
          <property name="iconSize">
           <size>
@@ -5202,25 +5411,36 @@ border-radius: 16;
         <widget class="QPushButton" name="Btn_Entregas_or">
          <property name="maximumSize">
           <size>
-           <width>350</width>
-           <height>350</height>
+           <width>250</width>
+           <height>250</height>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton {
-	color: white;
-	background-color: rgba(230,145,50,100);
+          <string notr="true">
+
+
+QPushButton{
+  color: white;
+font-weight: bold;
+
+background-color: rgba(230,145,50,100);
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
-}</string>
+   font-size:46px;     
+  display: inline-block;
+  background-image: url(:/Entregas.png);
+  background-repeat: no-repeat;
+  background-size: 45px;
+  text-align : bottom ;         
+  line-height: 200px;
+  font-family: consolas;
+  background-position: center ;
+}
+</string>
          </property>
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/Entregas.png</normaloff>:/Entregas.png</iconset>
+          <string>Entregas</string>
          </property>
          <property name="iconSize">
           <size>
@@ -5234,8 +5454,8 @@ border-radius: 16;
         <widget class="QPushButton" name="Btn_sensor_rep">
          <property name="maximumSize">
           <size>
-           <width>350</width>
-           <height>350</height>
+           <width>250</width>
+           <height>250</height>
           </size>
          </property>
          <property name="styleSheet">
@@ -5245,14 +5465,32 @@ border-radius: 16;
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
-}</string>
+}
+
+
+
+QPushButton{
+  color: white;
+font-weight: bold;
+	background-color: rgba(50,200,100,100);
+
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+   font-size:46px;     
+  display: inline-block;
+  background-image: url(:/sensor.png);
+  background-repeat: no-repeat;
+  background-size: 45px;
+  text-align : bottom ;         
+  line-height: 200px;
+  font-family: consolas;
+  background-position: center ;
+}
+</string>
          </property>
          <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="Imagenes/Resourse.qrc">
-           <normaloff>:/sensor.png</normaloff>:/sensor.png</iconset>
+          <string>Sensores</string>
          </property>
          <property name="iconSize">
           <size>
@@ -8357,7 +8595,8 @@ QScrollBar::add-line:vertical {
      <enum>Qt::RightToLeft</enum>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(69,99,122);
+     <string notr="true">/*background-color: rgb(69,99,122);*/
+background-color: #0e292c;
 color:white;
 </string>
     </property>
@@ -8413,7 +8652,7 @@ color: white;
    <widget class="QPushButton" name="Btn_Home">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>0</x>
       <y>950</y>
       <width>141</width>
       <height>131</height>
@@ -8425,9 +8664,9 @@ color: white;
     <property name="styleSheet">
      <string notr="true">QPushButton {
 	color: white;
-	background-color:cyan ;
-	border: 3px solid gray;
-	border-radius: 35px;
+	background-color:#1c1b1f;
+/*	border: 3px solid gray;*/
+	/*border-radius: 35px;*/
 	padding: 2px;
 }</string>
     </property>

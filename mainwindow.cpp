@@ -2483,18 +2483,11 @@ int Cmerma=0;
 void MainWindow::estado_sistema(QPushButton *btn, QString estado)
 {
     if(estado == "warning" && Alarmas <= 0)
-    {
-        btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(250, 220, 0, 250), stop:0.691897 rgba(250,200,0, 160), stop:0.691964  gray , stop:1 gray); color:white");
-
-    }
+    { btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(250, 220, 0, 250), stop:0.691897 rgba(250,200,0, 160), stop:0.691964  gray , stop:1 gray); color:white");}
     else if (estado == "alarma")
-    {
-        btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(255,0,0, 250), stop:0.691897 rgba(180,0,0, 160), stop:0.691964  gray , stop:1 gray); color:white");
-
-    }else if(estado == "normal")
-    {
-        btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(0, 250, 0, 250), stop:0.691897 rgba(0,180,0, 160), stop:0.691964  gray , stop:1 gray); color:white");
-    }
+    {btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(255,0,0, 250), stop:0.691897 rgba(180,0,0, 160), stop:0.691964  gray , stop:1 gray); color:white"); }
+    else if(estado == "normal")
+    {  btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(0, 250, 0, 250), stop:0.691897 rgba(0,180,0, 160), stop:0.691964  gray , stop:1 gray); color:white"); }
 }
 
 void MainWindow::guardar_station()
@@ -2853,10 +2846,7 @@ void MainWindow::rellenar_tabla_sensores(int caso)
 
 void MainWindow::conectar_signals()
 {
-    connect(ui->Combo_sensor_dir, QOverload<int>::of(&QComboBox::activated),
-        [=](int index){
-        consultar_sensores(index);
-    });
+    connect(ui->Combo_sensor_dir, QOverload<int>::of(&QComboBox::activated),[=](int index){ consultar_sensores(index);  });
 
 
     QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
