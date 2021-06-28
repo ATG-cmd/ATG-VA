@@ -71,6 +71,8 @@ private:
     bool isHabilitado =false;
     bool ChekBoxishabilitado;
     bool isSelect;
+    QString BotonHabilitado ="QPushButton{color:white;border-radius: 53px;border: 2px solid  gray ; background: royalblue; margin: 0px 0 0px 0;}";
+    QString BotonDeshabilitado = "QPushButton{color:white; border-radius: 53px;border: 2px solid  gray ;background: gray; margin: 0px 0 0px 0; }";
 };
 
 #endif // BUTONS_H

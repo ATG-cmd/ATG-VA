@@ -76,7 +76,11 @@ void Butons::on_btn_masHor_released()
 
 QString Butons::getLineHorText() const
 {
-    return LineHorText;
+   if(LineHorText.toInt() <10)
+    return "0" +LineHorText;
+   else
+        return LineHorText;
+
 }
 
 void Butons::setLineHorText(const QString &value)
@@ -86,7 +90,10 @@ void Butons::setLineHorText(const QString &value)
 
 QString Butons::getLineMinText() const
 {
-    return LineMinText;
+    if(LineMinText.toInt() <10)
+     return "0" +LineMinText;
+    else
+         return LineMinText;
 }
 
 void Butons::setLineMinText(const QString &value)
@@ -174,8 +181,8 @@ void Butons::setChekBoxishabilitado(bool value)
 }
 
 void Butons::btn_Habilitado(QPushButton *Boton,bool hab )
-{   if(hab) Boton->setStyleSheet("QPushButton{color:white;border-radius: 53px;border: 2px solid  gray ; background: royalblue; margin: 0px 0 0px 0;}");
-    else    Boton->setStyleSheet("QPushButton{color:white; border-radius: 53px;border: 2px solid  gray ;background: gray; margin: 0px 0 0px 0; }");
+{
+    Boton->setStyleSheet(hab ? BotonHabilitado :BotonDeshabilitado);
     Boton->setEnabled(hab);
 }
 

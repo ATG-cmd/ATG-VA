@@ -452,6 +452,7 @@ void MainWindow::on_Btn_Guardar_clicked()
     case STurnos:  guardar_Turnos(); break;
     case SPrinter:  guardar_impresora(); break;
     case SSensor_confi: guardar_sensores(); break;
+    case SFecha_Hora: Guardar_FechaHora();  break;
     case SFormato_FechaHora: guardar_FormatoFecha(); break;
     }
     insertar_incidente("Warning","System Setup Modified","user","0","1",false);
@@ -1149,7 +1150,7 @@ void MainWindow::on_Regresar_clicked()
     // MENU DE CONFIGURACION
 case SMenu : case SHome : case SSonda : case STanque : case STablaCub: case SLogin :
 case SHome2 : case STMaxi : case SComunicacion: case SVialarmas : case Slimites :
-case SComunicador :case SInventoryConfig: case SPrinter: case SStation:
+case SComunicador :case SInventoryConfig: case SPrinter: case SStation: case SFormato_FechaHora:
 case STurnos: case SSensor_confi: frame= SMenu;break;
         //MENU PUBLICO
 case  sInventario: case SReportes: case SEntregas : case SSensor_rep: frame= SMenuPub;  break;
@@ -3296,3 +3297,22 @@ void MainWindow::on_Btn_Display_clicked()
     ui->stackedWidget->setCurrentIndex(SFormato_FechaHora);
 
 }
+
+void MainWindow::Guardar_FechaHora()
+{
+    QStringList arg; QProcess pro;
+    QString strDateTime = ui->dateEdit->text() + " " + ui->Btns_Fechayhora->getLineHorText() + ":" + ui->Btns_Fechayhora->getLineMinText() + ":00";
+    //QString strDateTime = ui->txtMonth->text() + ui->txtDay->text() + ui->txtHour->text() + ui->txtMinute->text() + ui->txtYear->text();
+   QString str = QString("sudo hwclock --set --date '%1'").arg(strDateTime);
+    arg << "-c" << QString("sudo hwclock --set --date '%1'").arg(strDateTime);
+    pro.start("/bin/sh", arg); pro.waitForFinished();
+    arg.clear();
+    arg << "-c" << QString("sudo hwclock -s").arg(strDateTime);
+    pro.start("/bin/sh", arg); pro.waitForFinished();
+    QString st = pro.readAllStandardOutput();
+    qDebug() << str.toUtf8() << st;
+
+}
+
+
+

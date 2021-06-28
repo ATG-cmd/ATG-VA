@@ -361,19 +361,20 @@ private slots:
   void updateSettings();
 
   void openSerialPort();
+
   void closeSerialPort();
+
   void DescargarFormatoFecha() ;
 
-
-
   void on_Combo_MetodoCierre_currentIndexChanged(int index);
-
 
   void on_Btn_Fechayhora_clicked();
 
   void on_tabWidget_2_currentChanged(int index);
 
   void on_Btn_Display_clicked();
+
+   void Guardar_FechaHora();
 
 private:
     Ui::MainWindow *ui;
