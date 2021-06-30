@@ -883,6 +883,10 @@ void MainWindow::Descargar()
     S=0;
     QSqlQuery qry;
 
+    qry.exec("SELECT SistemaUnidades FROM cistem.Interfaz");
+    while(qry.next()){
+        qry.value(0).toString();
+    }
 
     qry.exec("SELECT COUNT(1) FROM `cistem`.`tanques` WHERE Configurado = 1;");
   while(qry.next())   {
@@ -1070,6 +1074,8 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::Tanque_Maximisado(int index)
 {
+
+
     if(!Maxi)
     {
         indiceM =index;
