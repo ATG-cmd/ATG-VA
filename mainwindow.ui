@@ -45,23 +45,23 @@ QTableWidget{
 QScrollBar:vertical {      
      border: 2px solid grey;   
      background:#C0C0C0;
-     width: 50px;
-     margin: 39px 0 39px 0;               
+     width: 80px;
+     margin: 68px 0 68px 0;               
  }
  QScrollBar::handle:vertical {
      background:white;
-     min-height: 38px;
+     min-height: 70px;
  }
 QScrollBar::add-line:vertical {
      border: 2px solid grey;
      background: royalblue;
-     height: 35px;
+     height: 70px;
      subcontrol-position: bottom;
      subcontrol-origin: margin;
  }
  QScrollBar::sub-line:vertical {
      border: 2px solid grey;
-     height: 35px;
+     height: 70px;
 	 background: royalblue;
      subcontrol-position: top;
      subcontrol-origin: margin;
@@ -71,10 +71,10 @@ QScrollBar::add-line:vertical {
   width: 0;
   height: 0;
   /*border: 2px solid #000;*/
-  border-top: 5px  solid royalblue;
-  border-right: 10px solid royalblue;
-  border-bottom: 20px  solid white;
-  border-left: 10px  solid royalblue ;
+  border-top: 10px  solid royalblue;
+  border-right: 20px solid royalblue;
+  border-bottom: 40px  solid white;
+  border-left: 20px  solid royalblue ;
 }
  QScrollBar::down-arrow:vertical {
    
@@ -82,10 +82,10 @@ QScrollBar::add-line:vertical {
   width: 0;
   height: 0;
   /*border: 2px solid #000;*/
-  border-top: 20px solid white;
-  border-right: 10px solid royalblue;
-  border-bottom: 5px solid royalblue ;
-  border-left: 10px  solid royalblue ;
+  border-top: 40px solid white;
+  border-right: 20px solid royalblue;
+  border-bottom: 10px solid royalblue ;
+  border-left: 20px  solid royalblue ;
   
  }
 
@@ -436,7 +436,8 @@ font-weight: bold;
 </string>
          </property>
          <property name="text">
-          <string>Cubicacion</string>
+          <string>Cubica
+cion</string>
          </property>
          <property name="iconSize">
           <size>
@@ -2099,7 +2100,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }
        <rect>
         <x>30</x>
         <y>30</y>
-        <width>801</width>
+        <width>1000</width>
         <height>781</height>
        </rect>
       </property>
@@ -2112,62 +2113,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">QTableWidget{
-	background-color: #C0C0C0;
-}
-
-QScrollBar:vertical {      
-     border: 2px solid grey;   
-     background:#C0C0C0;
-     width: 50px;
-     margin: 39px 0 39px 0;               
- }
- QScrollBar::handle:vertical {
-     background:white;
-     min-height: 38px;
- }
-QScrollBar::add-line:vertical {
-     border: 2px solid grey;
-     background: royalblue;
-     height: 35px;
-     subcontrol-position: bottom;
-     subcontrol-origin: margin;
- }
- QScrollBar::sub-line:vertical {
-     border: 2px solid grey;
-     height: 35px;
-	 background: royalblue;
-     subcontrol-position: top;
-     subcontrol-origin: margin;
- }
- QScrollBar::up-arrow:vertical{
-  margin: 0px 0px 5px 0px;  
-  width: 0;
-  height: 0;
-  /*border: 2px solid #000;*/
-  border-top: 5px  solid royalblue;
-  border-right: 10px solid royalblue;
-  border-bottom: 20px  solid white;
-  border-left: 10px  solid royalblue ;
-}
- QScrollBar::down-arrow:vertical {
-   
-  margin: 5px 0px 0px 0px;  
-  width: 0;
-  height: 0;
-  /*border: 2px solid #000;*/
-  border-top: 20px solid white;
-  border-right: 10px solid royalblue;
-  border-bottom: 5px solid royalblue ;
-  border-left: 10px  solid royalblue ;
-  
- }
-
- QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
-     background: none;
- }
-
-</string>
+       <string notr="true"/>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -2265,7 +2211,7 @@ QScrollBar::add-line:vertical {
        </property>
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>26</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -2277,7 +2223,7 @@ QScrollBar::add-line:vertical {
        </property>
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>26</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -2289,7 +2235,7 @@ QScrollBar::add-line:vertical {
        </property>
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>26</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -2299,9 +2245,9 @@ QScrollBar::add-line:vertical {
      <widget class="QTabWidget" name="tabWidget">
       <property name="geometry">
        <rect>
-        <x>880</x>
+        <x>1080</x>
         <y>60</y>
-        <width>1021</width>
+        <width>800</width>
         <height>751</height>
        </rect>
       </property>
@@ -2351,7 +2297,7 @@ QTabWidget::pane {
          <rect>
           <x>100</x>
           <y>70</y>
-          <width>551</width>
+          <width>631</width>
           <height>391</height>
          </rect>
         </property>
@@ -2462,11 +2408,6 @@ QTabWidget::pane {
              <bold>true</bold>
             </font>
            </property>
-           <item>
-            <property name="text">
-             <string/>
-            </property>
-           </item>
           </widget>
          </item>
          <item row="0" column="0">
@@ -2489,8 +2430,8 @@ QTabWidget::pane {
        <widget class="QWidget" name="gridLayoutWidget_7">
         <property name="geometry">
          <rect>
-          <x>340</x>
-          <y>570</y>
+          <x>100</x>
+          <y>560</y>
           <width>641</width>
           <height>80</height>
          </rect>
@@ -2582,13 +2523,14 @@ QTabWidget::pane {
             <enum>Qt::NoFocus</enum>
            </property>
            <property name="styleSheet">
-            <string notr="true">QPushButton {
+            <string notr="true">QPushButton{
 	color: white;
 	background-color: royalblue;
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
-}</string>
+}
+</string>
            </property>
            <property name="text">
             <string>Editar</string>
@@ -2605,8 +2547,8 @@ QTabWidget::pane {
        <widget class="QPushButton" name="Btn_CubGenerar">
         <property name="geometry">
          <rect>
-          <x>470</x>
-          <y>560</y>
+          <x>190</x>
+          <y>550</y>
           <width>491</width>
           <height>90</height>
          </rect>
@@ -2623,30 +2565,41 @@ QTabWidget::pane {
          <enum>Qt::NoFocus</enum>
         </property>
         <property name="styleSheet">
-         <string notr="true">QPushButton {
+         <string notr="true">QPushButton{
 	color: white;
 	background-color: royalblue;
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
-}</string>
+}
+QPushButton:pressed {
+	color: white;
+	background-color: gray;
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+}
+</string>
         </property>
         <property name="text">
          <string>Generar</string>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
         </property>
        </widget>
        <widget class="QWidget" name="gridLayoutWidget_8">
         <property name="geometry">
          <rect>
-          <x>50</x>
-          <y>40</y>
-          <width>641</width>
+          <x>60</x>
+          <y>70</y>
+          <width>681</width>
           <height>361</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_13">
          <item row="3" column="1">
-          <widget class="QLineEdit" name="Capacidad">
+          <widget class="QLineEdit" name="Line_Capacidad_2">
            <property name="maximumSize">
             <size>
              <width>441</width>
@@ -2779,53 +2732,6 @@ QTabWidget::pane {
           </widget>
          </item>
         </layout>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_11">
-       <attribute name="title">
-        <string>Puntos  </string>
-       </attribute>
-       <widget class="QLineEdit" name="Line_Puntos_cub">
-        <property name="geometry">
-         <rect>
-          <x>80</x>
-          <y>170</y>
-          <width>441</width>
-          <height>71</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>36</pointsize>
-          <weight>75</weight>
-          <italic>true</italic>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="placeholderText">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_20">
-        <property name="geometry">
-         <rect>
-          <x>80</x>
-          <y>100</y>
-          <width>451</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>36</pointsize>
-          <weight>75</weight>
-          <italic>true</italic>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Puntos de cubicacion</string>
-        </property>
        </widget>
       </widget>
      </widget>
@@ -5802,7 +5708,7 @@ font-weight: bold;
        </property>
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>26</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -5815,7 +5721,7 @@ font-weight: bold;
        </property>
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>26</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -5828,7 +5734,7 @@ font-weight: bold;
        </property>
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>26</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -5841,7 +5747,7 @@ font-weight: bold;
        </property>
        <property name="font">
         <font>
-         <pointsize>24</pointsize>
+         <pointsize>26</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -5854,7 +5760,7 @@ font-weight: bold;
        </property>
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>26</pointsize>
          <weight>75</weight>
          <italic>true</italic>
          <bold>true</bold>
@@ -7254,7 +7160,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1121</width>
+         <width>1091</width>
          <height>981</height>
         </rect>
        </property>
@@ -8068,6 +7974,9 @@ QScrollBar::add-line:vertical {
       <property name="verticalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOn</enum>
       </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
       <property name="tabKeyNavigation">
        <bool>false</bool>
       </property>
@@ -8116,7 +8025,7 @@ QScrollBar::add-line:vertical {
        </property>
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>26</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -8128,7 +8037,7 @@ QScrollBar::add-line:vertical {
        </property>
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>26</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -8140,7 +8049,7 @@ QScrollBar::add-line:vertical {
        </property>
        <property name="font">
         <font>
-         <pointsize>22</pointsize>
+         <pointsize>26</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
