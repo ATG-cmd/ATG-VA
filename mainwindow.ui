@@ -209,6 +209,12 @@ width: 0px;
       <height>841</height>
      </rect>
     </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>70</height>
+     </size>
+    </property>
     <property name="font">
      <font>
       <pointsize>4</pointsize>
@@ -6897,9 +6903,9 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>350</x>
+        <x>200</x>
         <y>190</y>
-        <width>1241</width>
+        <width>1491</width>
         <height>391</height>
        </rect>
       </property>
@@ -6927,13 +6933,13 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
         <widget class="QLineEdit" name="Line_User">
          <property name="minimumSize">
           <size>
-           <width>700</width>
-           <height>50</height>
+           <width>800</width>
+           <height>70</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -6948,12 +6954,12 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          <property name="minimumSize">
           <size>
            <width>150</width>
-           <height>50</height>
+           <height>70</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -6980,7 +6986,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -6998,12 +7004,12 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          <property name="minimumSize">
           <size>
            <width>150</width>
-           <height>50</height>
+           <height>70</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -7030,7 +7036,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -7047,13 +7053,13 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
         <widget class="QLineEdit" name="Line_Memo">
          <property name="minimumSize">
           <size>
-           <width>700</width>
-           <height>50</height>
+           <width>800</width>
+           <height>70</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -7068,12 +7074,12 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          <property name="minimumSize">
           <size>
            <width>150</width>
-           <height>50</height>
+           <height>70</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -7094,13 +7100,13 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
         <widget class="QLineEdit" name="Line_StationCode">
          <property name="minimumSize">
           <size>
-           <width>700</width>
-           <height>50</height>
+           <width>800</width>
+           <height>70</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -7114,13 +7120,13 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
         <widget class="QLineEdit" name="Line_StationName">
          <property name="minimumSize">
           <size>
-           <width>700</width>
-           <height>50</height>
+           <width>800</width>
+           <height>70</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -7140,7 +7146,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -7158,12 +7164,12 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          <property name="minimumSize">
           <size>
            <width>150</width>
-           <height>50</height>
+           <height>70</height>
           </size>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -7190,7 +7196,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
          </property>
          <property name="font">
           <font>
-           <pointsize>22</pointsize>
+           <pointsize>36</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
