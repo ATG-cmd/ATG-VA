@@ -1143,7 +1143,7 @@ void MainWindow::on_Regresar_clicked()
 case SMenu : case SHome : case SSonda : case STanque : case STablaCub: case SLogin :
 case SHome2 : case STMaxi : case SComunicacion: case SVialarmas : case Slimites : case SFecha_Hora:
 case SComunicador :case SInventoryConfig: case SPrinter: case SStation: case SFormato_FechaHora:
-case STurnos:  case SSensor_confi: frame= SMenu;break;
+case SConfig_Entregas: case STurnos:  case SSensor_confi: frame= SMenu;break;
         //MENU PUBLICO
 case  sInventario: case SReportes: case SEntregas : case SSensor_rep: frame= SMenuPub;  break;
 
@@ -1904,17 +1904,18 @@ void MainWindow::on_Btn_Inventario_clicked()
    combo_connect5 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
            [=](int index){
 
-
-        if (index !=0)
-        {
-            ui->SelecTank->setCurrentIndex(1);ui->SelecTank->activated(1);
-            ui->SelecTank->setItemText(0, " ");
-        }
-        else{
-            ui->SelecTank->setCurrentIndex(0); ui->SelecTank->activated(0);
-            ui->SelecTank->setItemText(0, "ALL");
-        }
-        });
+       if (frame == sInventario || frame == SEntregas ){
+           if (index !=0 )
+           {
+               ui->SelecTank->setCurrentIndex(1);ui->SelecTank->activated(1);
+               ui->SelecTank->setItemText(0, " ");
+           }
+           else{
+               ui->SelecTank->setCurrentIndex(0); ui->SelecTank->activated(0);
+               ui->SelecTank->setItemText(0, "ALL");
+           }
+       }}
+);
 
     QObject::disconnect( combo_connect6 );
    combo_connect6 = QObject::connect(ui->SelecTank, QOverload<int>::of(&QComboBox::activated),
@@ -1939,7 +1940,7 @@ void MainWindow::on_Btn_Reports_clicked()
     ui->ComboSeleccion->addItem("Prioritarios");
     ui->ComboSeleccion->addItem("No Prioritarios");
     ui->ComboSeleccion->addItem("Historico");
-
+     QObject::disconnect(combo_connect5);
      QObject::disconnect( combo_connect1 );
 
     combo_connect1 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
@@ -1962,6 +1963,7 @@ void MainWindow::on_Btn_Reports_clicked()
 
 void MainWindow::on_Btn_Entregas_or_clicked()
 {
+
     frame = SEntregas;
     ui->Lab_Titulo->setText("Entregas");
     ui->stackedWidget->setCurrentIndex(SEntregas);
@@ -1973,6 +1975,111 @@ void MainWindow::on_Btn_Entregas_or_clicked()
     ui->ComboSeleccion->addItem("Historial de Entragas");
     ui->ComboSeleccion->addItem("Ultima Entrega");
     ui->ComboSeleccion->activated(0);
+
+    combo_connect8 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
+            [=](int index){
+                 if ( index == 0)
+                 {
+             ui->SelecTank->setCurrentIndex(1);ui->SelecTank->activated(1);
+             ui->SelecTank->setItemText(0, " ");
+                 }
+                 else {
+                     ui->SelecTank->setCurrentIndex(1);ui->SelecTank->activated(1);
+                     ui->SelecTank->setItemText(0, " ");
+                 }
+
+         });
+    combo_connect9= connect(ui->SelecTank, QOverload<int>::of(&QComboBox::activated),
+                            [=](int index){
+        QString cadena;
+        ui->Tab_entregas->clearContents();
+        ui->Tab_entregas->setRowCount(0);
+        switch (ui->ComboSeleccion->currentIndex()) {
+
+        case 0: cadena.append("SELECT * FROM cistem.Entregando WHERE STATUS='Entregando';"); ComboSelect= EActual; break;
+        case 1: cadena.append("SELECT * FROM `cistem`.`entregas` where IDTank = '"+ui->SelecTank->itemText(index)+"';"); ComboSelect= EHistorial; break;
+        case 2: cadena.append("SELECT * FROM cistem.entregas  WHERE IDTank='"+ui->SelecTank->itemText(index)+"' ORDER BY Fecha DESC LIMIT 2;"); ComboSelect=Eultima; break;
+        default: break;
+
+        }
+
+
+        QSqlQuery qry;
+        qDebug() << "QRY:" << qry.exec(cadena);
+        int cada2= 2;
+        bool TituloTank= true;
+        while (qry.next())
+        {
+            if (cada2 == 2)
+            {
+                if (TituloTank && ui->ComboSeleccion->currentIndex() != EActual)
+                {
+                    ui->Tab_entregas->horizontalHeaderItem(0)->setText("Inicio/Fin Fecha&Hora");
+
+                    ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
+                    ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1,0, new QTableWidgetItem(qry.value(2).toString()));
+                    ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
+                    ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(9).toString()+ " : "+ qry.value(8).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
+                    TituloTank = false;
+                    cada2 = 1;
+                    ui->SelecTank->show();
+
+                }else {
+                    ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
+                    ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(9).toString()+ " : "+ qry.value(8).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
+                }
+
+
+            }else {ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
+                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(9).toString()+ " : "+ qry.value(8).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
+            }
+            if(ui->ComboSeleccion->currentIndex() != 0){
+                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 1, new QTableWidgetItem(QString::number(qry.value(3).toInt())));
+                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 2, new QTableWidgetItem(QString::number(qry.value(4).toInt())));
+                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 3, new QTableWidgetItem(QString::number(qry.value(6).toInt())));
+                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1,4 , new QTableWidgetItem(QString::number(qry.value(7).toInt())));
+                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
+                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
+                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
+                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
+                //ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
+            }
+            else {
+                ui->Tab_entregas->horizontalHeaderItem(0)->setText("Nombre del Tanque");
+                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(2).toString()));
+                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 1, new QTableWidgetItem(QString::number(qry.value(3).toInt())));
+                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 2, new QTableWidgetItem(QString::number(qry.value(4).toInt())));
+                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 3, new QTableWidgetItem(QString::number(qry.value(5).toInt())));
+                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 4, new QTableWidgetItem(QString::number(qry.value(6).toInt())));
+                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
+                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
+                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
+                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
+                //ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
+                ui->SelecTank->hide();
+
+            }
+            if(cada2==2 && !TituloTank && ui->ComboSeleccion->currentIndex() !=0 && qry.value(9) != "C.E.")
+            {
+                ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
+                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem("Volumen Entregado : "));
+                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 1 , new QTableWidgetItem(QString::number(qry.value(5).toInt())));
+                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
+                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
+                ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
+                cada2 = 0;
+            }
+
+
+            qDebug() << qry.value(0).toInt() << qry.value(1).toString() << qry.value(2).toInt() << qry.value(4).toInt();
+            if (qry.value(9).toString() != "C.E.")
+            {
+                cada2++;
+            }
+        }
+
+    });
+
 }
 
 void MainWindow::Botones()
@@ -1987,12 +2094,16 @@ void MainWindow::Botones()
    ui->SelecTank->setVisible(false);
    ui->Btn_CambioTurno->setVisible(false);
 
-
-  // ui->ComboSeleccion->clear();
-
    QObject::disconnect( combo_connect1 ); // btn reporte
    QObject::disconnect( combo_connect2 ); // barra estados
    QObject::disconnect( combo_connect7 ); // reportes sensores
+   if(frame != sInventario)QObject::disconnect(combo_connect5);//Combo de Inventario
+   if(frame != SEntregas)
+   {
+       QObject::disconnect(combo_connect8);//Combo Entrega
+       QObject::disconnect(combo_connect9);//Comto Select Tank en entrega
+   }
+
    if(frame != STanque && frame != Slimites)  QObject::disconnect( combo_connect3 ); // tanque
    if(frame != SComunicacion && frame != SComunicador) QObject::disconnect( combo_connect4 ); // comunicador
 
@@ -2384,10 +2495,7 @@ int Cmerma=0;
                  ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
                  ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(7).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
              }
-//             else{
-//            ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
-//            ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(7).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
-//             }
+
             else if(SelecionInventario[ComboInventory] == "InventarioTurnos")
              {
 
@@ -2446,8 +2554,7 @@ int Cmerma=0;
 
                  }
                  else{
-//                     if(ui->Tabla_Inventario->columnCount() == 6)
-//                         ui->Tabla_Inventario->removeColumn(5);
+
                  ui->Tabla_Inventario->horizontalHeaderItem(0)->setText("Fecha/Hora");
                  ui->Tabla_Inventario->setColumnWidth(1,380);
                  ui->Tabla_Inventario->horizontalHeaderItem(1)->setText("Volumen de Combustible");
@@ -2897,110 +3004,7 @@ void MainWindow::conectar_signals()
     connect(ui->Combo_sensor_dir, QOverload<int>::of(&QComboBox::activated),[=](int index){ consultar_sensores(index);  });
 
 
-    QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
-           [=](int index){
-                if ( index == 0)
-                {
-            ui->SelecTank->setCurrentIndex(1);ui->SelecTank->activated(1);
-            ui->SelecTank->setItemText(0, " ");
-                }
-                else {
-                    ui->SelecTank->setCurrentIndex(1);ui->SelecTank->activated(1);
-                    ui->SelecTank->setItemText(0, " ");
-                }
 
-        });
- connect(ui->SelecTank, QOverload<int>::of(&QComboBox::activated),
-            [=](int index){
-        QString cadena;
-        ui->Tab_entregas->clearContents();
-        ui->Tab_entregas->setRowCount(0);
-        switch (ui->ComboSeleccion->currentIndex()) {
-
-        case 0: cadena.append("SELECT * FROM cistem.Entregando WHERE STATUS='Entregando';"); ComboSelect= EActual; break;
-        case 1: cadena.append("SELECT * FROM `cistem`.`entregas` where IDTank = '"+ui->SelecTank->itemText(index)+"';"); ComboSelect= EHistorial; break;
-        case 2: cadena.append("SELECT * FROM cistem.entregas  WHERE IDTank='"+ui->SelecTank->itemText(index)+"' ORDER BY Fecha DESC LIMIT 2;"); ComboSelect=Eultima; break;
-        default: break;
-
-        }
-
-
-         QSqlQuery qry;
-         qDebug() << "QRY:" << qry.exec(cadena);
-         int cada2= 2;
-         bool TituloTank= true;
-         while (qry.next())
-         {
-            if (cada2 == 2)
-            {
-                if (TituloTank && ui->ComboSeleccion->currentIndex() != EActual)
-                {
-                    ui->Tab_entregas->horizontalHeaderItem(0)->setText("Inicio/Fin Fecha&Hora");
-
-                   ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
-                   ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1,0, new QTableWidgetItem(qry.value(2).toString()));
-                    ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
-                    ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(9).toString()+ " : "+ qry.value(8).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
-                   TituloTank = false;
-                   cada2 = 1;
-                   ui->SelecTank->show();
-
-                }else {
-                        ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
-                        ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(9).toString()+ " : "+ qry.value(8).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
-                    }
-
-
-            }else {ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
-                    ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(9).toString()+ " : "+ qry.value(8).toDateTime().toString("dd/MM/yyyy HH:mm:ss")));
-                 }
-            if(ui->ComboSeleccion->currentIndex() != 0){
-             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 1, new QTableWidgetItem(QString::number(qry.value(3).toInt())));
-             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 2, new QTableWidgetItem(QString::number(qry.value(4).toInt())));
-             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 3, new QTableWidgetItem(QString::number(qry.value(6).toInt())));
-             ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1,4 , new QTableWidgetItem(QString::number(qry.value(7).toInt())));
-             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
-             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
-             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
-             ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
-             //ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
-              }
-            else {
-                ui->Tab_entregas->horizontalHeaderItem(0)->setText("Nombre del Tanque");
-                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem(qry.value(2).toString()));
-                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 1, new QTableWidgetItem(QString::number(qry.value(3).toInt())));
-                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 2, new QTableWidgetItem(QString::number(qry.value(4).toInt())));
-                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 3, new QTableWidgetItem(QString::number(qry.value(5).toInt())));
-                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 4, new QTableWidgetItem(QString::number(qry.value(6).toInt())));
-                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
-                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
-                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
-                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
-                //ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 5)->setTextAlignment(Qt::AlignCenter);
-                ui->SelecTank->hide();
-
-            }
-             if(cada2==2 && !TituloTank && ui->ComboSeleccion->currentIndex() !=0 && qry.value(9) != "C.E.")
-            {
-                ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
-                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem("Volumen Entregado : "));
-                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 1 , new QTableWidgetItem(QString::number(qry.value(5).toInt())));
-                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
-                ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
-                ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
-                cada2 = 0;
-            }
-
-
-             qDebug() << qry.value(0).toInt() << qry.value(1).toString() << qry.value(2).toInt() << qry.value(4).toInt();
-          if (qry.value(9).toString() != "C.E.")
-          {
-             cada2++;
-          }
-
-         }
-
-    });
 
  int por1 = static_cast<int>((100 * tanques[indiceM]->GetVolMax())/38439.85);
  int y = static_cast<int>(430 * por1/38439.85);
