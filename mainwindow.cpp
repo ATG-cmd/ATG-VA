@@ -41,6 +41,7 @@
 #define SSensor_rep 21
 #define SFecha_Hora 22
 #define SFormato_FechaHora 23
+#define SConfig_Entregas 24
 
 #define CTRL 12
 #define Buzzer 29
@@ -164,9 +165,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     ConCombocol(ui->Combo_Color);
 
-    //connect(Time2,SIGNAL(timeout()),this,SLOT(Actualizar_Time()));
-    //Time2->start(1000);
-
     deliveryProGaugeTimer = new QTimer(this);
     connect(Gpio_timer,SIGNAL(timeout()),this,SLOT(Leer_GPIO()));
     connect(onesecond,SIGNAL(timeout()),this,SLOT(everysecond()));
@@ -248,6 +246,7 @@ MainWindow::MainWindow(QWidget *parent)
    ui->Regresar->setVisible(false);
    ui->Btn_user->setVisible(true);
    ui->btn_menu->setVisible(true);
+   ui->Btn_CambioTurno->setVisible(true);
    ui->SelecTank->setVisible(false);
 
    qDebug () << "Aqui ando";
@@ -454,6 +453,7 @@ void MainWindow::on_Btn_Guardar_clicked()
     case SSensor_confi: guardar_sensores(); break;
     case SFecha_Hora: Guardar_FechaHora();  break;
     case SFormato_FechaHora: guardar_FormatoFecha(); break;
+    case SConfig_Entregas: Guardar_ConfigEntregas(); break;
     }
     insertar_incidente("Warning","System Setup Modified","user","0","1",false);
 }
@@ -714,19 +714,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         delete dlg;
         return true;
     }
-     if(obj == ui->dateEdit && event->type() == QEvent::FocusIn)
-     {
-         MainWindow::setFocus();
 
-           Cale *Cal = new Cale(this);
-
-           Cal->setGeometry(350,100,1180,900);
-          Cal->exec();
-          ui->dateEdit->setDate(Cal->Fecha);
-
-           // delete Cal;
-         return  true;
-     }
     //    if(obj == ui->lineEdit && event->type() == QEvent::FocusIn)
     //    {
     //        MainWindow::setFocus();
@@ -966,6 +954,8 @@ void MainWindow::Descargar()
                tanques[i]->SetAlarma_de_Agua(qry.value(7).toDouble());
                tanques[i]->SetAdvertencua_de_Agua(qry.value(8).toDouble());
 
+               tanques[i]->DeliveryinProcces();
+
 
                qDebug() <<"Hola Desde Limites ;p"
                         <<qry.value(0).toString()
@@ -1010,6 +1000,9 @@ void MainWindow::Descargar()
                   IProg= false;
               }
           }
+
+
+
  }
 
 void MainWindow::Geometrytank()
@@ -1066,10 +1059,10 @@ void MainWindow::Enviar_qry(QString qry)
     else {
 
         //QMessageBox::information(this,"EXITO", "Los datos se guardaron correctamente");
-        frame1 = new Frame(this);
-        frame1->setGeometry(0,0,1920,1080);
-        frame1->mensaje("Los Datos se guardaron \ncorrectamente", "Exito ","Informacion");
-        frame1->show();
+        Dialogo1 = new Frame(this);
+        Dialogo1->setGeometry(0,0,1920,1080);
+        Dialogo1->mensaje("Los Datos se guardaron \ncorrectamente", "Exito ","Informacion");
+        Dialogo1->show();
 
 
 
@@ -1145,13 +1138,14 @@ void MainWindow::Tanque_Maximisado(int index)
 
 void MainWindow::on_Regresar_clicked()
 {
+    qDebug() << frame <<  "------------Estoy en Regresar ----------";
     MainWindow::setFocus();
     switch (frame) {
     // MENU DE CONFIGURACION
 case SMenu : case SHome : case SSonda : case STanque : case STablaCub: case SLogin :
-case SHome2 : case STMaxi : case SComunicacion: case SVialarmas : case Slimites :
+case SHome2 : case STMaxi : case SComunicacion: case SVialarmas : case Slimites : case SFecha_Hora:
 case SComunicador :case SInventoryConfig: case SPrinter: case SStation: case SFormato_FechaHora:
-case STurnos: case SSensor_confi: frame= SMenu;break;
+case STurnos:  case SSensor_confi: frame= SMenu;break;
         //MENU PUBLICO
 case  sInventario: case SReportes: case SEntregas : case SSensor_rep: frame= SMenuPub;  break;
 
@@ -1835,6 +1829,11 @@ void MainWindow::on_Btn_CubGenerar_clicked()
 
 void MainWindow::on_Btn_Entregas_clicked()
 {
+    frame = SConfig_Entregas;
+    ui->stackedWidget->setCurrentIndex(SConfig_Entregas);
+    ui->Lab_Titulo->setText("Entregas");
+
+
 }
 void MainWindow::deliveryProGaugeCountIncrement(){
     if (TanqueActual == numerodetanques-1) { TanqueActual = 0;}
@@ -1985,6 +1984,9 @@ void MainWindow::Botones()
    ui->btn_menu->setVisible(false);
    ui->ComboSeleccion->setVisible(false);
    ui->SelecTank->setVisible(false);
+   ui->Btn_CambioTurno->setVisible(false);
+
+
   // ui->ComboSeleccion->clear();
 
    QObject::disconnect( combo_connect1 ); // btn reporte
@@ -1993,8 +1995,8 @@ void MainWindow::Botones()
    if(frame != SComunicacion && frame != SComunicador) QObject::disconnect( combo_connect4 ); // comunicador
 
    switch (frame) {
-  // case 1: ui->Regresar->setVisible(true); ui->btn_menu->setVisible(true); break;
-   case SHome: case SHome2: ui->btn_menu->setVisible(true); ui->Btn_user->setVisible(true); break;
+
+   case SHome: case SHome2: ui->Btn_CambioTurno->setVisible(true); ui->btn_menu->setVisible(true); ui->Btn_user->setVisible(true); break;
    case SMenuPub: case SLogin: case SMenu: case STMaxi: break;
    case STablaCub: case SVialarmas:case SEntregas:
         ui->Regresar->setVisible(true); break;
@@ -2099,11 +2101,12 @@ void MainWindow::Leer_GPIO()
 void MainWindow::everysecond()
 {
     Actualizar_Time();
+    int IDTurno = 0;
 
     if (MinutoSec == 60){
 
-        if (frame == SEntregas)
-        {ui->ComboSeleccion->activated(ComboSelect);}
+     //   if (frame == SEntregas && ui->ComboSeleccion->cur )
+      //  {ui->ComboSeleccion->activated(ComboSelect);}
 
            if( IProg == true ){
             int a;
@@ -2122,13 +2125,18 @@ void MainWindow::everysecond()
             secs = t1.secsTo(t2);     // secs should be equal to -15.
              a = secs;
             qDebug() << a;
-                if (a < menor && a > 0 )
+                if (a < menor && a > 0  )
                 { menor = a; qDebug() << "Turno Encontrado"  << turnos[i].Turno <<  "Hora" << turnos[i].Horas;
                 TurnoEncontrado = turnos[i].Turno;
+                IDTurno = i;
                 }
             }
+           if (CierreManual)
+           {
+               TurnoEncontrado = turnos[IDTurno +1].Turno;
+           }
 
-            if (TurnoActual == -1 )
+            if (TurnoActual == -1 || CierreManual)
             {
                Qry_Turnos(TurnoEncontrado);
                TurnoActual = TurnoEncontrado;
@@ -2141,6 +2149,22 @@ void MainWindow::everysecond()
             MinutoSec = 0;}
 
     else  MinutoSec ++;
+
+    if (EntregaEnprocesoDurantecierre)
+    {
+        QSqlQuery qry;
+        qry.exec("SELECT COUNT(STATUS) FROM cistem.Entregando WHERE STATUS='Entregando';");
+
+        while(qry.next())
+        {
+            if (qry.value(0)== 0)
+            {
+                EntregaEnprocesoDurantecierre= false;
+               CierreManual = true;
+            }
+        }
+
+    }
 }
 
 void MainWindow::on_Combo_tanque_limites_currentIndexChanged(const QString &arg1)
@@ -2516,6 +2540,10 @@ void MainWindow::guardar_station()
 
 void MainWindow::guardar_Turnos()
 {
+    QSqlQuery qry;
+   if (ui->Combo_MetodoCierre->currentIndex() == 0)
+   {
+
    Turnohabilitado(ui->Turno1,"1");
    Turnohabilitado(ui->Turno2,"2");
    Turnohabilitado(ui->Turno3,"3");
@@ -2524,6 +2552,14 @@ void MainWindow::guardar_Turnos()
    Turnohabilitado(ui->Turno6,"6");
    Turnohabilitado(ui->Turno7,"7");
    Turnohabilitado(ui->Turno8,"8");
+
+   qry.exec("UPDATE `cistem`.`ConfigTurnos` SET `MetodoCierre`='Programado', `TiempoMuerto`='0', `MaxTurnos`='0' WHERE  `ID`=1;");
+
+   }
+   else{
+     qry.exec("UPDATE `cistem`.`ConfigTurnos` SET `MetodoCierre`='Manual', `TiempoMuerto`='"+ui->LineTMuerto->text()+"', `MaxTurnos`='"+ui->LineNMT->text()+"' WHERE  `ID`=1;");
+   }
+   MetodoCierre = ui->Combo_MetodoCierre->currentIndex();
 }
 
 void MainWindow::Turnohabilitado(Butons *T,QString TID)
@@ -2933,7 +2969,7 @@ void MainWindow::conectar_signals()
                 ui->SelecTank->hide();
 
             }
-             if(cada2==2 && !TituloTank && ui->ComboSeleccion->currentIndex() !=0)
+             if(cada2==2 && !TituloTank && ui->ComboSeleccion->currentIndex() !=0 && qry.value(9) != "C.E.")
             {
                 ui->Tab_entregas->insertRow(ui->Tab_entregas->rowCount());
                 ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 0, new QTableWidgetItem("Volumen Entregado : "));
@@ -2944,8 +2980,13 @@ void MainWindow::conectar_signals()
                 cada2 = 0;
             }
 
+
              qDebug() << qry.value(0).toInt() << qry.value(1).toString() << qry.value(2).toInt() << qry.value(4).toInt();
-          cada2++;
+          if (qry.value(9).toString() != "C.E.")
+          {
+             cada2++;
+          }
+
          }
 
     });
@@ -2994,17 +3035,7 @@ connect(ui->tabWidget_2, QOverload<int>::of(&QTabWidget::currentChanged),
 
 }
 
-void MainWindow::Descargar_Entregaenproceso()
-{
-     QSqlQuery qry;
-      qry.exec("SELECT * FROM cistem.Entregando WHERE STATUS='Entregando';");
 
-    while(qry.next())
-    {
-
-    }
-
-}
 void MainWindow::guardar_impresora()
 {
     QString cadena;
@@ -3284,6 +3315,8 @@ void MainWindow::on_Btn_Fechayhora_clicked()
      ui->stackedWidget->setCurrentIndex(SFecha_Hora);
      ui->Btns_Fechayhora->setIsSelect(false);
      ui->Lab_Titulo->setText("Fecha & hora");
+     frame = SFecha_Hora;
+     qDebug() << frame << "------------------------------------Hola Estoy en ek Frame Fecha y hora";
 }
 
 void MainWindow::on_tabWidget_2_currentChanged(int index)
@@ -3316,3 +3349,68 @@ void MainWindow::Guardar_FechaHora()
 
 
 
+
+void MainWindow::on_Btn_CambioTurno_clicked()
+{
+    QSqlQuery qry;
+    qry.exec("SELECT * FROM cistem.ConfigTurnos;");
+
+    while(qry.next())
+    {
+       if (qry.value(1).toString() == "Manual" )
+       {
+           CambioDeTurnoManual();
+
+       }
+
+           else {
+           CambioDeTurnoProgramado();
+       }
+    }
+
+    }
+
+    void MainWindow::CambioDeTurnoManual()
+    {
+
+    }
+
+    void MainWindow::CambioDeTurnoProgramado()
+    {
+
+        QSqlQuery qry;
+        qry.exec("SELECT COUNT(STATUS) FROM cistem.Entregando WHERE STATUS='Entregando' ;");
+
+       while(qry.next())
+       {
+           if (qry.value(0)== 0)
+           {
+               CierreManual= true;
+           }
+           else {
+               EntregaEnprocesoDurantecierre= true;
+
+           }
+       }
+
+    }
+
+    void MainWindow::Guardar_ConfigEntregas()
+    {
+        QSqlQuery qry;
+       if( qry.exec("UPDATE `cistem`.`Config_Entregas` SET `MinimoEntrega`='"+ui->Line_MinimoEntrega->text()+"', `TiempoEntrega`='"+ui->Line_TiempoEntrega->text()+"' WHERE  `ID`=1;"))
+       {
+           Dialogo1 = new Frame(this);
+           Dialogo1->setGeometry(0,0,1920,1080);
+           Dialogo1->mensaje("Los Datos se guardaron \ncorrectamente", "Exito ","Informacion");
+           Dialogo1->show();
+
+       }
+       else {
+           Dialogo1 = new Frame(this);
+           Dialogo1->setGeometry(0,0,1920,1080);
+           Dialogo1->mensaje("Lo sentimos algo salio mal", "Error ","Error");
+           Dialogo1->show();
+       }
+
+    }

@@ -121,7 +121,7 @@ public:
      int Input[16] = {4,2,1,0,14,6,5,3,21,31,30,11,23,27,22,26};
       int TCon = 0;
      bool sensor_papel;
-
+     int MetodoCierre = 0;
 
 
 
@@ -130,6 +130,8 @@ public:
      int TurnoActual =-1;
      int TurnoEncontrado;
      int MinutoSec =0;
+     bool CierreManual = false;
+     bool EntregaEnprocesoDurantecierre =false;
 
 
      QMetaObject::Connection combo_connect1;
@@ -144,6 +146,8 @@ public:
      int SelecHora =0;
      int SelecMinutos =0;
      int InvMin= 0;
+
+
 
      QString Bitso [13]= {"Deshabilitado","5 Minutos","10 Minutos","15 Minutos","20 Minutos","30 Minutos",
                     "1 Hora","2 Horas","4 Horas","6 Horas","8 Horas", "12 Horas", "24 Horas"};
@@ -195,7 +199,8 @@ public:
     void rellenar_tabla_sensores(int caso);
     void conectar_signals();
     void Descargar_Entregaenproceso();
-    signals:
+
+signals:
 
     void BotonMas(int Turno);
 
@@ -376,10 +381,20 @@ private slots:
 
    void Guardar_FechaHora();
 
+   void on_Btn_CambioTurno_clicked();
+
+   void CambioDeTurnoManual();
+
+   void CambioDeTurnoProgramado();
+
+   void Guardar_ConfigEntregas();
+
+
+
 private:
     Ui::MainWindow *ui;
     Settings m_currentSettings;
-    Frame * frame1;
+    Frame * Dialogo1;
 };
 #endif // MAINWINDOW_H
 

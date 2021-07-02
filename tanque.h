@@ -78,6 +78,7 @@ class Tanque :public QWidget
     double Volumen_Final;
     double Temperatura_Final;
     bool isConnected = true;
+    bool Entregando = false ;
 
     int nivA;
     int PosX;
@@ -206,14 +207,7 @@ public:
        QLabel *label_33;
        QLabel *lbl_ProGaugeDeliveryInProccess;
 
-   /*
-       Max_volumen  Volumen Maximo
-       High_product Producto Alto
-       Overfill     Desbordamiento
-       Delivery_needed   Necesita producto
-       Low_producto  Producto Bajo
-      High_water_alarm  Alto nivel de agua
-     High_water_warning Advertencia de alto nivel de agua */
+
 
     QString  styleSheetTank =
             "font: 16pt \"Broadway\";"
@@ -430,6 +424,8 @@ public:
 
    int getVacio90() const;
    void setVacio90(int value);
+
+   void DeliveryinProcces();
 };
 
 #endif // TANQUE_H

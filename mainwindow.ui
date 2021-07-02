@@ -20,16 +20,16 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QComboBox,  QLineEdit,  QDateEdit
+   <string notr="true">QComboBox,  QLineEdit, QDateEdit
 {
 border-radius: 15px;
 border: 4px solid  gray ;
 }
-QComboBox::drop-down {
+QDateEdit ::drop-down,QComboBox::drop-down {
     width: 40px;
 	background-color:transparent;
 }
-QComboBox::down-arrow {
+QComboBox::down-arrow ,QDateEdit::down-arrow{
 margin: 5px 0px 0px 0px;  
   width: 0;
   height: 0;
@@ -108,9 +108,91 @@ QHeaderView::section:horizontal , QHeaderView::section:vertical
 {
     border-top: 1px solid #fffff8;
 }
-QDateEdit::up-button , QDateEdit::down-button{
+
+QCalendarWidget QWidget#qt_calendar_navigationbar { background-color: royalblue;  
+ height: 60px;
+}
+QCalendarWidget QToolButton {
+    height: 60px;
+    width: 250px;
+    color: white;
+    font-size: 46px;
+    icon-size: 56px, 56px;
+    background-color: royalblue;
+}
+/* header row */
+QCalendarWidget QWidget { alternate-background-color: rgb(128, 128, 128); height: 150px;}
+
+QCalendarWidget QMenu {
+    width: 250px;
+    height: 800px;
+ 
+    left: 20px;
+    color: white;
+    font-size: 46px;
+    background-color: rgb(100, 100, 100);
+}
+QCalendarWidget QSpinBox { 
+    width: 210px; 
+    font-size:50px; 
+    color: white; 
+    background-color: royalblue; 
+   text-align:center;
+    selection-background-color: white;
+    selection-color: blue;
+}
+QCalendarWidget QSpinBox::up-button { subcontrol-origin: border;  subcontrol-position: center right;  width:60px; height:60;border-radius: 30px; background-color: rgb(255,215,0);border: 2px solid  gray ; 
+margin: 8px  0px 7px 20px;  
+  width: 0;
+  height: 0;
+  border: 2px solid #000;
+  border-top: 50px  solid royalblue;
+  border-right: 20px solid royalblue;
+  border-bottom: 50px  solid royalblue ;
+  border-left: 33px  solid white ;
+
+
+
+}
+QCalendarWidget QSpinBox::down-button {subcontrol-origin: border; subcontrol-position: center left;  width:60px; height: 60;border-radius: 30px; background-color: rgb(255,215,0);border: 2px solid  gray ;
+margin: 0px 25px 7px 10px;  
+  width: 0;
+  height: 0;
+  border: 2px solid #000;
+  border-top: 50px  solid royalblue;
+  border-right: 30px solid white;
+  border-bottom: 50px  solid royalblue ;
+  border-left: 10px  solid royalblue ;
+
+}
+QCalendarWidget QSpinBox::up-arrow { width:100px;  }
+QCalendarWidget QSpinBox::down-arrow { width:100px; }
+ 
+/* normal days */
+QCalendarWidget QAbstractItemView:enabled 
+{
+
+    font-size:46px;  
+    color: rgb(180, 180, 180);  
+    background-color: white;  
+    selection-background-color: rgb(64, 64, 64); 
+    selection-color: rgb(0, 255, 0); 
+}
+ 
+/* days in other months */
+QCalendarWidget QAbstractItemView:disabled { color: rgb(64, 64, 64); height:800px; }
+
+
+
+QDateEdit::up-button{
 width: 0px;
 }
+QDateEdit::down-button{
+width: 0px;
+}
+
+
+
 
 </string>
   </property>
@@ -152,7 +234,7 @@ width: 0px;
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>22</number>
+     <number>24</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -8073,7 +8155,7 @@ QScrollBar::add-line:vertical {
         <x>320</x>
         <y>80</y>
         <width>1251</width>
-        <height>561</height>
+        <height>798</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_18">
@@ -8182,6 +8264,9 @@ QScrollBar::add-line:vertical {
        </item>
        <item row="0" column="1" colspan="15">
         <widget class="QDateEdit" name="dateEdit">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="minimumSize">
           <size>
            <width>490</width>
@@ -8201,8 +8286,50 @@ QScrollBar::add-line:vertical {
            <bold>false</bold>
           </font>
          </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="acceptDrops">
+          <bool>true</bool>
+         </property>
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">
+QDateTimeEdit::drop-down {
+margin: 30px 20px 20px -15x;  
+  width: 0;
+  
+  border-top: 40px solid black;
+  border-right: 40px solid white;
+  border-bottom: 20px solid white;
+  border-left: 40px  solid white;
+  
+    subcontrol-position: right center;
+   
+    
+   
+}</string>
+         </property>
+         <property name="inputMethodHints">
+          <set>Qt::ImhPreferNumbers</set>
+         </property>
+         <property name="keyboardTracking">
+          <bool>true</bool>
+         </property>
+         <property name="currentSection">
+          <enum>QDateTimeEdit::MonthSection</enum>
+         </property>
+         <property name="displayFormat">
+          <string>MM/dd/yyyy</string>
+         </property>
+         <property name="calendarPopup">
+          <bool>true</bool>
+         </property>
+         <property name="date">
+          <date>
+           <year>2000</year>
+           <month>1</month>
+           <day>21</day>
+          </date>
          </property>
         </widget>
        </item>
@@ -8567,6 +8694,117 @@ QScrollBar::add-line:vertical {
         <widget class="Line" name="line_23">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Config_Entregas">
+     <widget class="QWidget" name="gridLayoutWidget_12">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>120</y>
+        <width>1271</width>
+        <height>381</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_21">
+       <item row="2" column="0">
+        <widget class="QLabel" name="LabelTimeEntrega">
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Tiempo de Entrega</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="Line" name="line_47">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="Line_TiempoEntrega">
+         <property name="minimumSize">
+          <size>
+           <width>641</width>
+           <height>71</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="Label_MinEntrega">
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Minimo de Entrega</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="Line_MinimoEntrega">
+         <property name="minimumSize">
+          <size>
+           <width>641</width>
+           <height>71</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="LabelUMEntrega">
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Litros</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLabel" name="LabelMinutosEntrega">
+         <property name="font">
+          <font>
+           <pointsize>36</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Minutos</string>
          </property>
         </widget>
        </item>
@@ -8968,6 +9206,21 @@ QComboBox QLineEdit {
      <string>x</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="Btn_CambioTurno">
+    <property name="geometry">
+     <rect>
+      <x>1300</x>
+      <y>950</y>
+      <width>141</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Cambio 
+  de 
+ Turno</string>
+    </property>
+   </widget>
    <zorder>Lab_Titulo</zorder>
    <zorder>btn_menu</zorder>
    <zorder>stackedWidget</zorder>
@@ -8979,6 +9232,7 @@ QComboBox QLineEdit {
    <zorder>ComboSeleccion</zorder>
    <zorder>SelecTank</zorder>
    <zorder>pushButton_5</zorder>
+   <zorder>Btn_CambioTurno</zorder>
   </widget>
  </widget>
  <customwidgets>
