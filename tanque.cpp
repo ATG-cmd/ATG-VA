@@ -959,6 +959,12 @@ void Tanque::deliveryProGaugeCountIncrement(){
                 qry.exec("INSERT INTO `cistem`.`entregas` (`IDTank`,`Tanque_Nombre`, `Volumen`, `Temperatrura`, `Volumen Entregado`, `Altura_de_Combustible`, `Altura_de_Agua`, `Fecha`,`Estado`) VALUES ('"+QString::number(IdTanque)+"','"+NomTank+"', '"+QString::number(VolumenCon)+"', '"+QString::number(Temperatura)+"', '"+QString::number(VolumenEntregado)+"', '"+QString::number(AlturaTank)+"', '"+QString::number(NivelAgua)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', 'Fin');");
                 qry.exec("UPDATE `cistem`.`Entregando` SET  `Tanque_Nombre`='"+NomTank+"', `Volumen`='"+QString::number(VolumenCon)+"', `Temperatura`='"+QString::number(Temperatura)+"', `Altura_de_Combustible`='"+QString::number(AlturaTank)+"', `Altura_de_Agua`='"+QString::number(NivelAgua)+"', `Fecha`='"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', `Status`='Entregado' WHERE `IDTank`='"+QString::number(IdTanque)+"';");
 
+                QString Cadena;
+                Cadena.append("Tanque "
+                              ""+NomTank+" "
+                              "realizo entrega");
+                emit Entrega(Cadena);
+
                 Volumen_inicial =0;
                 lbl_ProGaugeDeliveryInProccess->hide();
                 deliveryInventoryStart = 0;
