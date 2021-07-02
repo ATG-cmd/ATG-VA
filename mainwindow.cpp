@@ -41,6 +41,7 @@
 #define SFecha_Hora 22
 #define SFormato_FechaHora 23
 #define SConfig_Entregas 24
+#define SAlarmas 25
 
 #define CTRL 12
 #define Buzzer 29
@@ -198,6 +199,7 @@ MainWindow::MainWindow(QWidget *parent)
     Impresora->setStopBits(QSerialPort::OneStop);
     connect(Impresora, &QSerialPort::errorOccurred, this, &MainWindow::handleError);
     connect(Impresora, &QSerialPort::readyRead, this, &MainWindow::leer_impresora);
+
     ui->stackedWidget->setCurrentIndex(3);
     fillPortsParameters();
 
@@ -452,6 +454,7 @@ void MainWindow::on_Btn_Guardar_clicked()
     case SFecha_Hora: Guardar_FechaHora();  break;
     case SFormato_FechaHora: guardar_FormatoFecha(); break;
     case SConfig_Entregas: Guardar_ConfigEntregas(); break;
+    case SAlarmas : guardar_alarmas_config(); break;
     }
     insertar_incidente("Warning","System Setup Modified","user","0","1",false);
 }
@@ -1143,7 +1146,8 @@ void MainWindow::on_Regresar_clicked()
 case SMenu : case SHome : case SSonda : case STanque : case STablaCub: case SLogin :
 case SHome2 : case STMaxi : case SComunicacion: case SVialarmas : case Slimites : case SFecha_Hora:
 case SComunicador :case SInventoryConfig: case SPrinter: case SStation: case SFormato_FechaHora:
-case SConfig_Entregas: case STurnos:  case SSensor_confi: frame= SMenu;break;
+case SConfig_Entregas: case STurnos: case SAlarmas: case SSensor_confi: frame= SMenu;break;
+
         //MENU PUBLICO
 case  sInventario: case SReportes: case SEntregas : case SSensor_rep: frame= SMenuPub;  break;
 
@@ -1322,7 +1326,8 @@ void MainWindow::on_Btn_tabla_cubicacion_clicked()
 
 void MainWindow::on_Btn_Alarmas_clicked()
 {
-
+    frame = SAlarmas;
+    ui->stackedWidget->setCurrentIndex(SAlarmas);
 }
 /* A partir de esta seccion se configura el funcionamiento de la tabla de cubicacion
 */
@@ -1555,7 +1560,7 @@ void MainWindow::evaluar_limites(Tanque *tanque)
 }
 
 void MainWindow::insertar_incidente(QString tipo, QString Descripcion, QString usuario,QString Prioridad,QString Activo,bool filtro)
-{
+{   // ejemplo  insertar_incidente("Warning","System Setup Modified","user","0","1",false);
     QSqlQuery qry;
     QString cadena;
     cadena.append("INSERT INTO cistem.incidentes (Tipo_incidente, Descripcion, usuario, Fecha_incidente,Prioridad,Activo)"
@@ -2286,9 +2291,11 @@ void MainWindow::on_Combo_tanque_limites_currentIndexChanged(const QString &arg1
 }
 void MainWindow::Qry_Entrega(QString SeRealizoEntrega)
 {
-    qDebug() << "Qry Entrega" << SeRealizoEntrega;
-    QSqlQuery qry;
-    qry.exec(SeRealizoEntrega);
+
+    insertar_incidente("Alarma",SeRealizoEntrega,"user","1","1",true);
+//    qDebug() << "Qry Entrega" << SeRealizoEntrega;
+//    QSqlQuery qry;
+//    qry.exec(SeRealizoEntrega);
 }
 
 void MainWindow::on_Btn_inventarioConfig_clicked()
@@ -3047,6 +3054,11 @@ connect(ui->tabWidget_2, QOverload<int>::of(&QTabWidget::currentChanged),
 
 });
 
+
+}
+
+void MainWindow::guardar_alarmas_config()
+{
 
 }
 

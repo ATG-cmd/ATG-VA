@@ -202,6 +202,7 @@ public:
     void rellenar_tabla_sensores(int caso);
     void conectar_signals();
     void Descargar_Entregaenproceso();
+    void guardar_alarmas_config();
 
 signals:
 
