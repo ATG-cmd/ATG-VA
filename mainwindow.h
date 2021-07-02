@@ -141,6 +141,9 @@ public:
      QMetaObject::Connection combo_connect5;
      QMetaObject::Connection combo_connect6;
      QMetaObject::Connection combo_connect7;
+     QMetaObject::Connection combo_connect8;
+     QMetaObject::Connection combo_connect9;
+     QMetaObject::Connection combo_connect10;
 
      int SelecIntervalo= 0;
      int SelecHora =0;
