@@ -15,7 +15,6 @@
 #include <QScroller>
 
 
-
 #define SMenu 0
 #define SHome 1
 #define SSonda 2
@@ -134,8 +133,7 @@ MainWindow::MainWindow(QWidget *parent)
     Reloj->setStyleSheet("background-color: transparent;");
     Reloj->setFont(FontReloj);
     Reloj->setText(QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss ap"));
-    estado_sistema(ui->Btn_Barra_Estados,"normal");
-
+    estado_sistema(ui->Btn_Barra_Estados,"normal");      
     Btn_select_rango = new QPushButton(ui->Lab_Rango_Fecha);
     Btn_select_rango->setText("Select Range");
     Btn_select_rango->setStyleSheet("background-color: transparent;");
@@ -211,7 +209,7 @@ MainWindow::MainWindow(QWidget *parent)
     DB = QSqlDatabase::addDatabase("QMYSQL");
 
     // DB.setHostName("192.168.10.104");
-   DB.setHostName("192.168.100.136");
+    DB.setHostName("192.168.100.136");
    // DB.setHostName("192.168.100.216");
    // DB.setHostName("localhost");
     DB.setDatabaseName("cistem");
@@ -1247,6 +1245,7 @@ void MainWindow::on_Btn_Comunicacion_clicked()
 
 void MainWindow::on_Btn_Barra_Estados_clicked()
 {
+    ui->Lab_Rango_Fecha->setText("Desde: " + QDateTime::currentDateTime().toString("yyyy-MM-dd") + " 00:00:00"+ "  Hasta: " + QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"      ");
     frame = SReportes;
     if (Maxi == true)
     { Maxi = false;
@@ -1600,11 +1599,11 @@ void MainWindow::rellenar_incidentes(QString T_inicial, QString T_Final,int inde
                                   "BETWEEN ('"+T_inicial+"') AND ('"+T_Final+"'));"); break;
 
     case 3:    cadena1 = ("SELECT * FROM cistem.incidentes WHERE Fecha_incidente "
-                                      "BETWEEN ('"+T_inicial+"') AND ('"+T_Final+"');"); break;
+                                  "BETWEEN ('"+T_inicial+"') AND ('"+T_Final+"');"); break;
     default:break;
     }
     qry.exec(cadena1);
-   // qDebug() << cadena1;
+   qDebug() << cadena1;
     while(qry.next())
     {
 //        ui->tabla_incidentes->removeRow(0);
@@ -1637,15 +1636,16 @@ void MainWindow::limpiar_tabla(QTableWidget *tabla, int cont)
 
 void MainWindow::buscar_prioridad(QString priodidad)
 {
+
+    limpiar_tabla(ui->tabla_incidentes,ui->tabla_incidentes->rowCount());
     QString cadena;
     QSqlQuery qry;
-    limpiar_tabla(ui->tabla_incidentes,ui->tabla_incidentes->rowCount());
-    //Btn_select_rango->setGeometry(30,5,200,40);
     Btn_select_rango->setText("Select Range");
-    cadena = ("SELECT * FROM cistem.incidentes WHERE Prioridad = '"+ priodidad +"' ;");
+    cadena.append ("SELECT * FROM cistem.incidentes WHERE Prioridad = '"+ priodidad +"' "
+           "AND (Fecha_incidente BETWEEN ('"+QDateTime::currentDateTime().toString("yyyy-MM-dd") + " 00:00:00" +"') AND ('"+ QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+ "'));");
+   qDebug() << cadena;
+   qDebug() << qry.exec(cadena);
 
-    qry.exec(cadena);
-   // qDebug() << cadena;
     while(qry.next())
     {
         ui->tabla_incidentes->insertRow(ui->tabla_incidentes->rowCount());
@@ -1922,6 +1922,7 @@ void MainWindow::on_Btn_Inventario_clicked()
 
 void MainWindow::on_Btn_Reports_clicked()
 {
+    ui->Lab_Rango_Fecha->setText("Desde: " + QDateTime::currentDateTime().toString("yyyy-MM-dd") + " 00:00:00"+ "  Hasta: " + QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"      ");
     frame = SReportes;
     ui->stackedWidget->setCurrentIndex(SReportes);
     Btn_select_rango->setGeometry(30,5,500,50);
@@ -1980,6 +1981,7 @@ void MainWindow::Botones()
 
    QObject::disconnect( combo_connect1 ); // btn reporte
    QObject::disconnect( combo_connect2 ); // barra estados
+   QObject::disconnect( combo_connect7 ); // reportes sensores
    if(frame != STanque && frame != Slimites)  QObject::disconnect( combo_connect3 ); // tanque
    if(frame != SComunicacion && frame != SComunicador) QObject::disconnect( combo_connect4 ); // comunicador
 
@@ -1987,9 +1989,8 @@ void MainWindow::Botones()
   // case 1: ui->Regresar->setVisible(true); ui->btn_menu->setVisible(true); break;
    case SHome: case SHome2: ui->btn_menu->setVisible(true); ui->Btn_user->setVisible(true); break;
    case SMenuPub: case SLogin: case SMenu: case STMaxi: break;
-   case STablaCub: case SVialarmas:case SEntregas:
-        ui->Regresar->setVisible(true); break;
-    case sInventario:ui->ComboSeleccion->setVisible(true);ui->SelecTank->setVisible(true);ui->Regresar->setVisible(true);break;
+   case STablaCub: case SVialarmas:case SEntregas: ui->Regresar->setVisible(true); break;
+   case sInventario:ui->ComboSeleccion->setVisible(true);ui->SelecTank->setVisible(true);ui->Regresar->setVisible(true);break;
    case SComunicador:  case SComunicacion : case Slimites : case STanque: ui->ComboSeleccion->setVisible(true); ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
    default: ui->Regresar->setVisible(true);ui->Btn_Guardar->setVisible(true); break;
    case SReportes: case SSensor_rep:  ui->Regresar->setVisible(true); ui->ComboSeleccion->setVisible(true); break;
@@ -2031,8 +2032,7 @@ while (qry.next())
 }
 
 void MainWindow::btn_clicked()
-{
-    if(Btn_select_rango->text() == "Select Range")
+{   if(Btn_select_rango->text() == "Select Range")
     {
     QString cadena;
     Select_fechas *dlg_rango  = new Select_fechas(this);
@@ -2064,7 +2064,8 @@ void MainWindow::Leer_GPIO()
         if(S_config[i] == true ){
             S_input[i] = digitalRead(Input[i]);
             if(S_input[i] == false) // se activan en false
-            {   Gpio_status.append( "Sensor_");
+            {
+                Gpio_status.append( "Sensor_");
                 Gpio_status.append(QString::number(i+1));
                 Gpio_status.append(": Activado");
                // qDebug() << "El sensor" << i+1 << " se Activo";
@@ -2477,12 +2478,10 @@ void MainWindow::estado_sistema(QPushButton *btn, QString estado)
     if(estado == "warning" && Alarmas <= 0)
     {
         btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(250, 220, 0, 250), stop:0.691897 rgba(250,200,0, 160), stop:0.691964  gray , stop:1 gray); color:white");
-
     }
     else if (estado == "alarma")
     {
         btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(255,0,0, 250), stop:0.691897 rgba(180,0,0, 160), stop:0.691964  gray , stop:1 gray); color:white");
-
     }else if(estado == "normal")
     {
         btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(0, 250, 0, 250), stop:0.691897 rgba(0,180,0, 160), stop:0.691964  gray , stop:1 gray); color:white");
@@ -2686,12 +2685,22 @@ void MainWindow::on_Btn_sensor_rep_clicked()
     frame = SSensor_rep;
     ui->stackedWidget->setCurrentIndex(SSensor_rep);
     ui->ComboSeleccion->clear();
-    rellenar_tabla_sensores(1);
+    ui->ComboSeleccion->addItem("Sensor Status");
+    ui->ComboSeleccion->addItem("Sensor History");
+    ui->ComboSeleccion->addItem("Sensor by period");
+
+    combo_connect7 = QObject::connect(ui->ComboSeleccion, QOverload<int>::of(&QComboBox::activated),
+            [=](int index){
+        switch (index)
+         {case 0:  rellenar_tabla_sensores(1); break;
+          case 1:  rellenar_tabla_sensores(2); break;
+          case 2:  rellenar_tabla_sensores(3); break;
+         }    });
+        ui->ComboSeleccion->activated(0);
 
 }
-
 void MainWindow::on_Combo_impresora_activated(int index)
-{
+{   Q_UNUSED(index);
     buscar_impresora();
 }
 
@@ -2736,7 +2745,6 @@ bool MainWindow::papel_out()
 {
     bool papel_out = true;
     QByteArray cmd2;
-
     cmd2.append(0x1D);
     cmd2.append(0x72);
     cmd2.append(0x01);
@@ -2751,7 +2759,7 @@ bool MainWindow::papel_out()
           }else{
               papel_out = true;
               QMessageBox::critical(this, tr("Critical Error"),"No hay papel");
-              insertar_incidente("Warning","Impresora sin papel","user","0","1",false);
+              insertar_incidente("Warning","Impresora sin papel","user","0","1",true);
           }
        }
     }
@@ -2872,7 +2880,7 @@ void MainWindow::conectar_signals()
         switch (ui->ComboSeleccion->currentIndex()) {
 
         case 0: cadena.append("SELECT * FROM cistem.Entregando WHERE STATUS='Entregando';"); ComboSelect= EActual; break;
-        case 1:cadena.append("SELECT * FROM `cistem`.`entregas` where IDTank = '"+ui->SelecTank->itemText(index)+"';"); ComboSelect= EHistorial; break;
+        case 1: cadena.append("SELECT * FROM `cistem`.`entregas` where IDTank = '"+ui->SelecTank->itemText(index)+"';"); ComboSelect= EHistorial; break;
         case 2: cadena.append("SELECT * FROM cistem.entregas  WHERE IDTank='"+ui->SelecTank->itemText(index)+"' ORDER BY Fecha DESC LIMIT 2;"); ComboSelect=Eultima; break;
         default: break;
 
@@ -2921,7 +2929,7 @@ void MainWindow::conectar_signals()
                 ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 1, new QTableWidgetItem(QString::number(qry.value(3).toInt())));
                 ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 2, new QTableWidgetItem(QString::number(qry.value(4).toInt())));
                 ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 3, new QTableWidgetItem(QString::number(qry.value(5).toInt())));
-                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1,4 , new QTableWidgetItem(QString::number(qry.value(6).toInt())));
+                ui->Tab_entregas->setItem(ui->Tab_entregas->rowCount() - 1, 4, new QTableWidgetItem(QString::number(qry.value(6).toInt())));
                 ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
                 ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
                 ui->Tab_entregas->item(ui->Tab_entregas->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
