@@ -1359,6 +1359,7 @@ void MainWindow::Rellenar_combo_taques(QString tanque_index)
 
 void MainWindow::Rellenar_tabla_cubicacion(int Id_tanque)
 {
+    limpiar_tabla(ui->tableWidget,ui->tableWidget->rowCount());
     QString cadena;
     cadena.append("SELECT Punto, Altura, Volumen FROM cistem.tablacubicacion WHERE "
                   "TanqueId = '" + QString::number(Id_tanque) +"';");
@@ -1366,12 +1367,12 @@ void MainWindow::Rellenar_tabla_cubicacion(int Id_tanque)
     qDebug() << qry.exec(cadena);
     while (qry.next())
     {
-        ui->tableWidget->removeRow(0);
         ui->tableWidget->insertRow(ui->tableWidget->rowCount());
         ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 0, new QTableWidgetItem(QString::number(qry.value(0).toInt())));
         ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 1, new QTableWidgetItem(QString::number(qry.value(1).toDouble(), 'f', 3)));
         ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 2, new QTableWidgetItem(QString::number(qry.value(2).toDouble(), 'f', 3)));
-        qDebug() << qry.value(0).toInt() << qry.value(1).toInt() << qry.value(2).toInt();
+        configurar_tablas(ui->tableWidget,2,1);
+        //qDebug() << qry.value(0).toInt() << qry.value(1).toInt() << qry.value(2).toInt();
     }
 
 }
@@ -1449,6 +1450,7 @@ void MainWindow::on_Combo_CubTanque_currentIndexChanged(int index)
 void MainWindow::on_tableWidget_cellClicked(int row, int column)
 {
     Q_UNUSED(column);
+
     ui->tableWidget->selectRow(row);
     Rellenar_campos_cubicacion(
                 ui->tableWidget->item(row,0)->text(),
@@ -3070,11 +3072,28 @@ void MainWindow::configurar_tablas(QTableWidget *tabla,int n_colum,int n_tabla)
     }
     switch (n_tabla) {
         case 0:
-        ui->tabla_incidentes->setColumnWidth(0,150);
-        ui->tabla_incidentes->setColumnWidth(1,650);
-        ui->tabla_incidentes->setColumnWidth(2,400);
-        ui->tabla_incidentes->setColumnWidth(3,400);
-        ui->tabla_incidentes->setColumnWidth(4,150);
+        tabla->setColumnWidth(0,150);
+        tabla->setColumnWidth(1,650);
+        tabla->setColumnWidth(2,400);
+        tabla->setColumnWidth(3,400);
+        tabla->setColumnWidth(4,150);
+        tabla->setRowHeight(tabla->rowCount() - 1,70);
+            if(ui->ComboSeleccion->currentIndex() == 0)
+            {
+                tabla->setSelectionMode(QAbstractItemView::SingleSelection);
+                tabla->setSelectionBehavior(QAbstractItemView::SelectRows);
+            }
+            else{
+                tabla->setSelectionMode(QAbstractItemView::NoSelection);
+                tabla->setSelectionBehavior(QAbstractItemView::SelectRows);
+            }
+        break;
+        case 1:
+        tabla->setColumnWidth(0,250);
+        tabla->setColumnWidth(1,250);
+        tabla->setColumnWidth(2,250);
+        tabla->setRowHeight(tabla->rowCount() - 1,70);
+
         break;
 
     default: break;
