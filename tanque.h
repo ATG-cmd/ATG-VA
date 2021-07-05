@@ -60,6 +60,8 @@ class Tanque :public QWidget
     double frombase=500;
     double NivelAgua;
 
+    QString InicioEntrega;
+
     int    deliveryTimeOut = 0;
     double deliveryMinimunVolume = 0;
     double deliveryVolumeRead = 0;
@@ -72,14 +74,15 @@ class Tanque :public QWidget
     double deliveryInventoryStartfuelheight =0 ;
     double deliveryInventoryStartwaterheight = 0;
     double deliveryInventoryStartTemp = 0;
-    double deliverySensivilityVolume = ProGaugeCapacidad * 0.0002;
+    int Config_MinimoEntrega;
+    int Config_TiempoEntrega;
     double Volumen_inicial;
     double Temperatura_inicial;
     double Volumen_Final;
     double Temperatura_Final;
     bool isConnected = true;
     bool Entregando = false ;
-
+    double  v;
     int nivA;
     int PosX;
     int PosY;
@@ -106,6 +109,7 @@ class Tanque :public QWidget
     int posTank;
     int Vacio100;
     int Vacio90;
+
 
 
 
@@ -426,6 +430,8 @@ public:
    void setVacio90(int value);
 
    void DeliveryinProcces();
+
+   void SetConfigEntregas(int MinimoEntrega, int TiempoEntrega);
 };
 
 #endif // TANQUE_H

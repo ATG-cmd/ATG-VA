@@ -888,6 +888,13 @@ void MainWindow::Descargar()
     qDebug() << "Descargado Tanques .....";
     S=0;
     QSqlQuery qry;
+    qry.exec("SELECT * FROM `cistem`.`Config_Entregas` WHERE ID='1'");
+    while(qry.next())
+    {
+        MinimoEntrega  = qry.value(1).toInt();
+        TiempoEntrega = qry.value(2).toInt();
+    }
+
     qry.exec("SELECT COUNT(1) FROM `cistem`.`tanques` WHERE Configurado = 1;");
   while(qry.next())   {
    qDebug() << "Que esta pasando";
@@ -929,6 +936,7 @@ void MainWindow::Descargar()
             tanques[S]->setFrombase(qry.value(13).toDouble());
             tanques[S]->setCoeficienteTermico(qry.value(14).toDouble());
             tanques[S]->setProducto(qry.value(15).toString());
+            tanques[S]->SetConfigEntregas(MinimoEntrega,TiempoEntrega);
 
             S++;
             ui->stackedWidget->setCurrentIndex(SHome);

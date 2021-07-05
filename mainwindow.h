@@ -122,6 +122,8 @@ public:
       int TCon = 0;
      bool sensor_papel;
      int MetodoCierre = 0;
+     int MinimoEntrega;
+     int TiempoEntrega;
 
 
 
