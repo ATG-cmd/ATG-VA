@@ -381,7 +381,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 
      latanq->raise();
 
-
+     readPuntosCubicacion();
 
  }
 
@@ -408,31 +408,25 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
     AltVal->setText(QString::number(height,'f',2));
      AlturaTank = height;
 
-
         double result = 0.0;
-
-//         switch(Tipo){
-//             case 0:
-//                 h = TankDiametro;
-//                 r = TankDiametro/ 2.0;
-//                 d = TankDiametro;
-//                 qDebug() << "Altura" <<  h;
-//                 qDebug () << "Radio " << r;
-//                 qDebug() << "D" << d;
-//                 result = Capacidad / ((((r * r) * (qAcos((r - h) / r ))) - ((r - h) * (qSqrt((d * h) - (h * h))))) * 1000);
-//                 break;
-//             case 1:
-//                 r = TankDiametro / 2;
-//                 result = Capacidad / (pi * (r * r) * 1000);
-//                 break;
-//         }
-//         qDebug() << "getTankLength" << result;
-
-
-
 
      switch(Tipo)
      {
+
+     case 0:
+        res = CalcularCubicacion(height);
+        reswater = CalcularCubicacion(water);
+        if (TMaximizado)
+        VolVal->setText(QString::number(res,'f',2)+" Lts");
+         SetVolumen(res,reswater);
+
+         qDebug ( ) << "---------------------";
+         qDebug() << "Volumen Cubicado : " << res;
+         qDebug() << "-------------------";
+
+          break;
+
+
          case 2:
           qDebug() << "Cilindro vertical";
              r = TankDiametro / 2;
@@ -447,7 +441,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
            VolVal->setText(QString::number(res,'f',2)+" Lts");
              break;
          case 1:
-         qDebug() << "Cilindro Horizontal";
+         qDebug() << "Cilindro Horizontal ----------------------------------------------";
              r = TankDiametro / 2;
             // Tankaltura = TankDiametro;
              h = height;
@@ -461,12 +455,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
              res = ((((r * r) * (qAcos((r - h) / r ))) - ((r - h) * (qSqrt((TankDiametro * h) - (h * h))))) * result) / 1000000;
             reswater = ((((r * r) * (qAcos((r - water) / r ))) - ((r - water) * (qSqrt((TankDiametro * water) - (water * water))))) * result) / 1000000;
 
-             //            ho = Tankaltura-h;
-
-//           K =  1-(Tankaltura/r);
-
-//              Capacidad = (qPow(r,3)/qTan( qRadiansToDegrees(15.0))) * (K * qAcos(K)-(1/3) *qSqrt((1-qPow(K,2)* (qPow(K,2)+2))) -(K-(Tanklargo/r)) + (1/3) *qSqrt(1-(K-qPow((Tanklargo/r),2)) * (qPow(K-(Tanklargo/r),2)+2)));
-              d = TankDiametro;
+            d = TankDiametro;
 
              a = angle / 180 * M_PI;
              tana = qTan(a);
@@ -505,8 +494,8 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
              if (TMaximizado)
              VolVal->setText(QString::number(res,'f',2)+" Lts");
 
-            // qDebug() << (ProGaugeCapacidad / (((r * r) * (qAcos((r - h) / r ))) - ((r - h) * (qSqrt((ProGaugeDiametro * h) - (h * h)))))) * 1000000;
              break;
+
 
                   }
      if (TMaximizado){
@@ -645,14 +634,6 @@ void Tanque::SetTemperatura(double T)
    while(qry.next())
    {
 
-//       QryIDTank = qry.value(1).toString();
-//       QryNombreTank = qry.value(2).toString();
-//       QryVolumenCo = qry.value(3).toString();
-//       QryTemperatura = qry.value(4).toString();
-//       QryAlturaC = qry.value(5).toString();
-//       QryAlturaA = qry.value(6).toString();
-//       QryFecha = qry.value(7).toString();
-
        qDebug()<< qry.value(1).toString();
         qDebug()<<qry.value(2).toString();
        qDebug()<< qry.value(3).toInt();
@@ -664,9 +645,6 @@ void Tanque::SetTemperatura(double T)
                "VALUES ('"+qry.value(1).toString()+"', '"+qry.value(2).toString()+"', '"+qry.value(3).toString()+"', '"+qry.value(4).toString()+"', '"+qry.value(5).toString()+"', '"+qry.value(6).toString()+"', '"+qry.value(9).toString()+"','Desconexion');");
 
    }
-
-  // qry.exec("INSERT INTO `cistem`.`InventarioCortes` (`IDTank`, `NombreTank`, `VolumenCo`, `Temperatura`, `AlturaC`, `AlturaA`, `Fecha`, `Estado`) "
-   //        "VALUES ('"+QryIDTank+"', '"+QryNombreTank+"', '"+QryVolumenCo+"', '"+QryTemperatura+"', '"+QryAlturaC+"', '"+QryAlturaA+"', '"+QryFecha+"','Desconexion');");
 
    qry.exec("INSERT INTO `cistem`.`InventarioCortes` (`IDTank`, `NombreTank`, `VolumenCo`, `Temperatura`, `AlturaC`, `AlturaA`, `Fecha`, `Estado`) "
                 "VALUES ('"+QString::number(IdTanque)+"', '"+NomTank+"', '"+QString::number(VolumenCon)+"', '"+QString::number(Temperatura)+"', '"+QString::number(AlturaTank)+"', '"+QString::number(NivelAgua)+"' , '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"','Conexion');");
@@ -680,7 +658,6 @@ void Tanque::SetTemperatura(double T)
             qry.exec("UPDATE `cistem`.`InventarioMin` SET `ID`='"+QString::number(IdTanque)+"', `NombreTank`='"+NomTank+"', `VolumenCo`='"+QString::number(VolumenCon)+"', `Temperatura`='"+QString::number(Temperatura)+"', `AlturaC`='"+QString::number(AlturaTank)+"', `AlturaA`='"+QString::number(NivelAgua)+"',`100%Vacio`='"+QString::number(Vacio100)+"', `90% Vacio`='"+QString::number(Vacio90)+"', `Fecha`='"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"',`ID`=  WHERE  `ID`="+QString::number(IdTanque)+";");
             qry.exec( "INSERT INTO `cistem`.`InventarioMin` (`ID`, `IDTank`, `NombreTank`, `VolumenCo`, `Temperatura`, `AlturaC`, `AlturaA`,`100%Vacio`, `90% Vacio`, `Fecha`) VALUES ('"+QString::number(IdTanque)+"', '"+QString::number(IdTanque)+"','"+NomTank+"','"+QString::number(VolumenCon)+"','"+QString::number(Temperatura)+"', '"+QString::number(AlturaTank)+"', '"+QString::number(NivelAgua)+"','"+QString::number(Vacio100)+"', '"+QString::number(Vacio90)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');");
              }
-
 
    }
 
@@ -896,14 +873,11 @@ void Tanque::deliveryProGaugeCountIncrement(){
                     deliveryCountIncrement = 0;
                     Entregando = true;
 
-                if (deliveryInProcess == 1){
-                  //  double VolumenEntregado=  VolumenCon -deliveryInventoryStart;
+                QSqlQuery qry;
+                     QString uo= "UPDATE `cistem`.`InicioEntrega` SET  `Tanque_Nombre`='"+NomTank+"', `Volumen`='"+QString::number(VolumenCon)+"', `Temperatura`='"+QString::number(Temperatura)+"', `Altura_de_Combustible`='"+QString::number(AlturaTank)+"', `Altura_de_Agua`='"+QString::number(NivelAgua)+"', `Fecha`='"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', `Estado`='Inicio' WHERE `IDTank`='"+QString::number(IdTanque)+"';";
+                    qDebug () << uo << "--------------Inico Entrega";
+                     qry.exec(uo);
 
-                   //  InicioEntrega = " INTO `cistem`.`Entregando` (`IDTank`,`Tanque_Nombre`, `Volumen`, `Temperatrura`, `Volumen Entregado`,`Altura_de_Combustible`,`Altura_de_Agua`, `Fecha`,`Estado`) VALUES ('"+QString::number(IdTanque)+"','"+NomTank+"', '"+QString::number(deliveryInventoryStart)+"', '"+QString::number(Temperatura_inicial)+"', '"+QString::number(VolumenEntregado)+"','"+QString::number(deliveryInventoryStartfuelheight)+"','"+QString::number(deliveryInventoryStartwaterheight)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', 'Inicio');";
-                    QSqlQuery qry;
-                     QString uo= "UPDATE `cistem`.`Entregando` SET  `Tanque_Nombre`='"+NomTank+"', `Volumen`='"+QString::number(VolumenCon)+"', `Temperatura`='"+QString::number(Temperatura)+"', `Altura_de_Combustible`='"+QString::number(AlturaTank)+"', `Altura_de_Agua`='"+QString::number(NivelAgua)+"', `Fecha`='"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', `Status`='Inicio' WHERE `IDTank`='"+QString::number(IdTanque)+"';";
-                    qry.exec(uo);
-                }
                     lbl_ProGaugeDeliveryInProccess->show();
                 }
                 deliveryCountDecrement = 0;
@@ -935,15 +909,15 @@ void Tanque::deliveryProGaugeCountIncrement(){
                 if (VolumenEntregado >= Config_MinimoEntrega)
                 {
                 QString SeRealizoEntrega;
-                qry.exec("SELECT * FROM `cistem`.`Entregando` WHERE STATUS='Inicio' AND IDTank='1';");
+                qry.exec("SELECT * FROM `cistem`.`InicioEntrega` WHERE  IDTank='"+QString::number(IdTanque)+"';");
                 while(qry.next()){
                     qry.exec("INSERT INTO `cistem`.`entregas` (`IDTank`,`Tanque_Nombre`, `Volumen`, `Temperatrura`, `Volumen Entregado`, `Altura_de_Combustible`, `Altura_de_Agua`, `Fecha`,`Estado`) VALUES ('"+qry.value(1).toString()+"','"+qry.value(2).toString()+"', '"+qry.value(3).toString()+"', '"+qry.value(4).toString()+"', '"+QString::number(VolumenEntregado)+"', '"+qry.value(5).toString()+"', '"+qry.value(6).toString()+"', '"+qry.value(7).toString()+"', 'Inicio');");
                 }
                 qry.exec("INSERT INTO `cistem`.`entregas` (`IDTank`,`Tanque_Nombre`, `Volumen`, `Temperatrura`, `Volumen Entregado`, `Altura_de_Combustible`, `Altura_de_Agua`, `Fecha`,`Estado`) VALUES ('"+QString::number(IdTanque)+"','"+NomTank+"', '"+QString::number(VolumenCon)+"', '"+QString::number(Temperatura)+"', '"+QString::number(VolumenEntregado)+"', '"+QString::number(AlturaTank)+"', '"+QString::number(NivelAgua)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', 'Fin');");
 
-                qDebug()<< " -------------------------------------";
+                qDebug()<< "  -------------------------------------";
                 qDebug() << "---Hola ;P Se realizo una entrega---";
-                qDebug()<< "--------------------------------------";
+                qDebug()<< "  --------------------------------------";
                 QString Cadena;
                 Cadena.append("Tanque "
                               ""+NomTank+" "
@@ -964,7 +938,7 @@ void Tanque::deliveryProGaugeCountIncrement(){
             }
             else {
                 QSqlQuery qry;
-                QString CadenaTg = "UPDATE `cistem`.`Entregando` SET  `Tanque_Nombre`='"+NomTank+"', `Volumen`='"+QString::number(VolumenCon)+"', `Temperatura`='"+QString::number(Temperatura)+"', `Altura_de_Combustible`='"+QString::number(AlturaTank)+"', `Altura_de_Agua`='"+QString::number(NivelAgua)+"', `Fecha`='"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', `Status`='Entregando' WHERE `IDTank`='"+QString::number(IdTanque)+";";
+                QString CadenaTg = "UPDATE `cistem`.`Entregando` SET  `Tanque_Nombre`='"+NomTank+"', `Volumen`='"+QString::number(VolumenCon)+"', `Temperatura`='"+QString::number(Temperatura)+"', `Altura_de_Combustible`='"+QString::number(AlturaTank)+"', `Altura_de_Agua`='"+QString::number(NivelAgua)+"', `Fecha`='"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', `Status`='Entregando' WHERE `IDTank`='"+QString::number(IdTanque)+"';";
            qDebug () << "Hola Desde la actualizacion" <<  CadenaTg ;
                 qry.exec(CadenaTg);
             }
@@ -984,27 +958,56 @@ QString Tanque::ActualInventory(bool Inv)
     if(Desconectado)
     {
         if (Inv)
-
              return  "INSERT INTO `cistem`.`InventarioMin` (`IDTank`, `NombreTank`, `VolumenCo`, `Temperatura`, `AlturaC`, `AlturaA`, `Fecha`) VALUES ('"+QString::number(IdTanque)+"','"+NomTank+"','"+QString::number(VolumenCon)+"','"+QString::number(Temperatura)+"', '"+QString::number(AlturaTank)+"', '"+QString::number(NivelAgua)+"','"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');";
             else {
              return  "INSERT INTO `cistem`.`inventario` (`IDTank`, `NombreTank`, `VolumenCo`, `Temperatura`, `AlturaC`, `AlturaA`, `Fecha`) VALUES ('"+QString::number(IdTanque)+"','"+NomTank+"','"+QString::number(VolumenCon)+"','"+QString::number(Temperatura)+"', '"+QString::number(AlturaTank)+"', '"+QString::number(NivelAgua)+"','"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');";
         }
-    }
-
-     //"INSERT INTO `cistem`.`inventario` (`IDTank`, `NombreTank`, `VolumenCo`, `VolumenA`, `AlturaC`, `AlturaA`, `Fecha`) VALUES ('"+QString::number(IdTanque)+"', '"+NomTank+"', '"+QString::number(VolumenCon)+"', '123', '"+QString::number(AlturaTank)+"', '123', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');";
-    //  "INSERT INTO `cistem`.`inventario` (`IDTank`, `NombreTank`, `VolumenCo`, `VolumenA`, `AlturaC`, `AlturaA`) VALUES ('"+QString::number(IdTanque)+"', '"+NomTank+"', '"+QString::number(VolumenCon)+"', '13', '"+QString::number(AlturaTank)+"', '123');";
-    else {
-        return "hola";
     }
 }
 
 
 QString Tanque::InventoryTurnos(int Turno)
 {
-    //INSERT INTO `cistem`.`InventarioTurnos` (`Turno`, `IDTank`, `NombreTank`, `VolumenCo`, `Temperatura`, `AlturaC`, `AlturaA`, `Fecha`) VALUES ('1', '1', 'Tank1', '2265', '25', '1265', '200', '0000-00-00 00:01:20');
-    //SELECT LAST_INSERT_ID();
     return  "INSERT INTO `cistem`.`InventarioTurnos` (`Turno`,`IDTank`, `NombreTank`, `VolumenCo`, `Temperatura`, `AlturaC`, `AlturaA`, `Fecha`) VALUES ('"+QString::number(Turno)+"','"+QString::number(IdTanque)+"','"+NomTank+"','"+QString::number(VolumenCon)+"','"+QString::number(Temperatura)+"', '"+QString::number(AlturaTank)+"', '"+QString::number(NivelAgua)+"','"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"');";
 }
+
+void Tanque::readPuntosCubicacion(){
+    QSqlQuery qry;
+    qry.exec("SELECT Punto, Altura, Volumen FROM tablacubicacion WHERE TanqueId ='"+QString::number(IdTanque)+"' ORDER BY id ASC");
+    while(qry.next()){
+        pointLevel[qry.value(0).toInt() - 1] = qry.value(1).toDouble() / 100;
+        pointVolume[qry.value(0).toInt() - 1] = qry.value(2).toDouble();
+        qDebug() << pointLevel[qry.value(0).toInt() - 1] << pointVolume[qry.value(0).toInt() - 1];
+    }
+}
+
+double Tanque::CalcularCubicacion(double height)
+{
+    //height *= 100;
+    qDebug() << "------------------------------------------------------------";
+    qDebug() << puntosCubicacion;
+
+        double res = 0;
+        for(int i = 0; i < puntosCubicacion; i++){
+            qDebug() << pointLevel[i] << height;
+            if(pointLevel[i] > height){
+                if(i == 0){
+                    res = (height / (pointLevel[i] - 0)) * (pointVolume[i] - 0); //qDebug() << "res Cubico0:" << res << i << height;
+                    break;
+                }
+                res = ((height - pointLevel[i - 1]) / (pointLevel[i] - pointLevel[i - 1])) * (pointVolume[i] - pointVolume[i - 1]) + pointVolume[i - 1];
+                qDebug() << "i" << i;
+                break;
+            }
+            if(i == (puntosCubicacion - 1)){
+                res = pointVolume[i]; //qDebug() << "res Cubico SOBREPASA:" << res << i;
+            }
+        }
+        return res;
+}
+
+
+
 
 
 

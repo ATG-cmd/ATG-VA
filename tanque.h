@@ -59,6 +59,7 @@ class Tanque :public QWidget
     double angle= 50;
     double frombase=500;
     double NivelAgua;
+    int puntosCubicacion;
 
     QString InicioEntrega;
 
@@ -243,6 +244,9 @@ public:
     double ProGaugeDiametro = 3200;
     int    ProGaugeTankPorcent = 0;
     int Protocolo;
+    double pointLevel[100];
+    double pointVolume[100];
+
 
 
     QRect *Q;
@@ -432,6 +436,10 @@ public:
    void DeliveryinProcces();
 
    void SetConfigEntregas(int MinimoEntrega, int TiempoEntrega);
+
+   void readPuntosCubicacion();
+
+   double CalcularCubicacion(double height);
 };
 
 #endif // TANQUE_H
