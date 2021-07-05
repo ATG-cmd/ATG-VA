@@ -232,7 +232,6 @@ MainWindow::MainWindow(QWidget *parent)
     DescargarFormatoFecha();
     consultar_sensores();
 
-
    qDebug () << "Sali de descargar";
    ui->Tab_entregas->horizontalHeader()->setVisible(true);
    ui->tableWidget->horizontalHeader()->setVisible(true);
@@ -1608,14 +1607,17 @@ void MainWindow::rellenar_incidentes(QString T_inicial, QString T_Final,int inde
 
     case 1:    cadena1 = ("SELECT * FROM cistem.incidentes WHERE "
                                   "Prioridad = '1' AND (Fecha_incidente "
-                                  "BETWEEN ('"+T_inicial+"') AND ('"+T_Final+"'));"); break;
+                                  "BETWEEN ('"+T_inicial+"') AND ('"+T_Final+"'))"
+                                  " ORDER BY Fecha_incidente DESC;"); break;
 
     case 2:    cadena1 = ("SELECT * FROM cistem.incidentes WHERE "
                                   "Prioridad = '0' AND (Fecha_incidente "
-                                  "BETWEEN ('"+T_inicial+"') AND ('"+T_Final+"'));"); break;
+                                  "BETWEEN ('"+T_inicial+"') AND ('"+T_Final+"'))"
+                                  " ORDER BY Fecha_incidente DESC;"); break;
 
     case 3:    cadena1 = ("SELECT * FROM cistem.incidentes WHERE Fecha_incidente "
-                                  "BETWEEN ('"+T_inicial+"') AND ('"+T_Final+"');"); break;
+                                  "BETWEEN ('"+T_inicial+"') AND ('"+T_Final+"')"
+                                  " ORDER BY Fecha_incidente DESC;"); break;
     default:break;
     }
     qry.exec(cadena1);
@@ -1629,12 +1631,7 @@ void MainWindow::rellenar_incidentes(QString T_inicial, QString T_Final,int inde
         ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 2, new QTableWidgetItem(qry.value(4).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
         ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 3, new QTableWidgetItem(qry.value(5).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
         ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 4, new QTableWidgetItem(qry.value(3).toString()));
-        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
-        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
-        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
-        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
-        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
-        //qDebug() << qry.value(0).toString() << qry.value(1).toString() << qry.value(2).toString() << qry.value(3).toString() << qry.value(4).toString();
+        configurar_tablas(ui->tabla_incidentes,4,0);
     }
 
 }
@@ -1658,7 +1655,8 @@ void MainWindow::buscar_prioridad(QString priodidad)
     QSqlQuery qry;
     Btn_select_rango->setText("Select Range");
     cadena.append ("SELECT * FROM cistem.incidentes WHERE Prioridad = '"+ priodidad +"' "
-           "AND (Fecha_incidente BETWEEN ('"+QDateTime::currentDateTime().toString("yyyy-MM-dd") + " 00:00:00" +"') AND ('"+ QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+ "'));");
+           "AND (Fecha_incidente BETWEEN ('"+QDateTime::currentDateTime().toString("yyyy-MM-dd") + " 00:00:00" +"') AND ('"+ QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+ "'))"
+           " ORDER BY Fecha_incidente DESC;");
    qDebug() << cadena;
    qDebug() << qry.exec(cadena);
 
@@ -1670,11 +1668,7 @@ void MainWindow::buscar_prioridad(QString priodidad)
         ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 2, new QTableWidgetItem(qry.value(4).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
         ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 3, new QTableWidgetItem(qry.value(5).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
         ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 4, new QTableWidgetItem(qry.value(3).toString()));
-        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
-        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
-        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
-        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
-        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
+        configurar_tablas(ui->tabla_incidentes,4,0);
     }
 }
 
@@ -1683,7 +1677,7 @@ void MainWindow::rellenar_activos(QPushButton *btn)
     btn->setText("Limpiar Activos");
     limpiar_tabla(ui->tabla_incidentes,ui->tabla_incidentes->rowCount());
     QString cadena;
-    cadena.append("SELECT * FROM cistem.incidentes WHERE Activo = '1';");
+    cadena.append("SELECT * FROM cistem.incidentes WHERE Activo = '1' ORDER BY Fecha_incidente DESC;");
 
     QSqlQuery qry;
     qry.exec(cadena);
@@ -1695,11 +1689,7 @@ void MainWindow::rellenar_activos(QPushButton *btn)
         ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 2, new QTableWidgetItem(qry.value(4).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
         ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 3, new QTableWidgetItem(qry.value(5).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
         ui->tabla_incidentes->setItem(ui->tabla_incidentes->rowCount() - 1, 4, new QTableWidgetItem(qry.value(3).toString()));
-        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
-        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
-        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
-        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 3)->setTextAlignment(Qt::AlignCenter);
-        ui->tabla_incidentes->item(ui->tabla_incidentes->rowCount() - 1, 4)->setTextAlignment(Qt::AlignCenter);
+        configurar_tablas(ui->tabla_incidentes,4,0);
     }
 
 
@@ -2817,14 +2807,17 @@ void MainWindow::RellenarInventario(QString FechaInicio, QString FechaFin, int i
 
     case 1:    cadena1 = (//"SELECT * FROM cistem.inventario WHERE (Fecha BETWEEN ('2021-05-18 02:28:03') AND ('2021-05-19 23:18:53')) AND IDTank='1';");break;//
                           "SELECT * FROM cistem.inventario WHERE (Fecha BETWEEN "
-                          "('"+FechaInicio+"') AND ('"+FechaFin+"')) AND IDTank='"+QString::number(ui->SelecTank->currentIndex())+"';"); break;
+                          "('"+FechaInicio+"') AND ('"+FechaFin+"')) AND IDTank='"+QString::number(ui->SelecTank->currentIndex())+"' "
+                          "ORDER BY Fecha_incidente DESC;"); break;
 
     case 2:    cadena1 = ( "SELECT * FROM cistem.InventarioCortes WHERE (Fecha BETWEEN "
-                           "('"+FechaInicio+"') AND ('"+FechaFin+"')) AND IDTank='"+QString::number(ui->SelecTank->currentIndex())+"';"); break;
+                           "('"+FechaInicio+"') AND ('"+FechaFin+"')) AND IDTank='"+QString::number(ui->SelecTank->currentIndex())+"'"
+                           " ORDER BY Fecha_incidente DESC;"); break;
 
 
     case 3:    cadena1 = ("SELECT * FROM cistem.InventarioTurnos WHERE (Fecha BETWEEN "
-                          "('"+FechaInicio+"') AND ('"+FechaFin+"')) AND IDTank='"+QString::number(ui->SelecTank->currentIndex())+"';"); break;
+                          "('"+FechaInicio+"') AND ('"+FechaFin+"')) AND IDTank='"+QString::number(ui->SelecTank->currentIndex())+"' "
+                          "ORDER BY Fecha_incidente DESC;"); break;
     default:break;
     }
 
@@ -3067,6 +3060,25 @@ connect(ui->tabWidget_2, QOverload<int>::of(&QTabWidget::currentChanged),
 
 void MainWindow::guardar_alarmas_config()
 {
+
+}
+
+void MainWindow::configurar_tablas(QTableWidget *tabla,int n_colum,int n_tabla)
+{
+    for (int i = 0;i <= n_colum; i++) {
+        tabla->item(tabla->rowCount() - 1, i)->setTextAlignment(Qt::AlignCenter);
+    }
+    switch (n_tabla) {
+        case 0:
+        ui->tabla_incidentes->setColumnWidth(0,150);
+        ui->tabla_incidentes->setColumnWidth(1,650);
+        ui->tabla_incidentes->setColumnWidth(2,400);
+        ui->tabla_incidentes->setColumnWidth(3,400);
+        ui->tabla_incidentes->setColumnWidth(4,150);
+        break;
+
+    default: break;
+    }
 
 }
 

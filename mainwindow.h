@@ -205,6 +205,7 @@ public:
     void conectar_signals();
     void Descargar_Entregaenproceso();
     void guardar_alarmas_config();
+    void configurar_tablas(QTableWidget *tabla,int n_colum,int n_tabla);
 
 signals:
 
