@@ -897,10 +897,13 @@ void Tanque::deliveryProGaugeCountIncrement(){
                     Entregando = true;
 
                 if (deliveryInProcess == 1){
-                    double VolumenEntregado=  VolumenCon -deliveryInventoryStart;
+                  //  double VolumenEntregado=  VolumenCon -deliveryInventoryStart;
 
-                     InicioEntrega = "INSERT INTO `cistem`.`entregas` (`IDTank`,`Tanque_Nombre`, `Volumen`, `Temperatrura`, `Volumen Entregado`,`Altura_de_Combustible`,`Altura_de_Agua`, `Fecha`,`Estado`) VALUES ('"+QString::number(IdTanque)+"','"+NomTank+"', '"+QString::number(deliveryInventoryStart)+"', '"+QString::number(Temperatura_inicial)+"', '"+QString::number(VolumenEntregado)+"','"+QString::number(deliveryInventoryStartfuelheight)+"','"+QString::number(deliveryInventoryStartwaterheight)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', 'Inicio');";
-                        }
+                   //  InicioEntrega = " INTO `cistem`.`Entregando` (`IDTank`,`Tanque_Nombre`, `Volumen`, `Temperatrura`, `Volumen Entregado`,`Altura_de_Combustible`,`Altura_de_Agua`, `Fecha`,`Estado`) VALUES ('"+QString::number(IdTanque)+"','"+NomTank+"', '"+QString::number(deliveryInventoryStart)+"', '"+QString::number(Temperatura_inicial)+"', '"+QString::number(VolumenEntregado)+"','"+QString::number(deliveryInventoryStartfuelheight)+"','"+QString::number(deliveryInventoryStartwaterheight)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', 'Inicio');";
+                    QSqlQuery qry;
+                     QString uo= "UPDATE `cistem`.`Entregando` SET  `Tanque_Nombre`='"+NomTank+"', `Volumen`='"+QString::number(VolumenCon)+"', `Temperatura`='"+QString::number(Temperatura)+"', `Altura_de_Combustible`='"+QString::number(AlturaTank)+"', `Altura_de_Agua`='"+QString::number(NivelAgua)+"', `Fecha`='"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', `Status`='Inicio' WHERE `IDTank`='"+QString::number(IdTanque)+"';";
+                    qry.exec(uo);
+                }
                     lbl_ProGaugeDeliveryInProccess->show();
                 }
                 deliveryCountDecrement = 0;
@@ -932,8 +935,10 @@ void Tanque::deliveryProGaugeCountIncrement(){
                 if (VolumenEntregado >= Config_MinimoEntrega)
                 {
                 QString SeRealizoEntrega;
-
-                qry.exec(InicioEntrega);
+                qry.exec("SELECT * FROM `cistem`.`Entregando` WHERE STATUS='Inicio' AND IDTank='1';");
+                while(qry.next()){
+                    qry.exec("INSERT INTO `cistem`.`entregas` (`IDTank`,`Tanque_Nombre`, `Volumen`, `Temperatrura`, `Volumen Entregado`, `Altura_de_Combustible`, `Altura_de_Agua`, `Fecha`,`Estado`) VALUES ('"+qry.value(1).toString()+"','"+qry.value(2).toString()+"', '"+qry.value(3).toString()+"', '"+qry.value(4).toString()+"', '"+QString::number(VolumenEntregado)+"', '"+qry.value(5).toString()+"', '"+qry.value(6).toString()+"', '"+qry.value(7).toString()+"', 'Inicio');");
+                }
                 qry.exec("INSERT INTO `cistem`.`entregas` (`IDTank`,`Tanque_Nombre`, `Volumen`, `Temperatrura`, `Volumen Entregado`, `Altura_de_Combustible`, `Altura_de_Agua`, `Fecha`,`Estado`) VALUES ('"+QString::number(IdTanque)+"','"+NomTank+"', '"+QString::number(VolumenCon)+"', '"+QString::number(Temperatura)+"', '"+QString::number(VolumenEntregado)+"', '"+QString::number(AlturaTank)+"', '"+QString::number(NivelAgua)+"', '"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', 'Fin');");
 
                 qDebug()<< " -------------------------------------";
@@ -959,7 +964,9 @@ void Tanque::deliveryProGaugeCountIncrement(){
             }
             else {
                 QSqlQuery qry;
-                qry.exec("UPDATE `cistem`.`Entregando` SET  `Tanque_Nombre`='"+NomTank+"', `Volumen`='"+QString::number(VolumenCon)+"', `Temperatura`='"+QString::number(Temperatura)+"', `Altura_de_Combustible`='"+QString::number(AlturaTank)+"', `Altura_de_Agua`='"+QString::number(NivelAgua)+"', `Fecha`='"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', `Status`='Entregando' WHERE `IDTank`='"+QString::number(IdTanque)+"';");
+                QString CadenaTg = "UPDATE `cistem`.`Entregando` SET  `Tanque_Nombre`='"+NomTank+"', `Volumen`='"+QString::number(VolumenCon)+"', `Temperatura`='"+QString::number(Temperatura)+"', `Altura_de_Combustible`='"+QString::number(AlturaTank)+"', `Altura_de_Agua`='"+QString::number(NivelAgua)+"', `Fecha`='"+QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss")+"', `Status`='Entregando' WHERE `IDTank`='"+QString::number(IdTanque)+";";
+           qDebug () << "Hola Desde la actualizacion" <<  CadenaTg ;
+                qry.exec(CadenaTg);
             }
 
 
