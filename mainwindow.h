@@ -280,8 +280,6 @@ private slots:
 
    void on_tableWidget_cellClicked(int row, int column);
 
-   void on_Combo_CubTanque_currentIndexChanged(int index);
-
    void on_Btn_Cub_Guardar_clicked();
 
    void on_Btn_Cub_Editar_clicked();
@@ -397,6 +395,8 @@ private slots:
    void Guardar_ConfigEntregas();
 
 
+
+   void on_Combo_CubTanque_activated(int index);
 
 private:
     Ui::MainWindow *ui;

@@ -1328,6 +1328,7 @@ void MainWindow::on_Btn_tabla_cubicacion_clicked()
     enableCubicTableFields(false);
     enableCubicTableBtn(true,false,false);
     clearCubicTableFields();
+    ui->Combo_CubTanque->activated(0);
 
 }
 
@@ -1362,7 +1363,7 @@ void MainWindow::Rellenar_tabla_cubicacion(int Id_tanque)
     limpiar_tabla(ui->tableWidget,ui->tableWidget->rowCount());
     QString cadena;
     cadena.append("SELECT Punto, Altura, Volumen FROM cistem.tablacubicacion WHERE "
-                  "TanqueId = '" + QString::number(Id_tanque) +"';");
+                  "TanqueId = '" + QString::number(Id_tanque) +"' AND p_enable = 1;");
     QSqlQuery qry;
     qDebug() << qry.exec(cadena);
     while (qry.next())
@@ -1441,11 +1442,13 @@ bool MainWindow::Validar_update_cubicacion(int punto, int tanque, double altura,
     else return false;
 }
 
-
-void MainWindow::on_Combo_CubTanque_currentIndexChanged(int index)
+void MainWindow::on_Combo_CubTanque_activated(int index)
 {
-    Rellenar_tabla_cubicacion(index + 1);
+        Rellenar_tabla_cubicacion(index + 1);
 }
+
+
+
 
 void MainWindow::on_tableWidget_cellClicked(int row, int column)
 {
@@ -1799,8 +1802,8 @@ void MainWindow::on_Btn_Cub_Guardar_clicked()
     QSqlQuery qry;
     QString consulta;
     consulta.append("UPDATE cistem.tablacubicacion SET Altura = '" + ui->Line_Altura->text()+ "',"
-                                                                                              " Volumen = '" + ui->Line_Volumen->text() + "' "
-                                                                                                                                          "WHERE Punto = '" + ui->Line_Punto->text() + "' "
+                   " Volumen = '" + ui->Line_Volumen->text() + "' "
+                   "WHERE Punto = '" + ui->Line_Punto->text() + "' "
                                                                                                                                                                                        "AND TanqueId = '" + QString::number(ui->Combo_CubTanque->currentIndex() + 1) + "';");
     res = Validar_update_cubicacion(ui->Line_Punto->text().toInt(),ui->Combo_CubTanque->currentIndex() + 1,ui->Line_Altura->text().toDouble(),ui->Line_Volumen->text().toDouble());
     if(res == true)
@@ -1823,11 +1826,51 @@ void MainWindow::on_Btn_Cub_Cancelar_clicked()
 
 void MainWindow::on_Combo_cub_generar_currentIndexChanged(int index)
 {
+    Rellenar_tabla_cubicacion(index +1);
+//    limpiar_tabla(ui->tableWidget,ui->tableWidget->rowCount());
+//    QString cadena;
+//    cadena.append("SELECT Punto, Altura, Volumen FROM cistem.tablacubicacion WHERE "
+//                  "TanqueId = '" + QString::number(index + 1) +"' AND p_enable = 1;");
+//    QSqlQuery qry;
+//    qDebug() << cadena;
+//    qDebug() << qry.exec(cadena);
+//    while (qry.next())
+//    {
+//        ui->tableWidget->insertRow(ui->tableWidget->rowCount());
+//        ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 0, new QTableWidgetItem(QString::number(qry.value(0).toInt())));
+//        ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 1, new QTableWidgetItem(QString::number(qry.value(1).toDouble(), 'f', 3)));
+//        ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 2, new QTableWidgetItem(QString::number(qry.value(2).toDouble(), 'f', 3)));
+//        configurar_tablas(ui->tableWidget,2,1);
+//        qDebug() << qry.value(0).toInt() << qry.value(1).toInt() << qry.value(2).toInt();
+//    }
+
 
 }
 void MainWindow::on_Btn_CubGenerar_clicked()
 {
-
+    QSqlQuery qry1,qry2;
+    QString Cadena1, Cadena2;
+    Cadena1.append("UPDATE cistem.tablacubicacion SET "
+                   "Altura = 0, "
+                   "Volumen = 0, "
+                   "p_enable = 0 "
+                   "WHERE TanqueId = " + QString::number(ui->Combo_cub_generar->currentIndex() +1) +";");
+    qDebug() << Cadena1;
+    qry1.exec(Cadena1);
+    for (int i = 0;i <= 100; i++) {
+        if(i <= ui->Line_Puntos->text().toInt()){
+            Cadena2.append("UPDATE cistem.tablacubicacion SET "
+                           "Altura = '" + QString::number(i * (ui->Line_Altura_max->text().toInt()/ui->Line_Puntos->text().toInt())) +"', "
+                           "Volumen = '" + QString::number(i * (ui->Line_Capacidad_2->text().toInt()/ui->Line_Puntos->text().toInt())) +"', "
+                           "p_enable = 1 "
+                           "WHERE TanqueId = '" + QString::number(ui->Combo_cub_generar->currentIndex() +1) +"' "
+                           "AND Punto = '" + QString::number(i) +"';");
+            qDebug() << Cadena2;
+            qry2.exec(Cadena2);
+            Cadena2.clear();
+        }
+    }
+    Rellenar_tabla_cubicacion(ui->Combo_cub_generar->currentIndex() + 1);
 }
 
 /* Termina la configuracion de la tabla de cubicacion*/
@@ -2999,9 +3042,10 @@ void MainWindow::rellenar_tabla_sensores(int caso)
             ui->Tabla_Sensores->setItem(ui->Tabla_Sensores->rowCount() - 1, 0, new QTableWidgetItem(qry.value(1).toString()));
             ui->Tabla_Sensores->setItem(ui->Tabla_Sensores->rowCount() - 1, 1, new QTableWidgetItem(qry.value(2).toString()));
             ui->Tabla_Sensores->setItem(ui->Tabla_Sensores->rowCount() - 1, 2, new QTableWidgetItem(qry.value(6).toString()));
-            ui->Tabla_Sensores->item(ui->Tabla_Sensores->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
-            ui->Tabla_Sensores->item(ui->Tabla_Sensores->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
-            ui->Tabla_Sensores->item(ui->Tabla_Sensores->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
+//            ui->Tabla_Sensores->item(ui->Tabla_Sensores->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
+//            ui->Tabla_Sensores->item(ui->Tabla_Sensores->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
+//            ui->Tabla_Sensores->item(ui->Tabla_Sensores->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
+            configurar_tablas(ui->Tabla_Sensores,2,2);
             break;
         case 2: break;
         case 3: break;
@@ -3067,17 +3111,26 @@ void MainWindow::guardar_alarmas_config()
 
 void MainWindow::configurar_tablas(QTableWidget *tabla,int n_colum,int n_tabla)
 {
+    QFont Font;
+    Font.setPointSize(26);
+    Font.setBold(true);
+    tabla->setFont(Font);
+    tabla->horizontalHeader()->setFixedHeight(70);                  // altura de header horizontal
+    tabla->setRowHeight(tabla->rowCount() - 1,70);                  // altura de fila
+    tabla->verticalHeader()->setDefaultAlignment(Qt::AlignCenter);  // aliniacion centrada del vertical header
+
     for (int i = 0;i <= n_colum; i++) {
         tabla->item(tabla->rowCount() - 1, i)->setTextAlignment(Qt::AlignCenter);
     }
+
     switch (n_tabla) {
         case 0:
         tabla->setColumnWidth(0,150);
-        tabla->setColumnWidth(1,650);
+        tabla->setColumnWidth(1,600);
         tabla->setColumnWidth(2,400);
         tabla->setColumnWidth(3,400);
         tabla->setColumnWidth(4,150);
-        tabla->setRowHeight(tabla->rowCount() - 1,70);
+
             if(ui->ComboSeleccion->currentIndex() == 0)
             {
                 tabla->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -3092,7 +3145,6 @@ void MainWindow::configurar_tablas(QTableWidget *tabla,int n_colum,int n_tabla)
         tabla->setColumnWidth(0,250);
         tabla->setColumnWidth(1,250);
         tabla->setColumnWidth(2,250);
-        tabla->setRowHeight(tabla->rowCount() - 1,70);
 
         break;
 
@@ -3480,3 +3532,4 @@ void MainWindow::on_Btn_CambioTurno_clicked()
        }
 
     }
+
