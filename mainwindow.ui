@@ -203,10 +203,10 @@ width: 0px;
     </property>
     <property name="geometry">
      <rect>
-      <x>-10</x>
-      <y>90</y>
-      <width>1911</width>
-      <height>841</height>
+      <x>0</x>
+      <y>120</y>
+      <width>1920</width>
+      <height>860</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -240,14 +240,14 @@ width: 0px;
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>22</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>180</x>
-        <y>20</y>
+        <x>170</x>
+        <y>30</y>
         <width>1561</width>
         <height>821</height>
        </rect>
@@ -436,8 +436,7 @@ font-weight: bold;
 </string>
          </property>
          <property name="text">
-          <string>Cubica
-cion</string>
+          <string>Cubicacion</string>
          </property>
          <property name="iconSize">
           <size>
@@ -1155,7 +1154,7 @@ padding: 2px;</string>
        <rect>
         <x>270</x>
         <y>10</y>
-        <width>1141</width>
+        <width>1191</width>
         <height>811</height>
        </rect>
       </property>
@@ -1181,7 +1180,7 @@ padding: 2px;</string>
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1107</width>
+         <width>1111</width>
          <height>1674</height>
         </rect>
        </property>
@@ -2122,7 +2121,7 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }
        <enum>QFrame::Sunken</enum>
       </property>
       <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAsNeeded</enum>
+       <enum>Qt::ScrollBarAlwaysOn</enum>
       </property>
       <property name="horizontalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -2295,10 +2294,10 @@ QTabWidget::pane {
        <widget class="QWidget" name="gridLayoutWidget_6">
         <property name="geometry">
          <rect>
-          <x>100</x>
-          <y>70</y>
-          <width>631</width>
-          <height>391</height>
+          <x>70</x>
+          <y>120</y>
+          <width>658</width>
+          <height>351</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_11">
@@ -2306,6 +2305,18 @@ QTabWidget::pane {
           <widget class="QLineEdit" name="Line_Volumen">
            <property name="enabled">
             <bool>true</bool>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>400</width>
+             <height>71</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>71</height>
+            </size>
            </property>
            <property name="font">
             <font>
@@ -2315,6 +2326,20 @@ QTabWidget::pane {
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox,  QLineEdit, QDateEdit
+{
+border-radius: 15px;
+border: 4px solid  gray ;
+}
+QDateEdit ::drop-down,QComboBox::drop-down {
+    width: 40px;
+	background-color:transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
            <property name="placeholderText">
             <string/>
            </property>
@@ -2322,6 +2347,12 @@ QTabWidget::pane {
          </item>
          <item row="3" column="0">
           <widget class="QLabel" name="label_12">
+           <property name="minimumSize">
+            <size>
+             <width>250</width>
+             <height>75</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>36</pointsize>
@@ -2337,6 +2368,12 @@ QTabWidget::pane {
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="label_11">
+           <property name="minimumSize">
+            <size>
+             <width>250</width>
+             <height>75</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>36</pointsize>
@@ -2355,6 +2392,18 @@ QTabWidget::pane {
            <property name="enabled">
             <bool>true</bool>
            </property>
+           <property name="minimumSize">
+            <size>
+             <width>400</width>
+             <height>71</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>71</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>36</pointsize>
@@ -2362,6 +2411,20 @@ QTabWidget::pane {
              <italic>true</italic>
              <bold>true</bold>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox,  QLineEdit, QDateEdit
+{
+border-radius: 15px;
+border: 4px solid  gray ;
+}
+QDateEdit ::drop-down,QComboBox::drop-down {
+    width: 40px;
+	background-color:transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>0</string>
            </property>
            <property name="placeholderText">
             <string/>
@@ -2370,6 +2433,18 @@ QTabWidget::pane {
          </item>
          <item row="2" column="1">
           <widget class="QLineEdit" name="Line_Altura">
+           <property name="minimumSize">
+            <size>
+             <width>400</width>
+             <height>71</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>71</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>36</pointsize>
@@ -2378,6 +2453,20 @@ QTabWidget::pane {
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox,  QLineEdit, QDateEdit
+{
+border-radius: 15px;
+border: 4px solid  gray ;
+}
+QDateEdit ::drop-down,QComboBox::drop-down {
+    width: 40px;
+	background-color:transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
            <property name="placeholderText">
             <string/>
            </property>
@@ -2385,6 +2474,12 @@ QTabWidget::pane {
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="label_10">
+           <property name="minimumSize">
+            <size>
+             <width>250</width>
+             <height>75</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>36</pointsize>
@@ -2400,6 +2495,18 @@ QTabWidget::pane {
          </item>
          <item row="0" column="1">
           <widget class="QComboBox" name="Combo_CubTanque">
+           <property name="minimumSize">
+            <size>
+             <width>400</width>
+             <height>71</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>71</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>36</pointsize>
@@ -2408,10 +2515,37 @@ QTabWidget::pane {
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox,  QLineEdit
+{
+border-radius: 15px;
+border: 4px solid  gray ;
+}
+QComboBox::drop-down {
+    width: 40px;
+	background-color:transparent;
+}
+QComboBox::down-arrow ,QDateEdit::down-arrow{
+margin: 5px 0px 0px 0px;  
+  width: 0;
+  height: 0;
+  /*border: 2px solid #000;*/
+  border-top: 10px solid black;
+  border-right: 10px solid white;
+  border-bottom: 5px solid white;
+  border-left: 10px  solid white;
+}</string>
+           </property>
           </widget>
          </item>
          <item row="0" column="0">
           <widget class="QLabel" name="label">
+           <property name="minimumSize">
+            <size>
+             <width>250</width>
+             <height>75</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>36</pointsize>
@@ -2592,7 +2726,7 @@ QPushButton:pressed {
         <property name="geometry">
          <rect>
           <x>60</x>
-          <y>70</y>
+          <y>110</y>
           <width>681</width>
           <height>361</height>
          </rect>
@@ -2602,13 +2736,13 @@ QPushButton:pressed {
           <widget class="QLineEdit" name="Line_Capacidad_2">
            <property name="maximumSize">
             <size>
-             <width>441</width>
+             <width>400</width>
              <height>71</height>
             </size>
            </property>
            <property name="font">
             <font>
-             <pointsize>21</pointsize>
+             <pointsize>36</pointsize>
              <weight>75</weight>
              <italic>true</italic>
              <bold>true</bold>
@@ -2623,13 +2757,13 @@ QPushButton:pressed {
           <widget class="QLineEdit" name="Line_Altura_max">
            <property name="maximumSize">
             <size>
-             <width>441</width>
+             <width>400</width>
              <height>71</height>
             </size>
            </property>
            <property name="font">
             <font>
-             <pointsize>21</pointsize>
+             <pointsize>36</pointsize>
              <weight>75</weight>
              <italic>true</italic>
              <bold>true</bold>
@@ -2644,17 +2778,20 @@ QPushButton:pressed {
           <widget class="QLineEdit" name="Line_Puntos">
            <property name="maximumSize">
             <size>
-             <width>441</width>
+             <width>400</width>
              <height>71</height>
             </size>
            </property>
            <property name="font">
             <font>
-             <pointsize>21</pointsize>
+             <pointsize>36</pointsize>
              <weight>75</weight>
              <italic>true</italic>
              <bold>true</bold>
             </font>
+           </property>
+           <property name="text">
+            <string/>
            </property>
            <property name="placeholderText">
             <string/>
@@ -2663,6 +2800,12 @@ QPushButton:pressed {
          </item>
          <item row="3" column="0">
           <widget class="QLabel" name="label_15">
+           <property name="minimumSize">
+            <size>
+             <width>250</width>
+             <height>75</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>36</pointsize>
@@ -2680,14 +2823,28 @@ QPushButton:pressed {
           <widget class="QComboBox" name="Combo_cub_generar">
            <property name="maximumSize">
             <size>
-             <width>441</width>
+             <width>400</width>
              <height>71</height>
             </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>36</pointsize>
+             <weight>75</weight>
+             <italic>true</italic>
+             <bold>true</bold>
+            </font>
            </property>
           </widget>
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="label_13">
+           <property name="minimumSize">
+            <size>
+             <width>250</width>
+             <height>75</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>36</pointsize>
@@ -2703,6 +2860,12 @@ QPushButton:pressed {
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="label_14">
+           <property name="minimumSize">
+            <size>
+             <width>250</width>
+             <height>75</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>36</pointsize>
@@ -2718,6 +2881,12 @@ QPushButton:pressed {
          </item>
          <item row="0" column="0">
           <widget class="QLabel" name="label_2">
+           <property name="minimumSize">
+            <size>
+             <width>250</width>
+             <height>75</height>
+            </size>
+           </property>
            <property name="font">
             <font>
              <pointsize>36</pointsize>
@@ -5650,9 +5819,9 @@ font-weight: bold;
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>70</y>
+        <y>90</y>
         <width>1881</width>
-        <height>761</height>
+        <height>740</height>
        </rect>
       </property>
       <property name="font">
@@ -5772,9 +5941,9 @@ font-weight: bold;
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>9</y>
+        <y>30</y>
         <width>1881</width>
-        <height>61</height>
+        <height>60</height>
        </rect>
       </property>
       <property name="minimumSize">
@@ -5785,7 +5954,7 @@ font-weight: bold;
       </property>
       <property name="font">
        <font>
-        <pointsize>36</pointsize>
+        <pointsize>26</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -7761,26 +7930,27 @@ QRadioButton::indicator::checked{ width: 50px; height: 50px; }</string>
           <string notr="true">QComboBox{
 combobox-popup: 0;
 }
+
 QScrollBar:vertical {      
      border: 2px solid grey;   
-	background-color: #C0C0C0;
-     width: 50px;
-     margin: 39px 0 39px 0;               
+     background:#C0C0C0;
+     width: 80px;
+     margin: 68px 0 68px 0;               
  }
  QScrollBar::handle:vertical {
      background:white;
-     min-height: 38px;
+     min-height: 70px;
  }
 QScrollBar::add-line:vertical {
      border: 2px solid grey;
      background: royalblue;
-     height: 35px;
+     height: 70px;
      subcontrol-position: bottom;
      subcontrol-origin: margin;
  }
  QScrollBar::sub-line:vertical {
      border: 2px solid grey;
-     height: 35px;
+     height: 70px;
 	 background: royalblue;
      subcontrol-position: top;
      subcontrol-origin: margin;
@@ -7790,10 +7960,10 @@ QScrollBar::add-line:vertical {
   width: 0;
   height: 0;
   /*border: 2px solid #000;*/
-  border-top: 5px  solid royalblue;
-  border-right: 10px solid royalblue;
-  border-bottom: 20px  solid white;
-  border-left: 10px  solid royalblue ;
+  border-top: 10px  solid royalblue;
+  border-right: 20px solid royalblue;
+  border-bottom: 40px  solid white;
+  border-left: 20px  solid royalblue ;
 }
  QScrollBar::down-arrow:vertical {
    
@@ -7801,16 +7971,18 @@ QScrollBar::add-line:vertical {
   width: 0;
   height: 0;
   /*border: 2px solid #000;*/
-  border-top: 20px solid white;
-  border-right: 10px solid royalblue;
-  border-bottom: 5px solid royalblue ;
-  border-left: 10px  solid royalblue ;
+  border-top: 40px solid white;
+  border-right: 20px solid royalblue;
+  border-bottom: 10px solid royalblue ;
+  border-left: 20px  solid royalblue ;
   
  }
 
  QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
      background: none;
- }</string>
+ }
+
+</string>
          </property>
          <property name="editable">
           <bool>false</bool>
@@ -8938,9 +9110,9 @@ margin: 30px 20px 20px -15x;
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>950</y>
+      <y>980</y>
       <width>1921</width>
-      <height>131</height>
+      <height>100</height>
      </rect>
     </property>
     <property name="font">
@@ -8979,7 +9151,7 @@ color:white;
       <x>0</x>
       <y>0</y>
       <width>1921</width>
-      <height>91</height>
+      <height>120</height>
      </rect>
     </property>
     <property name="font">
@@ -8997,7 +9169,7 @@ color:white;
     <property name="styleSheet">
      <string notr="true">QPushButton{
 background-color: green;
-background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(0, 250, 0, 250), stop:0.691897 rgba(0,180,0, 160), stop:0.691964  gray , stop:1 gray);
+background-color: qconicalgradient(cx:0.680, cy:0, angle:20, stop:0 rgba(0, 250, 0, 250), stop:0.691897 rgba(0,180,0, 160), stop:0.691964  gray , stop:1 gray);
 color:white;}
 QLabel{
 background-color: transparent;
@@ -9013,9 +9185,9 @@ color: white;
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>950</y>
+      <y>980</y>
       <width>141</width>
-      <height>131</height>
+      <height>100</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -9048,9 +9220,9 @@ color: white;
     <property name="geometry">
      <rect>
       <x>1760</x>
-      <y>950</y>
+      <y>980</y>
       <width>161</width>
-      <height>131</height>
+      <height>100</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -9074,9 +9246,9 @@ color: white;
     <property name="geometry">
      <rect>
       <x>1580</x>
-      <y>950</y>
+      <y>980</y>
       <width>161</width>
-      <height>131</height>
+      <height>100</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -9100,9 +9272,9 @@ color: white;
     <property name="geometry">
      <rect>
       <x>1760</x>
-      <y>950</y>
+      <y>980</y>
       <width>161</width>
-      <height>131</height>
+      <height>100</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -9126,9 +9298,9 @@ color: white;
     <property name="geometry">
      <rect>
       <x>1580</x>
-      <y>950</y>
+      <y>980</y>
       <width>151</width>
-      <height>131</height>
+      <height>100</height>
      </rect>
     </property>
     <property name="text">
@@ -9139,7 +9311,7 @@ color: white;
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>970</y>
+      <y>980</y>
       <width>411</width>
       <height>91</height>
      </rect>
@@ -9165,9 +9337,9 @@ color: white;
     <property name="geometry">
      <rect>
       <x>1270</x>
-      <y>950</y>
+      <y>980</y>
       <width>221</width>
-      <height>131</height>
+      <height>100</height>
      </rect>
     </property>
     <property name="font">
@@ -9332,9 +9504,9 @@ QComboBox QLineEdit {
     <property name="geometry">
      <rect>
       <x>1300</x>
-      <y>950</y>
+      <y>980</y>
       <width>141</width>
-      <height>131</height>
+      <height>100</height>
      </rect>
     </property>
     <property name="text">
