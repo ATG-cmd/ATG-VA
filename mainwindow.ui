@@ -240,7 +240,7 @@ width: 0px;
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>22</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -2277,7 +2277,7 @@ QTabWidget::pane {
 }</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="Tab_editar">
        <property name="font">
@@ -9313,7 +9313,7 @@ color: white;
       <x>200</x>
       <y>980</y>
       <width>411</width>
-      <height>91</height>
+      <height>100</height>
      </rect>
     </property>
     <property name="font">

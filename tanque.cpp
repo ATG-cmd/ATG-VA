@@ -121,8 +121,8 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
         T1->setTitle("Tanque");
         T1->setFlat(true);
 
-        Boton->setGeometry(0,50,560,299);
-        Boton->setStyleSheet("QPushButton{background-color: rgb(240, 240, 240);border: 0px solid white; border-radius: 15px; padding: 5px;  }" );
+        Boton->setGeometry(0,50,560,299);                  /*aqui*/
+        Boton->setStyleSheet("QPushButton{background-color:rgb(240, 240, 240);border: 0px solid white; border-radius: 15px; padding: 5px;  }" );
         Boton-> setFocusPolicy(Qt :: NoFocus);
 
         connect(Boton, SIGNAL (clicked()),this, SLOT(clickbuton()));
@@ -642,6 +642,10 @@ void Tanque::Setgeometry(int x, int y,int XTG,int YTG)
 
     int x2= x1+21;
     T1->setGeometry(QRect(x,y,XTG, YTG));
+
+    qDebug() << "geometrias del boton: x:" << 0 << " y:" << 50 << " w:" << XTG << " h:" << int(YTG*.8);
+    qDebug() << "geometrias del circulo: x:" << 5 << " y:" << 5 << " w:" << x1 << " h:" << x1;
+    qDebug() << "geometrias del labels: x:" << XTG/2 << " y:" << 20 << " w:" << int((XTG/2)*.95) << " h:" << int(YTG*.7);
 
     if(Config)
     {
