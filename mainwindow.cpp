@@ -134,11 +134,16 @@ MainWindow::MainWindow(QWidget *parent)
     Reloj->setFont(FontReloj);
     Reloj->setText(QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss ap"));
     estado_sistema(ui->Btn_Barra_Estados,"normal");
+
+    QFont Font_btn;
+    Font_btn.setPointSize(25);
+    Font_btn.setBold(true);
+
     Btn_select_rango = new QPushButton(ui->Lab_Rango_Fecha);
     Btn_select_rango->setText("Select Range");
     Btn_select_rango->setStyleSheet("background-color: transparent;");
     Btn_select_rango->setGeometry(30,5,500,50);
-    Btn_select_rango->setFont(FontReloj);
+    Btn_select_rango->setFont(Font_btn);
 
     Indicadores[0] = new QLabel(ui->Btn_Barra_Estados); // Alarma
     Indicadores[0]->setStyleSheet("background-color: transparent;");
@@ -1336,6 +1341,7 @@ void MainWindow::on_Btn_tabla_cubicacion_clicked()
     clearCubicTableFields();
     ui->Combo_CubTanque->activated(0);
 
+
 }
 
 void MainWindow::on_Btn_Alarmas_clicked()
@@ -1385,13 +1391,18 @@ void MainWindow::Rellenar_tabla_cubicacion(int Id_tanque)
 
 }
 
-void MainWindow::Rellenar_campos_cubicacion(QString p, QString a, QString v)
+void MainWindow::Rellenar_campos_cubicacion(QString p, QString a, QString v, bool b)
 {
-    ui->Line_Punto->setText(p);
-    ui->Line_Altura->setText(a);
-    ui->Line_Volumen->setText(v);
+    if(b){
+        ui->Line_Punto->setText(p);
+        ui->Line_Altura->setText(a);
+        ui->Line_Volumen->setText(v);
+    }else {
+        ui->Line_Puntos->setText(p);
+        ui->Line_Altura_max->setText(a);
+        ui->Line_Capacidad_2->setText(v);
+    }
 }
-
 bool MainWindow::Validar_update_cubicacion(int punto, int tanque, double altura, double volumen)
 {
     bool alt = false, vol = false;
@@ -1465,7 +1476,8 @@ void MainWindow::on_tableWidget_cellClicked(int row, int column)
     Rellenar_campos_cubicacion(
                 ui->tableWidget->item(row,0)->text(),
                 ui->tableWidget->item(row,1)->text(),
-                ui->tableWidget->item(row,2)->text()
+                ui->tableWidget->item(row,2)->text(),
+                true
                 );
 }
 
@@ -1831,24 +1843,10 @@ void MainWindow::on_Btn_Cub_Cancelar_clicked()
 void MainWindow::on_Combo_cub_generar_currentIndexChanged(int index)
 {
     Rellenar_tabla_cubicacion(index +1);
-//    limpiar_tabla(ui->tableWidget,ui->tableWidget->rowCount());
-//    QString cadena;
-//    cadena.append("SELECT Punto, Altura, Volumen FROM cistem.tablacubicacion WHERE "
-//                  "TanqueId = '" + QString::number(index + 1) +"' AND p_enable = 1;");
-//    QSqlQuery qry;
-//    qDebug() << cadena;
-//    qDebug() << qry.exec(cadena);
-//    while (qry.next())
-//    {
-//        ui->tableWidget->insertRow(ui->tableWidget->rowCount());
-//        ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 0, new QTableWidgetItem(QString::number(qry.value(0).toInt())));
-//        ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 1, new QTableWidgetItem(QString::number(qry.value(1).toDouble(), 'f', 3)));
-//        ui->tableWidget->setItem(ui->tableWidget->rowCount() - 1, 2, new QTableWidgetItem(QString::number(qry.value(2).toDouble(), 'f', 3)));
-//        configurar_tablas(ui->tableWidget,2,1);
-//        qDebug() << qry.value(0).toInt() << qry.value(1).toInt() << qry.value(2).toInt();
-//    }
-
-
+    Rellenar_campos_cubicacion(ui->tableWidget->item(ui->tableWidget->rowCount()-1,0)->text(),
+                               ui->tableWidget->item(ui->tableWidget->rowCount()-1,1)->text(),
+                               ui->tableWidget->item(ui->tableWidget->rowCount()-1,2)->text(),
+                               false);
 }
 void MainWindow::on_Btn_CubGenerar_clicked()
 {
@@ -1864,8 +1862,8 @@ void MainWindow::on_Btn_CubGenerar_clicked()
     for (int i = 0;i <= 100; i++) {
         if(i <= ui->Line_Puntos->text().toInt()){
             Cadena2.append("UPDATE cistem.tablacubicacion SET "
-                           "Altura = '" + QString::number(i * (ui->Line_Altura_max->text().toInt()/ui->Line_Puntos->text().toInt())) +"', "
-                           "Volumen = '" + QString::number(i * (ui->Line_Capacidad_2->text().toInt()/ui->Line_Puntos->text().toInt())) +"', "
+                           "Altura = '" + QString::number(i * (ui->Line_Altura_max->text().toDouble()/ui->Line_Puntos->text().toDouble())) +"', "
+                           "Volumen = '" + QString::number(i * (ui->Line_Capacidad_2->text().toDouble()/ui->Line_Puntos->text().toDouble())) +"', "
                            "p_enable = 1 "
                            "WHERE TanqueId = '" + QString::number(ui->Combo_cub_generar->currentIndex() +1) +"' "
                            "AND Punto = '" + QString::number(i) +"';");
@@ -3158,10 +3156,11 @@ void MainWindow::configurar_tablas(QTableWidget *tabla,int n_colum,int n_tabla)
                 tabla->setSelectionBehavior(QAbstractItemView::SelectRows);
             }
         break;
+
         case 1:
-        tabla->setColumnWidth(0,250);
-        tabla->setColumnWidth(1,250);
-        tabla->setColumnWidth(2,250);
+        tabla->setColumnWidth(0,300);
+        tabla->setColumnWidth(1,300);
+        tabla->setColumnWidth(2,300);
 
         break;
 
