@@ -133,7 +133,7 @@ MainWindow::MainWindow(QWidget *parent)
     Reloj->setStyleSheet("background-color: transparent;");
     Reloj->setFont(FontReloj);
     Reloj->setText(QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss ap"));
-    estado_sistema(ui->Btn_Barra_Estados,"normal");      
+    estado_sistema(ui->Btn_Barra_Estados,"normal");
     Btn_select_rango = new QPushButton(ui->Lab_Rango_Fecha);
     Btn_select_rango->setText("Select Range");
     Btn_select_rango->setStyleSheet("background-color: transparent;");
@@ -827,29 +827,18 @@ void MainWindow::Protocolo(QString cad)
         }
     }
 
-    qDebug() << "Indice:" << indice;
-    qDebug()<< qry.exec("SELECT Protocolo FROM `cistem`.`sonda` WHERE Serie = '"+ProGaugeId[indice]+"' ;");
-    while(qry.next())
-    {
-        N= qry.value(0).toInt();
-        qDebug() << "Protocolo:"<< N;
-    }
 
    disconnect(tanques[indice],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
     connect(tanques[indice],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
-    switch (N) {
 
-    case 1:
         if (cad[7]== "=" && cad[12]== "=" && cad[18] =="=")
         {
             tanques[indice]->setFocusPolicy(Qt::NoFocus);
             tanques[indice]->SetAltura(cad.mid(13,5).toDouble(), cad.mid(19,4).toDouble());
             tanques[indice]->SetTemperatura(cad.mid(9,3).toDouble());
         }
-        inicbuff1();
-        break;
 
-    case 2:
+
         if (cad[7]== "=" && cad[12]== "=" && cad[21] =="=" && cad.length() == 36)
         {
 
@@ -864,11 +853,8 @@ void MainWindow::Protocolo(QString cad)
             qDebug() << "Tamano de cadena:"<< cad.length();
         }
         inicbuff1();
-        break;
-    default:
-        inicbuff1();
-        break;
-    }
+
+
 
     if(Maxi)
         Tanque_Maximisado(indice);
@@ -885,7 +871,10 @@ void MainWindow::Descargar()
 
     qry.exec("SELECT SistemaUnidades FROM cistem.Interfaz");
     while(qry.next()){
-        qry.value(0).toString();
+       SistemaUnidades = qry.value(0).toString();
+       qDebug() << "////////////////////////////////////////";
+       qDebug () << "Sistema De Unidades" << SistemaUnidades;
+       qDebug() << "//////////////////////////////////////////";
     }
 
     qry.exec("SELECT COUNT(1) FROM `cistem`.`tanques` WHERE Configurado = 1;");
@@ -914,10 +903,10 @@ void MainWindow::Descargar()
 
             switch (qry.value(5).toInt())
             {
-            case 1: tanques[S]->color("gray", true);   break;
-            case 2: tanques[S]->color("green",true);  break;
-            case 3: tanques[S]->color("yellow",true); break;
-            case 4: tanques[S]->color("cyan",true);   break;
+            case 1: tanques[S]->color("gray");   break;
+            case 2: tanques[S]->color("green");  break;
+            case 3: tanques[S]->color("yellow"); break;
+            case 4: tanques[S]->color("cyan");   break;
             }
 
             tanques[S]->setCodigoCombustible(qry.value(6).toInt());
@@ -931,6 +920,7 @@ void MainWindow::Descargar()
             tanques[S]->setCoeficienteTermico(qry.value(14).toDouble());
             tanques[S]->setProducto(qry.value(15).toString());
             tanques[S]->SetConfigEntregas(qry.value(16).toInt(),qry.value(17).toInt());
+            tanques[S]->setSistemaUnidades(SistemaUnidades);
 
             S++;
             ui->stackedWidget->setCurrentIndex(SHome);
@@ -982,7 +972,7 @@ void MainWindow::Descargar()
           {
               if  ( qry.next())
               {
-                  IProg = true ;
+                  IProg = true;
               while (qry.next())
               {
 
@@ -1016,10 +1006,10 @@ void MainWindow::Geometrytank()
         tanques[S] = new Tanque(ui->Home2,true);
      ui->stackedWidget->setCurrentIndex(3);
     switch(S){
-    case 0:case 4: tanques[S]->Setgeometry(120,3,750,380);   break;
-    case 1:case 5: tanques[S]->Setgeometry(960,3,750,380);  break;
-    case 2:case 6: tanques[S]->Setgeometry(120,380,750,380); break;
-    case 3:case 7: tanques[S]->Setgeometry(960,380,750,380);break;
+    case 0:case 4: tanques[S]->Setgeometry(120,3,750,410);   break;
+    case 1:case 5: tanques[S]->Setgeometry(960,3,750,410);  break;
+    case 2:case 6: tanques[S]->Setgeometry(120,413,750,410); break;
+    case 3:case 7: tanques[S]->Setgeometry(960,413,750,410);break;
     }
 }
 
@@ -1075,6 +1065,21 @@ void MainWindow::on_pushButton_2_clicked()
 void MainWindow::Tanque_Maximisado(int index)
 {
 
+    QString UnidadesVolumen;
+    QString UnidadesDistancia;
+    QString UnidadesTemperatura;
+
+     if(tanques[indiceM]->getSistemaUnidades() == "Metrico")
+     {
+         UnidadesVolumen =  " Lts ";
+         UnidadesDistancia= " MM ";
+         UnidadesTemperatura = " ºC ";
+     }
+     else {
+         UnidadesVolumen = " Gal ";
+         UnidadesDistancia = " In ";
+         UnidadesTemperatura = " ºF ";
+     }
 
     if(!Maxi)
     {
@@ -1083,12 +1088,13 @@ void MainWindow::Tanque_Maximisado(int index)
 
           Maxi = true;
         qDebug()<< "indiceM"<< indiceM;
-         Maximizado->setPosTank(tanques[indiceM]->getPosTank());
+        // Maximizado->setPosTank(tanques[indiceM]->getPosTank());
         Maximizado->Setgeometry(15,5,1000,1000);
+
         Maximizado->setID(tanques[indiceM]->getID());
         ui->Lab_Titulo->setText(tanques[indiceM]->GetNameTank());
         Maximizado->SetnameTank("");
-        Maximizado->color(tanques[indiceM]->GetColor(),false);
+        Maximizado->color(tanques[indiceM]->GetColor());
         Maximizado->SetVolMax(tanques[indiceM]->GetVolMax());
         Maximizado->SetProducto_Alto(tanques[indiceM]->GetProducto_Alto());
         Maximizado->SetDesbordamiento(tanques[indiceM]->GetDesbordamiento());
@@ -1100,6 +1106,7 @@ void MainWindow::Tanque_Maximisado(int index)
         Maximizado->setTankMinimoEntrega(tanques[indiceM]->getTankMinimoEntrega());
         Maximizado->SetTankAltura(tanques[indiceM]->GetTanqueAltura());
         Maximizado->setIdTanque(tanques[indiceM]->getIdTanque());
+     //   Maximizado->setAjusteAltura(tanques[indiceM]->getAjusteAltura());
 
         qDebug() << "ID" << Maximizado->getID();
 
@@ -1119,22 +1126,22 @@ void MainWindow::Tanque_Maximisado(int index)
     tanques[indiceM]->setTMaximizado(false);
     Maximizado->SetAltura(tanques[indiceM]->GetAltura(),tanques[indiceM]->getNivelAgua());
     Maximizado->SetTemperatura(tanques[indiceM]->GetTemperatura());
-    ui->Lab_VolMaxi->setText(QString::number(tanques[indiceM]->getVolumenCon()));
-    ui->Lab_AlturaMaxi->setText(QString::number(tanques[indiceM]->GetAltura()));
-    ui->Lab_VolAgua->setText(QString::number(tanques[indiceM]->getVolumenA()));
-    ui->Lab_AlturaAgua->setText(QString::number(tanques[indiceM]->getNivelAgua()));
-    ui->Lab_Maxitemp->setText(QString::number(tanques[indiceM]->GetTemperatura()));
-    ui->Lab_Diametro->setText(QString::number(tanques[indiceM]->GetTankDiametro()));
-    ui->Lab_VolMaximo->setText(QString::number(tanques[indiceM]->GetVolMax()));
+    ui->Lab_VolMaxi->setText(QString::number(tanques[indiceM]->getVolumenCon()) + UnidadesVolumen);
+    ui->Lab_AlturaMaxi->setText(QString::number(tanques[indiceM]->GetAltura())+ UnidadesDistancia);
+    ui->Lab_VolAgua->setText(QString::number(tanques[indiceM]->getVolumenA()) + UnidadesVolumen);
+    ui->Lab_AlturaAgua->setText(QString::number(tanques[indiceM]->getNivelAgua())+ UnidadesDistancia);
+    ui->Lab_Maxitemp->setText(QString::number(tanques[indiceM]->GetTemperatura())+ UnidadesTemperatura);
+    ui->Lab_Diametro->setText(QString::number(tanques[indiceM]->GetTankDiametro())+ UnidadesDistancia);
+    ui->Lab_VolMaximo->setText(QString::number(tanques[indiceM]->GetVolMax()) + UnidadesDistancia);
     ui->Lab_DesbordamientomMaxi->setText(QString::number(tanques[indiceM]->GetDesbordamiento()));
     ui->Lab_ProductoAlto->setText(QString::number(tanques[indiceM]->GetProducto_Alto()));
     ui->Lab_NecesitaEntrega->setText(QString::number(tanques[indiceM]->GetNecesitaProducto()));
     ui->Lab_ProductoBajo->setText(QString::number(tanques[indiceM]->GetProductoBajo()));
     ui->Lab_AlarmaAguaAlta->setText(QString::number(tanques[indiceM]->GetAlarma_de_Agua()));
     ui->Lab_AdvertenciaAlarmaAlta->setText(QString::number(tanques[indiceM]->GetAdvertencia_de_Agua()));
-    ui->Lab_TcVolumen->setText(QString::number(tanques[indiceM]->getVolumeTc()));
-    ui->Lab_Vacio->setText(QString::number(tanques[indiceM]->getVacio100()));
-    ui->Lab_Capacidad->setText(QString::number(tanques[indiceM]->getCapacidad()));
+    ui->Lab_TcVolumen->setText(QString::number(tanques[indiceM]->getVolumeTc()) + UnidadesVolumen);
+    ui->Lab_Vacio->setText(QString::number(tanques[indiceM]->getVacio100())+ UnidadesVolumen);
+    ui->Lab_Capacidad->setText(QString::number(tanques[indiceM]->getCapacidad())+ UnidadesVolumen);
 
     inicbuff1();
     frame = STMaxi;
@@ -1356,6 +1363,7 @@ void MainWindow::Rellenar_combo_taques(QString tanque_index)
     ui->Combo_cub_generar->addItem(tanque_index);
     ui->Combo_tanque_limites->addItem(tanque_index);
 }
+
 
 void MainWindow::Rellenar_tabla_cubicacion(int Id_tanque)
 {
@@ -2723,16 +2731,33 @@ void MainWindow::Turnohabilitado(Butons *T,QString TID)
 
 void MainWindow::guardar_FormatoFecha()
 {
+
+    disconnect(Time1,SIGNAL(timeout()),this,SLOT(Estados()));
+//*** Configurar --- 0 Habilitado o Deshabilitado --- ***//
+ int hab = 0;
+ QSqlQuery qry;
+ qry.exec("SELECT COUNT(1) FROM cistem.tanques WHERE Configurado = 1;");
+ while(qry.next())  { S = qry.value(0).toInt();
+
+     qDebug() << "La S en este moento es igual a" << S;
+
+       for (int i = 0 ;i < S;i++) { tanques[i]->Delate(); qDebug()<< "Tanque Borrado:" <<i; }
+ }
+
+
 qDebug() << "Modificando Formato fecha";
 
-     QSqlQuery qry;
   //   qry.exec("UPDATE `cistem`.`FormatoFH` SET `Formato_Fecha`='sd', `Separador`='sd', `Formato_Hora`='sd' WHERE  `ID`=1;");
      qry.exec("UPDATE cistem.Interfaz SET `Formato_Fecha`= '"+ui->Combo_FormatoFecha->currentText()+"',"
                                           " `Separador` ='"+ui->Combo_FormatoSeparador->currentText()+"',"
-                                          " `Formato_Hora`='"+ui->Combo_FormatoHora->currentText()+"'"
+                                          " `Formato_Hora`='"+ui->Combo_FormatoHora->currentText()+"' , "
+                                          " `SistemaUnidades`='"+ui->Combo_SistemaUnidades->currentText()+"'"
                                           " WHERE ID='1';");
 
      DescargarFormatoFecha();
+     consultaBD();
+     Buscar_Tanques();
+     Descargar();
 }
 
 void MainWindow::Qry_Turnos(int Turno)
@@ -3158,7 +3183,7 @@ void MainWindow::guardar_impresora()
             status = "1";
             btn_Habilitado(ui->Btn_impresion_prueba,true);
             qDebug() << "impresora conectada";
-        }else status = "0";        
+        }else status = "0";
     }
     else if(ui->Rb_deshabilitado->isChecked()){
         if(Impresora->isOpen()){

@@ -10,6 +10,11 @@
 #include <QTabWidget>
 #include <QDateTime>
 
+#define TablaDeCubicacion 0
+#define CilindroHorizontal 1
+#define CilindroVerical 2
+
+
 QString Tanque::getID() const { return ID; }
 void Tanque::setID(const QString &value) { ID = value; }
 double Tanque::getTankTiempoEntrega() const { return TankTiempoEntrega; }
@@ -22,27 +27,21 @@ int Tanque::getProtocolo() const { return Protocolo; }
 void Tanque::setProtocolo(int value) { Protocolo = value; }
 bool Tanque::getTMaximizado() const { return TMaximizado; }
 void Tanque::setTMaximizado(bool value) { TMaximizado = value; }
-
-void Tanque::offline()
-{
-     latanq->setStyleSheet("background-color:lightgray;");
-     latanq->setText("Sin Conexion");
-    // ishabilitado = false;
-     Desconectado= false;
-
-     QSqlQuery qry;
-           qry.exec("DELETE FROM `cistem`.`InventarioMin` WHERE ID ='"+QString::number(IdTanque)+"';");
-}
-
+int Tanque::Niv() { return niv; }
+int Tanque::NivA() { return nivA; }
+double Tanque::GetVolumen() {if(Metricas) {  return VolumenCon;} else { return VolumenEEUU; } }
+double Tanque::GetAltura() { return AlturaTank; }
+void Tanque::SetLimSup(double L) { LimSup= L; LsVal->setText(QString::number(LimSup));}
+double Tanque::GetLimSup() { return LimSup; }
 double Tanque::getAngle() const { return angle; }
 void Tanque::setAngle(double value) { angle = value; }
 double Tanque::getFrombase() const { return frombase; }
 void Tanque::setFrombase(double value) {frombase = value; }
 bool Tanque::getIshabilitado() const {return ishabilitado;}
 void Tanque::setIshabilitado(bool value) {ishabilitado = value;}
-double Tanque::getVolumenCon() const{return VolumenCon;}
+double Tanque::getVolumenCon() const{if (Metricas) {return VolumenCon;} else{ return VolumenEEUU;}}
 void Tanque::setVolumenCon(double value){VolumenCon = value;}
-double Tanque::getVolumenA() const { return VolumenA; }
+double Tanque::getVolumenA() const {if (Metricas){ return VolumenA;} else{return VolumeAguaEEUU;}  }
 void Tanque::setVolumenA(double value){VolumenA = value;}
 double Tanque::getNivelAgua() const{return NivelAgua;}
 void Tanque::setNivelAgua(double value){NivelAgua = value;}
@@ -86,16 +85,64 @@ int Tanque::getVacio100() const {return Vacio100; }
 void Tanque::setVacio100(int value) { Vacio100 = value;}
 int Tanque::getVacio90() const { return Vacio90;}
 void Tanque::setVacio90(int value) { Vacio90 = value;}
-double Tanque::getVolumeTc() const {return VolumeTc;}
+double Tanque::getVolumeTc() const {if (Metricas) {return VolumeTc;} else {return VolumenTCEEUU;}}
 void Tanque::setVolumeTc(double value) {VolumeTc = value;}
+QString Tanque::getSistemaUnidades() const {return SistemaUnidades;}
+void Tanque::setSistemaUnidades(const QString &value)
+{ SistemaUnidades = value; if(value == "Metrico") Metricas = true; else Metricas=false;}
 void Tanque::clickbuton(){ setTMaximizado(false); emit Camino(posTank); }
+void Tanque::SetVolMax(double vol) { VolMax = vol; }
+double Tanque::GetVolMax() { return VolMax; }
+void Tanque::SetProducto_Alto(double producto_alto) { ProductoAlto = producto_alto; }
+double Tanque::GetProducto_Alto() { return ProductoAlto; }
+void Tanque::SetDesbordamiento(double desboramiento) { DesbordamientoP = desboramiento;}
+double Tanque::GetDesbordamiento() { return DesbordamientoP; }
+void Tanque::SetNecesitaProducto(double necesita_producto) { NecesitaProducto = necesita_producto; }
+double Tanque::GetNecesitaProducto() { return NecesitaProducto; }
+void Tanque::SetProductoBajo(double producto_bajo) { ProductoBajo = producto_bajo; }
+double Tanque::GetProductoBajo() { return ProductoBajo; }
+void Tanque::SetAlarma_de_Agua(double alarma_agua) { Alarma_de_Agua = alarma_agua; }
+double Tanque::GetAlarma_de_Agua() { return Alarma_de_Agua; }
+void Tanque::SetAdvertencua_de_Agua(double advetencia_agua) {Advertencia_de_Agua = advetencia_agua; }
+double Tanque::GetAdvertencia_de_Agua() { return Advertencia_de_Agua; }
+void Tanque::SetTankDiametro(double Diametro) { TankDiametro = Diametro; }
+double Tanque::GetTankDiametro() { return TankDiametro; }
+void Tanque::SetTankAltura(double Altura) { Tankaltura = Altura; }
+double Tanque::GetTanqueAltura() { if (Metricas) {return Tankaltura;}else { return  AlturaEEUU;} }
+void Tanque::SetTankLargo(double Largo) { Tanklargo = Largo; }
+double Tanque::GetTankLargo() { return Tanklargo; }
+void Tanque::SetTankAncho(double Ancho){ Tankancho = Ancho; }
+double Tanque::GetTankAncho(){ return Tankancho; }
+double Tanque::GetTemperatura(){ if (Metricas){return Temperatura;} else {return TemperaturaEEUU;}}
+QString Tanque::GetColor() { return Color2; }
+void Tanque::SetnameTank(const QString &SNT) {T1->setTitle(SNT); NomTank = SNT; }
+QString Tanque::GetNameTank(){ return NomTank; }
+
+/* en este metodo el tanque es desconectado este se pinta de un color solido
+ y cambiando el taxto a Sin conexion.
+Tambien en este metodo se elimina de la base de datos, de la tabla inventariomin
+el inventario actual de ese tanque.*/
+
+void Tanque::offline()
+{
+     latanq->setStyleSheet("background-color:lightgray;");
+     latanq->setText("Sin Conexion");
+    // ishabilitado = false;
+     Desconectado= false;
+
+     QSqlQuery qry;
+           qry.exec("DELETE FROM `cistem`.`InventarioMin` WHERE ID ='"+QString::number(IdTanque)+"';");
+}
+
+/* En esta parte se construlle el tanque  se crea un GroupBox padre este almacena a nuesto label en forma
+ * de tanque asi como los label que se utilizan para mostrar los valores de este*/
 
 Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 {
     Config = config;
-
+/*En este if Se  configura si el tanque mostrara los datos a un lado de el o solamente sera el tanque solo*/
     if(config){
-
+// Si Config es Verdadero se configura el tanque para mostrar labels indicadores de*/
         T1 = new QGroupBox(parent);
         Boton = new QPushButton (T1);
         // TituloTank = new QLabel(Boton);
@@ -105,14 +152,17 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
         groupBox_4 = new QGroupBox(Boton);
         Ltemp = new QLabel(groupBox_4);
         latanq = new QLabel(groupBox_4);
-        lbl_ProGaugeDeliveryInProccess = new QLabel(T1);
+        lbl_ProGaugeDeliveryInProccess = new QLabel(layoutWidget1);
 
         QFont font3;
         font3.setPointSize(30);
         QFont font2;
         font3.setPointSize(30);
+        font2.setBold(true);
         QFont font1;
-        font2.setPointSize(30);
+        font1.setBold(true);
+        font3.setBold(true);
+        font2.setPointSize(20);
 
         T1->setObjectName(QString::fromUtf8("T1"));
         T1->setEnabled(true);
@@ -120,19 +170,27 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
         T1->setFont(font3);
         T1->setTitle("Tanque");
         T1->setFlat(true);
-
+      //  T1->setStyleSheet("border: 2px solid blue;");
         Boton->setGeometry(0,50,560,299);
-        Boton->setStyleSheet("QPushButton{background-color: rgb(240, 240, 240);border: 0px solid white; border-radius: 15px; padding: 5px;  }" );
+        Boton->setStyleSheet("QPushButton{background-color: rgb(240, 240, 240); border: 0px solid white; border-radius: 15px; padding: 5px;  }" );
         Boton-> setFocusPolicy(Qt :: NoFocus);
+
+
+        // esta conexion aprobecha la señal generada al dar click al boton
+        // Esta señal se dirige al  slot clickbuton en el cual se emite una señal y cambie el estado de un boleano
+        // Para asegurarnos que este fue el tanque que se clikio en la señal se manda la posicion del tanque clikeado
 
         connect(Boton, SIGNAL (clicked()),this, SLOT(clickbuton()));
 
 
-        // layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
         layoutWidget1->setGeometry(QRect(310, 20, 231, 253));
 
-        horizontalLayout_3 = new QHBoxLayout(layoutWidget1);
+
+        vericalLayout_4 = new QVBoxLayout(layoutWidget1);
+        horizontalLayout_3 = new QHBoxLayout();
         verticalLayout_2 = new QVBoxLayout();
+
+
         Temp = new QLabel(layoutWidget1);
         verticalLayout = new QVBoxLayout();
         Lim_Sup = new QLabel(layoutWidget1);
@@ -145,6 +203,21 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
+
+        //  ↓  Este es el label de entrega en proceso Este solamente aparece cuando se esta realizando una entrega
+         lbl_ProGaugeDeliveryInProccess->setObjectName(QString::fromUtf8("Entrega"));
+      //   lbl_ProGaugeDeliveryInProccess->setGeometry(375,0,370,50);
+         lbl_ProGaugeDeliveryInProccess->setFont(font2);
+         lbl_ProGaugeDeliveryInProccess->setText("Entrega en Proceso");
+         lbl_ProGaugeDeliveryInProccess->setStyleSheet("QLabel{ color: white;"
+                                                       "background-color: red;"
+                                                       "border: 3px solid red;"
+                                                       "border-radius: 10px;"
+                                                       "padding: 2px; }");
+        // lbl_ProGaugeDeliveryInProccess->hide();
+
+         vericalLayout_4->addWidget(lbl_ProGaugeDeliveryInProccess);
+         // horizontalLayout_3->addLayout(vericalLayout_4);
 
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
 
@@ -184,6 +257,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
         verticalLayout_2->addWidget(NivAgua);
 
         horizontalLayout_3->addLayout(verticalLayout_2);
+
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
 
         VolVal->setObjectName(QString::fromUtf8("VolVal"));
@@ -214,34 +288,29 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
         NivAVal->setObjectName(QString::fromUtf8("NivAVal"));
         NivAVal->setFont(font2);
         NivAVal->setText("000");
-        NivAVal->setStyleSheet("padding:8px;  QLabel{background-color: rgb(230, 230, 230); }");
-        NivAVal->setAlignment(Qt::AlignRight);
+        NivAVal->setStyleSheet(" QLabel{background-color: rgb(230, 230, 230); }");
+    //    NivAVal->setAlignment(Qt::AlignRight);
+       verticalLayout->addWidget(NivAVal);
 
 
-        lbl_ProGaugeDeliveryInProccess->setObjectName(QString::fromUtf8("Entrega"));
-        lbl_ProGaugeDeliveryInProccess->setGeometry(375,0,370,50);
-        lbl_ProGaugeDeliveryInProccess->setFont(font2);
-        lbl_ProGaugeDeliveryInProccess->setText("Entrega en Proceso");
-        lbl_ProGaugeDeliveryInProccess->setStyleSheet("QLabel{ color: white;"
-                                                      "background-color: red;"
-                                                      "border: 3px solid red;"
-                                                      "border-radius: 10px;"
-                                                      "padding: 2px; }");
-        lbl_ProGaugeDeliveryInProccess->hide();
-        verticalLayout->addWidget(NivAVal);
+            // Inicialmente esta oculto  ↑
+
         horizontalLayout_3->addLayout(verticalLayout);
+
+        vericalLayout_4->addLayout(horizontalLayout_3);
 
  }
  else
  {
-
+// Si es falso se Mostrara el tanque solo
      T1 = new QGroupBox(parent);
     // Tab = new QTabWidget(Tab);
      layoutWidget1 = new QWidget(T1);
      Volumen = new QLabel(layoutWidget1);
      Altura = new QLabel(layoutWidget1);
      groupBox_4 = new QGroupBox(T1);
-  //   Ltemp = new QLabel(groupBox_4);
+
+ //    ↓  latanq es el label del tanque
      latanq = new QLabel(groupBox_4);
 
       QFont font3;
@@ -269,21 +338,21 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
      latanq->setObjectName(QString::fromUtf8("latanq"));
      latanq->setEnabled(true);
      latanq->setGeometry(QRect(40, 30, 201, 201));
-
-     latanq->setStyleSheet(styleSheetTank);
-
      latanq->setAlignment(Qt::AlignCenter);
-     latanq->setText("Sin Conexion");
-
+     latanq->setText("...INICIANDO...");
      latanq->raise();
 
  }
 
 
+/* En esta parte se calcula el volumen de el combustible y el volumen del agua dependiendo del tipo de
+ * tanque incluyendo si este esta cubicado*/
+
  double Tanque::SetAltura(double height, double water)
  {
      double r=0;
-     double h= height;
+
+     double h= height /1000;
      double res=0;
      double reswater=0;
      //double K= 0;
@@ -306,16 +375,21 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
      switch(Tipo)
      {
 
-     case 0:
+     case TablaDeCubicacion:
+
          puntosCubicacion =  getPuntosCubicacion();
           readPuntosCubicacion();
           Capacidad= pointVolume[puntosCubicacion -1];
 
-           res =CalcularCubicacion(h/1000);
+          if(Metricas){
+              res =CalcularCubicacion(h);
+              reswater = CalcularCubicacion(water/1000);
 
-           reswater = CalcularCubicacion(water/1000);
-           SetVolumen(res,reswater);
-
+          }else{
+              res= CalcularCubicacion(h *0.004323);
+              reswater = CalcularCubicacion((water/1000) *0.004323);
+          }
+          SetVolumen(res,reswater);
 
           qDebug ( ) << "---------------------";
           qDebug() << "Volumen Cubicado : " << res;
@@ -325,16 +399,16 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 
 
 
-     case 2:
+     case CilindroVerical:
          qDebug() << "Cilindro vertical";
          r = TankDiametro / 2;
-         h = height;
 
-         res = (pi * (r * r) * h) / 1000000;
-         reswater = (pi * (r * r) *water) / 1000000;
+
+         res = (pi * (r * r) * h) / 1000;
+         reswater = (pi * (r * r) *water) / 1000;
 
          break;
-     case 1:
+     case CilindroHorizontal:
          qDebug() << "Cilindro Horizontal ----------------------------------------------";
          r = TankDiametro / 2;
          // Tankaltura = TankDiametro;
@@ -346,6 +420,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
          result = (Capacidad * 1000000) /(pi * qPow(r,2));
          //result = Capacidad / ((((r * r) * (qAcos((r - h) / r ))) - ((r - h) * (qSqrt((d * h) - (h * h))))) * 1000);
          qDebug() << "Resultado" << result;
+
          res = ((((r * r) * (qAcos((r - h) / r ))) - ((r - h) * (qSqrt((TankDiametro * h) - (h * h))))) * result) / 1000000;
          reswater = ((((r * r) * (qAcos((r - water) / r ))) - ((r - water) * (qSqrt((TankDiametro * water) - (water * water))))) * result) / 1000000;
 
@@ -447,33 +522,33 @@ void Tanque::SetVolumen(double c ,double a)
     double CD;
     qDebug() << "Capacidad" << Capacidad ;
 
-    // *************************** Conversion de Unidades **********************************
+  // *************************** Conversion de Unidades **********************************
+   VolumenEEUU = VolumenCon / 3.78541;
+    VolumenTCEEUU = VolumeTc/ 3.78541;
+    AlturaEEUU= (AlturaTank /10) * 2.74;
+    TemperaturaEEUU = (Temperatura *1.8000) + 32;
+    VolumeAguaEEUU = VolumenA /3.78541;
+
+
     if (TMaximizado)
     {
 
         if(!Metricas){
-
-
-            VolumenEEUU = VolumenCon / 3.78541;
-            CapacidadEEUU= Capacidad / 3.785;
-            AlturaEEUU= (AlturaTank /10) * 2.74;
-            TemperaturaEEUU = (Temperatura *1.8000) + 32;
-            VolumeAguaEEUU = VolumenA /3.78541;
-
             AltVal->setText(QString::number(AlturaEEUU,'f',1)+ " In");
             VolVal->setText(QString::number(VolumenEEUU,'f',2)+" Gal");
             NivAVal->setText(QString::number(VolumeAguaEEUU, 'f', 2)+ " Gal");
             TmpVal->setText(QString::number(TemperaturaEEUU,'f',2)+ " ºF ");
-            LsVal->setText(QString::number(CapacidadEEUU-VolumenEEUU)+ " Gal");
-            Vacio100 = int(CapacidadEEUU- VolumenEEUU) ;
-            Vacio90 = int((CapacidadEEUU* 0.9) - VolumenEEUU);
+            LsVal->setText(QString::number(Capacidad-VolumenEEUU)+ " Gal");
+            Vacio100 = int(Capacidad- VolumenEEUU) ;
+            Vacio90 = int((Capacidad* 0.9) - VolumenEEUU);
 
         }
         else {
 
             AltVal->setText(QString::number(AlturaTank,'f',1)+ " MM");
             VolVal->setText(QString::number(VolumenCon,'f',2)+" Lts");
-            NivAVal->setText(QString::number(VolumenA, 'f', 2)+ " MM");
+            NivAVal->setText(QString::number(VolumenA, 'f', 2)+ " Lts");
+            TmpVal->setText(QString::number(Temperatura,'f',2)+ " ºC ");
             LsVal->setText(QString::number(Capacidad-VolumenCon)+ " Lts");
             Vacio100 = int(Capacidad - VolumenCon) ;
             Vacio90 = int((Capacidad* 0.9) - VolumenCon);
@@ -528,18 +603,6 @@ void Tanque::SetVolumen(double c ,double a)
     latanq->setText(QString::number(niv)+ "%");
 
 }
-
-int Tanque::Niv() { return niv; }
-
-int Tanque::NivA() { return nivA; }
-
-double Tanque::GetVolumen() { return VolumenCon; }
-
-double Tanque::GetAltura() { return AlturaTank; }
-
-void Tanque::SetLimSup(double L) { LimSup= L; LsVal->setText(QString::number(LimSup));}
-
-double Tanque::GetLimSup() { return LimSup; }
 
 void Tanque::SetTemperatura(double T)
 {
@@ -603,29 +666,7 @@ void Tanque::Delate()
 
 }
 
-void Tanque::SetVolMax(double vol) { VolMax = vol; }
-double Tanque::GetVolMax() { return VolMax; }
-void Tanque::SetProducto_Alto(double producto_alto) { ProductoAlto = producto_alto; }
-double Tanque::GetProducto_Alto() { return ProductoAlto; }
-void Tanque::SetDesbordamiento(double desboramiento) { DesbordamientoP = desboramiento;}
-double Tanque::GetDesbordamiento() { return DesbordamientoP; }
-void Tanque::SetNecesitaProducto(double necesita_producto) { NecesitaProducto = necesita_producto; }
-double Tanque::GetNecesitaProducto() { return NecesitaProducto; }
-void Tanque::SetProductoBajo(double producto_bajo) { ProductoBajo = producto_bajo; }
-double Tanque::GetProductoBajo() { return ProductoBajo; }
-void Tanque::SetAlarma_de_Agua(double alarma_agua) { Alarma_de_Agua = alarma_agua; }
-double Tanque::GetAlarma_de_Agua() { return Alarma_de_Agua; }
-void Tanque::SetAdvertencua_de_Agua(double advetencia_agua) {Advertencia_de_Agua = advetencia_agua; }
-double Tanque::GetAdvertencia_de_Agua() { return Advertencia_de_Agua; }
-void Tanque::SetTankDiametro(double Diametro) { TankDiametro = Diametro; }
-double Tanque::GetTankDiametro() { return TankDiametro; }
-void Tanque::SetTankAltura(double Altura) { Tankaltura = Altura; }
-double Tanque::GetTanqueAltura() { return Tankaltura; }
-void Tanque::SetTankLargo(double Largo) { Tanklargo = Largo; }
-double Tanque::GetTankLargo() { return Tanklargo; }
-void Tanque::SetTankAncho(double Ancho){ Tankancho = Ancho; }
-double Tanque::GetTankAncho(){ return Tankancho; }
-double Tanque::GetTemperatura(){ return Temperatura;}
+
 
 void Tanque::Setgeometry(int x, int y,int XTG,int YTG)
 {
@@ -647,9 +688,10 @@ void Tanque::Setgeometry(int x, int y,int XTG,int YTG)
     {
         QFont font5;
         font5.setPointSize(int(XTG*.03));
+        font5.setBold(true);
         Boton->setGeometry(QRect(0,50,XTG,int(YTG*.8)));
         latanq->setGeometry(QRect(5, 5, x1, x1));
-        layoutWidget1->setGeometry(QRect(XTG/2, 20,int((XTG/2)*.95),int(YTG*.7)));
+        layoutWidget1->setGeometry(QRect(XTG/2 -40, 20,int((XTG/2)+30),int(YTG*.7)));
         layoutWidget1->setFont(font5);
         Volumen->setFont(font5);
         Temp->setFont(font5);
@@ -678,7 +720,7 @@ void Tanque::Setgeometry(int x, int y,int XTG,int YTG)
     BorderTank = QString::number(int(XTG* .014));
 }
 
-void Tanque::color(QString Ct1,bool A)
+void Tanque::color(QString Ct1)
 {
     Color2 = Ct1;
 
@@ -703,11 +745,6 @@ void Tanque::color(QString Ct1,bool A)
 
 }
 
-QString Tanque::GetColor() { return Color2; }
-
-void Tanque::SetnameTank(const QString &SNT) {T1->setTitle(SNT); NomTank = SNT; }
-
-QString Tanque::GetNameTank(){ return NomTank; }
 
 void Tanque::DeliveryinProcces()
 {

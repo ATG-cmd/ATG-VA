@@ -240,7 +240,7 @@ width: 0px;
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>22</number>
+     <number>23</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -8624,7 +8624,7 @@ margin: 30px 20px 20px -15x;
         </widget>
        </item>
        <item row="6" column="1">
-        <widget class="QComboBox" name="comboBox_4">
+        <widget class="QComboBox" name="Combo_SistemaUnidades">
          <property name="maximumSize">
           <size>
            <width>16777215</width>
@@ -8638,7 +8638,7 @@ margin: 30px 20px 20px -15x;
          </property>
          <item>
           <property name="text">
-           <string>Metrico </string>
+           <string>Metrico</string>
           </property>
          </item>
          <item>

@@ -160,6 +160,8 @@ public:
      int minutos[8] = {0,0,0,0,0,0,0,0};
     // QTime Turnos[8];
 
+     QString SistemaUnidades;
+
 
     void Buscar_Tanques();  // Es funcion busca los tanques dados de alta en BD
     void Rellenar_combo_taques(QString tanque_index); // Rellenaremos los combobox con los tanque escontrados

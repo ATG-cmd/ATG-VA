@@ -30,6 +30,7 @@ class Tanque :public QWidget
     int contador=0;
     int niv;
     bool Metricas = false;
+    QString SistemaUnidades;
 
     /**************Limites de Tanque****************/
     double VolMax;
@@ -78,6 +79,7 @@ class Tanque :public QWidget
     double AlturaEEUU;
     double TemperaturaEEUU;
     double VolumeAguaEEUU;
+    double VolumenTCEEUU;
     /**************************/
 
 /****** Configuracion Entregas ******/
@@ -141,6 +143,7 @@ class Tanque :public QWidget
    QLabel *latanq;
    QHBoxLayout *horizontalLayout_3;
    QVBoxLayout *verticalLayout_2;
+   QVBoxLayout *vericalLayout_4;
    QLabel *Temp;
    QVBoxLayout *verticalLayout;
    QLabel *Lim_Sup;
@@ -255,30 +258,14 @@ signals:
 
 public:
 
-
-//    double ProGaugeMeasureA = 3.2 * 100;        //  Valores en metros, se convierten en centimetros
-//    double ProGaugeMeasureB = 9.94718 * 100;    //  Valores en metros, se convierten en centimetros
-//    double ProGaugeMeasureC = 3.2 * 100;        //  Valores en metros, se convierten en centimetros
-
-//    double ProGaugeVolumen = 0;
-//    double ProGaugeNivel = 0;
-//    double ProGaugeTemperatura = 0;
-//    double ProGaugeAgua = 0;
-//    double ProGaugeCapacidad = 40001.0;
-//    double ProGaugeLongitud = 0;
-//    double ProGaugeDiametro = 3200;
-//    int    ProGaugeTankPorcent = 0;
     int Protocolo;
     double pointLevel[100];
     double pointVolume[100];
-
-
 
     QRect *Q;
     double Xp= 1366;
     double yp= 768;
     double pi = 3.1416;
-
 
     explicit Tanque(QWidget *parent,bool config);
     void funcionActivacionTimer();
@@ -303,7 +290,7 @@ public:
 
 
     void Setgeometry(int x, int y,int XTG,int YTG);
-    void color(QString Ct1,bool A);
+    void color(QString Ct);
 
     QString GetColor();
     void SetnameTank(const QString &SNT);
@@ -472,6 +459,9 @@ public:
 
    double getVolumeTc() const;
    void setVolumeTc(double value);
+
+   QString getSistemaUnidades() const;
+   void setSistemaUnidades(const QString &value);
 };
 
 #endif // TANQUE_H
