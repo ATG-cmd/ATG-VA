@@ -14,19 +14,31 @@ Dialog::Dialog(QWidget *parent) :
 //                              Qt::WindowStaysOnTopHint
 //                             | Qt::CustomizeWindowHint
 //                             | Qt::WindowCloseButtonHint);
-    setMaximumWidth(1200);
-    setMaximumHeight(600);
+
+    setWindowFlags(Qt::Window |Qt::FramelessWindowHint);
+    //setWindowFlag(Qt::WindowTitleHint,false);
+    //setWindowFlag(Qt::WindowTitleHint,false);
+    //qDebug() << "Este es el window " << windowFlags();
+    setMaximumWidth(1860);
+    setMaximumHeight(735);
 
 
     //setWindowFlags( Qt::WindowCloseButtonHint);
     grupo =new QGroupBox(this);
-    grupo->setGeometry(20,160,1200,330);  // grupo->setGeometry(10,90,600,165);
+    grupo->setGeometry(30,240,1800,465);  // grupo->setGeometry(10,90,600,165);
+    //grupo->setStyleSheet("border: 2px solid blue;");
+
+
     label = new QLabel(this);
-    label->setGeometry(400,20,600,50);   //label->setGeometry(180,10,300,20);
+    label->setGeometry(30,30,1800,75);   //label->setGeometry(180,10,300,20);
+    label->setAlignment(Qt::AlignCenter);
+
+   //    label->setStyleSheet("border: 2px solid blue;");
    // label->setText("Ingrese un numero en el rango de");
     line = new QLineEdit(this);
-    line->setGeometry(400,80,440,60);   //line->setGeometry(180,40,220,25);
+    line->setGeometry(330,135,1200,75);   //line->setGeometry(180,40,220,25);
     line->setFocus();
+
 
   //  line->installEventFilter(this);
 
@@ -42,6 +54,7 @@ Dialog::Dialog(QWidget *parent) :
       btn[i+11]->setGeometry(20+(i *(btnX+btnXesp)),(1*(btnY+btnYesp)),btnX,btnY);
    }
 
+    //465
       btn[20] = new QPushButton(grupo);
       btn[20]->setGeometry(20+(9 *(btnX+btnXesp)),(1*(btnY+btnYesp)),btnX+35,btnY);
     for(int i = 0; i <= 10;i++)
@@ -57,11 +70,11 @@ Dialog::Dialog(QWidget *parent) :
     btn[34] = new QPushButton(grupo);
     btn[34]->setGeometry(25+(2 *(btnX+btnXesp)),(3*(btnY+btnYesp)),5*(btnX+btnXesp),btnY);
     btn[35] = new QPushButton(grupo);
-    btn[35]->setGeometry(30+(7 *(btnX+btnXesp)),(3*(btnY+btnYesp)),btnX,btnY);
+    btn[35]->setGeometry(40+(7 *(btnX+btnXesp)),(3*(btnY+btnYesp)),btnX,btnY);
     btn[36] = new QPushButton(grupo);
-    btn[36]->setGeometry(30+(8 *(btnX+btnXesp)),(3*(btnY+btnYesp)),btnX,btnY);
+    btn[36]->setGeometry(40+(8 *(btnX+btnXesp)),(3*(btnY+btnYesp)),btnX,btnY);
     btn[37] = new QPushButton(grupo);
-    btn[37]->setGeometry(30+(9 *(btnX+btnXesp)),(3*(btnY+btnYesp)),btnX+25,btnY);
+    btn[37]->setGeometry(40+(9 *(btnX+btnXesp)),(3*(btnY+btnYesp)),btnX+25,btnY);
     btn_setText();
 
     QFont Fontstyle;

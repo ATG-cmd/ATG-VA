@@ -212,7 +212,7 @@ MainWindow::MainWindow(QWidget *parent)
     DB = QSqlDatabase::addDatabase("QMYSQL");
 
     // DB.setHostName("192.168.10.104");
-    DB.setHostName("192.168.100.136");
+    DB.setHostName("192.168.100.10");
    // DB.setHostName("192.168.100.216");
    // DB.setHostName("localhost");
     DB.setDatabaseName("cistem");
@@ -555,6 +555,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         MainWindow::setFocus();
         qDebug() << "Hola desde el filtro ajuste altura";
         Dialog *dlg = new Dialog(this);
+        dlg->setGeometry(30,315,1860,765);
         dlg->set_etiqueta("Ingrese un numero en el rango de 100 a 2000");
         //dlg->use_validator(val_1);
         //QValidator *val_1 = new QIntValidator(100,2000,this);
@@ -575,9 +576,10 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         qDebug() << "Hola desde el filtro serie";
         QLabel *Label;
         Label = new QLabel(this );
-        Label->setGeometry(500,500,1000,800);
+
 
         Dialog *dlg = new Dialog(this);
+        dlg->setGeometry(30,315,1860,765);
         dlg->set_etiqueta("Ingrese un numero en el numero de serie");
         //dlg->use_validator(val_1);
         //QValidator *val_1 = new QIntValidator(100,2000,this);
@@ -598,6 +600,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         MainWindow::setFocus();
         qDebug() << "Hola desde el filtro licencia";
         Dialog *dlg = new Dialog(this);
+        dlg->setGeometry(30,315,1860,765);
         dlg->set_etiqueta("Ingrese su licencia: AAAA-AAAA-AAAA-AAAA-AAAA");
         dlg->maskarator(0,">AAAA-AAAA-AAAA-AAAA;#");
         int res;
@@ -618,7 +621,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
         dlg->set_etiqueta("Ingrese su nombre de usuario");
         dlg->maskarator(0,"");
-        dlg->setGeometry(340,578,1240,502);
+        dlg->setGeometry(30,315,1860,765);
         int res;
         res = dlg->exec();
         if(res == QDialog::Accepted)
@@ -635,6 +638,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         MainWindow::setFocus();
         qDebug() << "Hola desde el filtro contrasena";
         Dialog *dlg = new Dialog(this);
+        dlg->setGeometry(30,315,1860,765);
         dlg->set_etiqueta("Ingrese su password");
         dlg->maskarator(3,"NNNNNNNNN;");
         ui->Line_Contra->setEchoMode(QLineEdit::Password);
@@ -653,6 +657,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         MainWindow::setFocus();
         qDebug() << "Hola desde nombre de tanque";
         Dialog *dlg = new Dialog(this);
+        dlg->setGeometry(30,315,1860,765);
         dlg->set_etiqueta("Ingrese su nombre de usuario");
         dlg->maskarator(0,"");
         int res;
@@ -670,6 +675,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         MainWindow::setFocus();
         qDebug() << "Hola desde medida 1";
         Dialog *dlg = new Dialog(this);
+        dlg->setGeometry(30,315,1860,765);
         dlg->set_etiqueta("Ingrese "+ ui->Lab_Medida1->text());
         //dlg->use_validator(val_1);
         //QValidator *val_1 = new QIntValidator(100,2000,this);
@@ -690,6 +696,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         MainWindow::setFocus();
         qDebug() << "Hola desde medida 2";
         Dialog *dlg = new Dialog(this);
+        dlg->setGeometry(30,315,1860,765);
         dlg->set_etiqueta("Ingrese " + ui->Lab_Medida2->text());
         //dlg->use_validator(val_1);
         //QValidator *val_1 = new QIntValidator(100,2000,this);
@@ -710,6 +717,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         MainWindow::setFocus();
         qDebug() << "Hola desde medida 2";
         Dialog *dlg = new Dialog(this);
+        dlg->setGeometry(30,315,1860,765);
         dlg->set_etiqueta("Ingrese Codigo de Combuestible");
         //dlg->use_validator(val_1);
         //QValidator *val_1 = new QIntValidator(100,2000,this);
@@ -1930,7 +1938,7 @@ void MainWindow::on_Btn_SaveTank_clicked()
                   "`TiempoEntrega`='"+ui->Line_TiempoEntrega_2->text()+"' WHERE  `Id_Taque`= '"+QString::number(ui->Combo_IdTanque->currentIndex())+"' ;");
 
       consultaBD();
-      Buscar_Tanques();
+
       Descargar();
 
       frame = SMenu;
@@ -2754,7 +2762,7 @@ qDebug() << "Modificando Formato fecha";
 
      DescargarFormatoFecha();
      consultaBD();
-     Buscar_Tanques();
+
      Descargar();
 }
 
