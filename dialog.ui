@@ -31,26 +31,30 @@
   <property name="styleSheet">
    <string notr="true">QPushButton {
 	color: white;
-	
 	background-color: rgb(97, 97, 97);
 	border-width: 3px;
 	border-radius: 10px;
 	padding: 2px;
-	font: 80 40pt &quot;PibotoLt&quot; ,bold;
 }
-
+/*
+QPushButton:hover {
+	background-color: rgb(160, 160,160);
+}*/
+QPushButton:pressed {
+	background-color: rgb(220, 220,220);
+}
 QLabel{
 	color: white;
-	font: 80 40pt &quot;PibotoLt&quot; ,bold;
+	/*font: 80 40pt &quot;PibotoLt&quot; ,bold;*/
 }
 QLineEdit{
-	font: 80 40pt &quot;PibotoLt&quot; ,bold;
+	/*font: 80 40pt &quot;PibotoLt&quot; ,bold;*/
 }
 
 QDialog
  { 
 	/*color: rgba(97,97,97,100);*/
-	background-color: rgba(97, 97, 97,100);
+	background-color: rgba(50, 50, 50,100);
 	border-radius: 30px;
 }</string>
   </property>

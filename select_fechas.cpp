@@ -9,6 +9,10 @@ Select_fechas::Select_fechas(QWidget *parent) :
     ui->setupUi(this);
     timer = new QTimer(this);
 
+    setWindowFlags(Qt::Window |Qt::FramelessWindowHint);
+    setMaximumWidth(1500);
+    setMaximumHeight(500);
+
     connect(timer,SIGNAL(timeout()),this,SLOT(ciclo_Dhmenos()));
     connect(timer,SIGNAL(timeout()),this,SLOT(ciclo_Dhmas()));
     connect(timer,SIGNAL(timeout()),this,SLOT(ciclo_DMmenos()));

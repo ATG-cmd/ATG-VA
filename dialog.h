@@ -22,6 +22,11 @@
 #define btnXesp 15
 #define btnYesp 15
 
+#define btnX1 180
+#define btnY1 105
+#define btnXesp1 15
+#define btnYesp1 15
+
 namespace Ui {
 class Dialog;
 }
@@ -37,27 +42,33 @@ public:
     int getTypekeyboar() const;
     void setTypekeyboar(int value);
 
-    bool getShift() const;
-    void setShift(bool value);
+    int getShift() const;
+    void setShift(int value);
 
     QString getDatos() const;
     void setDatos(const QString &value);
     void validador(int index, int bottom, int top,int dec);
     void maskarator(int index,QString mask);
-
-
-
     void set_etiqueta(QString lb);
 
-
-//protected:
-//    bool eventFilter(QObject *obj, QEvent *event) override;
+    int nivel = 0;
 
     bool getIsvalidator() const;
     void setIsvalidator(bool value);
 
     int getVal_index() const;
     void setVal_index(int value);
+
+    int getNivel() const;
+    void setNivel(int value);
+
+    void conexiones_alfa();
+    void conexiones_num();
+    void desconexiones_alfa();
+    void desconexiones_num();
+    void teclado_alfanum();
+    void teclado_num();
+    void mostrar_tipo_teclado(int tipo);
 
 public slots:
     void btn_setText();
@@ -69,8 +80,8 @@ public slots:
     void btn_exit();
     void btn_SPACE();
     void btn_bks();
-
     void data_out();
+    void dobleclick();
 private slots:
 
 private:
@@ -78,14 +89,14 @@ private:
     QPushButton *btn[38];
     QGroupBox *grupo;
     QLineEdit *line;
-    int typekeyboar = 1;
-    bool shift = false;
+    int typekeyboar = 0;
+    int shift = 0;
     QString datos;
     QString rango;
-
+    QFont Fontstyle;
     QString  mask;
     QLabel *label;
-
+    QLabel *debug;
     bool isvalidator = true;
     int val_index;
     QValidator *v_int;

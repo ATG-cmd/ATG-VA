@@ -2237,6 +2237,7 @@ void MainWindow::btn_clicked()
     {
         QString cadena;
         Select_fechas *dlg_rango  = new Select_fechas(this);
+        dlg_rango->setGeometry(210,290,1500,500);
         int res = dlg_rango->exec();
         if(res == QDialog::Accepted)
         {
@@ -2869,6 +2870,7 @@ void MainWindow::on_Btn_SelecRange_clicked()
 
     QString cadena;
     Select_fechas *dlg_rango  = new Select_fechas(this);
+    dlg_rango->setGeometry(210,290,1500,500);
     int res = dlg_rango->exec();
     if(res == QDialog::Accepted)
     {

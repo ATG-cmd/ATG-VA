@@ -6,103 +6,34 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1464</width>
-    <height>493</height>
+    <width>1500</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog
+ { 
+	
+	border-radius: 30px;
+}</string>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="1">
-    <widget class="QPushButton" name="Regresar">
-     <property name="minimumSize">
-      <size>
-       <width>161</width>
-       <height>161</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgba(106, 151, 255,50);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="Imagenes/Resourse.qrc">
-       <normaloff>:/Regresar.png</normaloff>:/Regresar.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>120</width>
-       <height>120</height>
-      </size>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <layout class="QGridLayout" name="gridLayout_21">
-     <item row="2" column="3">
-      <widget class="QPushButton" name="Btn_H_masH">
+    <layout class="QGridLayout" name="gridLayout_10">
+     <item row="4" column="6">
+      <widget class="QLineEdit" name="Line_D_minutos">
        <property name="minimumSize">
         <size>
-         <width>109</width>
-         <height>111</height>
+         <width>0</width>
+         <height>45</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>109</width>
-         <height>111</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Noto Sans Mahajani</family>
-         <pointsize>30</pointsize>
-         <weight>75</weight>
-         <italic>false</italic>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 53px;
-	border: 2px solid  gray ;
-	background: royalblue;
-	margin: 0px 0 0px 0;   
-}</string>
-       </property>
-       <property name="text">
-        <string>+</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="7">
-      <spacer name="horizontalSpacer_13">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLineEdit" name="Line_H_Fecha">
-       <property name="minimumSize">
-        <size>
-         <width>300</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>400</width>
+         <width>170</width>
          <height>100</height>
         </size>
        </property>
@@ -115,25 +46,59 @@
         </font>
        </property>
        <property name="text">
-        <string/>
+        <string>00</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
-       <property name="placeholderText">
-        <string>2021-04-20</string>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item row="3" column="0" colspan="8">
-      <widget class="Line" name="line_84">
+     <item row="2" column="2">
+      <widget class="QLabel" name="Lab_Protocolo_5">
+       <property name="font">
+        <font>
+         <pointsize>36</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+       <property name="text">
+        <string>  Horas</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0" colspan="8">
+      <widget class="Line" name="line_42">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
       </widget>
      </item>
-     <item row="2" column="5">
-      <widget class="QPushButton" name="Btn_H_menosM">
+     <item row="2" column="3">
+      <spacer name="horizontalSpacer_7">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="4" column="5">
+      <widget class="QPushButton" name="Btn_D_menosM">
        <property name="minimumSize">
         <size>
          <width>109</width>
@@ -169,8 +134,102 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="2">
-      <widget class="QLabel" name="Lab_Protocolo_6">
+     <item row="2" column="7">
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="4" column="1">
+      <widget class="QPushButton" name="Btn_D_menosH">
+       <property name="minimumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Noto Sans Mahajani</family>
+         <pointsize>30</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: royalblue;
+	margin: 0px 0 0px 0;   
+}</string>
+       </property>
+       <property name="text">
+        <string>-</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="4">
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="4" column="7">
+      <widget class="QPushButton" name="Btn_D_masM">
+       <property name="minimumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Noto Sans Mahajani</family>
+         <pointsize>30</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: royalblue;
+	margin: 0px 0 0px 0;   
+}</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="6">
+      <widget class="QLabel" name="Lab_Protocolo_7">
        <property name="font">
         <font>
          <pointsize>36</pointsize>
@@ -183,15 +242,22 @@
         <enum>Qt::RightToLeft</enum>
        </property>
        <property name="text">
-        <string>  Horas</string>
+        <string>Minutos</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
      </item>
-     <item row="2" column="4">
-      <spacer name="horizontalSpacer_9">
+     <item row="3" column="0" colspan="8">
+      <widget class="Line" name="line_38">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="5">
+      <spacer name="horizontalSpacer_3">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -202,6 +268,258 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item row="4" column="3">
+      <widget class="QPushButton" name="Btn_D_masH">
+       <property name="minimumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Noto Sans Mahajani</family>
+         <pointsize>30</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: royalblue;
+	margin: 0px 0 0px 0;   
+}</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLineEdit" name="Line_D_Fecha">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>400</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>36</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="inputMask">
+        <string extracomment="9999-99-99"/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>2021-04-20</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="Lab_Protocolo_3">
+       <property name="font">
+        <font>
+         <pointsize>36</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+       <property name="text">
+        <string>Desde</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <spacer name="horizontalSpacer_8">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="4" column="2">
+      <widget class="QLineEdit" name="Line_D_horas">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>45</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>150</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>36</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::StrongFocus</enum>
+       </property>
+       <property name="text">
+        <string>00</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="3" column="3">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="1">
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="2">
+    <spacer name="horizontalSpacer_5">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="4" column="1">
+    <layout class="QGridLayout" name="gridLayout_21">
+     <item row="2" column="0">
+      <widget class="QLineEdit" name="Line_H_Fecha">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>400</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>36</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>2021-04-20</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="7">
+      <spacer name="horizontalSpacer_13">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="5">
+      <spacer name="horizontalSpacer_12">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="3" column="0" colspan="8">
+      <widget class="Line" name="line_84">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
      </item>
      <item row="2" column="7">
       <widget class="QPushButton" name="Btn_H_masM">
@@ -247,19 +565,6 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="5">
-      <spacer name="horizontalSpacer_12">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
      <item row="0" column="0">
       <widget class="QLabel" name="Lab_Protocolo_4">
        <property name="font">
@@ -293,6 +598,43 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item row="2" column="5">
+      <widget class="QPushButton" name="Btn_H_menosM">
+       <property name="minimumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Noto Sans Mahajani</family>
+         <pointsize>30</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: royalblue;
+	margin: 0px 0 0px 0;   
+}</string>
+       </property>
+       <property name="text">
+        <string>-</string>
+       </property>
+      </widget>
      </item>
      <item row="0" column="1">
       <spacer name="horizontalSpacer_10">
@@ -431,12 +773,45 @@
        </property>
       </widget>
      </item>
-    </layout>
-   </item>
-   <item row="0" column="0">
-    <layout class="QGridLayout" name="gridLayout_10">
+     <item row="2" column="3">
+      <widget class="QPushButton" name="Btn_H_masH">
+       <property name="minimumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>109</width>
+         <height>111</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Noto Sans Mahajani</family>
+         <pointsize>30</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	color:white;	
+	border-radius: 53px;
+	border: 2px solid  gray ;
+	background: royalblue;
+	margin: 0px 0 0px 0;   
+}</string>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+     </item>
      <item row="0" column="2">
-      <widget class="QLabel" name="Lab_Protocolo_5">
+      <widget class="QLabel" name="Lab_Protocolo_6">
        <property name="font">
         <font>
          <pointsize>36</pointsize>
@@ -456,115 +831,8 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="0" colspan="8">
-      <widget class="Line" name="line_42">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="3">
-      <spacer name="horizontalSpacer_7">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="2" column="5">
-      <widget class="QPushButton" name="Btn_D_menosM">
-       <property name="minimumSize">
-        <size>
-         <width>109</width>
-         <height>111</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>109</width>
-         <height>111</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Noto Sans Mahajani</family>
-         <pointsize>30</pointsize>
-         <weight>75</weight>
-         <italic>false</italic>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 53px;
-	border: 2px solid  gray ;
-	background: royalblue;
-	margin: 0px 0 0px 0;   
-}</string>
-       </property>
-       <property name="text">
-        <string>-</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="7">
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="2" column="1">
-      <widget class="QPushButton" name="Btn_D_menosH">
-       <property name="minimumSize">
-        <size>
-         <width>109</width>
-         <height>111</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>109</width>
-         <height>111</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Noto Sans Mahajani</family>
-         <pointsize>30</pointsize>
-         <weight>75</weight>
-         <italic>false</italic>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 53px;
-	border: 2px solid  gray ;
-	background: royalblue;
-	margin: 0px 0 0px 0;   
-}</string>
-       </property>
-       <property name="text">
-        <string>-</string>
-       </property>
-      </widget>
-     </item>
      <item row="2" column="4">
-      <spacer name="horizontalSpacer">
+      <spacer name="horizontalSpacer_9">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -575,258 +843,49 @@
         </size>
        </property>
       </spacer>
-     </item>
-     <item row="2" column="7">
-      <widget class="QPushButton" name="Btn_D_masM">
-       <property name="minimumSize">
-        <size>
-         <width>109</width>
-         <height>111</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Noto Sans Mahajani</family>
-         <pointsize>30</pointsize>
-         <weight>75</weight>
-         <italic>false</italic>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 53px;
-	border: 2px solid  gray ;
-	background: royalblue;
-	margin: 0px 0 0px 0;   
-}</string>
-       </property>
-       <property name="text">
-        <string>+</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="6">
-      <widget class="QLabel" name="Lab_Protocolo_7">
-       <property name="font">
-        <font>
-         <pointsize>36</pointsize>
-         <weight>75</weight>
-         <italic>true</italic>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="layoutDirection">
-        <enum>Qt::RightToLeft</enum>
-       </property>
-       <property name="text">
-        <string>Minutos</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0" colspan="8">
-      <widget class="Line" name="line_38">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="5">
-      <spacer name="horizontalSpacer_3">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="2" column="3">
-      <widget class="QPushButton" name="Btn_D_masH">
-       <property name="minimumSize">
-        <size>
-         <width>109</width>
-         <height>111</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>109</width>
-         <height>111</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <family>Noto Sans Mahajani</family>
-         <pointsize>30</pointsize>
-         <weight>75</weight>
-         <italic>false</italic>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	color:white;	
-	border-radius: 53px;
-	border: 2px solid  gray ;
-	background: royalblue;
-	margin: 0px 0 0px 0;   
-}</string>
-       </property>
-       <property name="text">
-        <string>+</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLineEdit" name="Line_D_Fecha">
-       <property name="minimumSize">
-        <size>
-         <width>300</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>400</width>
-         <height>100</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>36</pointsize>
-         <weight>75</weight>
-         <italic>true</italic>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="inputMask">
-        <string extracomment="9999-99-99"/>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-       <property name="placeholderText">
-        <string>2021-04-20</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="Lab_Protocolo_3">
-       <property name="font">
-        <font>
-         <pointsize>36</pointsize>
-         <weight>75</weight>
-         <italic>true</italic>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="layoutDirection">
-        <enum>Qt::RightToLeft</enum>
-       </property>
-       <property name="text">
-        <string>Desde</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <spacer name="horizontalSpacer_8">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="2" column="2">
-      <widget class="QLineEdit" name="Line_D_horas">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>45</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>150</width>
-         <height>100</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>36</pointsize>
-         <weight>75</weight>
-         <italic>true</italic>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::StrongFocus</enum>
-       </property>
-       <property name="text">
-        <string>00</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="6">
-      <widget class="QLineEdit" name="Line_D_minutos">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>45</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>170</width>
-         <height>100</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>36</pointsize>
-         <weight>75</weight>
-         <italic>true</italic>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>00</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
      </item>
     </layout>
    </item>
-   <item row="0" column="1">
+   <item row="5" column="1">
+    <spacer name="verticalSpacer_3">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="4" column="3">
+    <widget class="QPushButton" name="Regresar">
+     <property name="minimumSize">
+      <size>
+       <width>161</width>
+       <height>161</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(106, 151, 255,50);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="Imagenes/Resourse.qrc">
+       <normaloff>:/Regresar.png</normaloff>:/Regresar.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>120</width>
+       <height>120</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
     <widget class="QPushButton" name="Btn_Guardar">
      <property name="minimumSize">
       <size>
@@ -851,6 +910,32 @@
       </size>
      </property>
     </widget>
+   </item>
+   <item row="1" column="0">
+    <spacer name="horizontalSpacer_6">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="4">
+    <spacer name="horizontalSpacer_4">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>
