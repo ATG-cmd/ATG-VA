@@ -240,7 +240,7 @@ width: 0px;
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>15</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -863,48 +863,37 @@ font-weight: bold;
      <widget class="QPushButton" name="pushButton_2">
       <property name="geometry">
        <rect>
-        <x>1810</x>
-        <y>30</y>
-        <width>91</width>
-        <height>831</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>&gt;&gt;</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lbl_ProGaugeDeliveryInProccess">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>190</x>
-        <y>380</y>
-        <width>301</width>
-        <height>51</height>
+        <x>1800</x>
+        <y>20</y>
+        <width>90</width>
+        <height>820</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
-        <weight>75</weight>
+        <family>PibotoLt</family>
+        <pointsize>65</pointsize>
+        <weight>8</weight>
         <italic>false</italic>
-        <bold>true</bold>
+        <bold>false</bold>
        </font>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
       <property name="styleSheet">
-       <string notr="true">color: white;
-background-color: red;
-border: 3px solid red;
-border-radius: 10px;
-padding: 2px;</string>
+       <string notr="true">QPushButton{
+	border: 2px blue;
+	background-color:rgb(200, 200, 200);
+    border-radius: 15;
+	color: white;
+	font: 70 65pt &quot;PibotoLt&quot;;
+
+}
+QPushButton:pressed{background-color:rgb(220, 220, 220);}</string>
       </property>
       <property name="text">
-       <string>Delivery In Proccess</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
+       <string>&gt;</string>
       </property>
      </widget>
     </widget>
@@ -3009,14 +2998,37 @@ QPushButton:pressed {
      <widget class="QPushButton" name="pushButton">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>10</y>
-        <width>41</width>
-        <height>491</height>
+        <x>30</x>
+        <y>20</y>
+        <width>90</width>
+        <height>820</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>PibotoLt</family>
+        <pointsize>65</pointsize>
+        <weight>8</weight>
+        <italic>false</italic>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	border: 2px blue;
+	background-color:rgb(200, 200, 200);
+    border-radius: 15;
+	color: white;
+	font: 70 65pt &quot;PibotoLt&quot;;
+
+}
+QPushButton:pressed{background-color:rgb(220, 220, 220);}</string>
+      </property>
       <property name="text">
-       <string>&lt;&lt;</string>
+       <string>&lt;</string>
       </property>
      </widget>
      <widget class="QWidget" name="widget" native="true">
@@ -5818,10 +5830,10 @@ font-weight: bold;
      <widget class="QTableWidget" name="tabla_incidentes">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>90</y>
-        <width>1881</width>
-        <height>740</height>
+        <x>30</x>
+        <y>80</y>
+        <width>1860</width>
+        <height>760</height>
        </rect>
       </property>
       <property name="font">
@@ -5940,9 +5952,9 @@ font-weight: bold;
      <widget class="QLabel" name="Lab_Rango_Fecha">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>30</y>
-        <width>1881</width>
+        <x>30</x>
+        <y>20</y>
+        <width>1860</width>
         <height>60</height>
        </rect>
       </property>
@@ -9081,7 +9093,7 @@ margin: 30px 20px 20px -15x;
      <rect>
       <x>0</x>
       <y>980</y>
-      <width>1921</width>
+      <width>1920</width>
       <height>100</height>
      </rect>
     </property>
@@ -9120,7 +9132,7 @@ color:white;
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1921</width>
+      <width>1920</width>
       <height>120</height>
      </rect>
     </property>
@@ -9140,9 +9152,15 @@ color:white;
      <string notr="true">QPushButton{
 background-color: green;
 background-color: qconicalgradient(cx:0.680, cy:0, angle:20, stop:0 rgba(0, 250, 0, 250), stop:0.691897 rgba(0,180,0, 160), stop:0.691964  gray , stop:1 gray);
+
 color:white;}
+
+QPushButton{
+border-color: rgb(17, 29, 255);
+}
 QLabel{
 background-color: transparent;
+/*border: 2px solid blue;*/
 color: white;
 }
 </string>

@@ -119,17 +119,19 @@ MainWindow::MainWindow(QWidget *parent)
     Fonttitle.setPointSize(48);
     Fonttitle.setBold(true);
     Lab_Title = new QLabel(ui->Btn_Barra_Estados);
-    Lab_Title->setGeometry(200,20,500,50);
-    Lab_Title->setStyleSheet("background-color: transparent;");
+    Lab_Title->setAlignment(Qt::AlignCenter);
+    Lab_Title->setGeometry(30,0,975,120);
+    Lab_Title->setStyleSheet("background-color: transparent; ");
     Lab_Title->setText("Estado Sistema ");
     Lab_Title->setFont(Fonttitle);
-    ui->lbl_ProGaugeDeliveryInProccess->hide();
 
     QFont FontReloj;
     FontReloj.setPointSize(35);
     FontReloj.setBold(true);
     Reloj= new QLabel(ui->Btn_Barra_Estados);
-    Reloj->setGeometry(QRect(1350,12,800,50));
+    Reloj->setAlignment(Qt::AlignCenter);
+    Reloj->setGeometry(QRect(1285,0,630,120));
+
     Reloj->setStyleSheet("background-color: transparent;");
     Reloj->setFont(FontReloj);
     Reloj->setText(QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss ap"));
@@ -154,11 +156,13 @@ MainWindow::MainWindow(QWidget *parent)
     fontAlarmas.setPointSize(22);
     fontAlarmas.setBold(true);
 
-    Indicadores[0]->setGeometry(1000,10,300,25);
+    Indicadores[0]->setGeometry(1035,5,220,50);
+    Indicadores[0]->setAlignment(Qt::AlignCenter);
     Indicadores[0]->setFont(fontAlarmas);
     Indicadores[0]->setText("Alarmas:   "+QString::number(Alarmas)+"");
 
-    Indicadores[1]->setGeometry(1000,40,300,35);
+    Indicadores[1]->setGeometry(1035,65,220,50);
+    Indicadores[1]->setAlignment(Qt::AlignCenter);
     Indicadores[1]->setFont(fontAlarmas);
     Indicadores[1]->setText("Warnings: "+QString::number(warnings)+"");
 
@@ -1020,10 +1024,16 @@ void MainWindow::Geometrytank()
         tanques[S] = new Tanque(ui->Home2,true);
      ui->stackedWidget->setCurrentIndex(3);
     switch(S){
-    case 0:case 4: tanques[S]->Setgeometry(120,3,750,410);   break;
-    case 1:case 5: tanques[S]->Setgeometry(960,3,750,410);  break;
-    case 2:case 6: tanques[S]->Setgeometry(120,413,750,410); break;
-    case 3:case 7: tanques[S]->Setgeometry(960,413,750,410);break;
+    case 0: tanques[S]->Setgeometry(110,20,750,410);   break;
+    case 1: tanques[S]->Setgeometry(940,20,750,410);   break;
+    case 2: tanques[S]->Setgeometry(110,430,750,410); break;
+    case 3: tanques[S]->Setgeometry(940,430,750,410); break;
+
+    case 4: tanques[S]->Setgeometry(230,20,750,410);   break;
+    case 5: tanques[S]->Setgeometry(1060,20,750,410);   break;
+    case 6: tanques[S]->Setgeometry(230,430,750,410);   break;
+    case 7: tanques[S]->Setgeometry(1060,430,750,410);   break;
+
     }
 }
 void MainWindow::Estados()
@@ -2795,7 +2805,7 @@ void MainWindow::Qry_Turnos(int Turno)
 
 }
 
-void MainWindow::on_pushButton_5_clicked()
+void MainWindow::on_pushButton_5_clicked()   // boton de salida
 {
    close();
 }

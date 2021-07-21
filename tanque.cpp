@@ -145,6 +145,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 // Si Config es Verdadero se configura el tanque para mostrar labels indicadores de*/
         T1 = new QGroupBox(parent);
         Boton = new QPushButton (T1);
+        Boton->setFocusPolicy(Qt::NoFocus);
         // TituloTank = new QLabel(Boton);
         layoutWidget1 = new QWidget(Boton);
         Volumen = new QLabel(layoutWidget1);
@@ -173,7 +174,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
 
         //T1->setStyleSheet("border: 2px solid blue;");
         Boton->setGeometry(0,50,560,299);
-        Boton->setStyleSheet("QPushButton{background-color:rgb(240, 240, 240); border: 0px solid white; border-radius: 15px; padding: 5px;  }" );
+        Boton->setStyleSheet("QPushButton:pressed{background-color:rgb(220, 220, 220);} QPushButton{background-color:rgb(240, 240, 240); border: 0px solid white; border-radius: 15px; padding: 5px; }" );
 
 
         // esta conexion aprobecha la señal generada al dar click al boton
@@ -200,13 +201,14 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
         NivAgua = new QLabel(layoutWidget1);
         LsVal = new QLabel(layoutWidget1);
         NivAVal = new QLabel(layoutWidget1);
+        layoutWidget1->setStyleSheet("border: 2px solid gray; border-radius: 10;");
 
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
 
         //  ↓  Este es el label de entrega en proceso Este solamente aparece cuando se esta realizando una entrega
          lbl_ProGaugeDeliveryInProccess->setObjectName(QString::fromUtf8("Entrega"));
-      //   lbl_ProGaugeDeliveryInProccess->setGeometry(375,0,370,50);
+         lbl_ProGaugeDeliveryInProccess->setGeometry(375,0,370,50);
          lbl_ProGaugeDeliveryInProccess->setFont(font2);
          lbl_ProGaugeDeliveryInProccess->setText("Entrega en Proceso");
          lbl_ProGaugeDeliveryInProccess->setStyleSheet("QLabel{ color: white;"
@@ -214,7 +216,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
                                                        "border: 3px solid red;"
                                                        "border-radius: 10px;"
                                                        "padding: 2px; }");
-         lbl_ProGaugeDeliveryInProccess->hide();
+        lbl_ProGaugeDeliveryInProccess->hide();
 
          vericalLayout_4->addWidget(lbl_ProGaugeDeliveryInProccess);
          // horizontalLayout_3->addLayout(vericalLayout_4);

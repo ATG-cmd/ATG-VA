@@ -43,7 +43,7 @@ public:
    QString Formato_Fecha = "MM_dd_yyyy";
    QString Separador_Fecha = "/";
    QString Formato_Hora = "hh:mm AP";
-   QString Formato_FH ="dd-MM-yyyy HH:mm:ss AP";
+   QString Formato_FH ="dd-MM-yyyy HH:mm:ssAP";
    bool  IProg = false;
 
    struct Settings {
