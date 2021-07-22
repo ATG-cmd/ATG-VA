@@ -80,6 +80,8 @@ public slots:
     void btn_exit();
     void btn_SPACE();
     void btn_bks();
+    void btn_left();
+    void btn_right();
     void data_out();
     void dobleclick();
 private slots:

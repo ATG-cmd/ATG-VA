@@ -2702,11 +2702,17 @@ int Cmerma=0;
 void MainWindow::estado_sistema(QPushButton *btn, QString estado)
 {
     if(estado == "warning" && Alarmas <= 0)
-    { btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(250, 220, 0, 250), stop:0.691897 rgba(250,200,0, 160), stop:0.691964  gray , stop:1 gray); color:white");}
+    { btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(250, 220, 0, 250), stop:0.691897 rgba(250,200,0, 160), stop:0.691964  gray , stop:1 gray); color:white;} QPushButton:pressed{background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(250, 220, 0, 120), stop:0.691897 rgba(250,200,0, 120), stop:0.691964  gray , stop:1 gray);}");
+    }
     else if (estado == "alarma")
-    {btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(255,0,0, 250), stop:0.691897 rgba(180,0,0, 160), stop:0.691964  gray , stop:1 gray); color:white"); }
+    { btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(255,0,0, 250), stop:0.691897 rgba(180,0,0, 160), stop:0.691964  gray , stop:1 gray); color:white;} QPushButton:pressed{background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(255,0,0, 120), stop:0.691897 rgba(180,0,0, 120), stop:0.691964  gray , stop:1 gray);}");
+    }
+//    else if(estado == "normal")
+//    {  btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(0, 250, 0, 250), stop:0.691897 rgba(0,180,0, 160), stop:0.691964  gray , stop:1 gray); color:white;} QPushButton:pressed{background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(0, 250, 0, 120), stop:0.691897 rgba(0,180,0, 120), stop:0.691964  gray , stop:1 gray);}");
+//    }
     else if(estado == "normal")
-    {  btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(0, 250, 0, 250), stop:0.691897 rgba(0,180,0, 160), stop:0.691964  gray , stop:1 gray); color:white"); }
+    {  btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(0, 0, 255, 250), stop:0.691897 rgba(0,0,180, 160), stop:0.691964  gray , stop:1 gray); color:white;} QPushButton:pressed{background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(0, 0, 255, 120), stop:0.691897 rgba(0,0,180, 120), stop:0.691964  gray , stop:1 gray);}");
+    }
 
 }
 

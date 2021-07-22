@@ -240,7 +240,7 @@ width: 0px;
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>6</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -882,7 +882,8 @@ font-weight: bold;
        <enum>Qt::NoFocus</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton{
+       <string notr="true">
+QPushButton{
 	border: 2px blue;
 	background-color:rgb(200, 200, 200);
     border-radius: 15;
@@ -890,7 +891,7 @@ font-weight: bold;
 	font: 70 65pt &quot;PibotoLt&quot;;
 
 }
-QPushButton:pressed{background-color:rgb(220, 220, 220);}</string>
+QPushButton:pressed{background-color:rgba(200, 200, 200,100);}</string>
       </property>
       <property name="text">
        <string>&gt;</string>
@@ -3025,7 +3026,7 @@ QPushButton:pressed {
 	font: 70 65pt &quot;PibotoLt&quot;;
 
 }
-QPushButton:pressed{background-color:rgb(220, 220, 220);}</string>
+QPushButton:pressed{background-color:rgba(200, 200, 200,100);}</string>
       </property>
       <property name="text">
        <string>&lt;</string>
@@ -9151,13 +9152,15 @@ color:white;
     <property name="styleSheet">
      <string notr="true">QPushButton{
 background-color: green;
-background-color: qconicalgradient(cx:0.680, cy:0, angle:20, stop:0 rgba(0, 250, 0, 250), stop:0.691897 rgba(0,180,0, 160), stop:0.691964  gray , stop:1 gray);
+background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(0, 250, 0, 250), stop:0.691897 rgba(0,180,0, 160), stop:0.691964  gray , stop:1 gray);
 
 color:white;}
 
-QPushButton{
-border-color: rgb(17, 29, 255);
+QPushButton:pressed{
+background-color: green;
+background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(0, 250, 0, 120), stop:0.691897 rgba(0,180,0, 120), stop:0.691964  gray , stop:1 gray);
 }
+
 QLabel{
 background-color: transparent;
 /*border: 2px solid blue;*/

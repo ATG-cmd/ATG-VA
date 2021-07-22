@@ -69,9 +69,9 @@ void Dialog::btn_setText()
     btn[32]->setText(getNivel() == 0 ? "&123":"&123");
     btn[33]->setText(getNivel() == 0 ? "@":"@");
     btn[34]->setText(getNivel() == 0 ? "SPACE":"SPACE");
-    btn[35]->setText(getNivel() == 0 ? "'":"'");
-    btn[36]->setText(getNivel() == 0 ? "/":"/");
-    btn[37]->setText(getNivel() == 0 ? "#":"#");
+    btn[35]->setText(getNivel() == 0 ? "◄":"◄");
+    btn[36]->setText(getNivel() == 0 ? "►":"►");
+    btn[37]->setText(getNivel() == 0 ? "▼":"▼");
 
 }
 
@@ -112,9 +112,9 @@ void Dialog::btn_setNum()
     btn[32]->setText(getNivel() == 0 ? "ABC":"ABC");
     btn[33]->setText(getNivel() == 0 ? "@":"@");
     btn[34]->setText(getNivel() == 0 ? "SPACE":"SPACE");
-    btn[35]->setText(getNivel() == 0 ? ".":"");
-    btn[36]->setText(getNivel() == 0 ? ":)":":(");
-    btn[37]->setText(getNivel() == 0 ? "#":"#");
+    btn[35]->setText(getNivel() == 0 ? "◄":"◄");
+    btn[36]->setText(getNivel() == 0 ? "►":"►");
+    btn[37]->setText(getNivel() == 0 ? "▼":"▼");
 
 
 }
@@ -199,11 +199,26 @@ void Dialog::btn_exit()
 void Dialog::btn_SPACE()
 {
     line->insert(" ");
+    line->setFocus();
 }
 
 void Dialog::btn_bks()
 {
     line->backspace();
+    line->setFocus();
+}
+
+void Dialog::btn_left()
+{
+    line->cursorBackward(false,1);
+    line->setFocus();
+}
+
+void Dialog::btn_right()
+{
+    line->cursorForward(false,1);
+    line->setFocus();
+
 }
 
 
@@ -294,6 +309,8 @@ void Dialog::conexiones_alfa()
     connect(btn[31],&QPushButton::clicked,this,&Dialog::btn_SHIFT);
     connect(btn[32],&QPushButton::clicked,this,&Dialog::btn_num);
     connect(btn[34],&QPushButton::clicked,this,&Dialog::btn_SPACE);
+    connect(btn[35],&QPushButton::clicked,this,&Dialog::btn_left);
+    connect(btn[36],&QPushButton::clicked,this,&Dialog::btn_right);
     connect(btn[37],&QPushButton::clicked,this,&Dialog::btn_exit);
 
     connect(line,&QLineEdit::returnPressed,this,&Dialog::data_out);
@@ -311,9 +328,9 @@ void Dialog::conexiones_num()
     connect(btn[8],&QPushButton::clicked,this,&Dialog::btn_char);
     connect(btn[9],&QPushButton::clicked,this,&Dialog::btn_char);
     connect(btn[10],&QPushButton::clicked,this,&Dialog::btn_char);
-    connect(btn[12],&QPushButton::clicked,this,&Dialog::btn_char);
+    connect(btn[12],&QPushButton::clicked,this,&Dialog::btn_left);
     connect(btn[13],&QPushButton::clicked,this,&Dialog::btn_char);
-    connect(btn[14],&QPushButton::clicked,this,&Dialog::btn_char);
+    connect(btn[14],&QPushButton::clicked,this,&Dialog::btn_right);
 
     connect(btn[3],&QPushButton::clicked,this,&Dialog::btn_bks);
     connect(btn[7],&QPushButton::clicked,this,&Dialog::btn_SPACE);
@@ -361,6 +378,8 @@ void Dialog::desconexiones_alfa()
     disconnect(btn[31],&QPushButton::clicked,this,&Dialog::btn_SHIFT);
     disconnect(btn[32],&QPushButton::clicked,this,&Dialog::btn_num);
     disconnect(btn[34],&QPushButton::clicked,this,&Dialog::btn_SPACE);
+    disconnect(btn[35],&QPushButton::clicked,this,&Dialog::btn_left);
+    disconnect(btn[36],&QPushButton::clicked,this,&Dialog::btn_right);
     disconnect(btn[37],&QPushButton::clicked,this,&Dialog::btn_exit);
 
     disconnect(line,&QLineEdit::returnPressed,this,&Dialog::data_out);
@@ -377,9 +396,9 @@ void Dialog::desconexiones_num()
     disconnect(btn[8],&QPushButton::clicked,this,&Dialog::btn_char);
     disconnect(btn[9],&QPushButton::clicked,this,&Dialog::btn_char);
     disconnect(btn[10],&QPushButton::clicked,this,&Dialog::btn_char);
-    disconnect(btn[12],&QPushButton::clicked,this,&Dialog::btn_char);
+    disconnect(btn[12],&QPushButton::clicked,this,&Dialog::btn_left);
     disconnect(btn[13],&QPushButton::clicked,this,&Dialog::btn_char);
-    disconnect(btn[14],&QPushButton::clicked,this,&Dialog::btn_char);
+    disconnect(btn[14],&QPushButton::clicked,this,&Dialog::btn_right);
 
     disconnect(btn[3],&QPushButton::clicked,this,&Dialog::btn_bks);
     disconnect(btn[7],&QPushButton::clicked,this,&Dialog::btn_SPACE);
@@ -396,7 +415,7 @@ void Dialog::teclado_alfanum()
     //grupo->setStyleSheet("border: 2px solid blue;");
 
     debug->setGeometry(0,0,1800,60);
-    debug->setText("aa");
+    debug->setText("");
     debug->setFont(Fontstyle);
 
     label->setGeometry(30,30,1800,75);   //label->setGeometry(180,10,300,20);
@@ -488,10 +507,10 @@ void Dialog::teclado_num()
     btn[8]->setText("7");
     btn[9]->setText("8");
     btn[10]->setText("9");
-    btn[11]->setText("X");
-    btn[12]->setText("");
+    btn[11]->setText("▼");
+    btn[12]->setText("◄");
     btn[13]->setText("0");
-    btn[14]->setText("#");
+    btn[14]->setText("►");
     btn[15]->setText("ENTER");
 
     conexiones_num();
