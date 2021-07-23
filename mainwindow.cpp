@@ -2511,10 +2511,9 @@ void MainWindow::InVentoryHistory(int IDTank, int ComboInventory, bool Porfecha,
       if (!Porfecha){
         QString cadena;
 
-        limpiar_tabla(ui->Tabla_Inventario,ui->Tabla_Inventario->rowCount());
-      if(IDTank==0)
-           cadena = ("SELECT * FROM `cistem`.`"+SelecionInventario[ComboInventory]+"` ORDER  BY  Fecha DESC;");
-          else
+      if(IDTank==0) // para todos
+        cadena = ("SELECT * FROM `cistem`.`"+SelecionInventario[ComboInventory]+"` ORDER  BY  Fecha DESC;");
+          else  // para uno por uno
         cadena = ("SELECT * FROM `cistem`.`"+SelecionInventario[ComboInventory]+"`  WHERE IDTank ='"+QString::number(IDTank)+"'ORDER  BY  Fecha DESC;");
 
       qry.exec(cadena);
@@ -2523,18 +2522,18 @@ void MainWindow::InVentoryHistory(int IDTank, int ComboInventory, bool Porfecha,
            qry.exec(QryFecha);
       }
 
-      int cada2= 2;
-int uno= 0;
-int cada1=1;
-int merma[]= {0,0};
-int Cmerma=0;
+      int cada2 = 2;
+      int uno = 0;
+      int cada1 = 1;
+      int merma[] = {0,0};
+      int Cmerma=0;
 
 
        // qDebug() << cadena;
         while(qry.next())
         {
             if (IDTank == 0 || SelecionInventario[ComboInventory]== "InventarioMin" )
-            {
+            {Lab_Title->setText("se entro a tabla invnetario min");
                 if(cada1== 1)
                 {
                     ui->Tabla_Inventario->insertRow(ui->Tabla_Inventario->rowCount());
@@ -2546,7 +2545,7 @@ int Cmerma=0;
             }
 
            if (SelecionInventario[ComboInventory]== "InventarioCortes" )
-             {
+             {    Lab_Title->setText("se entro a tabla invnetario_cortes");
                   ui->Tabla_Inventario->setColumnWidth(0,650);
 
                  if (cada2 == 2){
@@ -2571,7 +2570,7 @@ int Cmerma=0;
                  Cmerma++;
              }
              else if (SelecionInventario[ComboInventory]== "inventario" && IDTank !=0)
-             {
+             { Lab_Title->setText("se entro a tabla invnetario");
                 ui->Tabla_Inventario->setColumnWidth(0,380);
                 ui->Tabla_Inventario->horizontalHeaderItem(0)->setText("Fecha/Hora");
                  if( uno == 0){
@@ -2584,19 +2583,20 @@ int Cmerma=0;
 
             else if(SelecionInventario[ComboInventory] == "InventarioTurnos")
              {
-
-                 ui->Tabla_Inventario->setColumnWidth(0,100);
-                 ui->Tabla_Inventario->horizontalHeaderItem(0)->setText("Turno");
-                 ui->Tabla_Inventario->setColumnWidth(1,500);
-                 ui->Tabla_Inventario->horizontalHeaderItem(1)->setText("Fecha de Turno");
-                 ui->Tabla_Inventario->setColumnWidth(2,380);
-                 ui->Tabla_Inventario->horizontalHeaderItem(2)->setText("Volumen de Combustible");
-                 ui->Tabla_Inventario->setColumnWidth(3,280);
-                 ui->Tabla_Inventario->horizontalHeaderItem(3)->setText("Temperatura");
-                 ui->Tabla_Inventario->setColumnWidth(4,280);
-                 ui->Tabla_Inventario->horizontalHeaderItem(4)->setText("Altura de Combustible");
-                 ui->Tabla_Inventario->setColumnWidth(5,280);
-                 ui->Tabla_Inventario->horizontalHeaderItem(5)->setText("Altura de Agua");
+                 configurar_tablas(ui->Tabla_Inventario,5,3);
+                 Lab_Title->setText("se entro a tabla invnetario_turnos");
+//                 ui->Tabla_Inventario->setColumnWidth(0,100);
+//                 ui->Tabla_Inventario->horizontalHeaderItem(0)->setText("Turno");
+//                 ui->Tabla_Inventario->setColumnWidth(1,500);
+//                 ui->Tabla_Inventario->horizontalHeaderItem(1)->setText("Fecha de Turno");
+//                 ui->Tabla_Inventario->setColumnWidth(2,380);
+//                 ui->Tabla_Inventario->horizontalHeaderItem(2)->setText("Volumen de Combustible");
+//                 ui->Tabla_Inventario->setColumnWidth(3,280);
+//                 ui->Tabla_Inventario->horizontalHeaderItem(3)->setText("Temperatura");
+//                 ui->Tabla_Inventario->setColumnWidth(4,280);
+//                 ui->Tabla_Inventario->horizontalHeaderItem(4)->setText("Altura de Combustible");
+//                 ui->Tabla_Inventario->setColumnWidth(5,280);
+//                 ui->Tabla_Inventario->horizontalHeaderItem(5)->setText("Altura de Agua");
 
                  ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(8).toString()));
                  ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 1, new QTableWidgetItem(qry.value(7).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
@@ -2707,10 +2707,10 @@ void MainWindow::estado_sistema(QPushButton *btn, QString estado)
     else if (estado == "alarma")
     { btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(255,0,0, 250), stop:0.691897 rgba(180,0,0, 160), stop:0.691964  gray , stop:1 gray); color:white;} QPushButton:pressed{background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(255,0,0, 120), stop:0.691897 rgba(180,0,0, 120), stop:0.691964  gray , stop:1 gray);}");
     }
-//    else if(estado == "normal")
-//    {  btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(0, 250, 0, 250), stop:0.691897 rgba(0,180,0, 160), stop:0.691964  gray , stop:1 gray); color:white;} QPushButton:pressed{background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(0, 250, 0, 120), stop:0.691897 rgba(0,180,0, 120), stop:0.691964  gray , stop:1 gray);}");
-//    }
     else if(estado == "normal")
+    {  btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(0, 250, 0, 250), stop:0.691897 rgba(0,180,0, 160), stop:0.691964  gray , stop:1 gray); color:white;} QPushButton:pressed{background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(0, 250, 0, 120), stop:0.691897 rgba(0,180,0, 120), stop:0.691964  gray , stop:1 gray);}");
+    }
+    else if(estado == "mensaje")
     {  btn->setStyleSheet("background-color: green; background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(0, 0, 255, 250), stop:0.691897 rgba(0,0,180, 160), stop:0.691964  gray , stop:1 gray); color:white;} QPushButton:pressed{background-color: qconicalgradient(cx:0.680, cy:0, angle:19.3, stop:0 rgba(0, 0, 255, 120), stop:0.691897 rgba(0,0,180, 120), stop:0.691964  gray , stop:1 gray);}");
     }
 
@@ -3182,7 +3182,7 @@ void MainWindow::configurar_tablas(QTableWidget *tabla,int n_colum,int n_tabla)
     }
 
     switch (n_tabla) {
-        case 0:
+        case 0:         // reportes
         tabla->setColumnWidth(0,150);
         tabla->setColumnWidth(1,600);
         tabla->setColumnWidth(2,400);
@@ -3200,13 +3200,29 @@ void MainWindow::configurar_tablas(QTableWidget *tabla,int n_colum,int n_tabla)
             }
         break;
 
-        case 1:
+        case 1: // sensores
         tabla->setColumnWidth(0,300);
         tabla->setColumnWidth(1,300);
         tabla->setColumnWidth(2,300);
 
         break;
 
+       case 3:
+        tabla->setColumnWidth(0,100);
+        tabla->setColumnWidth(1,500);
+        tabla->setColumnWidth(2,380);
+        tabla->setColumnWidth(3,280);
+        tabla->setColumnWidth(4,280);
+        tabla->setColumnWidth(5,280);
+
+        tabla->horizontalHeaderItem(0)->setText("Turno");
+        tabla->horizontalHeaderItem(1)->setText("Fecha de Turno");
+        tabla->horizontalHeaderItem(2)->setText("Volumen de Combustible");
+        tabla->horizontalHeaderItem(3)->setText("Temperatura");
+        tabla->horizontalHeaderItem(4)->setText("Altura de Combustible");
+        tabla->horizontalHeaderItem(5)->setText("Altura de Agua");
+
+       break;
     default: break;
     }
 

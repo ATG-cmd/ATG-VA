@@ -240,7 +240,7 @@ width: 0px;
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -4433,10 +4433,10 @@ border-radius: 16;
      <widget class="QTableWidget" name="tableWidget_2">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>50</y>
-        <width>1871</width>
-        <height>771</height>
+        <x>30</x>
+        <y>20</y>
+        <width>1860</width>
+        <height>820</height>
        </rect>
       </property>
      </widget>
@@ -4904,10 +4904,10 @@ border-radius: 16;
      <widget class="QTableWidget" name="Tab_entregas">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>40</y>
-        <width>1851</width>
-        <height>781</height>
+        <x>30</x>
+        <y>20</y>
+        <width>1860</width>
+        <height>820</height>
        </rect>
       </property>
       <property name="font">
@@ -5635,10 +5635,10 @@ font-weight: bold;
       </property>
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>70</y>
+        <x>30</x>
+        <y>80</y>
         <width>1881</width>
-        <height>731</height>
+        <height>760</height>
        </rect>
       </property>
       <property name="minimumSize">
@@ -5773,10 +5773,10 @@ font-weight: bold;
      <widget class="QLabel" name="Lab_Rango_Fecha_2">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>1881</width>
-        <height>61</height>
+        <x>30</x>
+        <y>20</y>
+        <width>1860</width>
+        <height>60</height>
        </rect>
       </property>
       <property name="minimumSize">
@@ -8144,9 +8144,9 @@ QScrollBar::add-line:vertical {
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>40</y>
-        <width>1881</width>
-        <height>781</height>
+        <y>19</y>
+        <width>1860</width>
+        <height>820</height>
        </rect>
       </property>
       <property name="font">
