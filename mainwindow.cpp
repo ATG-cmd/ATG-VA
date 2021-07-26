@@ -216,7 +216,7 @@ MainWindow::MainWindow(QWidget *parent)
     DB = QSqlDatabase::addDatabase("QMYSQL");
 
     // DB.setHostName("192.168.10.104");
-    DB.setHostName("192.168.100.10");
+    DB.setHostName("192.168.100.68");
    // DB.setHostName("192.168.100.216");
    // DB.setHostName("localhost");
     DB.setDatabaseName("cistem");
@@ -3504,12 +3504,16 @@ void MainWindow::on_Combo_MetodoCierre_currentIndexChanged(int index)
 void MainWindow::on_Btn_Fechayhora_clicked()
 {
     frame = SFecha_Hora;
-     MainWindow::setFocus();
-     ui->stackedWidget->setCurrentIndex(SFecha_Hora);
-     ui->Btns_Fechayhora->setIsSelect(false);
-     ui->Lab_Titulo->setText("Fecha & hora");
-     frame = SFecha_Hora;
-     qDebug() << frame << "------------------------------------Hola Estoy en ek Frame Fecha y hora";
+    QDateTime fecha;
+    MainWindow::setFocus();
+    ui->stackedWidget->setCurrentIndex(SFecha_Hora);
+    ui->Btns_Fechayhora->setIsSelect(false);
+    ui->Lab_Titulo->setText("Fecha & hora");
+    frame = SFecha_Hora;
+    qDebug() << frame << "------------------------------------Hola Estoy en ek Frame Fecha y hora";
+    //qDebug() << fecha.currentDateTime();
+    ui->dateEdit->setDateTime(fecha.currentDateTime());
+    //qDebug() << ui->dateEdit->text();
 }
 
 void MainWindow::on_tabWidget_2_currentChanged(int index)
@@ -3525,8 +3529,15 @@ void MainWindow::on_Btn_Display_clicked()
 }
 
 void MainWindow::Guardar_FechaHora()
-{
-    QStringList arg; QProcess pro;
+{   QStringList arg; QProcess pro;
+
+    if(consultar_ntp() == true) {
+        arg << "-c" << "sudo timedatectl set-ntp false";
+        pro.start("/bin/sh", arg); pro.waitForFinished();
+        arg.clear();
+        qDebug()<< "se cambio el ntp se espera poder cambiar la hora";
+    }
+
     QString strDateTime = ui->dateEdit->text() + " " + ui->Btns_Fechayhora->getLineHorText() + ":" + ui->Btns_Fechayhora->getLineMinText() + ":00";
     //QString strDateTime = ui->txtMonth->text() + ui->txtDay->text() + ui->txtHour->text() + ui->txtMinute->text() + ui->txtYear->text();
     QString str = QString("sudo hwclock --set --date '%1'").arg(strDateTime);
@@ -3591,6 +3602,21 @@ void MainWindow::on_Btn_CambioTurno_clicked()
     {
         QSqlQuery qry;
         qry.exec("UPDATE `cistem`.`Productos` SET `Nombre`='"+ui->Line_EditProducto->text()+"' WHERE  `id`="+QString::number(ui->Combo_selcProducto->currentIndex()+1)+"");
+
+    }
+
+    bool MainWindow::consultar_ntp()
+    {   bool activo;
+        activo = true;
+        QStringList arg; QProcess pro;
+        arg << "-c" << QString("timedatectl status | grep -i NTP");
+        pro.start("/bin/sh", arg); pro.waitForFinished();
+        QString st = pro.readAllStandardOutput();
+        qDebug() << st;
+        if(st.contains("inactive")) activo = false;
+        else activo = true;
+        qDebug() << "el ntp es: " << activo;
+        return activo;
 
     }
 

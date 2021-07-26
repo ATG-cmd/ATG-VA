@@ -240,7 +240,7 @@ width: 0px;
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>22</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -3077,7 +3077,7 @@ QTabWidget::pane {
 }</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -8378,7 +8378,7 @@ margin: 30px 20px 20px -15x;
          <property name="date">
           <date>
            <year>2000</year>
-           <month>1</month>
+           <month>3</month>
            <day>21</day>
           </date>
          </property>

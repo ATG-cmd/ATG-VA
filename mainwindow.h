@@ -210,6 +210,7 @@ public:
     void configurar_tablas(QTableWidget *tabla,int n_colum,int n_tabla);
     void Guardar_ConfigEntregas();
     void Guardar_ConfigProducto();
+    bool consultar_ntp();
 
 signals:
 
