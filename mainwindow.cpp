@@ -288,12 +288,9 @@ MainWindow::MainWindow(QWidget *parent)
   for (int i = 0 ; i < ui->SelecTank->count() ; ++i) {
   ui->SelecTank->setItemData(i, Qt::AlignCenter, Qt::TextAlignmentRole);
   };
-
-
 qDebug() << "Iniciando --------------------------------";
 
 }
-
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -578,9 +575,6 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     {
         MainWindow::setFocus();
         qDebug() << "Hola desde el filtro serie";
-        QLabel *Label;
-        Label = new QLabel(this );
-
 
         Dialog *dlg = new Dialog(this);
         dlg->setGeometry(30,315,1860,765);
@@ -844,7 +838,6 @@ qDebug() << "99999999999999999999999999999999999999999";
         }
     }
 
-
    disconnect(tanques[indice],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
     connect(tanques[indice],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
  //   MainWindow::setFocus();
@@ -855,8 +848,6 @@ qDebug() << "99999999999999999999999999999999999999999";
             tanques[indice]->SetAltura(cad.mid(13,5).toDouble(), cad.mid(19,4).toDouble());
             tanques[indice]->SetTemperatura(cad.mid(9,3).toDouble()/10);
         }
-
-
         if (cad[7]== "=" && cad[12]== "=" && cad[21] =="=" && cad.length() == 36)
         {
 
@@ -871,18 +862,13 @@ qDebug() << "99999999999999999999999999999999999999999";
             qDebug() << "Tamano de cadena:"<< cad.length();
         }
         inicbuff1();
-
-
-
     if(Maxi)
         Tanque_Maximisado(indice);
 }
 
 void MainWindow::Descargar()
 {
-
     connect(deliveryProGaugeTimer, SIGNAL(timeout()), this, SLOT(deliveryProGaugeCountIncrement()));
-
     qDebug() << "Descargado Tanques .....";
     S=0;
     QSqlQuery qry;
@@ -921,12 +907,11 @@ void MainWindow::Descargar()
 
             switch (qry.value(5).toInt())
             {
-            case 1: tanques[S]->color("gray");   break;
-            case 2: tanques[S]->color("green");  break;
-            case 3: tanques[S]->color("yellow"); break;
-            case 4: tanques[S]->color("cyan");   break;
+                case 1: tanques[S]->color("gray");   break;
+                case 2: tanques[S]->color("green");  break;
+                case 3: tanques[S]->color("yellow"); break;
+                case 4: tanques[S]->color("cyan");   break;
             }
-
             tanques[S]->setCodigoCombustible(qry.value(6).toInt());
             tanques[S]->setID(qry.value(7).toString());
             tanques[S]->setAjusteAltura(qry.value(8).toDouble());
@@ -949,7 +934,6 @@ void MainWindow::Descargar()
         QMessageBox::critical(this, "Error",tr(qry.lastError().text().toUtf8()));
     }
 
-
     for (int i=0;i < S;i++) {
         if(qry.exec("SElECT * FROM cistem.limites WHERE Id_Taque = " +  QString::number(tanques[i]->getIdTanque())))
         {
@@ -963,10 +947,7 @@ void MainWindow::Descargar()
                tanques[i]->SetProductoBajo(qry.value(6).toDouble());
                tanques[i]->SetAlarma_de_Agua(qry.value(7).toDouble());
                tanques[i]->SetAdvertencua_de_Agua(qry.value(8).toDouble());
-
                tanques[i]->DeliveryinProcces();
-
-
                qDebug() <<"Hola Desde Limites ;p"
                         <<qry.value(0).toString()
                         <<qry.value(1).toString()
@@ -983,35 +964,29 @@ void MainWindow::Descargar()
       }
     }
   }
-
          TCon = 0;
-
           if(qry.exec(" SELECT * FROM cistem.Turnos WHERE Habilitado = 1;"))
           {
               if  ( qry.next())
               {
-                  IProg = true;
-              while (qry.next())
-              {
+                      IProg = true;
+                  while (qry.next())
+                  {
 
-                 turnos[TCon].Turno = qry.value(1).toInt();
-                 turnos[TCon].Horas = qry.value(2).toInt();
-                 turnos[TCon].minutos = qry.value(3).toInt();
+                     turnos[TCon].Turno = qry.value(1).toInt();
+                     turnos[TCon].Horas = qry.value(2).toInt();
+                     turnos[TCon].minutos = qry.value(3).toInt();
 
-                    qDebug() << "TURNO"<<  qry.value(2).toInt() << "Horas" << qry.value(3).toInt() << "Munitos" << qry.value(4).toInt();
-                    qDebug() << "ID" << TCon;
-                    TCon ++;
+                        qDebug() << "TURNO"<<  qry.value(2).toInt() << "Horas" << qry.value(3).toInt() << "Munitos" << qry.value(4).toInt();
+                        qDebug() << "ID" << TCon;
+                        TCon ++;
 
-              }
-
+                  }
               }
               else {
                   IProg= false;
               }
           }
-
-
-
  }
 
 void MainWindow::Geometrytank()
@@ -1768,6 +1743,36 @@ void MainWindow::limpiar_Activos()
     estado_sistema(ui->Btn_Barra_Estados,"normal");
 }
 
+void MainWindow::limpiar_incidente_activo(QString tipo, QString Descripcion, QString fecha, QString usuario)
+{
+    //qDebug() << "cadena de un incidente" << tipo +" " <<Descripcion + "" << fecha + " " << usuario + " ";
+    QString cadena;
+    QSqlQuery qry;
+    qDebug() <<  ui->tabla_incidentes->rowCount();
+
+        cadena.append("UPDATE cistem.incidentes SET Activo = '0', "
+                      "Clear_time = '"+ QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss") +"' "
+                      "WHERE "
+                      "Tipo_incidente = '"+ tipo +"' AND "
+                      "Descripcion = '" + Descripcion + "' AND "
+                      "Fecha_incidente = '" + fecha + "' AND "
+                      "usuario = '" + usuario + "';");
+        qDebug() << cadena;
+        qry.exec(cadena);
+        if(tipo == "Alarma"){
+            Alarmas--;
+        }else if( tipo == "Warning"){
+            warnings--;
+        }
+        Indicadores[0]->setText("Alarmas:   "+QString::number(Alarmas)+"");
+        Indicadores[1]->setText("Warnings: "+QString::number(warnings)+"");
+
+        if(Alarmas == 0 && warnings == 0) estado_sistema(ui->Btn_Barra_Estados,"normal");
+        else if(Alarmas == 0 && warnings > 0)estado_sistema(ui->Btn_Barra_Estados,"warning");
+        else if(Alarmas > 0) estado_sistema(ui->Btn_Barra_Estados,"alarma");
+
+}
+
 void MainWindow::buscar_alarmas()
 {
     QString cadena = "SELECT * FROM cistem.incidentes WHERE Activo = 1;";
@@ -2263,6 +2268,16 @@ void MainWindow::btn_clicked()
     else if(Btn_select_rango->text() == "Limpiar Activos"){
         limpiar_Activos();
     }
+    else if(Btn_select_rango->text() == "Limpiar activo"){
+        //(QString tipo, QString Descripcion, QString fecha, QString usuario)
+
+        limpiar_incidente_activo(ui->tabla_incidentes->item(ui->tabla_incidentes->currentRow(),0)->text(),
+                                 ui->tabla_incidentes->item(ui->tabla_incidentes->currentRow(),1)->text(),
+                                 ui->tabla_incidentes->item(ui->tabla_incidentes->currentRow(),2)->text(),
+                                 ui->tabla_incidentes->item(ui->tabla_incidentes->currentRow(),4)->text()
+                                 );
+        rellenar_activos(Btn_select_rango);
+    }
 }
 
 void MainWindow::Leer_GPIO()
@@ -2585,18 +2600,6 @@ void MainWindow::InVentoryHistory(int IDTank, int ComboInventory, bool Porfecha,
              {
                  configurar_tablas(ui->Tabla_Inventario,5,3);
                  Lab_Title->setText("se entro a tabla invnetario_turnos");
-//                 ui->Tabla_Inventario->setColumnWidth(0,100);
-//                 ui->Tabla_Inventario->horizontalHeaderItem(0)->setText("Turno");
-//                 ui->Tabla_Inventario->setColumnWidth(1,500);
-//                 ui->Tabla_Inventario->horizontalHeaderItem(1)->setText("Fecha de Turno");
-//                 ui->Tabla_Inventario->setColumnWidth(2,380);
-//                 ui->Tabla_Inventario->horizontalHeaderItem(2)->setText("Volumen de Combustible");
-//                 ui->Tabla_Inventario->setColumnWidth(3,280);
-//                 ui->Tabla_Inventario->horizontalHeaderItem(3)->setText("Temperatura");
-//                 ui->Tabla_Inventario->setColumnWidth(4,280);
-//                 ui->Tabla_Inventario->horizontalHeaderItem(4)->setText("Altura de Combustible");
-//                 ui->Tabla_Inventario->setColumnWidth(5,280);
-//                 ui->Tabla_Inventario->horizontalHeaderItem(5)->setText("Altura de Agua");
 
                  ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 0, new QTableWidgetItem(qry.value(8).toString()));
                  ui->Tabla_Inventario->setItem(ui->Tabla_Inventario->rowCount() - 1, 1, new QTableWidgetItem(qry.value(7).toDateTime().toString("yyyy-MM-dd HH:mm:ss")));
@@ -2774,7 +2777,7 @@ void MainWindow::guardar_FormatoFecha()
 
     disconnect(Time1,SIGNAL(timeout()),this,SLOT(Estados()));
 //*** Configurar --- 0 Habilitado o Deshabilitado --- ***//
- int hab = 0;
+// int hab = 0;
  QSqlQuery qry;
  qry.exec("SELECT COUNT(1) FROM cistem.tanques WHERE Configurado = 1;");
  while(qry.next())  { S = qry.value(0).toInt();
@@ -2796,7 +2799,6 @@ qDebug() << "Modificando Formato fecha";
 
      DescargarFormatoFecha();
      consultaBD();
-
      Descargar();
 }
 
@@ -2815,8 +2817,6 @@ void MainWindow::on_pushButton_5_clicked()   // boton de salida
 {
    close();
 }
-
-
 
 void MainWindow::on_Btn_Station_clicked()
 {
@@ -3102,9 +3102,7 @@ void MainWindow::rellenar_tabla_sensores(int caso)
             ui->Tabla_Sensores->setItem(ui->Tabla_Sensores->rowCount() - 1, 0, new QTableWidgetItem(qry.value(1).toString()));
             ui->Tabla_Sensores->setItem(ui->Tabla_Sensores->rowCount() - 1, 1, new QTableWidgetItem(qry.value(2).toString()));
             ui->Tabla_Sensores->setItem(ui->Tabla_Sensores->rowCount() - 1, 2, new QTableWidgetItem(qry.value(6).toString()));
-//            ui->Tabla_Sensores->item(ui->Tabla_Sensores->rowCount() - 1, 0)->setTextAlignment(Qt::AlignCenter);
-//            ui->Tabla_Sensores->item(ui->Tabla_Sensores->rowCount() - 1, 1)->setTextAlignment(Qt::AlignCenter);
-//            ui->Tabla_Sensores->item(ui->Tabla_Sensores->rowCount() - 1, 2)->setTextAlignment(Qt::AlignCenter);
+
             configurar_tablas(ui->Tabla_Sensores,2,2);
             break;
         case 2: break;
@@ -3128,9 +3126,9 @@ void MainWindow::conectar_signals()
 
 connect(ui->tabWidget_2, QOverload<int>::of(&QTabWidget::currentChanged),
       [=](int index){
-  switch (index) {
+    switch (index) {
 
-  case 0:
+    case 0:
       ui->PuntoVolMax->setGeometry(200,200,50,50);
       ui->Bola_ProductoAlto->setGeometry(200,200,50,50);
       ui->Bola_Desbordamiento->setGeometry(200,200,50,50);
@@ -3141,7 +3139,7 @@ connect(ui->tabWidget_2, QOverload<int>::of(&QTabWidget::currentChanged),
 
 
       qDebug()<< "Index Cambio 0"; break;
-   case 1:
+    case 1:
 
       ui->PuntoVolMax->setGeometry(X(y),y,50,50);
       ui->Bola_ProductoAlto->setGeometry(X(y1),y1,50,50);
@@ -3152,7 +3150,7 @@ connect(ui->tabWidget_2, QOverload<int>::of(&QTabWidget::currentChanged),
       ui->Bola_Advertencia_Agua->setGeometry(X(400),400,50,50);
 
       qDebug() << "Index Cambio 1"; break;
-  default:
+    default:
       qDebug() << "Entre en el default"; break;
 
   }
@@ -3348,7 +3346,6 @@ void MainWindow::leer_impresora()
           else {
               sensor_papel = false;
           }
-
 }
 
 void MainWindow::fillPortsParameters()
@@ -3420,7 +3417,7 @@ void MainWindow::updateSettings()
 
     m_currentSettings.stringFlowControl = ui->flowControlBox->currentText();
 
-      }
+}
 
 void MainWindow::openSerialPort()
 {
@@ -3568,57 +3565,52 @@ void MainWindow::on_Btn_CambioTurno_clicked()
            CambioDeTurnoProgramado();
        }
     }
+}
 
-    }
+void MainWindow::CambioDeTurnoManual()
+{
 
-    void MainWindow::CambioDeTurnoManual()
-    {
+}
 
-    }
+void MainWindow::CambioDeTurnoProgramado()
+{
+    QSqlQuery qry;
+    qry.exec("SELECT COUNT(STATUS) FROM cistem.Entregando WHERE STATUS='Entregando' ;");
 
-    void MainWindow::CambioDeTurnoProgramado()
-    {
-
-        QSqlQuery qry;
-        qry.exec("SELECT COUNT(STATUS) FROM cistem.Entregando WHERE STATUS='Entregando' ;");
-
-       while(qry.next())
+   while(qry.next())
+   {
+       if (qry.value(0)== 0)
        {
-           if (qry.value(0)== 0)
-           {
-               CierreManual= true;
-           }
-           else {
-               EntregaEnprocesoDurantecierre= true;
-
-           }
+           CierreManual= true;
        }
+       else {
+           EntregaEnprocesoDurantecierre= true;
 
-    }
+       }
+   }
+}
 
+void MainWindow::Guardar_ConfigProducto()
+{
+    QSqlQuery qry;
+    qry.exec("UPDATE `cistem`.`Productos` SET `Nombre`='"+ui->Line_EditProducto->text()+"' WHERE  `id`="+QString::number(ui->Combo_selcProducto->currentIndex()+1)+"");
 
+}
 
-    void MainWindow::Guardar_ConfigProducto()
-    {
-        QSqlQuery qry;
-        qry.exec("UPDATE `cistem`.`Productos` SET `Nombre`='"+ui->Line_EditProducto->text()+"' WHERE  `id`="+QString::number(ui->Combo_selcProducto->currentIndex()+1)+"");
+bool MainWindow::consultar_ntp()
+{   bool activo;
+    activo = true;
+    QStringList arg; QProcess pro;
+    arg << "-c" << QString("timedatectl status | grep -i NTP");
+    pro.start("/bin/sh", arg); pro.waitForFinished();
+    QString st = pro.readAllStandardOutput();
+    qDebug() << st;
+    if(st.contains("inactive")) activo = false;
+    else activo = true;
+    qDebug() << "el ntp es: " << activo;
+    return activo;
 
-    }
-
-    bool MainWindow::consultar_ntp()
-    {   bool activo;
-        activo = true;
-        QStringList arg; QProcess pro;
-        arg << "-c" << QString("timedatectl status | grep -i NTP");
-        pro.start("/bin/sh", arg); pro.waitForFinished();
-        QString st = pro.readAllStandardOutput();
-        qDebug() << st;
-        if(st.contains("inactive")) activo = false;
-        else activo = true;
-        qDebug() << "el ntp es: " << activo;
-        return activo;
-
-    }
+}
 
 void MainWindow::on_Btn_Productos_clicked()
 {
@@ -3645,3 +3637,13 @@ void MainWindow::on_Combo_selcProducto_activated(const QString &arg1)
     ui->Line_EditProducto->setText(arg1);
 }
 
+
+
+void MainWindow::on_tabla_incidentes_cellClicked(int row, int column)
+{
+    Q_UNUSED(column);
+    Q_UNUSED(row);
+    if(ui->ComboSeleccion->currentIndex() == 0)
+    Btn_select_rango->setText("Limpiar activo");
+
+}

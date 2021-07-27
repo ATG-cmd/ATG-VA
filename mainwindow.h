@@ -211,6 +211,7 @@ public:
     void Guardar_ConfigEntregas();
     void Guardar_ConfigProducto();
     bool consultar_ntp();
+    void limpiar_incidente_activo(QString tipo, QString Descripcion, QString fecha, QString usuario);
 
 signals:
 
@@ -404,6 +405,8 @@ private slots:
    void on_Combo_selcProducto_activated(const QString &arg1);
 
    void on_Combo_CubTanque_activated(int index);
+
+   void on_tabla_incidentes_cellClicked(int row, int column);
 
 private:
     Ui::MainWindow *ui;

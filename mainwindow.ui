@@ -240,7 +240,7 @@ width: 0px;
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>22</number>
+     <number>15</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -5853,6 +5853,15 @@ font-weight: bold;
       </property>
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="tabKeyNavigation">
+       <bool>false</bool>
+      </property>
+      <property name="showDropIndicator" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="dragDropOverwriteMode">
+       <bool>false</bool>
       </property>
       <property name="alternatingRowColors">
        <bool>true</bool>
