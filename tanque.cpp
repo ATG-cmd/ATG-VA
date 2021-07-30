@@ -171,9 +171,9 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
         T1->setTitle("Tanque");
         T1->setFlat(true);
 
-      //  T1->setStyleSheet("border: 2px solid blue;");
+        //T1->setStyleSheet("border: 2px solid blue;");
         Boton->setGeometry(0,50,560,299);
-        Boton->setStyleSheet("QPushButton{background-color: rgb(240, 240, 240); border: 0px solid white; border-radius: 15px; padding: 5px;  }" );
+        Boton->setStyleSheet("QPushButton{background-color:rgb(240, 240, 240); border: 0px solid white; border-radius: 15px; padding: 5px;  }" );
 
 
         // esta conexion aprobecha la señal generada al dar click al boton

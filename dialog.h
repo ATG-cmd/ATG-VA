@@ -17,10 +17,10 @@
 //#define btnXesp 5
 //#define btnYesp 5
 
-#define btnX 100
-#define btnY 70
-#define btnXesp 10
-#define btnYesp 10
+#define btnX 150
+#define btnY 105
+#define btnXesp 15
+#define btnYesp 15
 
 namespace Ui {
 class Dialog;
