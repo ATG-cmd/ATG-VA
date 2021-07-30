@@ -212,7 +212,7 @@ MainWindow::MainWindow(QWidget *parent)
     DB = QSqlDatabase::addDatabase("QMYSQL");
 
     // DB.setHostName("192.168.10.104");
-    DB.setHostName("192.168.100.136");
+    DB.setHostName("192.168.100.10");
    // DB.setHostName("192.168.100.216");
    // DB.setHostName("localhost");
     DB.setDatabaseName("cistem");
@@ -817,9 +817,9 @@ void MainWindow::Protocolo(QString cad)
     QSqlQuery qry;
 
     indice =0;
-
+qDebug () << "99999999999999999999999999999999999999999";
     qDebug() << "Cadena: " << cad;
-
+qDebug() << "99999999999999999999999999999999999999999";
     QString busqueda = cad.mid(0,5);
 
     for (int i = 0; i <= IDSerie; i++) {
@@ -835,12 +835,13 @@ void MainWindow::Protocolo(QString cad)
 
    disconnect(tanques[indice],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
     connect(tanques[indice],&Tanque::Camino,this,&MainWindow::Tanque_Maximisado);
+ //   MainWindow::setFocus();
 
         if (cad[7]== "=" && cad[12]== "=" && cad[18] =="=")
         {
             tanques[indice]->setFocusPolicy(Qt::NoFocus);
             tanques[indice]->SetAltura(cad.mid(13,5).toDouble(), cad.mid(19,4).toDouble());
-            tanques[indice]->SetTemperatura(cad.mid(9,3).toDouble());
+            tanques[indice]->SetTemperatura(cad.mid(9,3).toDouble()/10);
         }
 
 
@@ -887,7 +888,7 @@ void MainWindow::Descargar()
    qDebug() << "Que esta pasando";
    if (qry.value(0).toInt() > 0)
    {  numerodetanques = qry.value(0).toInt();
-       deliveryProGaugeTimer->start(1000/numerodetanques);
+       deliveryProGaugeTimer->start(1500/numerodetanques);
   qDebug () << "En este momento S:" << S;
     if(qry.exec("SELECT * FROM `cistem`.`tanques` where configurado = 1 ;"))
     {
@@ -1017,17 +1018,17 @@ void MainWindow::Geometrytank()
     case 3:case 7: tanques[S]->Setgeometry(960,413,750,410);break;
     }
 }
-
 void MainWindow::Estados()
 {
     switch(ProGaugeCount){
     case 0:
         connect(Time3,SIGNAL(timeout()),this,SLOT(SendCMD()));
-        Time3->start(300); Time1->stop();
+        Time3->start(300);//TIEMPO TIEMPO DE ESPERA DE RESPUESTA
+        Time1->stop();
         disconnect(Time1,SIGNAL(timeout()),this,SLOT(Estados()));
         break;
     case 1:  if (RX[ProGaugeCount1] == true ) { ProGaugeCount ++ ; RX[ProGaugeCount1]=false; }
-        else if (intento[ProGaugeCount1] >= 5)
+        else if (intento[ProGaugeCount1] >= 5) //NUMERO DE INTENTOS
         {
             ProGaugeCount ++ ; RX[ProGaugeCount1]=false; intento[ProGaugeCount1] = 0;
             qDebug () << "Sonda Fuera de Linea: " << ProGaugeId[ProGaugeCount1];
@@ -1053,7 +1054,7 @@ void MainWindow::Enviar_qry(QString qry)
     }
     else {
         Dialogo1 = new Frame(this);
-        Dialogo1->setGeometry(0,0,1920,1080);
+        Dialogo1->setGeometry(0,0,101920,80);
         Dialogo1->mensaje("Los Datos se guardaron \ncorrectamente", "Exito ","Informacion");
         Dialogo1->show();
 
@@ -1216,6 +1217,7 @@ void MainWindow::offlineSonda(QString offsonda)
 
 void MainWindow::SendCMD()
 {
+     QSqlQuery qry;
     switch(ProGaugeCountCMD){
     case 0:
        // puertoserie->setDataTerminalReady(false);
@@ -1223,8 +1225,14 @@ void MainWindow::SendCMD()
         ProGaugeCountCMD++;
         break;
     case 1:
+
+        qry.exec("SELECT COUNT(if(tanques.Serie_Sonda="+ProGaugeId[ProGaugeCount1]+",1,null)) FROM cistem.tanques WHERE Configurado = 1;");
+        while(qry.next()) {
+        if (qry.value(0).toInt()==1){
         puertoserie->write(("M"+ProGaugeId[ProGaugeCount1]).toUtf8()+char(13)+ char(10));
         qDebug() << ("M"+ProGaugeId[ProGaugeCount1]).toUtf8();
+        }
+        }
         ProGaugeCountCMD++;
         break;
 
@@ -1237,11 +1245,11 @@ void MainWindow::SendCMD()
         disconnect(Time3,SIGNAL(timeout()),this,SLOT(SendCMD()));
         connect(Time1,SIGNAL(timeout()),this,SLOT(Estados()));
 
-        QSqlQuery qry;
+
         qry.exec("SELECT COUNT(1) FROM cistem.tanques WHERE Configurado = 1;");
         while(qry.next())
         {
-           Time1->start(1000 /(qry.value(0).toInt()));
+           Time1->start(1000/(qry.value(0).toInt()));
         }
           break;
     }
@@ -1886,11 +1894,20 @@ void MainWindow::on_Btn_Entregas_clicked()
 
 }
 void MainWindow::deliveryProGaugeCountIncrement(){
+
+
     if (TanqueActual == numerodetanques-1) { TanqueActual = 0;}
     else { TanqueActual++;
   }
+    QSqlQuery qry;
+    qry.exec("SELECT COUNT(if(tanques.Id_Taque="+QString::number(TanqueActual)+",1,null)) FROM cistem.tanques WHERE Configurado = 1;");
+    while(qry.next()) {
+    if (qry.value(0).toInt()==1){
       qDebug() << "Tanque Actual"<< TanqueActual;
     tanques[TanqueActual]->deliveryProGaugeCountIncrement();
+    }
+
+    }
 
 }
 

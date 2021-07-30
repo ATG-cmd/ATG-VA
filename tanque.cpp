@@ -214,7 +214,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
                                                        "border: 3px solid red;"
                                                        "border-radius: 10px;"
                                                        "padding: 2px; }");
-        // lbl_ProGaugeDeliveryInProccess->hide();
+         lbl_ProGaugeDeliveryInProccess->hide();
 
          vericalLayout_4->addWidget(lbl_ProGaugeDeliveryInProccess);
          // horizontalLayout_3->addLayout(vericalLayout_4);
@@ -368,7 +368,7 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
      bool Sup =true;
 
 
-     AlturaTank = height - AjusteAltura;
+     AlturaTank = height + AjusteAltura;
 
         double result = 0.0;
 
@@ -381,14 +381,14 @@ Tanque::Tanque(QWidget *parent,bool config) : QWidget(parent)
           readPuntosCubicacion();
           Capacidad= pointVolume[puntosCubicacion -1];
 
-          if(Metricas){
+         // if(Metricas){
               res =CalcularCubicacion(h);
               reswater = CalcularCubicacion(water/1000);
 
-          }else{
-              res= CalcularCubicacion(h *0.004323);
-              reswater = CalcularCubicacion((water/1000) *0.004323);
-          }
+         // }else{
+           //   res= CalcularCubicacion(h *0.004323);
+            //  reswater = CalcularCubicacion((water/1000) *0.004323);
+         // }
           SetVolumen(res,reswater);
 
           qDebug ( ) << "---------------------";
@@ -774,7 +774,10 @@ void Tanque::SetConfigEntregas(int MinimoEntrega, int TiempoEntrega)
 
 void Tanque::deliveryProGaugeCountIncrement(){
  qDebug() << "Hola Desde Entregas";
-
+ QSqlQuery qry;
+ qry.exec("SELECT COUNT(if(tanques.Id_Taque="+QString::number(IdTanque)+",1,null)) FROM cistem.tanques WHERE Configurado = 1;");
+ while(qry.next()) {
+ if (qry.value(0).toInt()==1){
     if(!Entregando){
         if(VolumenCon <= deliveryLastInventoryRead){
             deliveryCountDecrement++;
@@ -876,6 +879,8 @@ void Tanque::deliveryProGaugeCountIncrement(){
     qDebug() <<"|"<< VolumenCon << deliveryLastInventoryRead << deliveryCountDecrement << deliveryCountIncrement << "|";
     qDebug() << "----------------------";
     deliveryLastInventoryRead = VolumenCon;
+ }
+ }
 
 }
 QString Tanque::ActualInventory(bool Inv)
