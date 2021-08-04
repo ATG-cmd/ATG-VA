@@ -240,7 +240,7 @@ width: 0px;
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex">
-     <number>15</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Menu">
      <widget class="QWidget" name="layoutWidget">
@@ -253,6 +253,48 @@ width: 0px;
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="3">
+        <widget class="QPushButton" name="Btn_Productos">
+         <property name="maximumSize">
+          <size>
+           <width>280</width>
+           <height>250</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>consolas</family>
+           <pointsize>-1</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+QPushButton{
+  color: white;
+background-color: rgba(80,50,10,100);
+font-weight: bold;
+	border-width: 3px;
+	border-radius: 10px;
+	padding: 2px;
+   font-size:46px;     
+  display: inline-block;
+  background-image: url(:/Productos.png);
+  background-repeat: no-repeat;
+  background-size: 45px;
+  text-align : bottom ;         
+  line-height: 200px;
+  font-family: consolas;
+  background-position: center ;
+}
+</string>
+         </property>
+         <property name="text">
+          <string>Productos</string>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="1">
         <widget class="QPushButton" name="Btn_Tanque">
          <property name="maximumSize">
@@ -589,7 +631,7 @@ font-weight: bold;
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
+       <item row="2" column="0">
         <widget class="QPushButton" name="Btn_sensor_conf">
          <property name="maximumSize">
           <size>
@@ -631,7 +673,7 @@ font-weight: bold;
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
+       <item row="2" column="1">
         <widget class="QPushButton" name="Btn_Fechayhora">
          <property name="maximumSize">
           <size>
@@ -674,7 +716,7 @@ font-weight: bold;
          </property>
         </widget>
        </item>
-       <item row="3" column="2">
+       <item row="2" column="2">
         <widget class="QPushButton" name="Btn_Display">
          <property name="maximumSize">
           <size>
@@ -769,48 +811,6 @@ font-weight: bold;
          </property>
          <property name="text">
           <string>Comunicación</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QPushButton" name="Btn_Productos">
-         <property name="maximumSize">
-          <size>
-           <width>280</width>
-           <height>250</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>consolas</family>
-           <pointsize>-1</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">
-QPushButton{
-  color: white;
-background-color: rgba(80,50,10,100);
-font-weight: bold;
-	border-width: 3px;
-	border-radius: 10px;
-	padding: 2px;
-   font-size:46px;     
-  display: inline-block;
-  background-image: url(:/Productos.png);
-  background-repeat: no-repeat;
-  background-size: 45px;
-  text-align : bottom ;         
-  line-height: 200px;
-  font-family: consolas;
-  background-position: center ;
-}
-</string>
-         </property>
-         <property name="text">
-          <string>Productos</string>
          </property>
         </widget>
        </item>
@@ -9515,6 +9515,32 @@ QComboBox QLineEdit {
  Turno</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="Btn_Imprimir">
+    <property name="geometry">
+     <rect>
+      <x>960</x>
+      <y>980</y>
+      <width>160</width>
+      <height>100</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(106, 151, 255,50);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="Imagenes/Resourse.qrc">
+      <normaloff>:/Impresora.png</normaloff>:/Impresora.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>100</width>
+      <height>100</height>
+     </size>
+    </property>
+   </widget>
    <zorder>Lab_Titulo</zorder>
    <zorder>btn_menu</zorder>
    <zorder>stackedWidget</zorder>
@@ -9527,6 +9553,7 @@ QComboBox QLineEdit {
    <zorder>SelecTank</zorder>
    <zorder>pushButton_5</zorder>
    <zorder>Btn_CambioTurno</zorder>
+   <zorder>Btn_Imprimir</zorder>
   </widget>
  </widget>
  <customwidgets>

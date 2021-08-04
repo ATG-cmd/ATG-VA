@@ -21,8 +21,8 @@ public:
     explicit Frame(QWidget *parent = nullptr);
     ~Frame();
       void   mensaje(QString Mensaje, QString Titulo,QString Incidiente);
-       void   mensaje(QString Mensaje, QString Titulo,QString Incidiente,bool Botones);
-      void mensaje(QString Mensaje, QString Titulo );
+      void   mensaje(QString Mensaje, QString Titulo,QString Incidiente,bool Botones);
+      void   mensaje(QString Mensaje, QString Titulo );
       QPixmap Pix;
 
 

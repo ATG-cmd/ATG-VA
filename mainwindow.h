@@ -62,8 +62,6 @@ public:
 
       };
 
-
-
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
@@ -407,6 +405,8 @@ private slots:
    void on_Combo_CubTanque_activated(int index);
 
    void on_tabla_incidentes_cellClicked(int row, int column);
+
+   void on_Btn_Imprimir_clicked();
 
 private:
     Ui::MainWindow *ui;
